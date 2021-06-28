@@ -1,0 +1,76 @@
+CREATE TABLE Users
+(
+Pk_UserID INT PRIMARY KEY,
+UserID INT NOT NULL,
+Username VARCHAR (100),
+Password CHAR(11),
+Role VARCHAR (100),
+Fk_UserID INT NOT NULL REFERENCES User(ID),
+Account_Type VARCHAR (100)
+);
+
+CREATE TABLE Prof
+(
+Pk_ProfID INT PRIMARY KEY,
+ProfID INT NOT NULL,
+ProfName VARCHAR (100),
+Department VARCHAR (100)
+);
+
+CREATE TABLE ProfSched
+(
+Pk_ProfID INT PRIMARY KEY,
+Fk_SubjID INT NOT NULL REFERENCES SubjID (Pk_SubjID),
+Fk_ProfID INT NOT NULL REFERENCES ProfID (Pk_ProfID) 
+);
+
+CREATE TABLE Subj
+(
+Pk_SubjID INT PRIMARY KEY,
+SubjCode INT NOT NULL,
+Fk_SubjCode INT NOT NULL REFERENCES SubjCode (Pk_SubjID),
+Schedule DATETIME,
+Description VARCHAR (100)
+);
+
+CREATE TABLE GateAttendance
+(
+Pk_GateID INT PRIMARY KEY,
+Fk_StudentID INT NOT NULL REFERENCES StudentID (Pk_StudentID),
+Timestamp DATETIME,
+isValid BOOLEAN
+);
+
+CREATE TABLE ProfAttendance
+(
+Pk_ID INT PRIMARY KEY,
+FK_ProfID INT NOT NULL REFERENCES ProfID (Pk_ProfID),
+Timestamp DateTime,
+isValid BOOLEAN
+);
+
+CREATE TABLE STUDENT
+(
+Pk_StudentID INT PRIMARY KEY,
+StudentID INT NOT NULL,
+Fk_StudentID INT NOT NULL REFERENCES StudentID (Pk_StudentID),
+Name VARCHAR (100),
+Adress CHAR (11),
+Contact INT
+);
+
+CREATE TABLE Student_Subj
+(
+ID INT,
+Fk_StudentID INT NOT NULL REFERENCES StudentID (Student_ID),
+Fk_SubjectID INT NOT NULL REFERENCES SubjCode (Pk_SubjID)
+);
+
+CREATE TABLE Student_Attendance
+(
+ID INT PRIMARY KEY,
+Fk_StudentID INT NOT NULL REFERENCES StudentID (Student_ID),
+TimeStamp DATETIME,
+Status VARCHAR (100),
+Remarks VARCHAR (100)
+);
