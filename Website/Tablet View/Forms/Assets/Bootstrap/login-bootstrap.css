@@ -6,13 +6,6 @@
  */
 
 /*! CUSTOM CLASSES*/
-.bg-yellow{
-  background-color: #FFF200;
-}
-.bg-img{
-  background-image: url("Assets/img/STI-logo.png");
-}
-
  :root {
   --blue: #007bff;
   --indigo: #6610f2;
