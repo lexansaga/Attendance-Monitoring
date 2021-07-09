@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Karla', sans-serif;
+}
+body{
+    background: #F8F8F8;
+}
+
+.sidebar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 260px;
+    background: #FFFFFF;
+    align-content: center;
+}
+
+.sidebar .logo-name{
+    margin-top: 25px;
+    font-size: 20px;
+    color: #5E6AB3;
+    font-weight: 600;
+    background: #FFFFFF;
+    text-align: center;
+}
+
+.sidebar .nav-links{
+    background: #FFFFFF;
+    height: 100%;
+    padding-top: 30px;
+}
+
+.sidebar .nav-links li{
+    position: relative;
+    list-style: none;
+    transition: all 0.4s ease;
+}
+
+.sidebar .nav-links li:hover{
+    background: #E0E3FC;
+}
+
+.sidebar .nav-links li i{
+    height: 50px;
+    min-width: 78px;
+    text-align: center;
+    line-height: 50px;
+    color: #989898;
+    font-size: 20px;
+}
+
+.sidebar .nav-links li a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.sidebar .nav-links li a .link_name{
+    font-size: 16px;
+    font-weight: 400;
+    color: #989898;
+}
+
+.sidebar .nav-links li .expandableItem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar .nav-links li .sub-menu{
+    padding: 6px 6px 14px 80px;
+    margin-top: -5px;
+    background: #F1F2FE;
+    display: none;
+}
+
+.sidebar .nav-links li .sub-menu a{
+    color: #989898;
+    font-size: 15px;
+    padding: 5px 0;
+}
+
+.sidebar .close .nav-links li .sub-menu{
+    position: absolute;
+    left:100%;
+}
