@@ -10,6 +10,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
         rel="stylesheet">
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 </head>
 
 <body>
@@ -17,7 +19,7 @@
         <p>ATTENDANCE<br>MONITORING</p>
     </div>
     <div class="center_card">
-        <div class="card">
+        <div class="card" data-aos="zoom-in" data-aos-duration="500">
             <div class="flow-x">
                 <div class="l_design x_half">
                     <div class="flow-y">
@@ -32,14 +34,14 @@
                 <div class="r_forms x_half">
                     <form class="flow-y">
                         <p>ATTENDANCE<br>MONITORING</p>
-                        <h3>S<span>igni</span>n</h3>
+                        <h3 data-aos="fade-right">S<span >igni</span>n</h3>
 
-                        <div class="input_group">                                                  
-                            <input type="text" placeholder="Username" name="text"/>
+                        <div class="input_group">
+                            <input type="text" placeholder="Username" name="text" />
                             <hr>
                         </div>
-                        <div class="input_group">                                                  
-                            <input type="password" placeholder="Password"   name="text"/>
+                        <div class="input_group">
+                            <input type="password" placeholder="Password" name="text" />
                             <hr>
                         </div>
                         <button>Signin</button>
@@ -54,6 +56,11 @@
 
     <script type="text/javascript" src="src/js/script.js">
 
+    </script>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </body>
 
