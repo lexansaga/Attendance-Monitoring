@@ -25,10 +25,9 @@ body {
     background-color: var(--background-color);
     background-repeat: repeat;
     background-size: cover;
-
+    background-position: center; 
     margin: 0px;
     padding: 0px;
-
 }
 
 .container {
@@ -61,14 +60,6 @@ body {
 .x_half {
     width: 50%;
     height: 100%;
-}
-
-.x-3rd {
-    width: 33.33%;
-}
-
-.x-4th {
-    width: 25%;
 }
 
 .logo {
@@ -104,7 +95,6 @@ body {
 .card>div>.l_design {
 
     background-color: var(--secondary-color);
-    
     padding-bottom: 3%;
 }
 
@@ -176,8 +166,8 @@ body {
     font-size: medium;
     font-weight: 400;
     font-size: 0.8vw;
-    width: 15vw;
-    left: 4vw;
+    width: 19vw;
+    left: 3.2vw;
   
 }
 
@@ -200,4 +190,65 @@ body {
     font-size: 0.8vw;
     margin: 2vw 0 0 7vw;
 
+}
+
+/* Tablet Mode */
+@media (max-width: 768px){
+
+    /* Centers the Text Logo*/
+    .logo{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+    .logo>p{
+        font-size: 1.8vw;
+    }
+
+    /*Removes unnecessary text in this view*/
+    .flow-y > p , h2{
+        display: none;
+    }
+
+    /*Brings image at the top of the card*/
+    .flow-x{
+        display: block;
+        width: fit-content;
+    }
+
+    /*changes card width*/
+    .card{
+       display: flex;
+       justify-content: center;
+       width:fit-content;
+    } 
+
+    .x_half {
+        width: 100%;
+    }
+    .input_group > input{
+        padding: 0vw;
+        width: 15vw;
+        left: 7.3vw;
+    }
+    .input_group > hr
+    {
+        width: 15vw;
+    }
+    .r_forms>form>button{
+        margin: 1.4vw -10vw -5 9.7vw;
+    }
+    .card>div>.l_design{
+        width: 30vw;
+    }
+    .card>div>.l_design>div>.icon {
+        width: 13vw;
+        margin: 0vw -10vw -5 8vw;
+    }
+}
+
+/* Mobile Mode */
+@media (max-width: 320px){
+   
 }
