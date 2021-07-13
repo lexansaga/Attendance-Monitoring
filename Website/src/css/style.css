@@ -21,15 +21,19 @@
     font-family: 'Karla', sans-serif;
 }
 body {
-    background-image: url('../assets/background.png');
+ 
+    margin: 0px;
+    padding: 0px;
     background-color: var(--background-color);
+}
+.body_bg
+{
+    background-image: url('../assets/background.png');
+    
     background-repeat: repeat;
     background-size: cover;
     background-position: center; 
-    margin: 0px;
-    padding: 0px;
 }
-
 .container {
     margin: 0px;
 }
@@ -112,6 +116,8 @@ body {
     color: var(--font-light-color);
     margin-left: 2vw;
     font-size: 1.2vw;
+    margin-top: 2.5vw;
+    
 }
 
 .card>div>.l_design>div>p {
@@ -172,7 +178,7 @@ body {
     font-weight: 400;
     font-size: 0.8vw;
     width: 19vw;
-    left: 3.2vw;
+    left: 5vw;
   
 }
 
@@ -193,8 +199,14 @@ body {
     width: 11vw;
     height: 2vw;
     font-size: 0.8vw;
-    margin: 2vw 0 0 7vw;
+    margin: 3.5vw 0 0 7vw;
 
+}
+.r_forms>form>button:hover
+{
+    border: var(--font-color-secondary) solid 1px;
+    background-color: white;
+    color: var(--font-light-secondary);
 }
  /* ------------------------------------------------------------Login Page -------------------------------------------------------*/
 
@@ -266,6 +278,7 @@ body {
     }
     .input_group > input{
         font-size: 1.8vw;
+        left: 3vw
     }
     .input_group > hr
     {
@@ -311,7 +324,7 @@ body {
    }
    .card{
        width: 75vw;
-       height: 95vw;
+       height: 98vw;
        margin-top: -30%;
    }
    .card>div>.l_design>div>.icon {
@@ -328,7 +341,8 @@ body {
     .r_forms>form>button{
         height: 6vw;
         font-size: 3vw;
-        width: 25vw;
+        width: 30vw;
+        border-radius: 25px;
         margin: 8vw 0 0 0;
     }
 }
