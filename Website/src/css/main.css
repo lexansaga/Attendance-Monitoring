@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Karla', sans-serif;
+}
+body{
+    background: #F8F8F8;
+}
+
+/*Property of sidebar in desktop mode*/
+.s-navbar{
+    align-content: center;
+    height: 100%;
+    background:#FFFF;
+    width: 16%;
+    top: 0%;
+    left: 0%;
+}
+
+/*Property of Logo in the sidebar in desktop mode*/
+.s-navbar>.logo-name{
+    height: 4vw;
+    text-align: center;
+    font-size: 15px;
+}
+.logo-name H3{
+    padding-top: 0.5vw;
+    color: #5E6AB3;
+}
+
+/*Propoerty of lists on the sidebar*/
+.s-navbar .nav-links{
+    background: #FFFFFF;
+    height: 100%;
+    padding-top: 1vw;
+}
+
+.s-navbar .nav-links li i{
+    height: 50px;
+    min-width: 78px;
+    text-align: center;
+    line-height: 50px;
+    color: #989898;
+    font-size: 20px;
+}
+
+.s-navbar .nav-links li a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.s-navbar .nav-links li a .link_name{
+    font-size: 16px;
+    font-weight: 400;
+    color: #989898;
+}
+
+/*Gives sidebar a glow when mouse hovers*/
+.s-navbar .nav-links li:hover{
+    background: #E0E3FC;
+}
+
+/*Property of header*/
+.header{
+    width: 84%;
+    height: 3vw;
+    position: fixed;
+    right: 0;
+    background-color: #FFFF;
+}
