@@ -16,16 +16,18 @@ body{
     width: 16%;
     top: 0%;
     left: 0%;
+    box-shadow: 0.5px 1px 8px 3px #D9D9D9;
+    position: absolute;
 }
 
 /*Property of Logo in the sidebar in desktop mode*/
 .s-navbar>.logo-name{
     height: 4vw;
     text-align: center;
-    font-size: 15px;
+    font-size: 13px;
 }
 .logo-name H3{
-    padding-top: 0.5vw;
+    padding-top: 1.3vw;
     color: #5E6AB3;
 }
 
@@ -42,7 +44,7 @@ body{
     text-align: center;
     line-height: 50px;
     color: #989898;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .s-navbar .nav-links li a{
@@ -52,21 +54,59 @@ body{
 }
 
 .s-navbar .nav-links li a .link_name{
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     color: #989898;
 }
 
+.vert-line{
+    border-left: 5px solid #FFFF;
+    height: 2.5vw;
+    position: absolute;
+    right: 0;
+    margin-top: 3px;
+}
+
 /*Gives sidebar a glow when mouse hovers*/
-.s-navbar .nav-links li:hover{
-    background: #E0E3FC;
+.s-navbar .nav-links li:hover i{
+    color: #5E6AB3;
+}
+.s-navbar .nav-links li:hover .link_name{
+    color: #5E6AB3;
+}
+.s-navbar .nav-links li:hover .vert-line{
+    border-left: 5px solid #5E6AB3;
 }
 
 /*Property of header*/
 .header{
     width: 84%;
-    height: 3vw;
+    height: 4vw;
     position: fixed;
     right: 0;
     background-color: #FFFF;
 }
+
+.s-navbar .bottom-image{
+    position: absolute;
+    bottom: 0;
+    background-color: #B2BBF7;
+    margin-left: 1.5vw;
+    margin-bottom: 2vw;
+    width: 13vw;
+    height: 16vw;
+    border-radius: 2vw;
+    box-shadow: 0.5px 1px 8px 3px #D9D9D9;
+}
+.s-navbar .bottom-image img{
+    width: 10vw;
+    padding-left: 1.6vw;
+    padding-top: 1vw;
+}
+.s-navbar .bottom-image h3{
+    padding-left: 1vw;
+    padding-top: 1vw;
+    color: #FFFF;
+    font-size: 1vw;
+}
+
