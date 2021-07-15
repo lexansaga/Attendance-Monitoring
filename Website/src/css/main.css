@@ -87,6 +87,42 @@ body{
     background-color: #FFFF;
 }
 
+/*Property of Search Button*/
+.header .search-bar{
+    padding-top: 1vw;
+    padding-left: 8%;
+}
+.header .search-bar input{
+    border: none;
+    background-color: #F8F8F8;
+    height: 2vw;
+    width: 30vw;
+    padding: 1vw;
+}
+.header .search-bar i{
+    font-size: 20px;
+    color: #8F8F8F;
+    position: absolute;
+    margin-top: 0.3vw;
+    margin-left: -2vw;
+}
+
+/*Propert of user profile in the header*/
+.header .profile-picture{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 1vw;
+    margin-top: 0vw;
+    width: fit-content;
+    height: fit-content;
+}
+.header .profile-picture i{
+    font-size: 2vw;
+    color: #5E6AB3;
+}
+
+/*Property of bottom image in the side navbar*/
 .s-navbar .bottom-image{
     position: absolute;
     bottom: 0;
