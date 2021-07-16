@@ -176,3 +176,35 @@ body{
    display: block;
 }
 
+/*Property of sub menus on the profile*/
+.header .profile-menu{
+    position: absolute;
+    right: 0;
+    list-style: none;
+    background: #FFFF;
+    width: 7vw;
+    margin-right: 2.2vw;
+    margin-top: 0.4vw;
+    box-shadow: 0.5px 1px 8px 3px #D9D9D9;  
+    display: none;
+}
+.header .profile-menu li{
+    font-size: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: .8vw;
+    padding-bottom: .8vw;
+}
+.header .profile-menu li a{
+    text-decoration: none;
+    color: #8F8F8F;
+}
+
+.header .profile-menu li:hover{
+    background: #E0E3FC;
+}
+
+.header .profile-picture:hover .profile-menu{
+    display: block;
+}
