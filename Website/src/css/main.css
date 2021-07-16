@@ -155,17 +155,18 @@ body{
     margin-top: -20%;
     margin-left: 101%;
     background-color: #FFFFFF;
-    height: 8vw;
+    height: fit-content;
     box-shadow: 0.5px 1px 8px 3px #D9D9D9;
     display: none;
 }
 .s-navbar .nav-links .sub-menu li a{
-    padding-top: .5vw;
+    padding-top: .8vw;
+    padding-bottom: .8vw;
     color: #8F8F8F;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 1vw;
+    font-size: 1vw;
 }
 
 .s-navbar .nav-links .sub-menu li:hover{
