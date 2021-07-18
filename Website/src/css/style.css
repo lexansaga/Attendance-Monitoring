@@ -208,9 +208,38 @@ body {
     background-color: white;
     color: var(--font-light-secondary);
 }
- /* ------------------------------------------------------------Login Page -------------------------------------------------------*/
+ /* ------------------------------------------------------------Login Page End -------------------------------------------------------*/
 
 
+
+
+
+
+ /* ------------------------------------------------------------Main Page -------------------------------------------------------*/
+
+.top_nav
+{
+    background-color: white;
+    height: 3vw;
+}
+
+.top_nav > .search
+{
+    background-color: var(--primary-color);
+    width: 10vw;
+    height: 2vw;
+}
+.top_nav > .notification
+{
+    background-color: var(--primary-color);
+   
+}
+.top_nav > .icon
+{
+    background-color: var(--primary-color);
+}
+
+  /* ------------------------------------------------------------Main Page End -------------------------------------------------------*/
 
 /* Tablet Mode */
 @media (max-width: 768px){
