@@ -1,23 +1,193 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap');
+:root {
+
+    --background-color: #F8F8F8;
+    --primary-color: #5E6AB3;
+    --secondary-color: #B2BBF7;
+
+    --font-color-primary: #696969;
+    --font-color-secondary: #484848;
+
+
+
+    --font-light-color: white;
+    /* This root block contains static data */
+}
+
+
 *{
     margin: 0;
     padding: 0;
     font-family: 'Karla', sans-serif;
 }
 body{
-    background: #F8F8F8;
+    background: var(--background-color);
+    padding: 0;
+    margin: 0;
 }
+
+.main_container
+{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+.main_content
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+/* Main container */
+.item_container
+{
+    height: 100%;
+    padding: 2vw 0 0 8vw;
+    display: grid;
+    grid-template-columns: repeat(4 , 1fr);
+    grid-template-rows: 0.2fr 1fr 1fr 1fr;
+    grid-template-areas: "h3 h3 h3 h3"
+     "dash_container dash_container dash_container dash_container"
+      "pie line line prof";
+      gap: 1vw;
+}
+/* Main container */
+.item_container > h3
+{
+  
+    color: var(--font-color-primary);
+    grid-area: h3;
+}
+/* Dashboard container with student status counts*/
+.dash_container
+{
+    padding: 1vw;
+    display: flex;
+    text-align: center;
+    grid-area: dash_container;
+    align-items: center;
+}
+.dash_child_prof
+{
+
+    padding: 2vw 0 0 0;
+height: 11vw;
+width: 16vw;
+border-radius: 25px;
+background-color: var(--primary-color);
+}
+.dash_child_prof > .dash_avatar
+{
+    width: 5vw;
+}
+.dash_child_prof > #dash_name
+{
+    color: white;
+    padding: 1.5vw 0 0 0;
+    font-weight: 600;
+}
+.dash_child_prof > #dash_pos
+{
+    padding: 0.5vw 0 0 0;
+    font-weight: 500;
+    color: white;
+    font-size: 0.8vw;
+}
+.dash_count_report
+{ 
+    display: flex;
+    width: 100%;
+    margin: 0 5vw 0 0;
+    align-items: center;
+    background-color: white;
+    padding: 1.5vw 2vw 1.5vw 2vw;
+    justify-content: space-between;
+    /* margin: 0 2vw; */
+  
+}
+.dash_child
+{
+    padding: 0 2vw 0 2vw;
+}
+.dash_child > img
+{
+    padding-bottom: 1vw;
+    width: 4vw;
+}
+.dash_child > h5
+{
+    font-size: 0.6vw;
+    text-align: left;
+    padding-bottom: 0.5vw;
+    color: var(--font-color-primary);
+}
+.dash_child > h1
+{
+    font-size: 2vw;
+    font-weight: 500;
+    text-align: left;
+    padding: 0;
+    margin-top: 0;
+    color: var(--primary-color);
+}
+/* Dashboard container with student status counts*/
+
+/* Pie chart */
+.pie-chart
+{
+    grid-area: pie;
+}
+.pie-chart > h3
+{
+    color: var(--font-color-primary);
+}
+.pie_container
+{
+    width: 20vw;
+    height: 20vw;
+    background-color: white;
+    margin-top: 1.5vw;
+    padding: 1.5vw;
+}
+
+/* Pie chart */
+
+
+/* Line Chart*/
+.line-chart
+{
+    grid-area: line;
+    
+}
+.line-chart > h3
+{
+    color: var(--font-color-primary);
+}
+.line_container
+{
+    width: inherit;
+    height: 20vw;
+    background-color: white;
+    margin-top: 1.5vw;
+    padding: 1.5vw;
+}
+/* Pie chart */
+
 
 /*Property of sidebar in desktop mode*/
 .s-navbar{
+    z-index: 100;
     align-content: center;
     height: 100%;
-    background:#FFFF;
-    width: 16%;
-    top: 0%;
-    left: 0%;
+    background: #FFFF;
+    width: 310px;
+    /* top: 0%; */
+    /* left: 0%; */
     box-shadow: 0.5px 1px 8px 3px #D9D9D9;
-    position: absolute;
+    /* position: absolute; */
 }
 
 /*Property of Logo in the sidebar in desktop mode*/
@@ -34,10 +204,12 @@ body{
 /*Propoerty of lists on the sidebar*/
 .s-navbar .nav-links{
     background: #FFFFFF;
-    height: 100%;
-    padding-top: 1vw;
+    margin-top: 3vh;
 }
-
+.s-navbar .nav-links li
+{
+    list-style-type: none;
+}
 .s-navbar .nav-links li i{
     height: 50px;
     min-width: 78px;
@@ -80,70 +252,92 @@ body{
 
 /*Property of header*/
 .header{
-    width: 84%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
     height: 4vw;
-    position: fixed;
+    /* position: fixed; */
     right: 0;
     background-color: #FFFF;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 /*Property of Search Button*/
 .header .search-bar{
-    padding-top: 1vw;
-    padding-left: 8%;
+    margin-right: 30vw;
+    width: inherit;
 }
 .header .search-bar input{
     border: none;
+    outline:none;
     background-color: #F8F8F8;
     height: 2vw;
     width: 30vw;
     padding: 1vw;
+    margin-left: 16vw;
+    font-size: 0.7vw;
+}
+.header .search-bar input:active{
+    
 }
 .header .search-bar i{
     font-size: 20px;
     color: #8F8F8F;
     position: absolute;
-    margin-top: 0.3vw;
     margin-left: -2vw;
+    margin-top: 0.5vw;
+    width: 1vw;
 }
-
-/*Propert of user profile in the header*/
-.header .profile-picture{
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 1vw;
+.header > .notification
+{
+    padding: 1vw 0.5vw 1vw 1vw;
     margin-top: 0vw;
     width: fit-content;
     height: fit-content;
+    cursor: pointer;
+}
+.header > .notification > i
+{
+    font-size: 1.5vw;
+    color: #989898;
+}
+/*Propert of user profile in the header*/
+.header .profile-picture{
+
+    padding: 1vw 5vw 1vw 0.5vw;
+    margin-top: 0vw;
+    width: fit-content;
+    height: fit-content;
+    cursor: pointer;
 }
 .header .profile-picture i{
-    font-size: 2vw;
+    font-size: 1.5vw;
     color: #5E6AB3;
 }
 
 /*Property of bottom image in the side navbar*/
 .s-navbar .bottom-image{
-    position: absolute;
-    bottom: 0;
+      /* position: absolute; */
+    /* bottom: 0; */
     background-color: #B2BBF7;
-    margin-left: 1.5vw;
-    margin-bottom: 2vw;
-    width: 13vw;
-    height: 16vw;
+    /* margin: 0 1.5vw 2vw 0.8vw; */
+    /* width: 22vw; */
+    height: 30vh;
+    margin:30vh 1vw 0 1vw;
     border-radius: 2vw;
     box-shadow: 0.5px 1px 8px 3px #D9D9D9;
 }
 .s-navbar .bottom-image img{
-    width: 10vw;
-    padding-left: 1.6vw;
-    padding-top: 1vw;
+    width: 150px;
+    display: flex;
+    padding:30px
+
 }
 .s-navbar .bottom-image h3{
     padding-left: 1vw;
-    padding-top: 1vw;
     color: #FFFF;
-    font-size: 1vw;
+    font-size: 15px
 }
 
 /* Property of Sub Menus on the sidebar*/
@@ -159,6 +353,14 @@ body{
     box-shadow: 0.5px 1px 8px 3px #D9D9D9;
     display: none;
 }
+.s-navbar .nav-links  li:hover
+{
+    border-right: #5E6AB3 solid 3px;
+}
+.s-navbar .nav-links  li:active
+{
+    border-right: #5E6AB3 solid 3px;
+}
 .s-navbar .nav-links .sub-menu li a{
     padding-top: .8vw;
     padding-bottom: .8vw;
@@ -166,12 +368,13 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1vw;
+    font-size: 14px;
 }
 
 .s-navbar .nav-links .sub-menu li:hover{
     background: #E0E3FC;
 }
+
 .s-navbar .nav-links li:hover .sub-menu{
    display: block;
 }
