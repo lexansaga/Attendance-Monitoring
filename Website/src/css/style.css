@@ -177,8 +177,8 @@ body {
     font-size: medium;
     font-weight: 400;
     font-size: 0.8vw;
-    width: 19vw;
-    left: 5vw;
+    width: 17vw;
+    left: 4vw;
   
 }
 
@@ -306,8 +306,9 @@ body {
        width: 60%;
     }
     .input_group > input{
+        width: 33vw;
         font-size: 1.8vw;
-        left: 3vw
+        left: 0.5vw;
     }
     .input_group > hr
     {
@@ -366,6 +367,7 @@ body {
      }
     .input_group > input{
         font-size: 3vw;
+        width: 45vw;
     }
     .r_forms>form>button{
         height: 6vw;

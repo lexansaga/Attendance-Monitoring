@@ -1,57 +1,218 @@
-<html>
-    <head>
-        <title>Attendance Monitoring System</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="src/css/style.css" rel="stylesheet" />
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link
-            href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
-            rel="stylesheet">
-    
-        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    </head>
-    <body>
-        <nav class="top_nav">
-            <div class="search">
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="src/css/main.css" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="main_container">
+
+
+
+        <div class="s-navbar">
+            <div class="logo-name">
+                <H3>ATTENDANCE<BR>MONITORING</H1>
             </div>
-            <div class="sys_group">
-                <div class="notif_drop">
-                    <img src="" class="notif_icon" />
-                    <ul>
-                        <li>Notification</li>
-                        <li>Notification</li>
-                        <li>Notification</li>
+            <ul class="nav-links">
+                <li>
+
+                    <a href="#">
+                        <i class='bx bxs-home'></i>
+                        <span class="link_name">Home</span>
+                    </a>
+                </li>
+                <li>
+
+                    <a href="#">
+                        <i class='bx bxs-user-pin'></i>
+                        <span class="link_name">Attendance Report</span>
+                    </a>
+                </li>
+                <li>
+
+                    <a href="#">
+                        <i class='bx bx-calendar'></i>
+                        <span class="link_name">Schedule</span>
+                    </a>
+                </li>
+                <li>
+
+                    <a href="#">
+                        <i class='bx bxs-report'></i>
+                        <span class="link_name">Attendance Report</span>
+                    </a>
+                </li>
+                <li>
+
+                    <a href="#">
+                        <i class='bx bxs-user-account'></i>
+                        <span class="link_name">User Management</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Add User</a></li>
+                        <li><a href="#">Edit User</a></li>
+                        <li><a href="#">Delete User</a></li>
                     </ul>
+                </li>
+                <div class="bottom-image">
+                    <img src="src/assets/icon.png">
+                    <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
                 </div>
-                <div class="prof_ic_drop">
-                    <img src="" class="prof_icon"/>
-                    <ul>
-                        <li>Notification</li>
-                        <li>Notification</li>
-                        <li>Notification</li>
-                    </ul>
+            </ul>
+
+        </div>
+
+
+        <div class="main_content">
+
+            <div class="header">
+                <div class="search-bar">
+                    <input type="text" placeholder="Look for..." />
+                    <i class='bx bx-search'></i>
                 </div>
-              
+                <div class="notification"><i class='bx bxs-bell'></i></div>
+                <div class="profile-picture"><i class='bx bxs-user-circle'></i></div>
+                <ul class="profile-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
             </div>
-           
-        </nav>
-        <nav class="side_nav">
-
-        </nav>
 
 
 
+            <div class="item_container">
+                <h3>Dashboard</h1>
+                    <div class="dash_container">
+                        <div class="dash_child_prof">
+                            <img src="src/assets/avatar.png" class="dash_avatar" />
+                            <h3 id="dash_name">M. Serrano</h3>
+                            <h3 id="dash_pos">School Deans</h3>
+                        </div>
+                        <div class="dash_count_report">
+                            <div class="dash_child">
+                                <img src="src/assets/avatar.png" class="dash_avatar" />
+                                <h5>Total number of Students</h5>
+                                <h1>1,150</h2>
+                            </div>
+                            <div class="dash_child">
+                                <img src="src/assets/avatar.png" class="dash_avatar" />
+                                <h5>Total number of Students</h5>
+                                <h1>1,150</h2>
+                            </div>
+                            <div class="dash_child">
+                                <img src="src/assets/avatar.png" class="dash_avatar" />
+                                <h5>Total number of Students</h5>
+                                <h1>1,150</h2>
+                            </div>
+                            <div class="dash_child">
+                                <img src="src/assets/avatar.png" class="dash_avatar" />
+                                <h5>Total number of Students</h5>
+                                <h1>1,150</h2>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pie-chart">
+                        <h3>Pie</h3>
+                        <div class="pie_container">
+                            <canvas id="pieChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="line-chart">
+                        <h3>
+                            Line Report
+                        </h3>
+                        <div class="line_container">
+                            <canvas id="lineChart"></canvas>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="src/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script>
+        var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+        var yValues = [55, 49, 44, 24, 15];
+        var barColors = [
+            "#B14674",
+            "#FE5277",
+            "#FF8D73",
+            "#FFDF9A",
+            "#E1EDFF"
+        ];
+
+        new Chart("pieChart", {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                legend: {
+                    position: 'bottom',
+                    display: true,
+                    font: {
+                        family: "'Karla', sans-serif"
+                    }
+                }
+            }
+        });
+    </script>
 
 
-        <script type="text/javascript" src="src/js/script.js">
+    <script>
+        var xValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 
-        </script>
-    
-        <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
-    </body>
+        new Chart("lineChart", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
+                    borderColor: "#FFDF9A",
+                    backgroundColor: 'rgba(255,223,154,0.2)',
+                    fill: true
+                },{
+                    data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
+                    borderColor: "#FE5277",
+                    backgroundColor: "rgba(254, 82, 119,0.2)",
+                    fill: true
+                }, {
+                    data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
+                    borderColor: "#FF8D73",
+                    backgroundColor: "rgba(255, 141, 115,0.2)",
+                    fill: true
+                }],
+                borderWidth: 1 
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                legend: {
+                    position: 'bottom',
+                    display: true,
+                    font: {
+                        family: "'Karla', sans-serif"
+                    }
+                }
+
+            }
+        });
+    </script>
+</body>
+
 </html>
