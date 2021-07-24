@@ -5,7 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="src/css/main.css" rel="stylesheet" />
+    <link href="src/css/sidebar.css" rel="stylesheet" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <title>Document</title>
 </head>
 
@@ -14,12 +16,12 @@
 
 
 
-        <div class="s-navbar">
+        <div class="s-navbar" data-aos="fade-right">
             <div class="logo-name">
                 <H3>ATTENDANCE<BR>MONITORING</H1>
             </div>
             <ul class="nav-links">
-                <li>
+                <li class="vert-line">
 
                     <a href="#">
                         <i class='bx bxs-home'></i>
@@ -59,24 +61,29 @@
                         <li><a href="#">Delete User</a></li>
                     </ul>
                 </li>
+
                 <div class="bottom-image">
-                    <img src="src/assets/icon.png">
+                    <img src="src/assets/icon.png" />
                     <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
                 </div>
+
             </ul>
 
         </div>
 
 
-        <div class="main_content">
 
+        <div class="main_content">
             <div class="header">
+                <div id="btn_menu">
+                    <i class='bx bx-menu-alt-left'></i>
+                </div>
                 <div class="search-bar">
                     <input type="text" placeholder="Look for..." />
                     <i class='bx bx-search'></i>
                 </div>
                 <div class="notification"><i class='bx bxs-bell'></i></div>
-                <div class="profile-picture"><i class='bx bxs-user-circle'></i></div>
+                <div class="profile-picture"><img src="src/assets/profile.jpg" /></div>
                 <ul class="profile-menu">
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Settings</a></li>
@@ -84,43 +91,52 @@
                 </ul>
             </div>
 
+            <main class="item_container">
+                <h3>Dashboard</h3>
 
+                <!--Here goes the content / Remove the Preceeding and add yours-->
 
-            <div class="item_container">
-                <h3>Dashboard</h1>
-                    <div class="dash_container">
-                        <div class="dash_child_prof">
-                            <img src="src/assets/avatar.png" class="dash_avatar" />
-                            <h3 id="dash_name">M. Serrano</h3>
-                            <h3 id="dash_pos">School Deans</h3>
-                        </div>
-                        <div class="dash_count_report">
-                            <div class="dash_child">
-                                <img src="src/assets/avatar.png" class="dash_avatar" />
-                                <h5>Total number of Students</h5>
-                                <h1>1,150</h2>
-                            </div>
-                            <div class="dash_child">
-                                <img src="src/assets/avatar.png" class="dash_avatar" />
-                                <h5>Total number of Students</h5>
-                                <h1>1,150</h2>
-                            </div>
-                            <div class="dash_child">
-                                <img src="src/assets/avatar.png" class="dash_avatar" />
-                                <h5>Total number of Students</h5>
-                                <h1>1,150</h2>
-                            </div>
-                            <div class="dash_child">
-                                <img src="src/assets/avatar.png" class="dash_avatar" />
-                                <h5>Total number of Students</h5>
-                                <h1>1,150</h2>
-                            </div>
-                        </div>
+                <div class="d_container">
+                    <div class="d-item-main d-item-highlight">
+                        <img id="d-profile" src="src/assets/profile.jpg" />
+                        <h3 id="d-name">J. Dela Cruz</h3>
+                        <h5 id="d-pos">School Deans</h5>
+
                     </div>
 
+
+                    <div class="d-items">
+                        <img src="src/assets/ic_cap.svg"
+                            style="filter: invert(57%) sepia(11%) saturate(6857%) hue-rotate(206deg) brightness(73%) contrast(89%);" />
+                        <h5>Total Students</h5>
+                        <h1 id="cnt_students">1,150</h1>
+                    </div>
+                    <div class="d-items">
+                        <img src="src/assets/ic_cap.svg"
+                            style="filter:invert(33%) sepia(37%) saturate(586%) hue-rotate(177deg) brightness(90%) contrast(87%)" />
+                        <h5>Total Students</h5>
+                        <h1 id="cnt_students">1,150</h1>
+                    </div>
+                    <div class="d-items">
+                        <img src="src/assets/ic_cap.svg"
+                            style="filter:invert(80%) sepia(4%) saturate(3140%) hue-rotate(189deg) brightness(104%) contrast(106%)" />
+                        <h5>Total Students</h5>
+                        <h1 id="cnt_students">1,150</h1>
+                    </div>
+                    <div class="d-items">
+                        <img src="src/assets/ic_cap.svg"
+                            style="filter:invert(91%) sepia(58%) saturate(1585%) hue-rotate(178deg) brightness(105%) contrast(104%)" />
+                        <h5>Total Students</h5>
+                        <h1 id="cnt_students">1,150</h1>
+                    </div>
+
+                </div>
+
+
+                <div class="dash-row">
                     <div class="pie-chart">
-                        <h3>Pie</h3>
-                        <div class="pie_container">
+                        <h3><span>Pie</span> Report</h3>
+                        <div class="pie-container">
                             <canvas id="pieChart"></canvas>
                         </div>
                     </div>
@@ -133,86 +149,72 @@
                             <canvas id="lineChart"></canvas>
                         </div>
                     </div>
-            </div>
+
+
+                    <div class="professor">
+                        <h3>
+                            Professor
+                        </h3>
+                        <div class="prof_container">
+                            <ul>
+                                <li>
+                                    <a id="prof_link" href="#" style="color:white">
+                                        <img id="#ic_prof" src="src/assets/profile.jpg" />
+                                        <h2>Saga,Alexander</h2>
+                                        <h3>Faculty</h3>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="prof_link" href="#">
+                                        <img id="#ic_prof" src="src/assets/profile.jpg" />
+                                        <h2>Saga,Alexander</h2>
+                                        <h3>Faculty</h3>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="prof_link" href="#">
+                                        <img id="#ic_prof" src="src/assets/profile.jpg" />
+                                        <h2>Saga,Alexander</h2>
+                                        <h3>Faculty</h3>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="prof_link" href="#">
+                                        <img id="#ic_prof" src="src/assets/profile.jpg" />
+                                        <h2>Saga,Alexander</h2>
+                                        <h3>Faculty</h3>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a id="prof_link" href="#">
+                                        <img id="#ic_prof" src="src/assets/profile.jpg" />
+                                        <h2>Saga,Alexander</h2>
+                                        <h3>Faculty</h3>
+                                    </a>
+                                </li>
+                            </ul>
+                            <a href="#">View all</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </main>
+
+
+
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+        integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="src/js/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-        var yValues = [55, 49, 44, 24, 15];
-        var barColors = [
-            "#B14674",
-            "#FE5277",
-            "#FF8D73",
-            "#FFDF9A",
-            "#E1EDFF"
-        ];
-
-        new Chart("pieChart", {
-            type: "pie",
-            data: {
-                labels: xValues,
-                datasets: [{
-                    backgroundColor: barColors,
-                    data: yValues
-                }]
-            },
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                legend: {
-                    position: 'bottom',
-                    display: true,
-                    font: {
-                        family: "'Karla', sans-serif"
-                    }
-                }
-            }
-        });
-    </script>
-
-
-    <script>
-        var xValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
-
-        new Chart("lineChart", {
-            type: "line",
-            data: {
-                labels: xValues,
-                datasets: [{
-                    data: [860, 1140, 1060, 1060, 1070, 1110, 1330, 2210, 7830, 2478],
-                    borderColor: "#FFDF9A",
-                    backgroundColor: 'rgba(255,223,154,0.2)',
-                    fill: true
-                },{
-                    data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
-                    borderColor: "#FE5277",
-                    backgroundColor: "rgba(254, 82, 119,0.2)",
-                    fill: true
-                }, {
-                    data: [300, 700, 2000, 5000, 6000, 4000, 2000, 1000, 200, 100],
-                    borderColor: "#FF8D73",
-                    backgroundColor: "rgba(255, 141, 115,0.2)",
-                    fill: true
-                }],
-                borderWidth: 1 
-            },
-            options: {
-                maintainAspectRatio: false,
-                responsive: true,
-                legend: {
-                    position: 'bottom',
-                    display: true,
-                    font: {
-                        family: "'Karla', sans-serif"
-                    }
-                }
-
-            }
-        });
-    </script>
+        AOS.init();
+      </script>
 </body>
 
 </html>
