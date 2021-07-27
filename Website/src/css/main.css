@@ -24,35 +24,12 @@ body {
     background: var(--background-color);
     padding: 0;
     margin: 0;
-    height: 100%;
-}
-
-.main_container {
-    display: flex;
-    flex-direction: row;
-    height: 100%;
     width: 100%;
-
-
-}
-
-.main_content {
-    display: flex;
-    flex-direction: column;
-    width: calc(100vw - 270px);
+    position: relative;
     height: 100%;
-    margin-left: 270px;
-
 }
 
-/* Main container */
-.item_container {
-    height: 100%;
-    display: flex;
-    padding: 2vw 0vw 0vw 6vw;
-    flex-direction: column;
 
-}
 
 .d_container {
     display: inline-flex;
@@ -60,6 +37,8 @@ body {
     margin-top: 2vw;
     margin-right: 5vw;
     flex-wrap: wrap;
+    flex: 1;
+    height: inherit;
     background-color: white;
     border-radius: 20px 5px 5px 20;
 }
@@ -73,16 +52,27 @@ body {
 }
 
 .d-item-highlight {
-    border-radius: 20px;
-    background-color: var(--primary-color);
-    max-width: 238px;
-    max-height: 238px;
-    height: 25vw;
-    width: 25vw;
-    min-height: 181px;
-    min-width: 181px;
+    border-radius: 20px !important; 
+    background-color: var(--primary-color) !important;
+    max-width: 238px !important;
+    max-height: 238px !important;
+    height: 25vw !important;
+    width: 25vw !important;
+    min-height: 181px !important;
+    min-width: 181px !important;
 }
-
+.d-item-highlight > .d-items-img
+{
+    filter:invert(100%) sepia(15%) saturate(0%) hue-rotate(229deg) brightness(101%) contrast(103%) !important;
+}
+.d-item-highlight > .d-items-label
+{
+    color: white;
+}
+.d-item-highlight > #cnt_students
+{
+    color: white;
+}
 .d-item-main>img {
     height: 10vw;
     width: 10vw;
@@ -131,8 +121,6 @@ body {
     width: 6vw;
     max-width: 100px;
     min-width: 80px;
-
-    margin-left: 100px;
 }
 
 .d-items>h5 {
@@ -151,14 +139,18 @@ body {
 .dash-row {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+   
+    flex: 1 100%;
     margin-top: 3vw;
 }
 
 .pie-chart {}
 
-.pie-container>h3 {
+.pie-chart>h3 {
     color: var(--font-color-secondary);
+}
+.pie-chart>h3>span {
+   border-bottom: 2px solid var(--primary-color);
 }
 
 .pie-container {
@@ -182,7 +174,9 @@ body {
 .line-chart>h3 {
     color: var(--font-color-secondary);
 }
-
+.line-chart>h3>span {
+    border-bottom: 2px solid var(--primary-color);
+ }
 .line_container {
     min-width: 340px;
     min-height: 240px;
@@ -204,13 +198,16 @@ body {
 .professor>h3 {
     color: var(--font-color-secondary);
 }
-
+.professor>h3>span {
+    border-bottom: 2px solid var(--primary-color);
+ }
 .prof_container {
     display: flex;
     flex-direction: column;
 
     width: 17vw;
-    height: 19vw;
+    height: inherit;
+    min-width: fit-content;
     background-color: white;
     margin-top: 1.5vw;
 
@@ -228,11 +225,13 @@ body {
 .prof_container>ul>li  {
 
     padding: 15px 0 10px 15px;
-
-
-
+    transition: 0.2s;    
 }
-
+.prof_container>ul>li:hover
+{
+    background-color: var(--secondary-color);
+   
+}
 .prof_container>ul>li:nth-child(1)  {
     background-color: var(--primary-color);
     box-shadow: 0px 1px 1px 1px var(--primary-color);
@@ -283,4 +282,68 @@ body {
 }
 
 /* Main container */
-/*Property of sidebar in desktop mode*/
+/*Property of sidebar in desktop mode */
+@media (max-width: 768px) 
+{
+    body
+    {
+        overflow-x:hidden;
+    }
+    .dash-row
+    {
+        flex-direction: column;
+        justify-content: center;
+    }
+    .line-chart
+    {
+        width: calc(100% - 10vw);
+        margin: 50px 30px 0 0;
+    }
+    .line-chart > h3
+    {
+       
+        margin: 0 0 30px 0;
+    }
+    .line_container 
+    {
+        width: inherit;
+        padding:10vw 0 10vw 0;
+    }
+    .pie-chart
+    {
+        width: calc(100% - 10vw);
+        margin: 50px 30px 0 0;
+    }
+    .pie-chart > h3
+    {
+        margin: 0 0 30px 0;
+    }
+    .pie-container 
+    {
+        width: inherit;
+        padding:10vw 0 10vw 0;
+    }
+    .professor
+    {
+        width: 95%;
+        margin: 50px 30px 0 0;
+    }
+    .professor > h3
+    {
+        margin: 0 0 30px 0;
+    }
+    .prof_container
+    {
+        width: 100%;
+        height: fit-content;
+       
+    }
+    #ic_prof
+    {
+        height: 10vw;
+    }
+}
+@media (max-width: 425px) 
+{
+    
+}

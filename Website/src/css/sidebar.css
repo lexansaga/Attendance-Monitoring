@@ -41,6 +41,10 @@ body {
 .main_content {
     display: flex;
     flex-direction: column;
+    /*
+      width: 100%;
+   
+    */
     width: calc(100vw - 270px);
     height: 100%;
     margin-left: 270px;
@@ -77,7 +81,10 @@ body {
     text-align: center;
     font-size: 13px;
 }
-
+.s-navbar>.logo-name > a
+{
+    text-decoration: none;
+}
 .logo-name H3 {
     padding-top: 1.3vw;
     color: #5E6AB3;
@@ -260,9 +267,12 @@ body {
 {
     width: 100%;
 }
-.s-navbar .nav-links li:hover {
- 
+
+.show-menu
+{
+    display: block !important;
 }
+
 
 .s-navbar .nav-links li:active {
     border-right: #5E6AB3 solid 3px;
@@ -377,7 +387,7 @@ color: white;
         margin-left: 25px !important;
         visibility: visible !important;
     }
-
+  
     .profile-picture {
         padding: 1vw 3vw 1vw 0.5vw !important;
     }
