@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Karla', sans-serif;
+}
+.srch_bx > input{
+    width: 28vw;
+    padding: 7.5px 3vw;
+    border-style: none;
+}
+.srch_bx > i{
+   font-size: 1vw;
+   color: #8F8F8F;
+   margin-left: -27.6vw;
+   margin-top: 1vw;
+}
+
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  /*Dropdown Menu style*/
+  .srch_bx > .custom-select > select{
+    position: absolute;
+    top: 0;
+    padding: 7px 0.5vw;
+    border: none;
+    margin-left: 28.3vw;
+    margin-top: 7.2vw;
+    color:#8F8F8F
+  }
