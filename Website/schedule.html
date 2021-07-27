@@ -1,0 +1,128 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="src/css/main.css" rel="stylesheet" />
+    <link href="src/css/sidebar.css" rel="stylesheet" />
+    <link href="src/css/schedule.css" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Dashboard</title>
+</head>
+
+<body>
+    <div class="main_container">
+
+
+
+        <div class="s-navbar" data-aos="fade-right">
+            <div class="logo-name">
+                <H3>ATTENDANCE<BR>MONITORING</H1>
+            </div>
+            <ul class="nav-links">
+                <li class="vert-line">
+
+                    <a href="#">
+                        <i class='bx bxs-home'></i>
+                        <span class="link_name">Home</span>
+                    </a>
+                </li>
+                <li>
+
+                    <a href="#">
+                        <i class='bx bxs-user-pin'></i>
+                        <span class="link_name">Attendance Report</span>
+                    </a>
+                </li>
+                <li>
+
+                    <a href="#">
+                        <i class='bx bx-calendar'></i>
+                        <span class="link_name">Schedule</span>
+                    </a>
+                </li>
+                <li>
+
+                    <a href="#">
+                        <i class='bx bxs-report'></i>
+                        <span class="link_name">Attendance Report</span>
+                    </a>
+                </li>
+                <li>
+
+                    <a href="#">
+                        <i class='bx bxs-user-account'></i>
+                        <span class="link_name">User Management</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="#">Add User</a></li>
+                        <li><a href="#">Edit User</a></li>
+                        <li><a href="#">Delete User</a></li>
+                    </ul>
+                </li>
+
+                <div class="bottom-image">
+                    <img src="src/assets/icon.png" />
+                    <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
+                </div>
+
+            </ul>
+
+        </div>
+
+
+
+        <div class="main_content">
+            <div class="header">
+                <div id="btn_menu">
+                    <i class='bx bx-menu-alt-left'></i>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Look for..." />
+                    <i class='bx bx-search'></i>
+                </div>
+                <div class="notification"><i class='bx bxs-bell'></i></div>
+                <div class="profile-picture"><img src="src/assets/profile.jpg" /></div>
+                <ul class="profile-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Logout</a></li>
+                </ul>
+            </div>
+
+            <!--Here goes the main content / -->
+
+            <main class="item_container">
+                <h5>Schedule</h2>
+                <div class='srch_bx'>
+                    <input type="text" placeholder="Look for..." />
+                    <i class='bx bx-search'></i>
+
+                    <div class="custom-select">
+                        <select>
+                          <option value="0">Name</option>
+                          <option value="1">ID Number</option>
+                        </select>
+                      </div>
+                </div>
+            </main>
+
+
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+        integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="src/js/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+      </script>
+</body>
+
+</html>
