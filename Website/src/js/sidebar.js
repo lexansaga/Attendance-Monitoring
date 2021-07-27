@@ -37,7 +37,7 @@ $(document).ready(function () {
     }
 
 
-
+/*
     $(".profile-picture").click(function (e) {
          
         e.stopPropagation();
@@ -70,6 +70,8 @@ $(document).ready(function () {
         ToggleProfile(e, opacity);
 
     });
+
+*/
 
 
     MediaQuery();

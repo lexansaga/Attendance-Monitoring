@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
-  
 
-    MediaQuery();
-    OnLoadMediaQuery();
-   // DashBoardResponsive();
+   // alert("loaded");
+    // DashBoardResponsive();
+    sOnLoadMediaQuery();
+    sMediaQuery();
     Chart.defaults.global.defaultFontFamily = "Karla";
     PieChart();
     LineChart();
@@ -13,67 +13,73 @@ $(document).ready(function () {
 
 
 
-function OnLoadMediaQuery()
-{
+function sOnLoadMediaQuery() {
+  //  alert("sOnload");
     var width = $(window).width();
     var height = $(window).height();
     if (width > 768) {
-       // alert("Desktop");
+        // alert("Desktop");
 
-
+     
     } else if (width < 768 && width > 425) {
         //  alert("Tablet");
         ChartSizes();
-        DashBoardResponsive();
+     //   DashBoardResponsive();
 
 
     } else if (width < 425) {
         //   alert("Mobile");
         ChartSizes();
-        DashBoardResponsive();
+      //  DashBoardResponsive();
 
     }
 
 }
-function MediaQuery() {
+
+
+function sMediaQuery() {
+   // alert("sMediaQuery");
     $(window).on('resize', function (e) {
         var width = $(window).width();
         var height = $(window).height();
-
+       
         if (width > 768) {
             // alert("Desktop");
 
-        
+
         } else if (width < 768 && width > 425) {
- 
-            DashBoardResponsive();
             ChartSizes();
+           
             //  alert("Tablet");
-          } else if (width < 425) {
+        } else if (width < 425) {
             ChartSizes();
             //   alert("Mobile");
         }
     });
 }
-function ChartSizes()
-{
+
+
+
+function ChartSizes() {
+   // alert("called");
     var prof = $('.professor').width();
     $('.pie-chart').css("width", prof);
     $('.line-chart').css("width", prof);
 }
 
 
+
 function PieChart() {
-    var xValues = ["Absent","Present","Late"];
+ //   alert("Pie Chart Loaded");
+    var xValues = ["Absent", "Present", "Late"];
     var yValues = [Math.floor(Math.random() * 100),
         Math.floor(Math.random() * 100),
-        Math.floor(Math.random() * 100)];
+        Math.floor(Math.random() * 100)
+    ];
     var barColors = [
-        "#B14674",
-        "#FE5277",
-        "#FF8D73",
-        "#FFDF9A",
-        "#E1EDFF"
+        "#8A98F5",
+        "#617EAB",
+        "#C7DDFF"
     ];
 
     new Chart("pieChart", {
@@ -103,59 +109,63 @@ function PieChart() {
 }
 
 function LineChart() {
-    var xValues = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+ //   alert("Line Chart Loaded");
+    var xValues = ["Day 1", 200, 300, 400, 500, 600, 700, 800, 900, 1000];
 
     new Chart("lineChart", {
         type: "line",
         data: {
             labels: xValues,
             datasets: [{
-                label:'Absent' ,
+                label: 'Absent',
                 data: [Math.floor(Math.random() * 8000),
                     Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000), 
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000), 
-                    Math.floor(Math.random() * 8000), 
                     Math.floor(Math.random() * 8000),
                     Math.floor(Math.random() * 8000),
                     Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000)],
-                    borderWidth: 1,
-                borderColor: "#FFDF9A",
-                backgroundColor: 'rgba(255,223,154,0.2)',
+                    Math.floor(Math.random() * 8000),
+                    Math.floor(Math.random() * 8000),
+                    Math.floor(Math.random() * 8000),
+                    Math.floor(Math.random() * 8000),
+                    Math.floor(Math.random() * 8000)
+                ],
+                borderWidth: 1,
+                borderColor: "#59BAF3",
+                backgroundColor: 'rgba(89, 186, 243,0.2)',
                 fill: true
             }, {
-                label:'Present' ,
+                label: 'Present',
                 data: [Math.floor(Math.random() * 8000),
                     Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000), 
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000), 
-                    Math.floor(Math.random() * 8000), 
                     Math.floor(Math.random() * 8000),
                     Math.floor(Math.random() * 8000),
                     Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000)],
-                    borderWidth: 1,
-                borderColor: "#FE5277",
-                backgroundColor: "rgba(254, 82, 119,0.2)",
+                    Math.floor(Math.random() * 8000),
+                    Math.floor(Math.random() * 8000),
+                    Math.floor(Math.random() * 8000),
+                    Math.floor(Math.random() * 8000),
+                    Math.floor(Math.random() * 8000)
+                ],
+                borderWidth: 1,
+                borderColor: "#68CF71",
+                backgroundColor: "rgba(104, 207, 113,0.2)",
                 fill: true
             }, {
-                label:'Late' ,
+                label: 'Late',
                 data: [Math.floor(Math.random() * 8000),
                     Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000), 
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000), 
-                    Math.floor(Math.random() * 8000), 
                     Math.floor(Math.random() * 8000),
                     Math.floor(Math.random() * 8000),
                     Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000)],
-                    borderWidth: 1,
-                borderColor: "#FF8D73",
-                backgroundColor: "rgba(255, 141, 115,0.2)",
+                    Math.floor(Math.random() * 8000),
+                    Math.floor(Math.random() * 8000),
+                    Math.floor(Math.random() * 8000),
+                    Math.floor(Math.random() * 8000),
+                    Math.floor(Math.random() * 8000)
+                ],
+                borderWidth: 1,
+                borderColor: "#F2828A",
+                backgroundColor: "rgba(242, 130, 138,0.2)",
                 fill: true
             }],
             borderWidth: 1

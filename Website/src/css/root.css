@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap');
+:root {
+	--background-color: #F8F8F8;
+	--primary-color: #5E6AB3;
+	--secondary-color: #B2BBF7;
+	--color-accent-1: #42597D;
+	--color-accent-2: #C2DAFF;
+	--color-accent-3: #E1EDFF;
+	--font-color-primary: #696969;
+	--font-color-secondary: #484848;
+	--font-light-color: white;
+	/* This root block contains static data */
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Karla', sans-serif;
+}
+
+body {
+	background: var(--background-color);
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
