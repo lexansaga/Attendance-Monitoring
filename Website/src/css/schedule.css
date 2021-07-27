@@ -34,3 +34,68 @@
     margin-top: 7.2vw;
     color:#8F8F8F
   }
+
+  /*Date picker style*/
+  .date_picker > input{
+    width: 10vw;
+    padding: 6px 0.5vw;
+    border: none;
+    color:#8F8F8F;
+
+    margin-left: 35.5vw;
+    margin-top: -2vw;
+  }
+
+/*Search Button Style*/
+  .search_btn{
+    width: 6vw;
+    height: 2vw;
+    background-color: #B2BBF7;
+    border: none;
+    color: #ffff;
+
+    position: relative;
+    margin-left: 46vw;
+    margin-top: -2vw;
+  }
+
+  .search_btn:active{
+    background-color: #95A0F4;
+  }
+
+  /*Settings button*/
+  #settings{
+    color: #515151;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    padding-right: 4vw;
+    padding-top: 2vw;
+  }
+  #settings:active{
+    color: #95A0F4;
+  }
+
+  /*User information style*/
+  .user_info{
+    padding-top: 2vw;
+  }
+
+  .user_info > img{
+    width: 4vw;
+  }
+
+  .user_info > h2{
+    color: #8F8F8F;
+    padding-left: 5vw;
+    margin-top: -4.3vw;
+  }
+  .user_info > h4{
+    color: #8F8F8F;
+    padding-left: 5vw;
+    padding-top: 0.1vw;
+  }
+  .user_info > h5{
+    color: #8F8F8F;
+    padding-left: 5vw;
+  }
