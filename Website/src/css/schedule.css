@@ -101,13 +101,13 @@
   }
 
   /*table property*/
-#tbl_schedule{
+#tbl-id{
   margin-top: 2vw;
   width: 72vw;
   border-collapse:collapse;
 }
 
-#tbl_schedule th{
+#tbl-id th{
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: center;
@@ -117,17 +117,17 @@
   font-weight: lighter;
 }
 
-#tbl_schedule td{
+#tbl-id td{
   text-align: center; 
 }
-#tbl_schedule td img{
+#tbl-id td img{
   width: 1.5vw;
 }
 
-#tbl_schedule td, #tbl_schedule th {
+#tbl-id td, #tbl-id th {
   padding: 8px;
 }
 
-#tbl_schedule tr:hover {
+#tbl-id tr:hover {
   background-color: #ddd;
 }
