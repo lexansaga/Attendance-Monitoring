@@ -36,7 +36,16 @@ $(document).ready(function () {
         alert("Back button clicked");
     }
 
+    $('#input-search').focusin(function()
+    {
+        $('.search-menu').css("opacity","1");
+    });
+    $('#input-search').focusout(function()
+    {
+        $('.search-menu').css("opacity","0");
+    });
 
+  
 /*
     $(".profile-picture").click(function (e) {
          

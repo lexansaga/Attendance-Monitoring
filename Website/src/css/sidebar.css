@@ -69,10 +69,71 @@
 	font-size: 0.7vw;
 }
 
-.header .search-bar input:active 
+.header .search-bar >input:focus .search-menu
 {
-
+opacity: 1;
 }
+.search-menu {
+	position: fixed;
+	list-style-type: none;
+	width: 30vw;
+	background-color: white;
+    top: 3.5vw;
+	margin-left: 16vw;
+    min-width: 250px;
+	box-shadow: 0 2px 4px 0 rgb(0 0 0 / 21%);
+	z-index: 1;
+	opacity:  0;
+    transition: .2s;
+}
+
+.search-menu>li {
+	padding: 15px 0 15px 15px;
+	border-bottom: #f5f5f5 solid 1px;
+}
+
+.search-menu>li:hover {
+	background-color: var(--secondary-color);
+}
+
+.search-menu>li:hover a {
+	color: white;
+}
+
+.search-menu>li>a {
+	color: var(--font-color-primary);
+	display: grid;
+	text-decoration: none;
+	grid-template-columns: 0.2fr 1fr;
+	grid-template-rows: 1fr 1fr;
+	grid-template-areas:
+	 'search_icon search_title'
+	 'search_icon search_description';
+}
+
+.search-menu>li>a>img {
+	width: 35px;
+	border-radius: 50px;
+	grid-area: search_icon;
+	margin: auto 0;
+}
+
+.search-menu>li>a>h1 {
+	font-size: 15px;
+	grid-area: search_title;
+	font-weight: 600;
+}
+
+.search-menu>li>a>h3 {
+	grid-area: search_description;
+	font-size: 12px;
+	font-weight: 400;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding: 0 30px 0 0;
+	overflow: hidden;
+}
+
 
 .header .search-bar i {
 	font-size: 1vw;
@@ -110,7 +171,6 @@
 /*Property of Notification Menu*/
 
 .notif-menu {
-    display: none;
 	position: fixed;
 	list-style-type: none;
 	width: 20%;
@@ -178,7 +238,7 @@
 
 .header>.notification:hover .notif-menu
 {
-    display: block;
+  
     opacity: 1;
 }
 
@@ -219,8 +279,8 @@
 	text-align: center;
 	box-shadow: 0 2px 4px 0 rgb(0 0 0 / 21%);
 	white-space: none;
-	display: none;
 	z-index: 1;
+	opacity: 0;
 }
 
 .header .profile-menu li {
@@ -246,6 +306,7 @@
 
 .header .profile-picture:hover .profile-menu {
 	display: block;
+	opacity: 1;
 }
 
 
@@ -315,7 +376,7 @@
 }
 
 .vert-line:hover {
-	border-right: 5px solid var(--primary-color);
+	border-right: 3px solid var(--primary-color);
 }
 
 
@@ -385,7 +446,7 @@
 }
 
 .s-navbar .nav-links li:active {
-	border-right: #5E6AB3 solid 3px;
+
 }
 
 .s-navbar .nav-links .sub-menu li a {
@@ -447,6 +508,11 @@
 		margin-top: 1vw !important;
 		margin-left: -4vw !important;
 		font-size: 1.8vh !important;
+	}
+	.search-menu 
+	{
+		width: 40vw;
+		top: 40px;
 	}
 	#btn_menu {
 		margin-left: 25px !important;
@@ -513,6 +579,12 @@
 		font-size: 3vw !important;
 		padding: 3vw !important;
 		margin-left: 5vw !important;
+	}
+	.search-menu 
+	{
+		width: 60vw;
+		top: 40px;
+		margin-left: 5vw;
 	}
 	.search-bar>i {
 		margin-top: 1vw !important;

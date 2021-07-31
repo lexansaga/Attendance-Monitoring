@@ -1,4 +1,5 @@
-@import url('root.css');
+@import url('root.css'); 
+/*Always include root css to access the root content and not to reinitialize code */
 
 * {
     margin: 0;
