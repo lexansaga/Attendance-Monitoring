@@ -49,14 +49,14 @@ h4{
 }
 
 .search_bar > input[type=date]{
-  margin-left: 1vw;
+  margin-left: 0.5vw;
   width: 11.5vw;
   padding: 0px 20px;
   color: #8F8F8F;
 }
 
 .search_bar > button{
-  margin-left: 1vw;
+  margin-left: .5vw;
   color: #ffff;
   background-color: #B2BBF7;
   width: 5vw;
@@ -116,5 +116,79 @@ h4{
 .user_profile >img:hover{
   width: 5.4vw;
 }
-  
+
+#our-table{
+  margin-top: 2vw;
+  width: 70vw;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+#our-table , td{
+  font-size: 1vw;
+  padding: 8px;
+}
+#our-table tr:hover{
+  background-color: #D1D7FA;
+}
+
+#our-table th{
+  background-color: #B2BBF7;
+  color: #ffff;
+  font-size: 13px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+#our-table , th:hover{
+  cursor: default;
+}
+
+#our-table img{
+  width: 2vw;
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
+}
+
+.pagination-button{
+  margin-top: 0.5vw;
+  width: fit-content;
+}
+.pagination-pages{
+  padding: 5px 10px;
+  border: none;
+  background-color: #ffff;
+  border-radius: 50%;
+}
+.pagination-pages:hover{
+  background-color: #B2BBF7;
+  color: #ffff;
+}
+.pagination-first{
+  width: 2vw;
+  margin-right: 0.5vw;
+  background-color: #ffff;
+  border: none;
+  height: 2vw;
+  font-size: 15px;
+  border-radius: 20%;
+}
+.pagination-first:hover{
+  background-color: #B2BBF7;
+  color: #ffff;
+}
+.pagination-last{
+  width: 2vw;
+  margin-left: 0.5vw;
+  background-color: #ffff;
+  border: none;
+  height: 2vw;
+  font-size: 15px;
+  border-radius: 20%;
+}
+.pagination-last:hover{
+  background-color: #B2BBF7;
+  color: #ffff;
+}
   
