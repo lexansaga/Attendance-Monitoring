@@ -6,131 +6,115 @@
     padding: 0;
     font-family: 'Karla', sans-serif;
 }
-.srch_bx > input{
-    width: 28vw;
-    padding: 7.5px 3vw;
-    border-style: none;
-}
-.srch_bx > i{
-   font-size: 1vw;
-   color: #8F8F8F;
-   margin-left: -27.6vw;
-   margin-top: 1vw;
+
+.search_bar{
+  display: flex;
+  flex-direction: row;
+  padding-top: 1vw;
+  width: fit-content;
+  height: fit-content;
 }
 
-.dropbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  /*Dropdown Menu style*/
-  .srch_bx > .custom-select > select{
-    position: absolute;
-    top: 0;
-    padding: 7px 0.5vw;
-    border: none;
-    margin-left: 28.3vw;
-    margin-top: 7.2vw;
-    color:#8F8F8F
-  }
-
-  /*Date picker style*/
-  .date_picker > input{
-    width: 10vw;
-    padding: 6px 0.5vw;
-    border: none;
-    color:#8F8F8F;
-
-    margin-left: 35.5vw;
-    margin-top: -2vw;
-  }
-
-/*Search Button Style*/
-  .search_btn{
-    width: 6vw;
-    height: 2vw;
-    background-color: #B2BBF7;
-    border: none;
-    color: #ffff;
-
-    position: relative;
-    margin-left: 46vw;
-    margin-top: -2vw;
-  }
-
-  .search_btn:active{
-    background-color: #95A0F4;
-  }
-
-  /*Settings button*/
-  #settings{
-    color: #515151;
-    cursor: pointer;
-    position: absolute;
-    right: 0;
-    padding-right: 4vw;
-    padding-top: 2vw;
-  }
-  #settings:active{
-    color: #95A0F4;
-  }
-
-  /*User information style*/
-  .user_info{
-    padding-top: 2vw;
-  }
-
-  .user_info > img{
-    width: 4vw;
-  }
-
-  .user_info > h2{
-    color: #8F8F8F;
-    padding-left: 5vw;
-    margin-top: -4.3vw;
-  }
-  .user_info > h4{
-    color: #8F8F8F;
-    padding-left: 5vw;
-    padding-top: 0.1vw;
-  }
-  .user_info > h5{
-    color: #8F8F8F;
-    padding-left: 5vw;
-  }
-
-  /*table property*/
-#tbl-id{
-  margin-top: 2vw;
-  width: 72vw;
-  border-collapse:collapse;
+h4{
+  color: #515151;
 }
 
-#tbl-id th{
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: center;
+.search_bar > input{
+  width: 20vw;
+  height: 2.3vw;
+  border: none;
+  padding: 12px 40px;
+}
+
+.search_bar > i{
+  position: absolute;
+  color: #8F8F8F;
+  padding-top: .3vw;
+  padding-left: .5vw;
+}
+
+.search_bar > select{
+  color: #8F8F8F;
+  border: none;
+  padding: 0px 20px;
+  width: max-content;
+}
+
+.search_bar > .vl{
+  position: absolute;
+  border-left: 1px solid #9F9F9F;
+  margin-top: .4vw;
+  margin-left: 20vw;
+  height: 1.5vw;
+}
+
+.search_bar > input[type=date]{
+  margin-left: 1vw;
+  width: 11.5vw;
+  padding: 0px 20px;
+  color: #8F8F8F;
+}
+
+.search_bar > button{
+  margin-left: 1vw;
+  color: #ffff;
   background-color: #B2BBF7;
-  color: white;
-  font-size: 1vw;
-  font-weight: lighter;
+  width: 5vw;
+  border: none;
+}
+.search_bar > button:active{
+  background-color: #8694F2;
 }
 
-#tbl-id td{
-  text-align: center; 
-}
-#tbl-id td img{
-  width: 1.5vw;
+#settings{
+  margin-left: 68%;
+  color: #515151;
 }
 
-#tbl-id td, #tbl-id th {
-  padding: 8px;
+#settings:active{
+  color: #B2BBF7;
 }
 
-#tbl-id tr:hover {
-  background-color: #ddd;
+.user_profile{
+  margin-top: 1vw;
+  width: fit-content;
 }
+
+.user_profile>img{
+  position:static;
+  width: 5vw;
+  margin-top: .5vw;
+  border-top-left-radius: 50% 50%;
+  border-top-right-radius: 50% 50%;
+  border-bottom-right-radius: 50% 50%;
+  border-bottom-left-radius: 50% 50%;
+}
+
+.user_profile > h2{
+  padding-left: 6vw;
+  margin-top: -5vw;
+  color: #8694F2;
+}
+.user_profile > h2:hover{
+  cursor: default;
+}
+.user_profile > h4{
+  padding-left: 6vw;
+  margin-top: 0.3vw;
+  color: #8F8F8F;
+}
+.user_profile > h5{
+  padding-left: 6vw;
+  color: #8F8F8F;
+}
+
+.user_profile > h4:hover, h5:hover{
+  color: #8694F2;
+  cursor: default;
+}
+
+.user_profile >img:hover{
+  width: 5.4vw;
+}
+  
+  
