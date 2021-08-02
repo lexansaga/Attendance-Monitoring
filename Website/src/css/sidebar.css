@@ -71,7 +71,7 @@
 
 .header .search-bar >input:focus .search-menu
 {
-opacity: 1;
+	opacity: 1;
 }
 .search-menu {
 	position: fixed;
@@ -171,6 +171,7 @@ opacity: 1;
 /*Property of Notification Menu*/
 
 .notif-menu {
+	display: none;
 	position: fixed;
 	list-style-type: none;
 	width: 20%;
@@ -238,7 +239,7 @@ opacity: 1;
 
 .header>.notification:hover .notif-menu
 {
-  
+	display: block;
     opacity: 1;
 }
 
@@ -255,9 +256,11 @@ opacity: 1;
 
 .header .profile-picture>img {
 	height: 2.8vh;
+	width: 2.8vh;
 	color: #5E6AB3;
 	border-radius: 50%;
 	transition: .4s;
+	object-fit: cover;
 	border: var(--secondary-color) solid 1px;
 }
 
@@ -270,6 +273,7 @@ opacity: 1;
 /*Property of sub menus on the profile*/
 
 .header .profile-menu {
+	display: none;
 	position: fixed;
 	right: 0;
 	list-style: none;

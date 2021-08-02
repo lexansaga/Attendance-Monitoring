@@ -38,11 +38,11 @@ $(document).ready(function () {
 
     $('#input-search').focusin(function()
     {
-        $('.search-menu').css("opacity","1");
+        $('.search-menu').css({"opacity" : "1","display":"block"}).animate();
     });
     $('#input-search').focusout(function()
     {
-        $('.search-menu').css("opacity","0");
+        $('.search-menu').css({"opacity" : "0","display":"none"}).animate();
     });
 
   

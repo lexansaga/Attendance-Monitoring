@@ -9,6 +9,10 @@
 	--font-color-primary: #696969;
 	--font-color-secondary: #484848;
 	--font-light-color: white;
+
+	--green :#69E486;
+	--red:#FE5277;
+	--yellow:#FEB331;
 	/* This root block contains static data */
 }
 
@@ -17,6 +21,8 @@
 	padding: 0;
 	font-family: 'Karla', sans-serif;
 	transition: .2s ease-in-out;
+	-webkit-tap-highlight-color: transparent;
+	/*border: 1px solid black;*/
 }
 
 body {
@@ -26,4 +32,12 @@ body {
 	height: 100%;
 	width: 100%;
 	position: absolute;
+}
+
+.item_container > h3 {
+	color: var(--font-color-secondary);
+}
+
+.item_container > h3 > span {
+	border-bottom: 2px solid var(--primary-color);
 }

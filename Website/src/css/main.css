@@ -59,6 +59,7 @@
 	border-radius: 50%;
 	min-height: 93px;
 	min-width: 93px;
+	object-fit: cover;
 }
 
 .d-item-main>#d-name {
@@ -226,7 +227,9 @@
 .prof_container>ul>li>a>img {
 	grid-area: img;
 	height: 2vw;
+	width: 2vw;
 	border-radius: 50%;
+	object-fit: cover;
 }
 
 .prof_container>ul>li>a>h2 {
@@ -301,6 +304,7 @@
 	}
 	#ic_prof {
 		height: 10vw;
+		width: 10vw;
 	}
 }
 

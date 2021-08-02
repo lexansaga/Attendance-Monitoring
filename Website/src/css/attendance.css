@@ -1,0 +1,219 @@
+@import url('root.css');
+
+.attendance-container
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.attendance-container > h1
+{
+    color: var(--font-color-primary);
+    font-size: 25px;
+    margin: 30px 0;
+    font-weight: 600;
+}
+.attendance-collection
+{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+}
+.attendance-item
+{
+    
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 21%);
+    width: 280px;
+    height: 250px;
+    padding: 30px 0px 70px 0px;
+    margin: 20px;
+    background-color: white;
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: 2fr 0.6fr 1.6fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "Image Image"
+      "Name Name"
+      "Status Status"
+      "Remarks Remarks"; 
+}
+
+#attendance-profile
+{
+    height: 100px;
+    width: 100px;
+    margin: auto;
+     object-fit: cover;
+    border-radius: 50%;
+    grid-area: Image;
+}
+.attendance-item > p
+{
+    grid-area: Name;
+    margin: 20px auto;
+    font-size: 20px;
+    color: var(--font-color-primary);
+    font-weight: 500;
+}
+.attendance-item > div
+{
+    display: flex;
+    flex-direction: row;
+    grid-area: Status;
+    width: 100%;
+    justify-content: space-evenly;
+}
+#present
+{   
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    color: var(--font-color-primary);
+    background-color: var(--background-color);
+    border-radius: 50%;
+    padding: 25px;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 20px;
+}
+
+#present:active
+{
+background-color: var(--green);
+color: white;
+}
+#present:active span
+{
+color: white;
+}
+
+#present
+{   
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    color: var(--font-color-primary);
+    background-color: var(--background-color);
+    border-radius: 50%;
+    padding: 25px;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 20px;
+}
+#present:hover
+{
+}
+#present:active
+{
+background-color: var(--green);
+color: white;
+}
+#present:active span
+{
+color: white;
+}
+
+#absent
+{   
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    color: var(--font-color-primary);
+    background-color: var(--background-color);
+    border-radius: 50%;
+    padding: 25px;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 20px;
+}
+
+#absent:active
+{
+background-color: var(--red);
+color: white;
+}
+#absent:active span
+{
+color: white;
+}
+
+
+#late
+{   
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    color: var(--font-color-primary);
+    background-color: var(--background-color);
+    border-radius: 50%;
+    padding: 25px;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 20px;
+}
+
+#late:active
+{
+background-color: var(--yellow);
+color: white;
+}
+#late:active span
+{
+color: white;
+}
+.attendance-item > #remarks
+{
+    outline: none;
+    border: none;
+    resize: none;
+    margin: 0px 50px;
+    overflow: hidden;
+    height: 60px !important;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 1px solid var(--font-color-primary);
+    grid-area: Remarks;
+    
+}
+
+
+.attendance-object-container
+{
+    display: flex;
+    flex-direction: row;
+
+}
+.attendance-object
+{
+    display: flex;
+    flex-direction: row;
+    
+}
+.dropdown-section
+{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background-color: white;
+}
+.dropdown-section > .dropdown-section-content
+{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 15px;
+    top: 15px;
+    width: inherit;
+}
+.dropdown-section > .dropdown-section-content > a
+{
+ text-decoration: none;
+}
