@@ -72,7 +72,10 @@ h4{
 }
 
 #settings:active{
-  color: #B2BBF7;
+  color: #909efa;
+}
+#settings:hover{
+  cursor: default;
 }
 
 .user_profile{
@@ -192,3 +195,40 @@ h4{
   color: #ffff;
 }
   
+
+/*Mobile view*/
+@media (max-width: 426px){
+  h4{
+    margin-top: 3vw;
+    font-size: 15px;
+    margin-bottom: 3vw;
+  }
+  #settings{
+    margin-left: 83vw;
+    margin-top: -10vw;
+  }
+  .search_bar > input{
+    width: 40vw;
+    padding: 12px 30px;
+  }
+  .search_bar > select{
+    width: 20vw;
+    padding: 0px 5px;
+    font-size: 3vw;
+  }
+  .search_bar > .vl{
+    margin-left: 40vw;
+    margin-top: 1vw;
+    height: 4.5vw;
+  }
+  .search_bar > input[type=date]{
+    width: 20vw;
+    height: max-content;
+  }
+}
+
+
+
+@media (min-width: 768px){
+
+}
