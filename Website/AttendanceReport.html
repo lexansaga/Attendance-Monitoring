@@ -1,0 +1,171 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="src/css/sidebar.css" rel="stylesheet" />
+    <link href="src/css/AttendanceReport.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Attendance Report</title>
+</head>
+<body>
+    <div class="main_container">
+        <div class="s-navbar" data-aos="fade-right">
+           <div class="logo-name">
+              <a href="main.html">
+                 <H3>
+                    ATTENDANCE<BR>MONITORING</H1>
+              </a>
+           </div>
+           <ul class="nav-links">
+              <li class="vert-line">
+                 <a href="main.html">
+                    <i class='bx bxs-home'></i>
+                    <span class="link_name">Home</span>
+                 </a>
+              </li>
+              <li  class="vert-line">
+                 <a href="schedule.html">
+                    <i class='bx bx-calendar'></i>
+                    <span class="link_name">Schedule</span>
+                 </a>
+              </li>
+              <li  class="vert-line">
+                 <a href="#">
+                    <i class='bx bxs-report'></i>
+                    <span class="link_name">Attendance Report</span>
+                 </a>
+              </li>
+              <li  class="vert-line">
+                 <a href="#">
+                    <i class='bx bxs-user-account'></i>
+                    <span class="link_name">User Management</span>
+                 </a>
+                 <ul class="sub-menu">
+                    <li><a href="#">Add User</a></li>
+                    <li><a href="#">Edit User</a></li>
+                    <li><a href="#">Delete User</a></li>
+                 </ul>
+              </li>
+              <div class="bottom-image">
+                 <img src="src/assets/icon.png" />
+                 <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
+              </div>
+           </ul>
+        </div>
+        <div class="main_content">
+           <div class="header">
+              <div id="btn_menu">
+                 <i class='bx bx-menu-alt-left'></i>
+              </div>
+              <div class="search-bar">
+                 <input id="input-search" type="text" placeholder="Look for..." />
+                 <i class='bx bx-search'></i>
+                 <ul class="search-menu">
+                    <li>
+                       <a href="#">
+                          <img src="src/assets/avatar.png" />
+                          <h1>
+                             Title
+                          </h1>
+                          <h3>
+                             Description
+                          </h3>
+                       </a>
+                    </li>
+                    <li>
+                       <a href="#" class="view-notif">
+                          Powered By ATMS
+                       </a>
+                    </li>
+                 </ul>
+  
+           
+  
+              </div>
+        
+              <div class="notification " title="Notification">
+                 <i class='bx bxs-bell'></i>
+                 <ul class="notif-menu">
+                    <li>
+                       <a href="#">
+                          <img src="src/assets/avatar.png" />
+                          <h1>
+                             Title
+                          </h1>
+                          <h3>
+                             Description
+                          </h3>
+                       </a>
+                    </li>
+                    <li>
+                       <a href="#">
+                          <img src="src/assets/avatar.png" />
+                          <h1>
+                             Title
+                          </h1>
+                          <h3>
+                             Description
+                          </h3>
+                       </a>
+                    </li>
+                    <li>
+                       <a href="#">
+                          <img src="src/assets/avatar.png" />
+                          <h1>
+                             Title
+                          </h1>
+                          <h3>
+                             Description
+                          </h3>
+                       </a>
+                    </li>
+                    <li>
+                       <a href="#" class="view-notif">
+                          View all notification
+                       </a>
+                    </li>
+                 </ul>
+              </div>
+              <div class="profile-picture" title="Profile">
+                 <img src="src/assets/profile.jpg" />
+                 <ul class="profile-menu">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Settings</a></li>
+                    <li><a href="#">Logout</a></li>
+                 </ul>
+              </div>
+           </div>
+           <main class="item_container">
+            <h4 style="color: #515151;">Attendance Report</h4>
+            <div class="data_config">
+                <label id="date-covered">*Showing Data from 01/12/2021 - 08/05/2021</label>
+                <i id="setting_icon" class="material-icons">settings</i>
+            </div>
+            <div class="charts">
+                <label style="color: #515151; font-weight: bold; font-size: 1vw;">Line Chart</label>
+                <label style="color: #515151; font-weight: bold; font-size: 1vw; padding-left: 30vw;">Pie Graph Report</label>
+                <canvas id="line_chart"></canvas>
+                <div id="pie_chart"></div>
+            </div>
+           </main>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+    integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="src/js/script.js"></script>
+    <script src="src/js/sidebar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="src/js/AttendanceReport.js"></script>
+</body>
+</html>
