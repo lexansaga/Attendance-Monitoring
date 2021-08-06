@@ -41,3 +41,20 @@
  top: 13.5vw;
  left: 57vw;
 }
+.data-table{
+    margin-top: 2vw;
+    width: fit-content;
+}
+.data-table > label{
+    color: #868686;
+    font-size: 1vw;
+    font-weight: bold;
+}
+.data-table #datatable{
+    text-align: center;
+    width: 70vw;
+}
+#datatable tr:hover{
+    background-color: #CFD5FA;
+    cursor: default;
+}

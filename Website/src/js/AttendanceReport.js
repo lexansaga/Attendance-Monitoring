@@ -1,6 +1,6 @@
 //LINE CHART
-const CHART = document.getElementById("line_chart");
-var BarColors=["#9674CF","#18BBCB","#9674CF","#18BBCB","#9674CF","#18BBCB","#9674CF","#18BBCB","#9674CF","#18BBCB","#9674CF","#18BBCB"]
+const CHART = document.getElementById('line_chart');
+var BarColors=['#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB']
 
 let barChart = new Chart(CHART,{
     type:'bar',
@@ -32,7 +32,7 @@ function drawChart() {
 
     var options = {
         legend: {position: 'bottom'},
-        chartArea:{top:10,width:200,height:100,backgroundColor:'Transparent',height:150},
+        chartArea:{top:10,width:200,height:100,height:150},
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
