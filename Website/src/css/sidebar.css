@@ -74,6 +74,7 @@
 	opacity: 1;
 }
 .search-menu {
+	display: none;
 	position: fixed;
 	list-style-type: none;
 	width: 30vw;
@@ -83,7 +84,6 @@
     min-width: 250px;
 	box-shadow: 0 2px 4px 0 rgb(0 0 0 / 21%);
 	z-index: 1;
-	opacity:  0;
     transition: .2s;
 }
 
