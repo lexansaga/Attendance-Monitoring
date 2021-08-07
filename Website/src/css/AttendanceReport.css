@@ -1,0 +1,60 @@
+@import url('root.css'); 
+/*Always include root css to access the root content and not to reinitialize code */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Karla', sans-serif;
+}
+
+#date-covered{
+    font-size: 0.9vw;
+}
+.data_config{
+    margin-top: 0.5vw;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+.data_config > i{
+    color: #515151;
+    margin-left: 1vw;
+    margin-top: -0.2vw;
+}
+.data_config > i:hover{
+    cursor:default
+}
+.data_config > i:active{
+    color: #8694F2;
+}
+
+.charts{
+    margin-top: 2vw;
+}
+
+.charts #line_chart{
+    max-width:30vw; 
+    margin-top: 1vw;
+}
+.charts #pie_chart{
+ position: absolute;
+ top: 13.5vw;
+ left: 57vw;
+}
+.data-table{
+    margin-top: 2vw;
+    width: fit-content;
+}
+.data-table > label{
+    color: #868686;
+    font-size: 1vw;
+    font-weight: bold;
+}
+.data-table #datatable{
+    text-align: center;
+    width: 70vw;
+}
+#datatable tr:hover{
+    background-color: #CFD5FA;
+    cursor: default;
+}

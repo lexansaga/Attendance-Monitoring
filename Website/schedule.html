@@ -1,6 +1,5 @@
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,273 +12,172 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <title>Schedule</title>
-</head>
-
-<body>
+    <title>Dashboard</title>
+  </head>
+  <body>
     <div class="main_container">
-
-        <div class="s-navbar" data-aos="fade-right">
-            <div class="logo-name">
-                <a href="main.html">
-                    <H3>
-                        ATTENDANCE<BR>MONITORING</H1>
-                </a>
-            </div>
-            <ul class="nav-links">
-                <li class="vert-line">
-                    <a href="main.html">
-                        <i class='bx bxs-home'></i>
-                        <span class="link_name">Home</span>
-                    </a>
-                </li>
-                <li class="vert-line">
-                    <a href="schedule.html">
-                        <i class='bx bx-calendar'></i>
-                        <span class="link_name">Schedule</span>
-                    </a>
-                </li>
-                <li class="vert-line">
-                    <a href="attendance.html">
-                        <i class='bx bxs-report'></i>
-                        <span class="link_name">Attendance</span>
-                    </a>
-                </li>
-                <li class="vert-line">
-                    <a href="#">
-                        <i class='bx bxs-report'></i>
-                        <span class="link_name">Attendance Report</span>
-                    </a>
-                </li>
-                <li class="vert-line">
-                    <a href="#">
-                        <i class='bx bxs-user-account'></i>
-                        <span class="link_name">User Management</span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li><a href="#">Add User</a></li>
-                        <li><a href="#">Edit User</a></li>
-                        <li><a href="#">Delete User</a></li>
-                    </ul>
-                </li>
-                <div class="bottom-image">
-                    <img src="src/assets/icon.png" />
-                    <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
-                </div>
+      <div class="s-navbar" data-aos="fade-right">
+        <div class="logo-name">
+          <a href="main.html">
+            <H3> ATTENDANCE <BR>MONITORING </H1>
+          </a>
+        </div>
+        <ul class="nav-links">
+          <li class="vert-line">
+            <a href="main.html">
+              <i class='bx bxs-home'></i>
+              <span class="link_name">Home</span>
+            </a>
+          </li>
+          <li class="vert-line">
+            <a href="schedule.html">
+              <i class='bx bx-calendar'></i>
+              <span class="link_name">Schedule</span>
+            </a>
+          </li>
+          <li class="vert-line">
+            <a href="#">
+              <i class='bx bxs-report'></i>
+              <span class="link_name">Attendance Report</span>
+            </a>
+          </li>
+          <li class="vert-line">
+            <a href="#">
+              <i class='bx bxs-user-account'></i>
+              <span class="link_name">User Management</span>
+            </a>
+            <ul class="sub-menu">
+              <li>
+                <a href="#">Add User</a>
+              </li>
+              <li>
+                <a href="#">Edit User</a>
+              </li>
+              <li>
+                <a href="#">Delete User</a>
+              </li>
             </ul>
+          </li>
+          <div class="bottom-image">
+            <img src="src/assets/icon.png" />
+            <h3>ATTENDANCE <br>MONITORING <br>SYSTEM </h3>
+          </div>
+        </ul>
+      </div>
+      <div class="main_content">
+        <div class="header">
+          <div id="btn_menu">
+            <i class='bx bx-menu-alt-left'></i>
+          </div>
+          <div class="search-bar">
+            <input id="input-search" type="text" placeholder="Look for..." />
+            <i class='bx bx-search'></i>
+            <ul class="search-menu">
+              <li>
+                <a href="#">
+                  <img src="src/assets/avatar.png" />
+                  <h1> Title </h1>
+                  <h3> Description </h3>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="view-notif"> Powered By ATMS </a>
+              </li>
+            </ul>
+          </div>
+          <div class="notification " title="Notification">
+            <i class='bx bxs-bell'></i>
+            <ul class="notif-menu">
+              <li>
+                <a href="#">
+                  <img src="src/assets/avatar.png" />
+                  <h1> Title </h1>
+                  <h3> Description </h3>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="src/assets/avatar.png" />
+                  <h1> Title </h1>
+                  <h3> Description </h3>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <img src="src/assets/avatar.png" />
+                  <h1> Title </h1>
+                  <h3> Description </h3>
+                </a>
+              </li>
+              <li>
+                <a href="#" class="view-notif"> View all notification </a>
+              </li>
+            </ul>
+          </div>
+          <div class="profile-picture" title="Profile">
+            <img src="src/assets/profile.jpg" />
+            <ul class="profile-menu">
+              <li>
+                <a href="#">Profile</a>
+              </li>
+              <li>
+                <a href="#">Settings</a>
+              </li>
+              <li>
+                <a href="#">Logout</a>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div class="main_content">
-            <div class="header">
-                <div id="btn_menu">
-                    <i class='bx bx-menu-alt-left'></i>
-                </div>
-                <div class="search-bar">
-                    <input id="input-search" type="text" placeholder="Look for..." />
-                    <i class='bx bx-search'></i>
-                    <ul class="search-menu">
-                        <li>
-                            <a href="#">
-                                <img src="src/assets/avatar.png" />
-                                <h1>
-                                    Title
-                                </h1>
-                                <h3>
-                                    Description
-                                </h3>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="view-notif">
-                                Powered By ATMS
-                            </a>
-                        </li>
-                    </ul>
+        <!--Here goes the main content / -->
+        <main class="item_container">
+          <h4>Schedule</h4>
+          <div class="search_bar">
+            <i class="material-icons">search</i>
+            <input type="text" placeholder="Look for...">
+            <div class="vl"></div>
+            <select>
+              <option value="Name">Name</option>
+              <option value="ID Number">ID Number</option>
+            </select>
+            <input type="date">
+            <button class="search_btn">Search</button>
+            <i class="material-icons" id="settings">settings</i>
+          </div>
+          <div class="user_profile">
+            <img class="user_pfp" src="src/assets/profile.jpg">
+            <h2>Doe, John</h2>
+            <h4>02000017275</h4>
+            <h5>Student</h5>
+          </div>
+          <table id="our-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Room</th>
+                <th>Professor</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="table-body">
+        
+            </tbody>
+          </table>
+          <div id="pagination-wrapper" class="pagination-button"></div>
+        </main>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      <script src="src/js/script.js"></script>
+      <script src="src/js/sidebar.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script>
+        AOS.init();
+      </script>
 
-
-
-                </div>
-
-                <div class="notification " title="Notification">
-                    <i class='bx bxs-bell'></i>
-                    <ul class="notif-menu">
-                        <li>
-                            <a href="#">
-                                <img src="src/assets/avatar.png" />
-                                <h1>
-                                    Title
-                                </h1>
-                                <h3>
-                                    Description
-                                </h3>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="src/assets/avatar.png" />
-                                <h1>
-                                    Title
-                                </h1>
-                                <h3>
-                                    Description
-                                </h3>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <img src="src/assets/avatar.png" />
-                                <h1>
-                                    Title
-                                </h1>
-                                <h3>
-                                    Description
-                                </h3>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="view-notif">
-                                View all notification
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="profile-picture" title="Profile">
-                    <img src="src/assets/profile.jpg" />
-                    <ul class="profile-menu">
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Settings</a></li>
-                        <li><a href="#">Logout</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!--Here goes the main content / -->
-
-            <main class="item_container">
-                <h5>Schedule</h2>
-                    <div class='srch_bx'>
-                        <input type="text" placeholder="Look for..." />
-                        <i class='bx bx-search'></i>
-
-                        <div class="custom-select">
-                            <select>
-                                <option value="0">Name</option>
-                                <option value="1">ID Number</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="date_picker">
-                        <input type="date">
-                    </div>
-
-                    <button class="search_btn">Search</button>
-
-                    <i class="material-icons" id="settings">settings</i>
-
-                    <div class="user_info">
-                        <img src="src/assets/avatar.png" />
-                        <h2>Alexander P. Saga</h2>
-                        <h4>02000017275</h4>
-                        <h5>Student</h5>
-                    </div>
-
-                    <table id="tbl-id">
-                        <tr id="tbl_header">
-                            <th>Id Number</th>
-                            <th>Name</th>
-                            <th>Day</th>
-                            <th>Time</th>
-                            <th>Room</th>
-                            <th>Professor</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td>02000017275</td>
-                            <td>Mitch Serrano</td>
-                            <td>Monday</td>
-                            <td>8:00am - 10:00pm</td>
-                            <td>B2203</td>
-                            <td>Craig N. Hill</td>
-                            <td><img src="src/assets/avatar.png" /></td>
-                        </tr>
-                        <tr>
-                            <td>02000017275</td>
-                            <td>Alexander Saga</td>
-                            <td>Tuesday</td>
-                            <td>10:30am - 04:00pm</td>
-                            <td>B1201</td>
-                            <td>Craig N. Hill</td>
-                            <td><img src="src/assets/avatar.png" /></td>
-                        </tr>
-                        <tr>
-                            <td>02000017275</td>
-                            <td>John Doe</td>
-                            <td>Wednesday</td>
-                            <td>10:30am - 04:00pm</td>
-                            <td>B1201</td>
-                            <td>Craig N. Hill</td>
-                            <td><img src="src/assets/avatar.png" /></td>
-                        </tr>
-                        <tr>
-                            <td>02000017275</td>
-                            <td>John Doe</td>
-                            <td>Wednesday</td>
-                            <td>10:30am - 04:00pm</td>
-                            <td>B1201</td>
-                            <td>Craig N. Hill</td>
-                            <td><img src="src/assets/avatar.png" /></td>
-                        </tr>
-                        <tr>
-                            <td>02000017275</td>
-                            <td>John Doe</td>
-                            <td>Wednesday</td>
-                            <td>10:30am - 04:00pm</td>
-                            <td>B1201</td>
-                            <td>Craig N. Hill</td>
-                            <td><img src="src/assets/avatar.png" /></td>
-                        </tr>
-                        <tr>
-                            <td>02000017275</td>
-                            <td>John Doe</td>
-                            <td>Wednesday</td>
-                            <td>10:30am - 04:00pm</td>
-                            <td>B1201</td>
-                            <td>Craig N. Hill</td>
-                            <td><img src="src/assets/avatar.png" /></td>
-                        </tr>
-                        <tr>
-                            <td>02000017275</td>
-                            <td>John Doe</td>
-                            <td>Wednesday</td>
-                            <td>10:30am - 04:00pm</td>
-                            <td>B1201</td>
-                            <td>Craig N. Hill</td>
-                            <td><img src="src/assets/avatar.png" /></td>
-                        </tr>
-                        <tr>
-                            <td>02000017275</td>
-                            <td>John Doe</td>
-                            <td>Wednesday</td>
-                            <td>10:30am - 04:00pm</td>
-                            <td>B1201</td>
-                            <td>Craig N. Hill</td>
-                            <td><img src="src/assets/avatar.png" /></td>
-                        </tr>
-                    </table>
-            </main>
-        </div>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
-            integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="src/js/script.js"></script>
-        <script src="src/js/sidebar.js"></script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-        <script>
-            AOS.init();
-        </script>
-</body>
-
+      <script src="src/js/pagination.js"></script>
+  </body>
 </html>
