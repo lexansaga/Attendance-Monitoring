@@ -55,6 +55,22 @@
     width: 70vw;
 }
 #datatable tr:hover{
-    background-color: #CFD5FA;
     cursor: default;
+}
+#datatable img{
+    width: 4vw;
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+}
+
+td.details-control{
+    background: url('/src/assets/plus.png') no-repeat center center;
+    background-size: 20px;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('/src/assets/minus.png') no-repeat center center;
+    background-size: 20px;
 }

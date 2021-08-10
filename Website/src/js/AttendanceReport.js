@@ -39,3 +39,69 @@ function drawChart() {
 
     chart.draw(data, options);
   }
+
+
+
+  //Data Table
+
+
+  /* Formatting function for row details - modify as you need */
+function format ( d ) {
+    // `d` is the original data object for the row
+    return '<table>'+
+        '<tr>'+
+            '<td rowspan="3">'+d.Pfp+'</td>'+
+            '<td>Full name:</td>'+
+            '<td>'+d.FullName+'</td>'+
+            '<td> </td>'+
+            '<td>Address: </td>'+
+            '<td>'+d.Address+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Email Address:</td>'+
+            '<td>'+d.Email+'</td>'+
+        '</tr>'+
+        '<tr>'+
+            '<td>Contact Number:</td>'+
+            '<td>'+d.ContactNumber+'</td>'+
+        '</tr>'+
+    '</table>';
+}
+ 
+$(document).ready(function() {
+    var table = $('#datatable').DataTable( {
+        "bLengthChange": false,
+        "ajax": "src/json/DataArry.json",
+        "columns": [
+            {
+                "className":      'details-control',
+                "orderable":      false,
+                "data":           null,
+                "defaultContent": '',
+            },
+            { "data": "id" },
+            { "data": "FullName" },
+            { "data": "DaysPresent" },
+            { "data": "DaysAbsent" },
+            {"data":"DaysLate"}
+        ],
+        "order": [[1, 'asc']]
+    } );
+     
+    // Add event listener for opening and closing details
+    $('#datatable tbody').on('click', 'td.details-control', function () {
+        var tr = $(this).closest('tr');
+        var row = table.row( tr );
+ 
+        if ( row.child.isShown() ) {
+            // This row is already open - close it
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            // Open this row
+            row.child( format(row.data()) ).show();
+            tr.addClass('shown');
+        }
+    } );
+} );
