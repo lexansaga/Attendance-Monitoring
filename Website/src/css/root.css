@@ -13,6 +13,8 @@
 	--green :#69E486;
 	--red:#FE5277;
 	--yellow:#FEB331;
+
+	--shadow:0 2px 4px 0 rgb(0 0 0 / 21%);
 	/* This root block contains static data */
 }
 
