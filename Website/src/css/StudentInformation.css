@@ -1,0 +1,55 @@
+@import url('root.css'); 
+/*Always include root css to access the root content and not to reinitialize code */
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Karla', sans-serif;
+}
+
+.StudentInf{
+    display: flex;
+    align-items: center;
+}
+.StudentInf img{
+    width: 7vw;
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+}
+.StudentInf label{
+    font-weight: bold;
+    font-size: 2vw;
+    color: #808080;
+    margin-left: 1vw;
+}
+
+.StudentInf button{
+    border: none;
+    padding: 0.5vw 1vw;
+    font-size: 1vw;
+    color: #fff;
+    background-color: #B2BBF7;
+    margin-left: 52%;
+    margin-bottom: 5vw;
+}
+.StudentInf button:active{
+    background-color: #8D9AF3;
+}
+hr{
+    margin-top: 1vw;
+    width: 91%;
+}
+.info-grid{
+    display: grid;
+    grid-template-columns: 10vw 10vw;
+    width: 30vw;
+    margin-top: 0.5vw;
+}
+.info-grid h4{
+    color: #515151;
+}
+.grid-item{
+   margin-bottom: 0.5vw;
+}
