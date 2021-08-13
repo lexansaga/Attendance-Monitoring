@@ -380,6 +380,7 @@
 text-align: center;
 color: var(--font-color-primary);
 margin: 3vw 0 0 0;
+font-size: 22px;
 }
 @media only screen and (max-width: 992px) {
 
