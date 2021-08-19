@@ -257,7 +257,7 @@ h4{
     width: 90vw;
   }
   #our-table td{
-    font-size: 2vw;
+    font-size: 2.4vw;
   }
   #our-table th{
     font-size: 10px;
@@ -268,7 +268,7 @@ h4{
 }
 
 
-
+/*Tablet View*/
 @media (min-width: 768px){
 
 }
