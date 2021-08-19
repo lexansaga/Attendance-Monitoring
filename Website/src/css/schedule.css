@@ -9,10 +9,7 @@
 
 .search_bar{
   display: flex;
-  flex-direction: row;
   padding-top: 1vw;
-  width: fit-content;
-  height: fit-content;
 }
 
 h4{
@@ -80,7 +77,6 @@ h4{
 
 .user_profile{
   margin-top: 1vw;
-  width: fit-content;
 }
 
 .user_profile>img{
@@ -208,22 +204,66 @@ h4{
     margin-top: -10vw;
   }
   .search_bar > input{
-    width: 40vw;
+    width: 60vw;
     padding: 12px 30px;
   }
   .search_bar > select{
-    width: 20vw;
+    width: 30vw;
     padding: 0px 5px;
     font-size: 3vw;
+    background-color: #ffff;
   }
   .search_bar > .vl{
-    margin-left: 40vw;
+    margin-left: 57vw;
     margin-top: 1vw;
     height: 4.5vw;
   }
   .search_bar > input[type=date]{
-    width: 20vw;
-    height: max-content;
+    position: absolute;
+    margin-top: 8vw;
+    padding: 0px 5px;
+    width: 30vw;
+    height: 7vw;
+    background-color: #ffff;
+  }
+  .search_bar > button{
+   position: absolute;
+   width: 16vw;
+   height: 7vw;
+   margin-top: 8vw;
+   margin-left: 33vw;
+  }
+  .user_profile{
+    margin-top: 10vw;
+  }
+  .user_profile>img{
+    width:15vw;
+  }
+  .user_profile>h5{
+    padding-left: 18vw;
+    margin-top: -3vw;
+  }
+  .user_profile>h2{
+    padding-left: 18vw;
+    margin-top: -14vw;
+  }
+  .user_profile>h4{
+    padding-left: 18vw;
+  }
+  .user_profile >img:hover{
+    width: 15vw;
+  }
+  #our-table{
+    width: 90vw;
+  }
+  #our-table td{
+    font-size: 2vw;
+  }
+  #our-table th{
+    font-size: 10px;
+  }
+  #our-table img{
+    width: 5vw;
   }
 }
 
