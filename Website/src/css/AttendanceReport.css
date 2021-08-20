@@ -74,3 +74,14 @@ tr.shown td.details-control {
     background: url('/src/assets/minus.png') no-repeat center center;
     background-size: 20px;
 }
+
+/*----------------------------------------------------Tablet View----------------------------------------------------*/
+@media (max-width: 768px){
+    
+}
+
+
+/*----------------------------------------------------Mobile View----------------------------------------------------*/
+@media (max-width: 426px){
+
+}
