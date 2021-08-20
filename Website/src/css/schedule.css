@@ -270,5 +270,60 @@ h4{
 
 /*Tablet View*/
 @media (min-width: 768px){
-
+  .search_bar > input{
+    width: 30vw;
+    padding: 12px 36px;
+  }
+  .search_bar > select{
+    width: 15vw;
+    padding: 0px 10px;
+    background-color: #ffff;
+  }
+  .search_bar > .vl{
+   margin-left: 30vw;
+   height: 2vw;
+  }
+  .search_bar > input[type=date]{
+    width: 18.3vw;
+    height: 3vw;
+    padding: 0px 10px;
+    background-color: #ffff;
+  }
+  .search_bar > button{
+   width: 10vw;
+  }
+  #settings{
+    margin-left: 88vw;
+  }
+  .user_profile{
+    margin-top: 3vw;
+  }
+  .user_profile>img{
+    width:8vw;
+  }
+  .user_profile>img:hover{
+    width: 8vw;
+  }
+  .user_profile>h5{
+    padding-left: 10vw;
+  }
+  .user_profile>h2{
+    padding-left: 10vw;
+    margin-top: -8vw;
+  }
+  .user_profile>h4{
+    padding-left: 10vw;
+  }
+  #our-table{
+    width: 90vw;
+  }
+  #our-table td{
+    font-size: 13px;
+  }
+  #our-table th{
+    font-size: 10px;
+  }
+  #our-table img{
+    width: 3.2vw;
+  }
 }
