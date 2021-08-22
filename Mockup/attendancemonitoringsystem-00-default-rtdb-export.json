@@ -1,0 +1,87 @@
+{
+  "Attendance": {
+    "Gate": {
+      "2021-01-01||10:10:10": {
+        "GATEATT0000000001": {
+          "EnteredID": "IDSTUD1000001",
+          "ID": "GATEATT0000000001",
+          "Timestamp": "2021-01-01||10:10:10",
+          "isValid": "True"
+        }
+      }
+    },
+    "Professor": {
+      "2021-01-01||10:10:10": {
+        "PROFATT0000000001": {
+          "ID": "PROFATT0000000001",
+          "Name": "John Doe",
+          "Timestamp": "2020-01-01 10:10:10"
+        }
+      }
+    },
+    "Student": {
+      "2021-01-01||10:10:10": {
+        "STUDATT0000000001": {
+          "ID": "STUDATT0000000001",
+          "Name": "Larry Mitchell",
+          "StudentID": "IDSTUD1000001",
+          "TimeStamp": "2021-01-01 10:10:10"
+        }
+      }
+
+    }
+  },
+  "Professor": {
+   "Information":
+   {
+    "PROF00001": {
+      "Department": "Engineering",
+      "ID": "PROF00001",
+      "Name": "John Doe",
+      "Subjects":"SUB1000001"    
+    }
+   }
+  },
+  "Student": {
+   "Information":{
+    "IDSTUD1000001": {
+      "Address": "Broadway St. Manila",
+      "Contact": "+639125226987",
+      "ID": "IDSTUD1000001",
+      "Name": "Larry Mitchell"
+    } 
+   }
+  },
+  "User": {
+    "USER00001": {
+      "Account_Type": "Admin",
+      "Password": "admin",
+      "Role": "Administrator",
+      "UserID": "USER00001",
+      "Username": "admin",
+      "Subjects":"SUB1000001"
+    },
+    "USER00002": {
+      "Account_Type": "Faculty",
+      "Password": "faculty",
+      "Role": "Faculty",
+      "UserID": "USER00002",
+      "Username": "faculty",
+      "Subjects":"SUB1000001,SUB1000002"
+    }
+  },
+  "Data":
+  {
+    "Subject":
+    {
+      "SUB1000001":
+      {
+        "Title":"Dummy Subject",
+        "Code":"SUB1000001",
+        "Description":"Just a Dummy Subject",
+        "Timestamp":"Monday 08:00:00-13:30:00"
+      }
+    }
+  }
+  
+}
