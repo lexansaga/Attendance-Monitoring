@@ -39,7 +39,7 @@ function drawChart() {
         height: 200
     };
     var tabview = window.matchMedia( "(max-width: 768px)" );
-    var mobview = window.matchMedia( "(max-width: 426px)" );
+    var mobview = window.matchMedia( "(max-width: 425px)" );
     if (tabview.matches) {
         var options = {
             legend: {position: 'bottom'},
@@ -49,7 +49,7 @@ function drawChart() {
         };
     }
     else if(mobview.matches) {
-        // window width is greater than 570px
+        
     }
 
     var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));

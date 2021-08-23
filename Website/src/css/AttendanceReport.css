@@ -132,6 +132,48 @@ tr.shown td.details-control {
 
 
 /*----------------------------------------------------Mobile View----------------------------------------------------*/
-@media (max-width: 426px){
-
+@media (max-width: 425px){
+    #datatable img{
+        width: 15vw;
+    }
+    .data-table td{
+        font-size: 3vw;
+    }
+    .data-table th{
+        font-size: 3vw;
+    }  
+    .data-table label{
+        font-size: 3vw; 
+        margin-left: 2vw;   
+    }
+    .data-table{
+        margin-top: 20vw;
+        margin-left: 0vw;
+    }
+    .charts .LChart_cont{
+        width: 85vw;
+        height: 40vw;
+    }
+    .charts .pie-lbl{
+        position: absolute;
+        left: -35vw;
+        margin-top: 45vw;
+    }
+    .charts label{
+        font-size: 3vw;
+    }
+    .data_config i{
+        padding-left: 0.5vw;
+        font-size:5vw;
+    }
+    #date-covered{
+        font-size: 3.5vw;
+    }
+    .charts #pie_chart{
+       position: relative;
+       margin-top: -6vw;
+       left: 0;
+       margin-left: 4.5vw;
+       
+    }
 }
