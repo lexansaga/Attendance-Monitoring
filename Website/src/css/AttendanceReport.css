@@ -31,9 +31,14 @@
 .charts{
     margin-top: 2vw;
 }
+.charts label{
+    color: #515151; font-weight: bold; font-size: 1vw;
+}
+.charts .pie-lbl{
+    margin-left: 28.5vw;
+}
 
 .charts #line_chart{
-    max-width:30vw; 
     margin-top: 1vw;
 }
 .charts #pie_chart{
@@ -74,10 +79,55 @@ tr.shown td.details-control {
     background: url('/src/assets/minus.png') no-repeat center center;
     background-size: 20px;
 }
+.charts .LChart_cont{
+    width: 30vw;
+}
 
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
 @media (max-width: 768px){
-    
+    h4{
+        font-size: large;
+    }
+    #date-covered{
+        font-size: 1.4vw;
+    }
+    .data_config i{
+        padding-left: 0.5vw;
+        font-size:2.5vw;
+    }
+    .charts{
+        margin-top: 3vw;
+    }
+    .charts label{
+        font-size: 1.5vw;
+    }
+    .charts #pie_chart{
+        margin-top: 6vw;
+        left: 55vw;
+    }
+    .charts .pie-lbl{
+        margin-left: 41vw;
+    }
+    .data-table{
+        margin-top: 5vw;
+        margin-left: 6vw;
+    }
+    .data-table label{
+        font-size: 1.5vw; 
+        margin-left: -5vw;   
+    }
+    .data-table th{
+        font-size: 1.8vw;
+    }  
+    .data-table td{
+        font-size: 1.5vw;
+    }
+    #datatable img{
+        width: 8vw;
+    }
+    .charts .LChart_cont{
+        width: 45vw;
+    }
 }
 
 

@@ -14,7 +14,9 @@ let barChart = new Chart(CHART,{
         ]
     },
     options:{
-        legend:{display: false}
+        responsive: true,
+        legend:{display: false},
+        maintainAspectRatio: true
     }
 })
 
@@ -32,8 +34,23 @@ function drawChart() {
 
     var options = {
         legend: {position: 'bottom'},
-        chartArea:{top:10,width:200,height:100,height:150},
+        chartArea:{top:10,width:200,height:150},
+        width: 350,
+        height: 200
     };
+    var tabview = window.matchMedia( "(max-width: 768px)" );
+    var mobview = window.matchMedia( "(max-width: 426px)" );
+    if (tabview.matches) {
+        var options = {
+            legend: {position: 'bottom'},
+            chartArea:{top:10,width:150,height:135},
+            width: 300,
+            height: 200
+        };
+    }
+    else if(mobview.matches) {
+        // window width is greater than 570px
+    }
 
     var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
 
@@ -77,7 +94,7 @@ $(document).ready(function() {
                 "className":      'details-control',
                 "orderable":      false,
                 "data":           null,
-                "defaultContent": '',
+                "defaultContent": ''
             },
             { "data": "id" },
             { "data": "FullName" },
