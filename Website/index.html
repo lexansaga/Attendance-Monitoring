@@ -34,48 +34,39 @@
                   <p>ATTENDANCE<br>MONITORING</p>
                   <h3 data-aos="fade-right">S<span>igni</span>n</h3>
                   <div class="input_group">
-                     <input type="text" placeholder="Username" name="text" />
+                     <input id="username" type="text" placeholder="Username" name="text" />
                      <hr>
                   </div>
                   <div class="input_group">
-                     <input type="password" placeholder="Password" name="text" />
+                     <input id="password" type="password" placeholder="Password" name="text" />
                      <hr>
                   </div>
-                  <button>Signin</button>
+                  <button type="button" onclick="Login()">Signin</button>
                </form>
             </div>
          </div>
       </div>
    </div>
 
-    
- <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
-    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-analytics.js"></script>
+   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 
-    <!-- Add Firebase products that you want to use -->
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-database.js"></script>
+   <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
 
-    <script>
-       //Config
-var firebaseConfig = {
-    apiKey: "AIzaSyC3-mndhgpckYObAr23oH9s2_mDOnqtRaE",
-    authDomain: "attendancemonitoringsystem-00.firebaseapp.com",
-    databaseURL: "https://attendancemonitoringsystem-00-default-rtdb.firebaseio.com",
-    projectId: "attendancemonitoringsystem-00",
-    storageBucket: "attendancemonitoringsystem-00.appspot.com",
-    messagingSenderId: "782052298274",
-    appId: "1:782052298274:web:207c8b25cffae05e36047b",
-    measurementId: "G-P53BX41RFX"
-};
-    </script>
+   <!-- Add Firebase products that you want to use -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+      integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <script type="text/javascript" src="src/js/firebase.js"></script>
    <script type="text/javascript" src="src/js/script.js"></script>
    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
@@ -83,7 +74,7 @@ var firebaseConfig = {
       AOS.init();
    </script>
 
-   
+
 </body>
 
 </html>
