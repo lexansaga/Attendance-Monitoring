@@ -8,6 +8,8 @@
    <link href="src/css/sidebar.css" rel="stylesheet" />
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
    <title>Dashboard</title>
 </head>
 
@@ -153,7 +155,7 @@
                <div class="attendance-object">
                   <div class="dropdown-section">
                      <p>Select Section</p>
-                     <span><i class='bx bxs-down-arrow' ></i></span>
+                     <span><i class='bx bxs-down-arrow'></i></span>
                      <div class="dropdown-section-content">
                         <a href="#">BSIT</a>
                         <a href="#">BSIT</a>
@@ -161,7 +163,7 @@
                   </div>
                   <div class="dropdown-subject">
                      <p>Select Subject</p>
-                     <span><i class='bx bxs-down-arrow' ></i></span>
+                     <span><i class='bx bxs-down-arrow'></i></span>
                      <div class="dropdown-subject-content">
                         <a href="#">Oral Communication</a>
                         <a href="#">BSIT</a>
@@ -175,12 +177,15 @@
                </div>
             </div>
             <div class="attendance-container">
+               <!-- Attendance null
+
                <div class="attendance-null">
                   <img src="src/assets/attendance-null.svg"  class=""/>
                   <h1>Pick section if your section not shown</h1>
                </div>
-            
- <!--
+            -->
+               <!--
+               Attendance Grid
                <h1>
                   A
                </h1>
@@ -350,6 +355,106 @@
                   </div>
                </div>
             -->
+
+
+               <div class="list-attendance">
+                  <table id="datatable" class="hover row-border order-column">
+                     <thead>
+                        <tr>
+                           <th></th>
+                           <th>Name</th>
+                           <th>Status</th>
+                           <th>Remarks</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Alexander Saga</td>
+                           <td>Row 1 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Row 2 Data 1</td>
+                           <td>Row 2 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Row 2 Data 1</td>
+                           <td>Row 2 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Row 2 Data 1</td>
+                           <td>Row 2 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Row 2 Data 1</td>
+                           <td>Row 2 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Row 2 Data 1</td>
+                           <td>Row 2 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Row 2 Data 1</td>
+                           <td>Row 2 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Alexander Saga</td>
+                           <td>Row 1 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Row 2 Data 1</td>
+                           <td>Row 2 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Row 2 Data 1</td>
+                           <td>Row 2 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Row 2 Data 1</td>
+                           <td>Row 2 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Row 2 Data 1</td>
+                           <td>Row 2 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Row 2 Data 1</td>
+                           <td>Row 2 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Row 2 Data 1</td>
+                           <td>Row 2 Data 2</td>
+                           <td>Row 1 Data 2</td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
             </div>
 
 
@@ -360,11 +465,23 @@
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
       integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
+   </script>
+
    <script src="src/js/script.js"></script>
    <script src="src/js/sidebar.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
    <script>
+      $(document).ready(function () {
+       var table =   $('#datatable').DataTable({
+          "paging":false,
+          "info":false
+       });
+       table.columns.adjust().draw();
+      });
       AOS.init();
    </script>
 </body>

@@ -1,11 +1,6 @@
 @import url('root.css'); 
 /*Always include root css to access the root content and not to reinitialize code */
 
-* {
-    margin: 0;
-    padding: 0;
-    font-family: 'Karla', sans-serif;
-}
 
 #date-covered{
     font-size: 0.9vw;
