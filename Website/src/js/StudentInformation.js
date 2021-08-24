@@ -42,3 +42,22 @@ if(StudentStatus.textContent == "Active"){
 }else {
     StudentStatus.style.color='Red';
 }
+
+function showReportDiv(){
+  document.getElementById('popup').style.display="block";
+}
+function hideReportDiv(){
+  document.getElementById('popup').style.display="none";
+}
+
+$(document).mouseup(function(e) 
+{
+    var container = $(".Pop_Up_ReportOption");
+
+    // if the target of the click isn't the container nor a descendant of the container
+    if (!container.is(e.target) && container.has(e.target).length === 0) 
+    {
+        container.hide();
+    }
+});
+

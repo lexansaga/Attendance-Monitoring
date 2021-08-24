@@ -71,8 +71,49 @@ hr{
 }
 .data-table{
   width: fit-content;
-  
+
 }
 .data-table #datatable{
   text-align: center;
+}
+.Pop_Up_ReportOption{
+  position: absolute;
+  background-color: #CDD2FA;
+  width: 20vw;
+  height: 20vw;
+  margin-top: 2.6vw;
+  margin-left: 44vw;
+  box-shadow: 5px 5px 8px #D7D7D7;
+  display: none;
+}
+.Pop_Up_ReportOption textarea{
+  padding: 0.5vw 1vw;
+  font-size: 1vw;
+  margin-top: .5vw;
+  margin-left: .7vw;
+  width: 18.5vw;
+  height: 15vw;
+}
+.Pop_Up_ReportOption .cancel_btn{
+  margin-top: 1.5vw;
+  margin-left: 5.5vw;
+  border-style: none;
+  width: 4vw;
+  height: 2vw;
+  background-color: red;
+  color: #fff;
+  margin-right: 1vw;
+}
+.Pop_Up_ReportOption .cancel_btn:active{
+  background-color: #FF9D9D;
+}
+.Pop_Up_ReportOption .Submit_btn{
+  border-style: none;
+  width: 4vw;
+  height: 2vw;
+  background-color: green;
+  color: #fff;
+}
+.Pop_Up_ReportOption .Submit_btn:active{
+  background-color: #00DB00;
 }
