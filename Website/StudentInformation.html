@@ -9,6 +9,7 @@
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
    <title>Student Information</title>
 </head>
 
@@ -164,28 +165,27 @@
                 <div class="grid-item"><h4>Contact Number:</h4></div>
                 <div class="grid-item">0953435323524232</div>
                 <div class="grid-item"><h4>Status:</h4></div> 
-                <div class="grid-item">Active</div> 
+                <div class="grid-item" id="status">Active</div> 
             </div>
             <div class="text-labels">
                <h3>Attendance Graph</h3>
-               <i class="material-icons">settings</i>
             </div>
-            <table id="our-table">
-               <thead>
-                 <tr>
-                   <th>Subject</th>
-                   <th>Date</th>
-                   <th>Time</th>
-                   <th>Status</th>
-                   <th>Remarks</th>
-                   <th></th>
-                 </tr>
-               </thead>
-               <tbody id="table-body">
-           
-               </tbody>
-             </table>
-             <div id="pagination-wrapper" class="pagination-button"></div>
+            <div class="data-table">
+               <table id="datatable">
+                  <thead>
+                     <tr>
+                        <th></th>
+                        <th>Subject</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Remarks</th>
+                     </tr>
+                  </thead>
+               </table>
+            </div>
+            <br>
+            <br>
          </main>
       </div>
    </div>
@@ -201,19 +201,7 @@
    </script>
 
    <script src="src/js/StudentInformation.js"></script>
-   <script type="text/javascript">
-      $(function() {
-        $("#our-table td").each(function() {
-          if ($(this).text() == 'Absent') {
-            $(this).css('color', 'red');
-          }else if($(this).text() == 'Present'){
-            $(this).css('color', 'Green');
-          }else if($(this).text() == 'Late'){
-            $(this).css('color', 'Orange');
-          }
-        });
-      });
-      </script>
+   <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

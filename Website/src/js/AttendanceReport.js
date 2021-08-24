@@ -88,7 +88,7 @@ function format ( d ) {
 $(document).ready(function() {
     var table = $('#datatable').DataTable( {
         "bLengthChange": false,
-        "ajax": "src/json/DataArry.json",
+        "ajax": "src/json/AttendanceReport.json",
         "columns": [
             {
                 "className":      'details-control',
