@@ -47,6 +47,7 @@ function showReportDiv(){
   document.getElementById('popup').style.display="block";
 }
 function hideReportDiv(){
+  document.getElementById('textarea_bx').value='';
   document.getElementById('popup').style.display="none";
 }
 
@@ -58,6 +59,7 @@ $(document).mouseup(function(e)
     if (!container.is(e.target) && container.has(e.target).length === 0) 
     {
         container.hide();
+        document.getElementById('textarea_bx').value='';
     }
 });
 
