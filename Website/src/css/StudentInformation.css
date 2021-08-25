@@ -78,7 +78,7 @@ hr{
 }
 .Pop_Up_ReportOption{
   position: absolute;
-  background-color: #CDD2FA;
+  background-color: #fff;
   width: 20vw;
   height: 20vw;
   margin-top: 2.6vw;
@@ -93,6 +93,7 @@ hr{
   margin-left: .7vw;
   width: 18.5vw;
   height: 15vw;
+  background-color: #F8F8F8;
 }
 .Pop_Up_ReportOption .cancel_btn{
   margin-top: 1.5vw;

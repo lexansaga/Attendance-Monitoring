@@ -1,4 +1,4 @@
-//LINE CHART
+//-----------------------------------------------LINE CHART-----------------------------------------------//
 const CHART = document.getElementById('line_chart');
 var BarColors=['#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB']
 
@@ -20,7 +20,7 @@ let barChart = new Chart(CHART,{
     }
 })
 
-//PIE CHART
+//-----------------------------------------------PIE CHART-----------------------------------------------//
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
@@ -59,10 +59,7 @@ function drawChart() {
 
 
 
-  //Data Table
-
-
-  /* Formatting function for row details - modify as you need */
+//-----------------------------------------------Data Table-----------------------------------------------//
 function format ( d ) {
     // `d` is the original data object for the row
     return '<table>'+
@@ -121,4 +118,6 @@ $(document).ready(function() {
             tr.addClass('shown');
         }
     } );
+    
+    $.fn.DataTable.ext.pager.numbers_length = 5;
 } );
