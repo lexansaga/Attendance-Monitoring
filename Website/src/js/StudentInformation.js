@@ -70,7 +70,6 @@ $(document).mouseup(function(e)
     if (!container.is(e.target) && container.has(e.target).length === 0) 
     {
         container.hide();
-        document.getElementById('textarea_bx').value='';
     }
 });
 

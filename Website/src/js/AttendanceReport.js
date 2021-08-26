@@ -121,3 +121,45 @@ $(document).ready(function() {
     
     $.fn.DataTable.ext.pager.numbers_length = 5;
 } );
+
+
+function showDateRangeDiv(){
+    document.getElementById('date_select').style.display="block";
+    document.getElementById('date_select').style.display="flex";
+  }
+function hideDateRangeDiv(){
+    document.getElementById('date_select').style.display="none";
+
+    document.getElementById('From_date').value='';
+    document.getElementById('To_date').value='';
+
+    document.getElementById('From_date').type='text';
+    document.getElementById('To_date').type='text';
+}
+function DisplaySelectedDate(){
+    let FromDate=document.getElementById("From_date").value;
+    let ToDate=document.getElementById("To_date").value;
+
+    document.getElementById("date-covered").innerHTML="Showing Data from "+FromDate+" to "+ToDate;
+    hideDateRangeDiv();
+}
+
+
+  $(document).mouseup(function(e) 
+{
+    var container = $("#date_select");
+
+    // if the target of the click isn't the container nor a descendant of the container
+    if (!container.is(e.target) && container.has(e.target).length === 0) 
+    {
+        container.hide();
+
+        document.getElementById('From_date').value='';
+        document.getElementById('To_date').value='';
+
+        document.getElementById('From_date').type='text';
+        document.getElementById('To_date').type='text';
+    }
+});
+
+

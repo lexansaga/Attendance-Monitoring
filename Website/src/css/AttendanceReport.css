@@ -17,7 +17,7 @@
     margin-top: -0.2vw;
 }
 .data_config > i:hover{
-    cursor:default
+    cursor:pointer;
 }
 .data_config > i:active{
     color: #8694F2;
@@ -37,9 +37,8 @@
     margin-top: 1vw;
 }
 .charts #pie_chart{
- position: absolute;
- top: 13.5vw;
- left: 57vw;
+    margin-top: -14vw;
+    margin-left: 33vw;
 }
 .data-table{
     margin-top: 2vw;
@@ -80,9 +79,56 @@ tr.shown td.details-control {
 .charts .LChart_cont{
     width: 30vw;
 }
+.invisible_panel{
+    display: none;
+    position: sticky;
+    flex-direction: row;
+    margin-top: .3vw;
+}
+.invisible_panel input[type=text]{
+    width: 7vw;
+}
+.invisible_panel input[type=date]{
+    width: 8.6vw;
+}
+#From_date{
+    padding: 0vw .5vw;
+    margin-right: .5vw;
+}
+#To_date{
+    padding: 0vw .5vw;
+    margin-left: .5vw;
+    margin-right: .3vw;
+}
+#cancel{
+    color: red;
+    margin-right: .5vw;
+}
+#cancel:hover{
+    cursor: pointer;
+}
+#cancel:active{
+    color: #FF6A6A;
+}
+#confirm{
+    color: rgb(91, 91, 238);
+}
+#confirm:hover{
+    cursor: pointer;
+}
+#confirm:active{
+    color: #8484F2;
+}
+    
 
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
 @media (max-width: 768px){
+    .invisible_panel input[type=text]{
+        width: 10vw;
+    }
+    .invisible_panel input[type=date]{
+        width: 17.8vw;
+    }
     h4{
         font-size: large;
     }
@@ -100,8 +146,8 @@ tr.shown td.details-control {
         font-size: 1.5vw;
     }
     .charts #pie_chart{
-        margin-top: 6vw;
-        left: 55vw;
+        margin-top: -22vw;
+        margin-left: 47vw;
     }
     .charts .pie-lbl{
         margin-left: 41vw;
@@ -131,6 +177,12 @@ tr.shown td.details-control {
 
 /*----------------------------------------------------Mobile View----------------------------------------------------*/
 @media (max-width: 425px){
+    .invisible_panel input[type=text]{
+        width: 20vw;
+    }
+    .invisible_panel input[type=date]{
+        width: 25vw;
+    }
     #datatable img{
         width: 15vw;
     }
@@ -168,9 +220,7 @@ tr.shown td.details-control {
         font-size: 3.5vw;
     }
     .charts #pie_chart{
-       position: relative;
-       margin-top: -6vw;
-       left: 0;
+       margin-top: 6vw;
        margin-left: 4.5vw;
        
     }
