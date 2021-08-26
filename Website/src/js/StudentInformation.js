@@ -15,10 +15,13 @@ $(document).ready(function() {
                 color = 'Orange';
               }
               return '<span style="color:' + color + '">' + data + '</span>';
-            }
-       }],
+            } },
+            { "width": "30%", "targets": 5 },
+            { "width": "20%", "targets": 1 }
+          ],
        //THIS NEXT PROPERTIES DEFINES THE APPEARANCE OF THE TABLE
         "pagingType": "full_numbers",
+        "autoWidth": true,
         "bLengthChange": false,
         "ajax": "src/json/StudentInformation.json",
         "columns": [
@@ -34,7 +37,7 @@ $(document).ready(function() {
             { "data": "Status" },
             {"data":"Remarks"}
         ],
-        "order": [[1, 'asc']]
+        "order": [[2, 'desc']]
     } );
     //THIS CODE DEFINES THE amount of page numbers being displayed on the pagination bar
     $.fn.DataTable.ext.pager.numbers_length = 5;

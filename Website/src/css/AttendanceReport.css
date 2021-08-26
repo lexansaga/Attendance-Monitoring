@@ -57,6 +57,9 @@
 #datatable tr:hover{
     cursor: default;
 }
+#datatable tbody>tr:hover{
+    background-color: #D7D7D7;
+  }
 #datatable img{
     width: 4vw;
     border-top-left-radius: 50% 50%;

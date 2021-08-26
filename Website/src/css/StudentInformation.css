@@ -71,10 +71,12 @@ hr{
 }
 .data-table{
   width: fit-content;
-
 }
 .data-table #datatable{
   text-align: center;
+}
+#datatable tbody>tr:hover{
+  background-color: #D7D7D7;
 }
 .Pop_Up_ReportOption{
   position: absolute;
@@ -117,4 +119,67 @@ hr{
 }
 .Pop_Up_ReportOption .Submit_btn:active{
   background-color: #00DB00;
+}
+
+/*----------------------------------------------------Tablet View----------------------------------------------------*/
+@media (max-width: 768px){
+  .StudentInf img{
+    width: 10vw;
+  }
+  .StudentInf label{
+    font-size: 3vw;
+  }
+  .StudentInf button{
+    width: 8.5vw;
+    margin-left: 44%;
+    font-size: 1.8vw;
+    height:4vw;
+  }
+  .Pop_Up_ReportOption{
+    width: 35vw;
+    height: 35vw;
+    margin-top: 5vw;
+  }
+  .Pop_Up_ReportOption textarea{
+    padding: 0.5vw 1vw;
+    font-size: 2vw;
+    margin-top: 1vw;
+    margin-left: .8vw;
+    width: 33.5vw;
+    height: 26vw;
+  }
+  .Pop_Up_ReportOption .cancel_btn{
+    width: 7vw;
+    height: 4.5vw;
+    margin-left: 10vw;
+  }
+  .Pop_Up_ReportOption .Submit_btn{
+    width: 7vw;
+    height: 4.5vw;
+  }
+  .info-grid{
+    font-size: 2vw;
+    display: grid;
+    grid-template-columns: 20vw 25vw;
+    width: 40vw;
+    margin-top: 1vw;
+  }
+  .text-labels h3{
+    font-size: 2vw;
+  }
+  .data-table{
+    width: 90%;
+  }
+  .datatable th{
+    font-size: 2vw;
+  }
+  .datatable td{
+    font-size: 1.8vw;
+  }
+}
+
+/*----------------------------------------------------Mobile View----------------------------------------------------*/
+@media (max-width: 425px){
+
+
 }
