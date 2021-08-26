@@ -166,9 +166,10 @@ hr{
   }
   .text-labels h3{
     font-size: 2vw;
+    margin-top: 2vw;
   }
   .data-table{
-    width: 90%;
+    margin-top: 2vw;
   }
   .datatable th{
     font-size: 2vw;
