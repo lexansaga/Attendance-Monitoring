@@ -141,7 +141,6 @@ hr{
     margin-top: 5vw;
   }
   .Pop_Up_ReportOption textarea{
-    padding: 0.5vw 1vw;
     font-size: 2vw;
     margin-top: 1vw;
     margin-left: .8vw;
@@ -181,6 +180,64 @@ hr{
 
 /*----------------------------------------------------Mobile View----------------------------------------------------*/
 @media (max-width: 425px){
-
-
+  hr{
+    margin-top: 2vw;
+    width: 110vw;
+  }
+  .StudentInf img{
+    margin-top: 3vw;
+    width: 20vw;
+  }
+  .StudentInf label{
+    font-size: 5vw;
+    margin-left: 2vw;
+    width: 100vw;
+  }
+  .StudentInf button{
+    position: absolute;
+    margin-right: -15vw;
+    right: 0;
+    font-size: 4vw;
+    width: fit-content;
+    height: 8vw;
+  }
+  .Pop_Up_ReportOption{
+    width: 60vw;
+    height: 55vw;
+    margin-top: 14vw;
+    margin-left: 35vw;
+  }
+  .Pop_Up_ReportOption textarea{
+    font-size: 4vw;
+    margin-top: 1vw;
+    margin-left: 2vw;
+    width: 56vw;
+    height: 43vw;
+  }
+  .Pop_Up_ReportOption .cancel_btn{
+    width: 15vw;
+    height: 6vw;
+    margin-left: 15vw;
+    margin-top: 2.5vw;
+  }
+  .Pop_Up_ReportOption .Submit_btn{
+    width: 15vw;
+    height: 6vw;
+  }
+  .info-grid{
+    font-size: 4vw;
+    display: grid;
+    grid-template-columns: 35vw 37vw;
+    width: 40vw;
+    margin-top: 1vw;
+  }
+  .text-labels h3{
+    font-size: 4vw;
+  }
+  .datatable th{
+    font-size: 3vw;
+  }
+  .datatable td{
+    font-size: 3.5vw;
+  }
 }
