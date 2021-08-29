@@ -1,4 +1,4 @@
-//LINE CHART
+//-----------------------------------------------LINE CHART-----------------------------------------------//
 const CHART = document.getElementById('line_chart');
 var BarColors=['#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB']
 
@@ -20,7 +20,7 @@ let barChart = new Chart(CHART,{
     }
 })
 
-//PIE CHART
+//-----------------------------------------------PIE CHART-----------------------------------------------//
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
@@ -59,10 +59,7 @@ function drawChart() {
 
 
 
-  //Data Table
-
-
-  /* Formatting function for row details - modify as you need */
+//-----------------------------------------------Data Table-----------------------------------------------//
 function format ( d ) {
     // `d` is the original data object for the row
     return '<table>'+
@@ -88,7 +85,7 @@ function format ( d ) {
 $(document).ready(function() {
     var table = $('#datatable').DataTable( {
         "bLengthChange": false,
-        "ajax": "src/json/DataArry.json",
+        "ajax": "src/json/AttendanceReport.json",
         "columns": [
             {
                 "className":      'details-control',
@@ -121,4 +118,48 @@ $(document).ready(function() {
             tr.addClass('shown');
         }
     } );
+    
+    $.fn.DataTable.ext.pager.numbers_length = 5;
 } );
+
+
+function showDateRangeDiv(){
+    document.getElementById('date_select').style.display="block";
+    document.getElementById('date_select').style.display="flex";
+  }
+function hideDateRangeDiv(){
+    document.getElementById('date_select').style.display="none";
+
+    document.getElementById('From_date').value='';
+    document.getElementById('To_date').value='';
+
+    document.getElementById('From_date').type='text';
+    document.getElementById('To_date').type='text';
+}
+function DisplaySelectedDate(){
+    let FromDate=document.getElementById("From_date").value;
+    let ToDate=document.getElementById("To_date").value;
+
+    document.getElementById("date-covered").innerHTML="Showing Data from "+FromDate+" to "+ToDate;
+    hideDateRangeDiv();
+}
+
+
+  $(document).mouseup(function(e) 
+{
+    var container = $("#date_select");
+
+    // if the target of the click isn't the container nor a descendant of the container
+    if (!container.is(e.target) && container.has(e.target).length === 0) 
+    {
+        container.hide();
+
+        document.getElementById('From_date').value='';
+        document.getElementById('To_date').value='';
+
+        document.getElementById('From_date').type='text';
+        document.getElementById('To_date').type='text';
+    }
+});
+
+

@@ -1,253 +1,75 @@
-let tableData = [{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'Sick'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Present',
-    'Remarks':'-'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Late',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Late',
-    'Remarks':'Traffic'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Present',
-    'Remarks':'-'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Present',
-    'Remarks':'-'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-},
-{
-    'Subject':'Computer Programming',
-    'Date':'March 16, 2020',
-    'Time':'08:00AM - 11:00AM',
-    'Status':'Absent',
-    'Remarks':'No Valid Reason'
-}]
+//LOAD DATA TABLE
+$(document).ready(function() {
+    var table = $('#datatable').DataTable( {
+      //THIS NEXT BLOCK OF CODE CHANGES THE TEXT COLOR OF COLUMN #4 DATA BASED ON VALUE
+        columnDefs: [{targets: 4,
+            render: function ( data, type, row ) {
+              var color = 'black';
+              if (data == "Absent") {
+                color = 'Red';
+              } 
+              if (data == "Present") {
+                color = 'Green';
+              }
+              if (data == "Late") {
+                color = 'Orange';
+              }
+              return '<span style="color:' + color + '">' + data + '</span>';
+            } },
+            { "width": "30%", "targets": 5 },
+            { "width": "20%", "targets": 1 }
+          ],
+       //THIS NEXT PROPERTIES DEFINES THE APPEARANCE OF THE TABLE
+        "pagingType": "full_numbers",
+        "autoWidth": true,
+        "bLengthChange": false,
+        "ajax": "src/json/StudentInformation.json",
+        "columns": [
+            {
+                "className":      'details-control',
+                "orderable":      false,
+                "data":           null,
+                "defaultContent": ''
+            },
+            { "data": "Subject" },
+            { "data": "Date" },
+            { "data": "Time" },
+            { "data": "Status" },
+            {"data":"Remarks"}
+        ],
+        "order": [[2, 'desc']]
+    } );
+    //THIS CODE DEFINES THE amount of page numbers being displayed on the pagination bar
+    $.fn.DataTable.ext.pager.numbers_length = 5;
+} );
 
-var state = {
-    'querySet': tableData,
-
-    'page': 1,
-    'rows': 8,
-    'window': 5,
+//THIS CODE CHANGES THE COLOR OF THE STATUS PLACEHOLDER BASED ON ITS VALUE
+let StudentStatus = document.getElementById("status");
+if(StudentStatus.textContent == "Active"){
+    StudentStatus.style.color='Green';
+}else {
+    StudentStatus.style.color='Red';
 }
 
-buildTable()
-
-function pagination(querySet, page, rows) {
-
-    var trimStart = (page - 1) * rows
-    var trimEnd = trimStart + rows
-
-    var trimmedData = querySet.slice(trimStart, trimEnd)
-
-    var pages = Math.round(querySet.length / rows);
-
-    return {
-        'querySet': trimmedData,
-        'pages': pages,
-    }
+//THIS METHODS HIDE/SHOW THE REPORT DIV POP-UP. THE OnClick EVENT IS EMBEDDED IN THE BUTTON ON HTML
+function showReportDiv(){
+  document.getElementById('popup').style.display="block";
 }
-function pageButtons(pages) {
-    var wrapper = document.getElementById('pagination-wrapper')
-
-    wrapper.innerHTML = ``
-	console.log('Pages:', pages)
-
-    var maxLeft = (state.page - Math.floor(state.window / 2))
-    var maxRight = (state.page + Math.floor(state.window / 2))
-
-    if (maxLeft < 1) {
-        maxLeft = 1
-        maxRight = state.window
-    }
-
-    if (maxRight > pages) {
-        maxLeft = pages - (state.window - 1)
-        
-        if (maxLeft < 1){
-        	maxLeft = 1
-        }
-        maxRight = pages
-    }
-    
-    
-
-    for (var page = maxLeft; page <= maxRight; page++) {
-    	wrapper.innerHTML += `<button value=${page} class="page pagination-pages">${page}</button>`
-    }
-
-    if (state.page != 1) {
-        wrapper.innerHTML = `<button value=${1} class="page pagination-first"> < </button>` + wrapper.innerHTML
-    }
-
-    if (state.page != pages) {
-        wrapper.innerHTML += `<button value=${pages} class="page pagination-last"> > </button>`
-    }
-
-    $('.page').on('click', function() {
-        $('#table-body').empty()
-
-        state.page = Number($(this).val())
-
-        buildTable()
-    })
-
+function hideReportDiv(){
+  document.getElementById('textarea_bx').value='';
+  document.getElementById('popup').style.display="none";
 }
 
 
-function buildTable() {
-    var table = $('#table-body')
+//THIS METHOD HIDES THE REPORT DIV POP-UP WHEN MOUSE IS CLICKED OUTSIDE THE DIV ITSELF
+$(document).mouseup(function(e) 
+{
+    var container = $(".Pop_Up_ReportOption");
 
-    var data = pagination(state.querySet, state.page, state.rows)
-    var myList = data.querySet
-
-    for (var i = 1 in myList) {
-        var row = `<tr>
-                  <td>${myList[i].Subject}</td>
-                  <td>${myList[i].Date}</td>
-                  <td>${myList[i].Time}</td>
-                  <td>${myList[i].Status}</td>
-                  <td>${myList[i].Remarks}</td>
-                  `
-        table.append(row)
+    // if the target of the click isn't the container nor a descendant of the container
+    if (!container.is(e.target) && container.has(e.target).length === 0) 
+    {
+        container.hide();
     }
+});
 
-    pageButtons(data.pages)
-}

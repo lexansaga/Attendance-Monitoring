@@ -69,70 +69,175 @@ hr{
 .text-labels i:active{
     color: #8D9AF3;
 }
-#our-table{
-    width: 70vw;
-    border-collapse: collapse;
-    text-align: center;
-   
-  }
-  
-  #our-table , td{
-    font-size: 1vw;
-    padding: 8px;
-  }
-  #our-table tr:hover{
-    background-color: #D1D7FA;
-  }
-  
-  #our-table th{
-    background-color: #B2BBF7;
-    color: #ffff;
-    font-size: 13px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-  }
-  #our-table , th:hover{
-    cursor: default;
-  }
-  .pagination-button{
-    margin-top: 0.5vw;
-    width: fit-content;
-  }
-  .pagination-pages{
-    padding: 5px 10px;
-    border: none;
-    background-color: #ffff;
-    border-radius: 50%;
-    margin-bottom: 3vw;
-  }
-  .pagination-pages:hover{
-    background-color: #B2BBF7;
-    color: #ffff;
-  }
-  .pagination-first{
-    width: 2vw;
-    margin-right: 0.5vw;
-    background-color: #ffff;
-    border: none;
-    height: 2vw;
-    font-size: 15px;
-    border-radius: 20%;
-  }
-  .pagination-first:hover{
-    background-color: #B2BBF7;
-    color: #ffff;
-  }
-  .pagination-last{
-    width: 2vw;
-    margin-left: 0.5vw;
-    background-color: #ffff;
-    border: none;
-    height: 2vw;
-    font-size: 15px;
-    border-radius: 20%;
-  }
-  .pagination-last:hover{
-    background-color: #B2BBF7;
-    color: #ffff;
-  }
+.data-table{
+  width: fit-content;
+}
+.data-table #datatable{
+  text-align: center;
+}
+#datatable tbody>tr:hover{
+  background-color: #D7D7D7;
+}
+.Pop_Up_ReportOption{
+  position: absolute;
+  background-color: #fff;
+  width: 20vw;
+  height: 20vw;
+  margin-top: 2.6vw;
+  margin-left: 44vw;
+  box-shadow: 5px 5px 8px #D7D7D7;
+  display: none;
+}
+.Pop_Up_ReportOption textarea{
+  padding: 0.5vw 1vw;
+  font-size: 1vw;
+  margin-top: .5vw;
+  margin-left: .7vw;
+  width: 18.5vw;
+  height: 15vw;
+  background-color: #F8F8F8;
+}
+.Pop_Up_ReportOption .cancel_btn{
+  margin-top: 1.5vw;
+  margin-left: 5.5vw;
+  border-style: none;
+  width: 4vw;
+  height: 2vw;
+  background-color: red;
+  color: #fff;
+  margin-right: 1vw;
+}
+.Pop_Up_ReportOption .cancel_btn:active{
+  background-color: #FF9D9D;
+}
+.Pop_Up_ReportOption .Submit_btn{
+  border-style: none;
+  width: 4vw;
+  height: 2vw;
+  background-color: green;
+  color: #fff;
+}
+.Pop_Up_ReportOption .Submit_btn:active{
+  background-color: #00DB00;
+}
 
+/*----------------------------------------------------Tablet View----------------------------------------------------*/
+@media (max-width: 768px){
+  .StudentInf img{
+    width: 10vw;
+  }
+  .StudentInf label{
+    font-size: 3vw;
+  }
+  .StudentInf button{
+    width: 8.5vw;
+    margin-left: 44%;
+    font-size: 1.8vw;
+    height:4vw;
+  }
+  .Pop_Up_ReportOption{
+    width: 35vw;
+    height: 35vw;
+    margin-top: 5vw;
+  }
+  .Pop_Up_ReportOption textarea{
+    font-size: 2vw;
+    margin-top: 1vw;
+    margin-left: .8vw;
+    width: 33.5vw;
+    height: 26vw;
+  }
+  .Pop_Up_ReportOption .cancel_btn{
+    width: 7vw;
+    height: 4.5vw;
+    margin-left: 10vw;
+  }
+  .Pop_Up_ReportOption .Submit_btn{
+    width: 7vw;
+    height: 4.5vw;
+  }
+  .info-grid{
+    font-size: 2vw;
+    display: grid;
+    grid-template-columns: 20vw 25vw;
+    width: 40vw;
+    margin-top: 1vw;
+  }
+  .text-labels h3{
+    font-size: 2vw;
+    margin-top: 2vw;
+  }
+  .data-table{
+    margin-top: 2vw;
+  }
+  .datatable th{
+    font-size: 2vw;
+  }
+  .datatable td{
+    font-size: 1.8vw;
+  }
+}
+
+/*----------------------------------------------------Mobile View----------------------------------------------------*/
+@media (max-width: 425px){
+  hr{
+    margin-top: 2vw;
+    width: 110vw;
+  }
+  .StudentInf img{
+    margin-top: 3vw;
+    width: 20vw;
+  }
+  .StudentInf label{
+    font-size: 5vw;
+    margin-left: 2vw;
+    width: 100vw;
+  }
+  .StudentInf button{
+    position: absolute;
+    margin-right: -15vw;
+    right: 0;
+    font-size: 4vw;
+    width: fit-content;
+    height: 8vw;
+  }
+  .Pop_Up_ReportOption{
+    width: 60vw;
+    height: 55vw;
+    margin-top: 14vw;
+    margin-left: 35vw;
+  }
+  .Pop_Up_ReportOption textarea{
+    font-size: 4vw;
+    margin-top: 1vw;
+    margin-left: 2vw;
+    width: 56vw;
+    height: 43vw;
+  }
+  .Pop_Up_ReportOption .cancel_btn{
+    width: 15vw;
+    height: 6vw;
+    margin-left: 15vw;
+    margin-top: 2.5vw;
+  }
+  .Pop_Up_ReportOption .Submit_btn{
+    width: 15vw;
+    height: 6vw;
+  }
+  .info-grid{
+    font-size: 4vw;
+    display: grid;
+    grid-template-columns: 35vw 37vw;
+    width: 40vw;
+    margin-top: 1vw;
+  }
+  .text-labels h3{
+    font-size: 4vw;
+  }
+  .datatable th{
+    font-size: 3vw;
+  }
+  .datatable td{
+    font-size: 3.5vw;
+  }
+}

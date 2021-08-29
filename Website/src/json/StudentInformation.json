@@ -1,0 +1,165 @@
+{
+    "data":[
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 14, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Absent",
+            "Remarks":"Sick"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 14, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Present",
+            "Remarks":"-"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 15, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Late",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 15, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Late",
+            "Remarks":"Traffic"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 15, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Present",
+            "Remarks":"-"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 15, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Present",
+            "Remarks":"-"
+        },
+        {
+            "Subject":"B1 TAP-OUT",
+            "Date":"March 17, 2020",
+            "Time":"01:00AM",
+            "Status":"-",
+            "Remarks":"-"
+        },
+        {
+            "Subject":"B1 TAP-IN",
+            "Date":"March 17, 2020",
+            "Time":"11:00AM",
+            "Status":"-",
+            "Remarks":"-"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 18, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Absent",
+            "Remarks":"Dengue. Confined in Community Hospital. W/Health Cert. Excused"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 18, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Present",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 18, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Late",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 16, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Absent",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 16, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Present",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 16, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Present",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 16, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Absent",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 16, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Absent",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 16, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Absent",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 16, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Absent",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 16, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Absent",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 16, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Absent",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 16, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Absent",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 16, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Absent",
+            "Remarks":"No Valid Reason"
+        },
+        {
+            "Subject":"Computer Programming",
+            "Date":"March 16, 2020",
+            "Time":"08:00AM - 11:00AM",
+            "Status":"Absent",
+            "Remarks":"No Valid Reason"
+        }
+    ]
+}
