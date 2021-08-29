@@ -31,9 +31,6 @@ class Firebase {
             return JSON.parse(sessionStorage.getItem("Data"));
 
         }
-
-    
-
         static SET(Path, Data) {
             var query = firebase.database().ref(Path);
             query.set(Data)
