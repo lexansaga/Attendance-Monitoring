@@ -37,12 +37,12 @@
     margin-top: 1vw;
 }
 .charts #pie_chart{
-    margin-top: -14vw;
+    margin-top: -14.7vw;
     margin-left: 33vw;
 }
 .data-table{
     margin-top: 2vw;
-    width: fit-content;
+    width: 90%;
 }
 .data-table > label{
     color: #868686;
@@ -133,44 +133,45 @@ tr.shown td.details-control {
         font-size: large;
     }
     #date-covered{
-        font-size: 1.4vw;
+        font-size: 13px;
     }
     .data_config i{
         padding-left: 0.5vw;
-        font-size:2.5vw;
+        font-size:18px;
     }
     .charts{
         margin-top: 3vw;
     }
     .charts label{
-        font-size: 1.5vw;
+        font-size: 13px;
     }
     .charts #pie_chart{
-        margin-top: -22vw;
-        margin-left: 47vw;
+        margin-top: -29.3vw;
+        margin-left: 51vw;
     }
     .charts .pie-lbl{
-        margin-left: 41vw;
+        margin-left: 43vw;
     }
     .data-table{
         margin-top: 5vw;
-        margin-left: 6vw;
+        width: 96%;
     }
     .data-table label{
-        font-size: 1.5vw; 
-        margin-left: -5vw;   
+        font-size: 15px; 
+        margin-left: 10px;   
     }
     .data-table th{
-        font-size: 1.8vw;
+        font-size: 15px;
     }  
     .data-table td{
-        font-size: 1.5vw;
+        font-size: 15px;
     }
     #datatable img{
         width: 8vw;
     }
     .charts .LChart_cont{
-        width: 45vw;
+        width: 50vw;
+        height: 30vw;
     }
 }
 
@@ -187,17 +188,17 @@ tr.shown td.details-control {
         width: 15vw;
     }
     .data-table td{
-        font-size: 3vw;
+        font-size: 15px;
     }
     .data-table th{
-        font-size: 3vw;
+        font-size: 3.5vw;
     }  
     .data-table label{
-        font-size: 3vw; 
+        font-size: 4vw; 
         margin-left: 2vw;   
     }
     .data-table{
-        margin-top: 20vw;
+        margin-top: 10vw;
         margin-left: 0vw;
     }
     .charts .LChart_cont{
@@ -206,22 +207,22 @@ tr.shown td.details-control {
     }
     .charts .pie-lbl{
         position: absolute;
-        left: -35vw;
-        margin-top: 45vw;
+        left: -36.5vw;
+        margin-top: 47vw;
     }
     .charts label{
-        font-size: 3vw;
+        font-size: 13px;
     }
     .data_config i{
         padding-left: 0.5vw;
         font-size:5vw;
     }
     #date-covered{
-        font-size: 3.5vw;
+        font-size: 13px;
     }
     .charts #pie_chart{
-       margin-top: 6vw;
-       margin-left: 4.5vw;
-       
+       margin-top: 9vw;
+       margin-left: 4vw;
     }
+
 }

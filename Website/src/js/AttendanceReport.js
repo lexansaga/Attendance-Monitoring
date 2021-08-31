@@ -1,3 +1,6 @@
+var tabview = window.matchMedia( "(max-width: 768px)" );
+var mobview = window.matchMedia( "(max-width: 425px)" );
+
 //-----------------------------------------------LINE CHART-----------------------------------------------//
 const CHART = document.getElementById('line_chart');
 var BarColors=['#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB','#9674CF','#18BBCB']
@@ -9,7 +12,7 @@ let barChart = new Chart(CHART,{
         datasets:[
             {
                 backgroundColor: BarColors,
-                data:[25, 30, 50, 10, 240,300,120,10]
+                data:[25, 30, 50, 10, 240,550,120,10]
             }
         ]
     },
@@ -35,17 +38,17 @@ function drawChart() {
     var options = {
         legend: {position: 'bottom'},
         chartArea:{top:10,width:200,height:150},
-        width: 350,
-        height: 200
+        width: 360,
+        height: 210,
+        fontSize:13
     };
-    var tabview = window.matchMedia( "(max-width: 768px)" );
-    var mobview = window.matchMedia( "(max-width: 425px)" );
     if (tabview.matches) {
         var options = {
             legend: {position: 'bottom'},
             chartArea:{top:10,width:150,height:135},
             width: 300,
-            height: 200
+            height: 180,
+            fontSize:10
         };
     }
     else if(mobview.matches) {
@@ -83,7 +86,9 @@ function format ( d ) {
 }
  
 $(document).ready(function() {
+    const mob = window.matchMedia( "(max-width: 425px)" );
     var table = $('#datatable').DataTable( {
+        "scrollX": mob.matches,
         "bLengthChange": false,
         "ajax": "src/json/AttendanceReport.json",
         "columns": [
