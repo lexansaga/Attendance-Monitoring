@@ -134,7 +134,7 @@ h4{
 #our-table th{
   background-color: #B2BBF7;
   color: #ffff;
-  font-size: 13px;
+  font-size: 17px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
@@ -207,7 +207,7 @@ h4{
    height: 2vw;
   }
   .search_bar > input[type=date]{
-    width: 18.3vw;
+    width: 19.5vw;
     height: 3vw;
     padding: 0px 10px;
     background-color: #ffff;
@@ -244,10 +244,10 @@ h4{
     font-size: 13px;
   }
   #our-table th{
-    font-size: 10px;
+    font-size: 13px;
   }
   #our-table img{
-    width: 3.2vw;
+    width: 4vw;
   }
 }
 
@@ -314,16 +314,22 @@ h4{
     width: 15vw;
   }
   #our-table{
+    white-space: nowrap;
+    display: block;
+    overflow-x: auto;
     width: 90vw;
   }
+  #our-table tbody{
+    width: 100%;
+  }
   #our-table td{
-    font-size: 2.4vw;
+    font-size: 13px;
   }
   #our-table th{
-    font-size: 10px;
+    font-size: 13px;
   }
   #our-table img{
-    width: 5vw;
+    width: 8vw;
   }
 }
 
