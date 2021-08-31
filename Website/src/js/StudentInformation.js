@@ -1,5 +1,6 @@
 //LOAD DATA TABLE
 $(document).ready(function() {
+  const mob = window.matchMedia( "(max-width: 425px)" );
     var table = $('#datatable').DataTable( {
       //THIS NEXT BLOCK OF CODE CHANGES THE TEXT COLOR OF COLUMN #4 DATA BASED ON VALUE
         columnDefs: [{targets: 4,
@@ -21,6 +22,7 @@ $(document).ready(function() {
           ],
        //THIS NEXT PROPERTIES DEFINES THE APPEARANCE OF THE TABLE
         "pagingType": "full_numbers",
+        "scrollX":mob.matches,
         "autoWidth": true,
         "bLengthChange": false,
         "ajax": "src/json/StudentInformation.json",

@@ -27,7 +27,7 @@
     font-size: 1vw;
     color: #fff;
     background-color: #B2BBF7;
-    margin-left: 52%;
+    margin-left: 36%;
     margin-bottom: 5vw;
 }
 .StudentInf button:active{
@@ -85,7 +85,7 @@ hr{
   height: 20vw;
   margin-top: 2.6vw;
   margin-left: 44vw;
-  box-shadow: 5px 5px 8px #D7D7D7;
+  box-shadow: 0 0 10px 5px #D7D7D7;
   display: none;
 }
 .Pop_Up_ReportOption textarea{
@@ -131,7 +131,7 @@ hr{
   }
   .StudentInf button{
     width: 8.5vw;
-    margin-left: 44%;
+    margin-left: 25%;
     font-size: 1.8vw;
     height:4vw;
   }
@@ -169,6 +169,7 @@ hr{
   }
   .data-table{
     margin-top: 2vw;
+    width: 90%;
   }
   .datatable th{
     font-size: 2vw;
@@ -195,7 +196,7 @@ hr{
   }
   .StudentInf button{
     position: absolute;
-    margin-right: -15vw;
+    margin-right: -10%;
     right: 0;
     font-size: 4vw;
     width: fit-content;
@@ -235,9 +236,12 @@ hr{
     font-size: 4vw;
   }
   .datatable th{
-    font-size: 3vw;
+    font-size: 4vw;
   }
   .datatable td{
-    font-size: 3.5vw;
+    font-size: 15px;
+  }
+  .data-table{
+    width: 110%;
   }
 }
