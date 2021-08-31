@@ -84,6 +84,7 @@ tr.shown td.details-control {
     position: sticky;
     flex-direction: row;
     margin-top: .3vw;
+    width: fit-content;
 }
 .invisible_panel input[type=text]{
     width: 7vw;
