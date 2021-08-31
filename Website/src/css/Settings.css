@@ -1,0 +1,97 @@
+@import url('root.css'); 
+/*Always include root css to access the root content and not to reinitialize code */
+
+.slider_container{
+    display: flex;
+    align-items: center;
+    margin-top: 1vw;
+    background-color: #fff;
+    width: 90%;
+    height: 3vw;
+}
+.slider_container label{
+    margin-left: 1vw;
+}
+.slider{
+    margin-left: 57vw;
+}
+h4{
+    color: #515151;
+}
+.slider_container .toggle {
+    position : relative ;
+            display : inline-block;
+    width : 50px;
+    height : 25px;
+    background-color: #F8F8F8;
+    border-radius: 30px;
+    border: 2px solid gray;
+    box-shadow: inset 0px 5px 3px 1px #E4E4E4;
+}
+/* After slide changes */
+.slider_container .toggle:after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #FEB331;
+    top: 1px; 
+    left: 1px;
+    transition:  all 0.5s;
+}
+        
+/* Checkbox checked effect */
+.slider_container .checkbox:checked + .toggle::after {
+    left : 24px; 
+    background-color: #F8F8F8;
+}
+        
+/* Checkbox checked toggle label bg color */
+.slider_container .checkbox:checked + .toggle {
+    background-color: #51DB51;    box-shadow: inset 0px 0px 0px 0px #DADADA;
+}
+        
+/* Checkbox vanished */
+.slider_container .checkbox { 
+    display : none;
+}
+
+
+/*----------------------------------------------------Tablet View----------------------------------------------------*/
+@media (max-width: 768px){
+    .slider_container{
+        width: 95%;
+        height: 5vw;
+    }
+    .slider{
+        margin-left: 70vw;
+    }
+    .slider_container .toggle {
+        width : 40px;
+        height : 18px;
+    }
+    .slider_container .toggle:after {
+        width: 22px;
+        height: 17px;
+    }
+    .slider_container .checkbox:checked + .toggle::after {
+        left : 17px; 
+    }
+}
+
+/*----------------------------------------------------Mobile View----------------------------------------------------*/
+@media (max-width: 425px){
+    .slider_container{
+        margin-top: 2vw;
+        width: 96%;
+        height: 10vw;
+    }
+    .slider_container label{
+        margin-left: 2vw;
+        white-space: nowrap;
+    }
+    .slider{
+        margin-left: 50vw;
+    }
+}
