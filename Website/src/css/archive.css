@@ -1,0 +1,104 @@
+@import url('root.css');
+
+main .reported-dates {
+    text-decoration: none;
+    color: var(--font-color-secondary);
+    margin-top: 25px;
+}
+
+
+.list-attendance {
+    margin: 50px 50px 0 0;
+
+}
+
+#datatable {
+    padding: 15px;
+    border-bottom: unset;
+
+
+}
+
+tr {
+    margin: 10px 0 0 0;
+}
+
+th {
+    font-weight: 500 !important;
+    background-color: var(--secondary-color);
+    color: white;
+
+}
+
+td:nth-child(1) {
+    width: 80px;
+
+}
+
+td {
+    text-align: center;
+}
+
+td>img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+
+td:nth-child(5) {}
+
+td:nth-child(5) button:nth-child(1) {
+    border: none;
+    outline: none;
+    background-color: var(--orange);
+    border-radius: 50px;
+    color: white;
+    padding: 10px;
+    margin-right: 10px;
+    width: 120px;
+    cursor: pointer;
+
+}
+
+td button:nth-child(2) {
+    border: none;
+    outline: none;
+    background-color: var(--red);
+    border-radius: 50px;
+    color: white;
+    padding: 10px;
+    margin-right: 10px;
+    margin-top: 6px;
+    width: 120px;
+    cursor: pointer;
+}
+
+td:nth-child(5) button:nth-child(1):hover {
+    background-color: rgba(255, 141, 115, 0.8);
+}
+
+td:nth-child(5) button:nth-child(2):hover {
+    background-color: rgba(254, 82, 119, 0.8);
+}
+
+
+
+@media only screen and (max-width:768px) {
+
+ 
+    .list-attendance {
+        overflow: auto;
+        margin: 50px 25px 0 0;
+    }
+
+}
+
+@media only screen and (max-width:425px) {
+ 
+    main .reported-dates
+    {
+        margin-top: 35px;
+    }
+    
+}

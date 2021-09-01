@@ -11,11 +11,14 @@
 	--font-color-secondary: #484848;
 	--font-light-color: white;
 
-	--green :#69E486;
-	--red:#FE5277;
-	--yellow:#FEB331;
+	--green: #69E486;
+	--red: #FE5277;
+	--yellow: #FEB331;
+	--orange: #FF8D73;
 
-	--shadow:0 2px 4px 0 rgb(0 0 0 / 21%);
+	--text-border: #B2B2B2;
+
+	--shadow: 0 2px 4px 0 rgb(0 0 0 / 21%);
 	/* This root block contains static data */
 }
 
@@ -37,10 +40,38 @@ body {
 	position: absolute;
 }
 
-.item_container > h3 {
+.item_container>h3 {
 	color: var(--font-color-secondary);
 }
 
-.item_container > h3 > span {
+.item_container>h3>span {
 	border-bottom: 2px solid var(--primary-color);
+}
+
+@media only screen and (max-width:425px) {
+	.item_container>h3 {
+		margin-top: 15px;
+	}
+
+}
+
+/* Custome Scrollbar */
+/* width */
+::-webkit-scrollbar {
+	width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: var(--primary-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(94, 106, 179, 0.9);
 }

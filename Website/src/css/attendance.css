@@ -383,6 +383,14 @@
 .list-attendance {
     margin: 50px 50px 0 0;
 }
+#datatable {
+    padding: 15px;
+    border-bottom: 0 !important;
+}
+table.dataTable thead th, table.dataTable thead td
+{
+border-bottom: 0 !important;
+}
 
 tr {
     margin: 10px 0 0 0;
