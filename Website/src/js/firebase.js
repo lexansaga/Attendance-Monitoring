@@ -1,5 +1,31 @@
 //Initialize Config
 //Config
+function addScript(src) {
+    var script = document.createElement('script');
+    script.setAttribute('src', src);
+    script.setAttribute('async', true)
+    document.body.append(script);
+}
+// <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+//  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+
+// addScript("https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js");
+
+//    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+//addScript("https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js");
+
+//    <!-- Add Firebase products that you want to use -->
+// addScript("https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js");
+
+//addScript("https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js");
+
+// addScript("https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js");
+
+// 
+
+
+
 var firebaseConfig = {
     apiKey: "AIzaSyC3-mndhgpckYObAr23oH9s2_mDOnqtRaE",
     authDomain: "attendancemonitoringsystem-00.firebaseapp.com",
@@ -18,7 +44,7 @@ firebase.analytics();
 class Firebase {
     static Database = class Database {
 
-        constructor(){}
+        constructor() {}
 
         static GET(Path) {
 
@@ -38,7 +64,7 @@ class Firebase {
 
         static PUSH(Path, Data) {
             var key = firebase.database().ref(Path).push().key;
-            this.SET(Path+"/"+key,Data);
+            this.SET(Path + "/" + key, Data);
         }
 
         static DELETE(Path) {
@@ -61,8 +87,6 @@ class Firebase {
     static Authentication = class Authentication {
 
         CURRENT_USER;
-
-
 
         CREATE_ACCOUNT(Email, Password) {
             firebase.auth().createUserWithEmailAndPassword(Email, Password)
@@ -163,6 +187,8 @@ function SORT(input, key) {
 // Getting Data(Return Dictionary) 
 //console.log(Firebase.Database.Get("User"));
 // Setting Data with specific Referrence Firebase.Database.SET("User/USER0003",{Name:"Lexan"})
-console.log(Firebase.Database.PUSH("User",{Name:"Lexan"})) ;
+console.log(Firebase.Database.PUSH("User", {
+    Name: "Lexan"
+}));
 // Pushing Data with Random Key Firebase.Database.PUSH("User/USER0003",{Name:"Lexan"})
 // Pushing Data with Random Key Firebase.Database.DELETE("User/USER0003")

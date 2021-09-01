@@ -154,7 +154,7 @@
                <div class="attendance-object">
                   <div class="dropdown-section">
                      <p>Select Section</p>
-                     <span><i class='bx bxs-down-arrow' ></i></span>
+                     <span><i class='bx bxs-down-arrow'></i></span>
                      <div class="dropdown-section-content">
                         <a href="#">BSIT</a>
                         <a href="#">BSIT</a>
@@ -162,7 +162,7 @@
                   </div>
                   <div class="dropdown-subject">
                      <p>Select Subject</p>
-                     <span><i class='bx bxs-down-arrow' ></i></span>
+                     <span><i class='bx bxs-down-arrow'></i></span>
                      <div class="dropdown-subject-content">
                         <a href="#">Oral Communication</a>
                         <a href="#">BSIT</a>
@@ -182,7 +182,7 @@
                   <h1>Pick section if your section not shown</h1>
                </div>
             -->
- <!--
+               <!--
                <h1>
                   A
                </h1>
@@ -353,122 +353,81 @@
                </div>
             -->
 
-            
-            <div class="list-attendance">
-               <table id="datatable" class="hover row-border order-column">
-                  <thead>
-                     <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th>Remarks</th>
-                     </tr>
-                  </thead>
-                  <tbody>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Alexander Saga</td>
-                        <td>Row 1 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Alexander Saga</td>
-                        <td>Row 1 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>Row 1 Data 2</td>
-                     </tr>
-                  </tbody>
-               </table>
+
+               <div class="list-attendance">
+                  <table id="datatable" class="hover row-border order-column">
+                     <thead>
+                        <tr>
+                           <th></th>
+                           <th>Name</th>
+                           <th>Status</th>
+                           <th>Remarks</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Alexander Saga</td>
+                           <td>
+                              <form action="#" id="attendance-status">
+                                 <p>
+                                    <input type="radio" id="radio-present" name="radio-group" checked>
+                                    <label for="radio-present">Present</label>
+                                 </p>
+                                 <p>
+                                    <input type="radio" id="radio-absent" name="radio-group">
+                                    <label for="radio-absent">Absent</label>
+                                 </p>
+                                 <p>
+                                    <input type="radio" id="radio-late" name="radio-group">
+                                    <label for="radio-late">Late</label>
+                                 </p>
+                              </form>
+                           </td>
+                           <td><input type="text" placeholder="Remarks" /></td>
+                        </tr>
+
+                        <tr>
+                           <td><img src="src/assets/profile.jpg" /></td>
+                           <td>Blexander Saga</td>
+                           <td>
+                              <form action="#" id="attendance-status">
+                                 <p>
+                                    <input type="radio" id="radio-present1" name="radio-group" checked>
+                                    <label for="radio-present1">Present</label>
+                                 </p>
+                                 <p>
+                                    <input type="radio" id="radio-absent1" name="radio-group">
+                                    <label for="radio-absent1">Absent</label>
+                                 </p>
+                                 <p>
+                                    <input type="radio" id="radio-late1" name="radio-group">
+                                    <label for="radio-late1">Late</label>
+                                 </p>
+                              </form>
+                           </td>
+                           <td><input type="text" placeholder="Remarks" /></td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
             </div>
-         </div>
-            </div>
-
-
-
-         </main>
       </div>
+
+
+
+      </main>
+   </div>
    </div>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
-   integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
-   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
    </script>
 
- 
+
 
    <script src="src/js/script.js"></script>
    <script src="src/js/sidebar.js"></script>
@@ -478,14 +437,14 @@
    <script>
       AOS.init();
       $(document).ready(function () {
-       var table =   $('#datatable').DataTable({
-          "paging":false,
-          "info":false
-       });
+         var table = $('#datatable').DataTable({
+            "paging": false,
+            "info": false
+         });
 
       });
    </script>
-   
+
 </body>
 
 </html>

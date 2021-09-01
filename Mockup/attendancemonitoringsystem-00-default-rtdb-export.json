@@ -6,7 +6,9 @@
           "EnteredID": "IDSTUD1000001",
           "ID": "GATEATT0000000001",
           "Timestamp": "2021-01-01||10:10:10",
-          "isValid": "True"
+          "isValid": "True",
+          "Status":"In",
+          "Location":"B3"
         }
       }
     },
@@ -15,7 +17,9 @@
         "PROFATT0000000001": {
           "ID": "PROFATT0000000001",
           "Name": "John Doe",
-          "Timestamp": "2020-01-01 10:10:10"
+          "Timestamp": "2020-01-01 10:10:10",
+          "ProfessorID": "IDPROF1000001",
+          "Location":"B3"
         }
       }
     },
@@ -25,7 +29,8 @@
           "ID": "STUDATT0000000001",
           "Name": "Larry Mitchell",
           "StudentID": "IDSTUD1000001",
-          "TimeStamp": "2021-01-01 10:10:10"
+          "TimeStamp": "2021-01-01 10:10:10",
+          "Location":"B3"
         }
       }
 
@@ -36,7 +41,7 @@
    {
     "PROF00001": {
       "Department": "Engineering",
-      "ID": "PROF00001",
+      "ID": "IDPROF1000001",
       "Name": "John Doe",
       "Subjects":"SUB1000001"    
     }
