@@ -1,0 +1,198 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="src/css/UserManagement.css" rel="stylesheet" />
+   <link href="src/css/sidebar.css" rel="stylesheet" />
+   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+   <title>Student Information</title>
+</head>
+
+<body>
+
+   <div class="main_container">
+      <div class="s-navbar" data-aos="fade-right">
+         <div class="logo-name">
+            <a href="main.html">
+               <H3>
+                  ATTENDANCE<BR>MONITORING</H1>
+            </a>
+         </div>
+         <ul class="nav-links">
+            <li class="vert-line">
+               <a href="main.html">
+                  <i class='bx bxs-home'></i>
+                  <span class="link_name">Home</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="schedule.html">
+                  <i class='bx bx-calendar'></i>
+                  <span class="link_name">Schedule</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="#">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Attendance</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="attendance.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Attendance Report</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="#">
+                  <i class='bx bxs-user-account'></i>
+                  <span class="link_name">User Management</span>
+               </a>
+               <ul class="sub-menu">
+                  <li><a href="#">Add User</a></li>
+                  <li><a href="#">Edit User</a></li>
+                  <li><a href="#">Delete User</a></li>
+               </ul>
+            </li>
+            <div class="bottom-image">
+               <img src="src/assets/icon.png" />
+               <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
+            </div>
+         </ul>
+      </div>
+      <div class="main_content">
+         <div class="header">
+            <div id="btn_menu">
+               <i class='bx bx-menu-alt-left'></i>
+            </div>
+            <div class="search-bar">
+               <input id="input-search" type="text" placeholder="Look for..." />
+               <i class='bx bx-search'></i>
+               <ul class="search-menu">
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png" />
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="view-notif">
+                        Powered By ATMS
+                     </a>
+                  </li>
+               </ul>
+
+
+
+            </div>
+
+            <div class="notification " title="Notification">
+               <i class='bx bxs-bell'></i>
+               <ul class="notif-menu">
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png" />
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png" />
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png" />
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="view-notif">
+                        View all notification
+                     </a>
+                  </li>
+               </ul>
+            </div>
+            <div class="profile-picture" title="Profile">
+               <img src="https://picsum.photos/200" />
+               <ul class="profile-menu">
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Settings</a></li>
+                  <li><a href="#">Logout</a></li>
+               </ul>
+            </div>
+         </div>
+         <main class="item_container">
+            <label>Manage User</label>
+            <br>
+            <br>
+            <div class="TextBox_Field">
+                <input type="text" placeholder="Last Name" id="LName">
+                <input type="text" placeholder="First Name" id="FName">
+                <input type="text" placeholder="Middle Name" id="MName">
+                <select id="User_type">
+                    <option value="" disabled selected>Select Type</option>
+                    <option value="Faculty">Faculty</option>
+                    <option value="Student">Student</option>
+                </select>
+                <input type="text" placeholder="Contact Number" id="Contact_Number">
+                <select id="User_Section">
+                    <option value="" disabled selected>Select Section</option>
+                    <option value="Sect1">BSIT-601A</option>
+                    <option value="Sect2">BSBA-101A</option>
+                    <option value="Sect3">BSBA-101A</option>
+                    <option value="Sect4">BSBA-101A</option>
+                </select>
+                <select id="User_Subject">
+                    <option value="" disabled selected>Select Subject</option>
+                    <option value="Sbj1">Computer Programming 1</option>
+                    <option value="Sbj2">Euthenics 1</option>
+                    <option value="Sbj3">Rizal's Life and Work</option>
+                    <option value="Sbj4">IT Capstone 1</option>
+                </select>
+                <textarea id="address" placeholder="Address" style="resize: none;"></textarea>
+            </div>
+            <div class="button_menu">
+                <button>Add</button>
+                <button>Delete</button>
+            </div>
+         </main>
+      </div>
+   </div>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+      integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script src="src/js/script.js"></script>
+   <script src="src/js/sidebar.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+   <script>
+      AOS.init();
+   </script>
+</body>
+
+</html>
