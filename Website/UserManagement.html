@@ -148,37 +148,53 @@
          </div>
          <main class="item_container">
             <label>Manage User</label>
-            <br>
-            <br>
-            <div class="TextBox_Field">
-                <input type="text" placeholder="Last Name" id="LName">
-                <input type="text" placeholder="First Name" id="FName">
-                <input type="text" placeholder="Middle Name" id="MName">
-                <select id="User_type">
-                    <option value="" disabled selected>Select Type</option>
-                    <option value="Faculty">Faculty</option>
-                    <option value="Student">Student</option>
-                </select>
-                <input type="text" placeholder="Contact Number" id="Contact_Number">
-                <select id="User_Section">
-                    <option value="" disabled selected>Select Section</option>
-                    <option value="Sect1">BSIT-601A</option>
-                    <option value="Sect2">BSBA-101A</option>
-                    <option value="Sect3">BSBA-101A</option>
-                    <option value="Sect4">BSBA-101A</option>
-                </select>
-                <select id="User_Subject">
-                    <option value="" disabled selected>Select Subject</option>
-                    <option value="Sbj1">Computer Programming 1</option>
-                    <option value="Sbj2">Euthenics 1</option>
-                    <option value="Sbj3">Rizal's Life and Work</option>
-                    <option value="Sbj4">IT Capstone 1</option>
-                </select>
-                <textarea id="address" placeholder="Address" style="resize: none;"></textarea>
+            <div class="imageArea">
+               <img id="output" src="src/assets/avatar.png" onerror="this.onerror=null; this.src='src/assets/avatar.jpg'"/>	
+               <input type="file"  accept="image/*" onchange="loadFile(event)" name="image" id="file">
             </div>
-            <div class="button_menu">
-                <button>Add</button>
-                <button>Delete</button>
+
+            <div class="inputArea">
+               <input type="text" placeholder="Last Name">
+               <input type="text" placeholder="First Name">
+               <input type="text" placeholder="Middle Name">
+
+               <select id="UserType">
+                  <option value="" disabled selected>Select User Type</option>
+                  <option value="student">Student</option>
+                  <option value="faculty">Faculty</option>
+               </select>
+
+               <input type="text" placeholder="Contact Number" id="ContactNumber">
+
+               <div class="ClassArea" id="ClassArea">
+                  <select id="Select_Section" style="width: 28vw; margin-right: 5vw;">
+                     <option value="" disabled selected>Select Section</option>
+                     <option value="Sect1">BSIT-601A</option>
+                     <option value="Sect2">BSIT-501A</option>
+                     <option value="Sect3">BSBA-601A</option>
+                     <option value="Sect4">BSBA-501A</option>
+                     <option value="Sect5">BSTM-601A</option>
+                     <option value="Sect6">BSTM-501A</option>
+                  </select>
+   
+                  <select id="Select_Subject" style="width: 28vw;">
+                     <option value="" disabled selected>Select Subject</option>
+                     <option value="Subj1">Computer Programming 1</option>
+                     <option value="Subj2">Euthenics 1</option>
+                     <option value="Subj1">Rizals Life and Work</option>
+                     <option value="Subj2">Game Development</option>
+                     <option value="Subj1">Mobile Systems and Technologies</option>
+                     <option value="Subj2">IT Capstone 1</option>
+                  </select>
+               </div>
+
+               <div class="ControlArea">
+                  <button id="add">Add</button>
+                  <button id="delete">Remove</button>
+                  <button id="clear">Clear</button>
+               </div>
+
+               <textarea placeholder="Address" style="resize: none"></textarea>
             </div>
          </main>
       </div>
@@ -190,9 +206,13 @@
    <script src="src/js/sidebar.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-   <script>
-      AOS.init();
-   </script>
+   <script>AOS.init();</script>
+
+   <script src="src/js/usermanagement.js"></script>
+   <!-- Select2 CSS --> 
+   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
+   <!-- Select2 JS --> 
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 </body>
 
 </html>

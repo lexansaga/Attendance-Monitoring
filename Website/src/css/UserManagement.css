@@ -2,184 +2,81 @@
 /*Always include root css to access the root content and not to reinitialize code */
 
 .item_container label{
-    font-size: 20px;
+    font-size: 1.2vw;
     font-weight: bold;
     color: #515151;
 }
-.TextArea{
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    width: 90%;
-    height: max-content;
+#output{
+    width: 8vw;
+    height: 8vw;
+}
+.imageArea{
     display: flex;
-}
-.TextBox_Field input{
-    border: none;
-    height: 25px;
-    padding: 0px 20px;
-}
-.TextBox_Field select{
-    border: none;
-    height: 25px;
-    padding: 0px 20px;
-}
-.TextBox_Field textarea{
-    padding: 5px 10px;
-    border: none;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     width: 90%;
-    height: 90%;
+    height: 25%;
+    margin-top: 1vw;
+}
+.imageArea input{
+    margin-left: 5vw;
+}
+.imageArea img{
+    margin-bottom: .5vw;
+    margin-left: 0vw;
 }
 
-textarea::placeholder{
-    padding: 0px 8px;
-    padding-top: 50px;
-}
-#LName{
-    width: 22vw;
-    margin-right: 1.1vw;
-}
-#FName{
-    width: 22vw;
-    margin-right: 1.1vw;
-}
-#MName{
-    width: 22vw;
-    margin-right: 1.1vw;
-}
-#User_type{
-    margin-top: .5vw;
+.inputArea{
+    margin-top: 1vw;
+    display: flex;
+    flex-direction: row;
     width: 90%;
+    flex-wrap: wrap;
 }
-#Contact_Number{
-    margin-top: .5vw;
-    width: 90%;
-}
-#User_Section{
+.inputArea input{
     margin-right: .5vw;
-    margin-top: .5vw;
-    width: 34vw;
+    margin-bottom: .5vw;
+    height: 2vw;
+    width: 22.3vw;
+    border-style: none;
+    background-color: #fff;
+    padding: 0px 10px;
 }
-#User_Subject{
-    margin-top: .5vw;
-    width: 34vw;
-}
-#address{
-    margin-top: .5vw;
-}
-.button_menu {
-    position: absolute;
-    margin-top: 35vw;
-    right: 120;
-}
-.button_menu button{
-    width: 5vw;
-    height: 2.5vw;
-    border: none;
-    color: #fff;
-    background-color: #B2BBF7;
-}
-.button_menu button:hover{
-    background-color: #A0ABF5;
-}
-.button_menu button:active{
-    background-color: #7E8DF1;
+.inputArea textarea{
+    width: 99%;
+    height: 10vw;
+    padding: 10px 10px;
 }
 
-/*----------------------------------------------------Tablet View----------------------------------------------------*/
-@media (max-width: 768px){
-    #LName{
-        width: 27.1vw;
-        margin-right: 1.1vw;
-    }
-    #FName{
-        width: 27.1vw;
-        margin-right: 1.1vw;
-    }
-    #MName{
-        width: 27.1vw;
-        margin-right: 1.1vw;
-    }
-    #User_type{
-        margin-top: 1vw;
-        background-color: #fff;
-    }
-    #Contact_Number{
-        margin-top: 1vw;
-    }
-    #User_Section{
-        margin-top: 1vw;
-        background-color: #fff;
-        width: 41.8vw;
-    }
-    #User_Subject{
-        margin-top: 1vw;
-        width: 41.8vw;
-        background-color: #fff;
-    }
-    #address{
-        margin-top: 1vw;
-    }
-    .button_menu {
-        position: absolute;
-        margin-top: 60vw;
-        right: 85;
-    }
-    .button_menu button{
-        width: 8vw;
-        height: 4vw;
-        margin-left: 1vw;
-    }
+#UserType{
+    height: 2vw;
+    width: 99%;
+    padding: 0px 10px;
 }
 
-/*----------------------------------------------------Mobile View----------------------------------------------------*/
-@media (max-width: 425px){
-    .item_container label{
-        margin-top: 2vw;
-    }
-    #LName{
-        width: 90%;
-    }
-    #FName{
-        width: 90%;
-        margin-top: 2vw;
-    }
-    #MName{
-        width: 90%;
-        margin-top: 2vw;
-    }
-    #User_type{
-        margin-top: 2vw;
-        background-color: #fff;
-    }
-    #Contact_Number{
-        margin-top: 2vw;
-    }
-    #User_Section{
-        margin-top: 2vw;
-        width: 90%;
-        background-color: #fff;
-    }
-    #User_Subject{
-        margin-top: 2vw;
-        width: 90%;
-        background-color: #fff;
-    }
-    #address{
-        height: 50vw;
-        margin-top: 2vw;
-    }
-    .button_menu {
-        position: absolute;
-        margin-top: 140vw;
-        right: 110;
-    }
-    .button_menu button{
-        width: 20vw;
-        height: 8vw;
-        margin-left: 1vw;
-    }
-    textarea::placeholder{
-        padding: 0px 8px;
-        padding-top: 60px;
-    }
+#ContactNumber{
+    padding: 0px 10px;
+    margin-top: .5vw;
+    width: 99%;
+}
+
+.ClassArea{
+    margin-bottom: .5vw;
+    width: 83%;
+    padding: 5px 10px;
+    overflow-y: auto;
+    height: 10vw;
+    background-color: #DBDBDB;
+}
+
+.ControlArea{
+    display: flex;
+    flex-direction: column;
+}
+.ControlArea button{
+    margin-top: 1vw;
+    margin-left: 1vw;
+    width: 8vw;
+    height: 2vw;
 }
