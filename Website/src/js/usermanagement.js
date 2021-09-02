@@ -52,8 +52,48 @@ var subjects = [
     }
 ];
 
+const SubjectScheduleData=[{
+    'id':'1',
+    'subject':'Computer Programming',
+    'day':"Monday",
+    'time':'11:00AM - 3:00PM',
+    'room':'B1201',
+    'section':'BSIT101A',
+    'professor':'Dr. Wuzowski'
+    },
+    {
+        'id':'2',
+        'subject':'Computer Programming',
+        'day':"Monday",
+        'time':'11:00AM - 3:00PM',
+        'room':'B1201',
+        'section':'BSIT101A',
+        'professor':'Dr. Wuzowski'
+    },
+    {
+        'id':'3',
+        'subject':'Computer Programming',
+        'day':"Monday",
+        'time':'11:00AM - 3:00PM',
+        'room':'B1201',
+        'section':'BSIT101A',
+        'professor':'Dr. Wuzowski'
+    },
+    {
+        'id':'4',
+        'subject':'Computer Programming',
+        'day':"Monday",
+        'time':'11:00AM - 3:00PM',
+        'room':'B1201',
+        'section':'BSIT101A',
+        'professor':'Dr. Wuzowski'
+    }
+]
 
-$(document).ready(function(){
+buildTable();  
+
+$(document).ready(function(){ 
+
     $("#Select_Section").select2({
         data:sections
     });
@@ -78,3 +118,20 @@ const loadFile = function(event) {
 	const image = document.getElementById('output');
 	image.src = URL.createObjectURL(event.target.files[0]);
 };
+
+
+function buildTable() {
+    var table = $('#SubjectSection-table')
+
+    for (var i = 1 in SubjectScheduleData) {
+        var row = `<tr>
+                  <td>${SubjectScheduleData[i].subject}</td>
+                  <td>${SubjectScheduleData[i].day}</td>
+                  <td>${SubjectScheduleData[i].time}</td>
+                  <td>${SubjectScheduleData[i].room}</td>
+                  <td>${SubjectScheduleData[i].section}</td>
+                  <td>${SubjectScheduleData[i].professor}</td>
+                  `
+        table.append(row)
+    }
+}
