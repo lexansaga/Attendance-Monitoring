@@ -92,8 +92,8 @@ const SubjectScheduleData=[{
 
 buildTable();  
 
-$(document).ready(function(){ 
 
+$(document).ready(function(){ 
     $("#Select_Section").select2({
         data:sections
     });
@@ -101,17 +101,17 @@ $(document).ready(function(){
         data:subjects
     });
 
-    $("#add").on("click", function() {  
-        $("#ClassArea").append("<select id='Select_Section' style='width: 28vw;  margin-right: .2vw; margin-top: .2vw'/>");
-        $("#ClassArea").append("<select id='Select_Subject' style='width: 28vw;'/>");    
-    });  
-    $("#delete").on("click", function() {  
-       $("#ClassArea").children().last().remove();  
-       $("#ClassArea").children().last().remove();  
-    });  
-    $("#clear").on("click", function() {  
-        $("#ClassArea").children().remove();  
-    });  
+    $('#output').click(function(){ $('#selectPicture').trigger('click'); });
+
+    document.getElementById("ContactNumber").disabled = true;
+    document.getElementById("Address").disabled = true;
+    document.getElementById("setSubject").disabled = true;
+    document.getElementById("username").disabled = true;
+    document.getElementById("password").disabled = true;
+    document.getElementById("cbx").style.display = "none";
+    document.getElementById("UserSetup").style.display = "none";
+    document.getElementById("btnsave").disabled = true;
+    document.getElementById("btndelete").disabled = true;
 });
 
 const loadFile = function(event) {
@@ -121,7 +121,7 @@ const loadFile = function(event) {
 
 
 function buildTable() {
-    var table = $('#SubjectSection-table')
+    const table = $('#SubjectSection-table')
 
     for (var i = 1 in SubjectScheduleData) {
         var row = `<tr>
@@ -133,5 +133,42 @@ function buildTable() {
                   <td>${SubjectScheduleData[i].professor}</td>
                   `
         table.append(row)
+    }
+}
+
+function VerifyType(){
+    const selected = document.getElementById("UserType");
+    const e = selected.options[selected.selectedIndex].text;
+    
+    if(e == "Student"){
+        document.getElementById("ContactNumber").disabled = false;
+        document.getElementById("Address").disabled = false;
+        document.getElementById("setSubject").disabled = false;
+        document.getElementById("username").disabled = false;
+        document.getElementById("password").disabled = false;
+        document.getElementById("cbx").style.display = "none";
+        document.getElementById("UserSetup").style.display = "none";
+        document.getElementById("btnsave").disabled = false;
+        document.getElementById("btndelete").disabled = false;
+    }else if(e=="Faculty"){
+        document.getElementById("ContactNumber").disabled = false;
+        document.getElementById("Address").disabled = false;
+        document.getElementById("setSubject").disabled = false;
+        document.getElementById("username").disabled = false;
+        document.getElementById("password").disabled = false;
+        document.getElementById("cbx").style.display = "block";
+        document.getElementById("UserSetup").style.display = "block";
+        document.getElementById("btnsave").disabled = false;
+        document.getElementById("btndelete").disabled = false;
+    }else{
+        document.getElementById("ContactNumber").disabled = true;
+        document.getElementById("Address").disabled = true;
+        document.getElementById("setSubject").disabled = true;
+        document.getElementById("username").disabled = true;
+        document.getElementById("password").disabled = true;
+        document.getElementById("cbx").style.display = "none";
+        document.getElementById("UserSetup").style.display = "none";
+        document.getElementById("btnsave").disabled = true;
+        document.getElementById("btndelete").disabled = true;
     }
 }

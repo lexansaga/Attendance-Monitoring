@@ -1,8 +1,8 @@
 @import url('root.css'); 
 /*Always include root css to access the root content and not to reinitialize code */
 
-.item_container label{
-    font-size: 1.2vw;
+#lblPlaceholder{
+    font-size: 20px;
     font-weight: bold;
     color: #515151;
 }
@@ -26,7 +26,9 @@
     margin-bottom: .5vw;
     margin-left: 0vw;
 }
-
+.imageArea .SelectPicture:hover , img:hover{
+    cursor: pointer;
+}
 .inputArea{
     margin-top: 1vw;
     display: flex;
@@ -42,17 +44,21 @@
     border-style: none;
     background-color: #fff;
     padding: 0px 10px;
+    font-size: 16px;
 }
 .inputArea textarea{
     width: 99%;
     height: 10vw;
     padding: 10px 10px;
+    font-size: 16px;
 }
 
 #UserType{
     height: 2vw;
     width: 99%;
     padding: 0px 10px;
+    border: none;
+    font-size: 16px;
 }
 
 #ContactNumber{
@@ -66,7 +72,7 @@
 
 .imageArea .SelectPicture{
     text-decoration: underline;
-    font-size: 1vw;
+    font-size: 16px;
     font-weight: lighter;
 }
 
@@ -77,6 +83,7 @@
 }
 .UserSectionnSubject .setSubjectSection{
     text-decoration: underline;
+    font-size: 15px;
     width: 100%;
     height: 2vw;
     border: none;
@@ -97,7 +104,7 @@
 }
   
 #SubjectSection-table , td{
-    font-size: 1vw;
+    font-size: 15px;
     padding: 8px;
 }
 #SubjectSection-table tr:hover{
@@ -127,6 +134,7 @@
     display: block;
 }
 .UserSetup input{
+    font-size: 15px;
     margin-top: 1vw;
     width: 48.3%;
     margin-right: 1vw;
@@ -138,7 +146,7 @@
 .UserSetup h5{
     margin-top: 1vw;
     margin-left: 44%;
-    font-size: 1vw;
+    font-size: 15px;
 }
 .CustomCheckboxes{
     margin-top: 1.5vw;
@@ -218,17 +226,20 @@ margin-right: 2vw;
   }
 
   .actionButton{
-      position: absolute;
-      top: 68vw;
-      right: 125;
+     width: 89%;
   }
 
   .actionButton button{
-      width: 6vw;
-      height: 2.5vw;
+      margin-right: 10px;
+      margin-top: 20px;
+      width: 90px;
+      height: 40px;
       border: none;
       background-color: #B2BBF7;
       color: #fff;
+  }
+  #btnsave{
+      margin-left: 80%;
   }
 
   .actionButton button:hover{
