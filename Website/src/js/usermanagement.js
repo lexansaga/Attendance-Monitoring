@@ -114,6 +114,28 @@ $(document).ready(function(){
     document.getElementById("btndelete").disabled = true;
 });
 
+$(window).click(function (e) {
+    if (e.target.className.includes('modal')) {
+        $('.modal').css('display', 'none');
+    }
+    console.log(e.target.className);
+});
+$(".setSubjectSection").ready(function (e) {
+
+    $('.modal:eq(0)').css('display', 'block');
+
+});
+$(".close").click(function (e) {
+
+    $('.modal:eq(0)').css('display', 'none');
+
+});
+$(".ModalCancel").click(function (e) {
+
+    $('.modal:eq(0)').css('display', 'none');
+
+});
+
 const loadFile = function(event) {
 	const image = document.getElementById('output');
 	image.src = URL.createObjectURL(event.target.files[0]);
