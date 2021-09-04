@@ -95,23 +95,13 @@ buildTable();
 
 $(document).ready(function(){ 
     $("#Select_Section").select2({
-        data:sections
-    });
-    $("#Select_Subject").select2({
-        data:subjects
+        //only select Specific Properties From an Array of Objects
+        data:sections.map(a => a.text)
     });
 
     $('#output').click(function(){ $('#selectPicture').trigger('click'); });
 
-    document.getElementById("ContactNumber").disabled = true;
-    document.getElementById("Address").disabled = true;
-    document.getElementById("setSubject").disabled = true;
-    document.getElementById("username").disabled = true;
-    document.getElementById("password").disabled = true;
-    document.getElementById("cbx").style.display = "none";
-    document.getElementById("UserSetup").style.display = "none";
-    document.getElementById("btnsave").disabled = true;
-    document.getElementById("btndelete").disabled = true;
+    VerifyType()
 });
 
 $(window).click(function (e) {

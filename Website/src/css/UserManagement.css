@@ -311,36 +311,38 @@ margin-right: 2vw;
     flex-direction: column;
     position: absolute;
     margin-left: 2.5vw;
-    height: 70%;
     width: 85%;
+    height: fit-content;
     margin-top: 5vw;
 }
-#modal-table th tbody{
+.tableContainer{
+    margin-top: 3vw;
+    position: absolute;
     display: block;
+    width: 100%;
+    height: 75%;
+    overflow-y: auto;
 }
 #modal-table{
-    text-align: center;
-    overflow-y: auto;
+    width: 100%;
+    word-wrap: normal;
     border-collapse: collapse;
 }
 
 #modal-table th{
-    color: #fff;
-    font-size: 15px;
-    padding: 5px 0px 5px 0px;
+    position: sticky;
+    top: 0;
     background-color: #B2BBF7;
+    height: 25px;
+    color: #fff;
 }
-#modal-table td{
-    word-wrap: normal;
-    font-size: 13px;
-}
-
-#modal-table tbody{
-    background-color: #F0F0F0;
+#modal-table tr:hover{
+    cursor: pointer;
+    background-color: #D1D7FA;
 }
 
 .modalButtonControl{
-    margin-top: 13.8vw;
+    margin-top: 20vw;
 }
 .modalButtonControl button{
     color: #fff;
