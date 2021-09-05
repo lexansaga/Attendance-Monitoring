@@ -81,18 +81,19 @@
     width: 89.2%;
     margin-top: .5vw;
 }
-.UserSectionnSubject .setSubjectSection{
+.setSubjectSection{
+    margin-top: .5vw;
     text-decoration: underline;
     font-size: 15px;
-    width: 100%;
+    width: 99%;
     height: 2vw;
     border: none;
     background-color: #fff;
 }
-.UserSectionnSubject .setSubjectSection:active{
+.setSubjectSection:active{
     background-color: #D1D7FA;
 }
-.UserSectionnSubject .setSubjectSection:hover{
+.setSubjectSection:hover{
     cursor:pointer;
 }
 
@@ -421,10 +422,10 @@ margin-right: 2vw;
         padding: 10px 10px;
         font-size: 16px;
     }
-    .UserSectionnSubject .setSubjectSection{
+    .setSubjectSection{
         font-size: 15px;
         margin-bottom: .8vw;
-        width: 100%;
+        width: 99%;
         height: 3.5vw;
     }
     #btnsave{
@@ -459,6 +460,87 @@ margin-right: 2vw;
 
 /*----------------------------------------------------Mobile View----------------------------------------------------*/
 @media (max-width: 425px){
+    #SubjectSection-table{
+        white-space: nowrap;
+        display: block;
+        overflow-x: auto;
+        width: 100%;
+    }
+    .imageArea{
+        margin-top: 3vw;
+        width: 100%;
+    }
 
+    .inputArea{
+        margin-top: 3vw;
+    }
+    .inputArea input{
+        margin-bottom: 2vw;
+        height: 8vw;
+        width: 100%;
+    }
 
+    #UserType{
+        background-color: white;
+        height: 8vw;
+        border: none;
+        font-size: 16px;
+    }
+    #ContactNumber{
+        margin-top: 3vw;
+        height: 8vw;
+    }
+    .inputArea textarea{
+        height: 25vw;
+    }
+    .setSubjectSection{
+        height: 8vw;
+        margin-bottom: 1vw;
+    }
+    .actionButton{
+        width: 100%;
+    }
+    #btnsave{
+        margin-left: 32%;
+    }
+
+    .UserSetup input{
+        font-size: 15px;
+        margin-top: 3vw;
+        width: 100%;
+        border: none;
+        padding: 0px 10px;
+        height: 8vw;
+    }
+    .UserSetup h5{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 80px;
+    }
+    
+    .modal-container label{
+        margin-top: 4vw;
+        margin-left: 3vw;
+    }
+    .modal-container .mainContent{
+        margin-left: 3vw;
+        width: 50%;
+        margin-top: 15vw;
+    }
+
+    .tableContainer{
+        margin-top: 11vw;
+        height: 320px;
+    }
+    .modalButtonControl{
+        margin-top: 105vw;
+    }
+    .modalButtonControl .ModalSubmit{
+        margin-left: 13vw;
+        margin-right: 1vw;
+    }
+    .modal-container .close {
+       position: absolute;
+       left: 48%;
+    }
 }

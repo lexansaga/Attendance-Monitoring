@@ -110,7 +110,7 @@ $(window).click(function (e) {
     }
     console.log(e.target.className);
 });
-$(".setSubjectSection").ready(function (e) {
+$(".setSubjectSection").click(function (e) {
 
     $('.modal:eq(0)').css('display', 'block');
 
