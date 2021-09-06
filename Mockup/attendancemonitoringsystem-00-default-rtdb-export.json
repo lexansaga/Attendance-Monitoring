@@ -1,7 +1,7 @@
 {
   "Attendance": {
     "Gate": {
-      "2021-01-01||10:10:10": {
+      "2021-01-01": {
         "GATEATT0000000001": {
           "EnteredID": "IDSTUD1000001",
           "ID": "GATEATT0000000001",
@@ -13,7 +13,7 @@
       }
     },
     "Professor": {
-      "2021-01-01||10:10:10": {
+      "2021-01-01": {
         "PROFATT0000000001": {
           "ID": "PROFATT0000000001",
           "Name": "John Doe",
@@ -24,7 +24,7 @@
       }
     },
     "Student": {
-      "2021-01-01||10:10:10": {
+      "2021-01-01": {
         "STUDATT0000000001": {
           "ID": "STUDATT0000000001",
           "Name": "Larry Mitchell",
@@ -53,7 +53,12 @@
       "Address": "Broadway St. Manila",
       "Contact": "+639125226987",
       "ID": "IDSTUD1000001",
-      "Name": "Larry Mitchell"
+      "FirstName": "Larry",
+      "MiddleName":"Gollow",
+      "LastName":"Mitchell",
+      "Subjects":"SUB1000001",
+      "Section":"BSIT-401A"
+      
     } 
    }
   },
@@ -64,7 +69,18 @@
       "Role": "Administrator",
       "UserID": "USER00001",
       "Username": "admin",
-      "Subjects":"SUB1000001"
+      "Subjects":"SUB1000001",
+      "Notification":
+      {
+         "NOTIF000001":
+         {
+          "NotifID":"NOTIF00001",
+          "Title":"Dummy Notification Title",
+          "Description":"Dummy Notification Description",
+          "Icon":"1",
+          "DatePosted":"2021-01-01 10:10:10"
+         }
+      }
     },
     "USER00002": {
       "Account_Type": "Faculty",
@@ -84,7 +100,7 @@
         "Title":"Dummy Subject",
         "Code":"SUB1000001",
         "Description":"Just a Dummy Subject",
-        "Timestamp":"Monday 08:00:00-13:30:00"
+        "Schedule":"Monday 08:00:00-13:30:00"
       }
     }
   }
