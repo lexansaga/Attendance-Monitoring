@@ -90,7 +90,7 @@ $(document).ready(function() {
     var table = $('#datatable').DataTable( {
         "scrollX": mob.matches,
         "bLengthChange": false,
-        "ajax": "src/json/AttendanceReport.json",
+        "ajax": "src/json/attendancereport.json",
         "columns": [
             {
                 "className":      'details-control',

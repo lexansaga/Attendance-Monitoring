@@ -25,7 +25,7 @@ $(document).ready(function() {
         "scrollX":mob.matches,
         "autoWidth": true,
         "bLengthChange": false,
-        "ajax": "src/json/StudentInformation.json",
+        "ajax": "src/json/studentinformation.json",
         "columns": [
             {
                 "className":      'details-control',
