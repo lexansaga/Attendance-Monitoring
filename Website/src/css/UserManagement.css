@@ -37,17 +37,17 @@
     flex-wrap: wrap;
 }
 .inputArea input{
-    margin-right: .5vw;
-    margin-bottom: .5vw;
     height: 2vw;
-    width: 22.3vw;
+    margin-bottom: 10px;
+    width: 31.8%;
+    margin-right: 1.5%;
     border-style: none;
     background-color: #fff;
     padding: 0px 10px;
     font-size: 16px;
 }
 .inputArea textarea{
-    width: 99%;
+    width: 98.4%;
     height: 10vw;
     padding: 10px 10px;
     font-size: 16px;
@@ -55,7 +55,7 @@
 
 #UserType{
     height: 2vw;
-    width: 99%;
+    width: 98.4%;
     padding: 0px 10px;
     border: none;
     font-size: 16px;
@@ -64,10 +64,10 @@
 #ContactNumber{
     padding: 0px 10px;
     margin-top: .5vw;
-    width: 99%;
+    width: 100%;
 }
 #ID{
-    width: 99%;
+    width: 100%;
 }
 
 .imageArea .SelectPicture{
@@ -85,7 +85,7 @@
     margin-top: .5vw;
     text-decoration: underline;
     font-size: 15px;
-    width: 99%;
+    width: 98.4%;
     height: 2vw;
     border: none;
     background-color: #fff;
@@ -227,7 +227,7 @@ margin-right: 2vw;
   }
 
   .actionButton{
-     width: 89%;
+     width: 100%;
   }
 
   .actionButton button{
