@@ -517,14 +517,18 @@ margin-right: 2vw;
         margin-bottom: 20px;
         margin-left: 80px;
     }
-    
+    .modal-container {
+        height: 480px;
+        width: 330px;
+    }
+   
     .modal-container label{
         margin-top: 4vw;
         margin-left: 3vw;
     }
     .modal-container .mainContent{
         margin-left: 3vw;
-        width: 50%;
+        width: 92%;
         margin-top: 15vw;
     }
 
@@ -533,14 +537,14 @@ margin-right: 2vw;
         height: 320px;
     }
     .modalButtonControl{
-        margin-top: 105vw;
+        margin-top: 330px;
     }
     .modalButtonControl .ModalSubmit{
-        margin-left: 13vw;
+        margin-left: 50px;
         margin-right: 1vw;
     }
     .modal-container .close {
        position: absolute;
-       left: 48%;
+       left: 90%;
     }
 }
