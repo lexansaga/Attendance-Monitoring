@@ -268,8 +268,8 @@ margin-right: 2vw;
     margin: auto;
     top: 50px;
     background-color: white;
-    height: 480px;
-    width: 600px;
+    height: 500px;
+    width: 650px;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation: modal-animation;
@@ -309,10 +309,10 @@ margin-right: 2vw;
 
 .modal-container .mainContent{
     display: flex;
+    align-items: center;
     flex-direction: column;
     position: absolute;
-    margin-left: 2.5vw;
-    width: 85%;
+    width: 100%;
     height: fit-content;
     margin-top: 5vw;
 }
@@ -320,7 +320,7 @@ margin-right: 2vw;
     margin-top: 3vw;
     position: absolute;
     display: block;
-    width: 100%;
+    width: 90%;
     height: 75%;
     overflow-y: auto;
 }
@@ -347,7 +347,9 @@ margin-right: 2vw;
 }
 
 .modalButtonControl{
-    margin-top: 20vw;
+    margin-left: 55px;
+    margin-top: 50%;
+    width: 100%;
 }
 .modalButtonControl button{
     color: #fff;
@@ -367,7 +369,7 @@ margin-right: 2vw;
 }
 
 .modalButtonControl .ModalSubmit{
-    margin-left: 16.5vw;
+    margin-left: 50%;
     margin-right: .5vw;
     background-color: #42597D;
 }
