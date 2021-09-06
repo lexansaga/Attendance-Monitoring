@@ -4,11 +4,14 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="src/css/UserManagement.css" rel="stylesheet" />
+   <link href="src/css/usermanagement.css" rel="stylesheet" />
    <link href="src/css/sidebar.css" rel="stylesheet" />
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-   <title>Student Information</title>
+
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+   <title>Student Information - ATMS</title>
 </head>
 
 <body>
@@ -168,11 +171,9 @@
 
                <input type="text" placeholder="Contact Number" id="ContactNumber">
                <textarea placeholder="Address" style="resize: none" id="Address"></textarea>
-            </div>
-
-            <div class="UserSectionnSubject">
                <button class="setSubjectSection" id="setSubject">Set User Subject and Section</button>
-
+            </div>
+            <div class="UserSectionnSubject">
                <table id="SubjectSection-table">
                   <thead>
                     <tr>
@@ -182,7 +183,6 @@
                       <th>Room</th>
                       <th>Section</th>
                       <th>Professor</th>
-                      <th></th>
                     </tr>
                   </thead>
                   <tbody id="table-body"></tbody>    
@@ -227,27 +227,94 @@
                    <span class="close"><i class='bx bx-x'></i></span>
                    <div class="mainContent">
                      <select id="Select_Section" style="width: 100%;">
-                        <option value="" disabled selected>Select Section</option>
+                        <option value="" disabled selected>Select class number</option>
                        </select>
                      <br>
-                       <select id="Select_Subject" style="width: 100%;">
-                        <option value="" disabled selected>Select Subject</option>
-                       </select>
-                     <br>
-                       <table id="modal-table">
-                        <thead>
-                          <tr>
-                            <th>Section</th>
-                            <th>Subject</th>
-                            <th>Day</th>
-                            <th>Time</th>
-                          </tr>
-                        </thead>
-                        <tbody id="table-body">
-                        
-                        </tbody>    
-                     </table>
-                     <br>
+                     <div class="tableContainer">
+                        <table id="modal-table">
+                           <thead>
+                             <tr>
+                               <th>Section</th>
+                               <th>Subject</th>
+                               <th>Day</th>
+                               <th>Time</th>
+                               <th></th>
+                             </tr>
+                           </thead>
+                           <tbody id="table-body">
+                              <tr>
+                                 <td>BSIT601A</td>
+                                 <td>Computer Programming 1</td>
+                                 <td>M</td>
+                                 <td>12:00PM - 3:00PM</td>
+                                 <td><i class="material-icons">delete_forever</i></td>
+                               </tr>
+                               <tr>
+                                 <td>BSIT601A</td>
+                                 <td>Rizals Life and Works</td>
+                                 <td>M</td>
+                                 <td>12:00PM - 3:00PM</td>
+                                 <td><i class="material-icons">delete_forever</i></td>
+                               </tr>
+                               <tr>
+                                 <td>BSIT601A</td>
+                                 <td>Mobile Systems and Technologies Mobile Systems and Technologies</td>
+                                 <td>M</td>
+                                 <td>12:00PM - 3:00PM</td>
+                                 <td><i class="material-icons">delete_forever</i></td>
+                               </tr>
+                               <tr>
+                                 <td>BSIT601A</td>
+                                 <td>Mobile Systems and Technologies</td>
+                                 <td>M</td>
+                                 <td>12:00PM - 3:00PM</td>
+                                 <td><i class="material-icons">delete_forever</i></td>
+                               </tr>
+                               <tr>
+                                 <td>BSIT601A</td>
+                                 <td>Mobile Systems and Technologies</td>
+                                 <td>M</td>
+                                 <td>12:00PM - 3:00PM</td>
+                                 <td><i class="material-icons">delete_forever</i></td>
+                               </tr>
+                               <tr>
+                                 <td>BSIT601A</td>
+                                 <td>Mobile Systems and Technologies</td>
+                                 <td>M</td>
+                                 <td>12:00PM - 3:00PM</td>
+                                 <td><i class="material-icons">delete_forever</i></td>
+                               </tr>
+                               <tr>
+                                 <td>BSIT601A</td>
+                                 <td>Mobile Systems and Technologies</td>
+                                 <td>M</td>
+                                 <td>12:00PM - 3:00PM</td>
+                                 <td><i class="material-icons">delete_forever</i></td>
+                               </tr>
+                               <tr>
+                                 <td>BSIT601A</td>
+                                 <td>Mobile Systems and Technologies</td>
+                                 <td>M</td>
+                                 <td>12:00PM - 3:00PM</td>
+                                 <td><i class="material-icons">delete_forever</i></td>
+                               </tr>
+                               <tr>
+                                 <td>BSIT601A</td>
+                                 <td>Mobile Systems and Technologies</td>
+                                 <td>M</td>
+                                 <td>12:00PM - 3:00PM</td>
+                                 <td><i class="material-icons">delete_forever</i></td>
+                               </tr>
+                               <tr>
+                                 <td>BSIT601A</td>
+                                 <td>Mobile Systems and Technologies</td>
+                                 <td>M</td>
+                                 <td>12:00PM - 3:00PM</td>
+                                 <td><i class="material-icons">delete_forever</i></td>
+                               </tr>
+                           </tbody>    
+                        </table>  
+                     </div>
                      <div class="modalButtonControl">
                         <button class="ModalAdd">Add</button>
                         <button class="ModalSubmit">Submit</button>

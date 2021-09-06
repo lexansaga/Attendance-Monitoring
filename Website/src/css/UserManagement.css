@@ -81,18 +81,19 @@
     width: 89.2%;
     margin-top: .5vw;
 }
-.UserSectionnSubject .setSubjectSection{
+.setSubjectSection{
+    margin-top: .5vw;
     text-decoration: underline;
     font-size: 15px;
-    width: 100%;
+    width: 99%;
     height: 2vw;
     border: none;
     background-color: #fff;
 }
-.UserSectionnSubject .setSubjectSection:active{
+.setSubjectSection:active{
     background-color: #D1D7FA;
 }
-.UserSectionnSubject .setSubjectSection:hover{
+.setSubjectSection:hover{
     cursor:pointer;
 }
 
@@ -311,36 +312,42 @@ margin-right: 2vw;
     flex-direction: column;
     position: absolute;
     margin-left: 2.5vw;
-    height: 70%;
     width: 85%;
+    height: fit-content;
     margin-top: 5vw;
 }
-#modal-table th tbody{
+.tableContainer{
+    margin-top: 3vw;
+    position: absolute;
     display: block;
+    width: 100%;
+    height: 75%;
+    overflow-y: auto;
 }
 #modal-table{
-    text-align: center;
-    overflow-y: auto;
+    width: 100%;
+    word-wrap: normal;
     border-collapse: collapse;
 }
 
 #modal-table th{
-    color: #fff;
-    font-size: 15px;
-    padding: 5px 0px 5px 0px;
+    position: sticky;
+    top: 0;
     background-color: #B2BBF7;
+    height: 25px;
+    color: #fff;
 }
-#modal-table td{
-    word-wrap: normal;
-    font-size: 13px;
+#modal-table tr:hover{
+    cursor: pointer;
+    background-color: #D1D7FA;
 }
 
-#modal-table tbody{
-    background-color: #F0F0F0;
+#modal-table i:hover{
+    color: red;
 }
 
 .modalButtonControl{
-    margin-top: 13.8vw;
+    margin-top: 20vw;
 }
 .modalButtonControl button{
     color: #fff;
@@ -376,4 +383,168 @@ margin-right: 2vw;
 }
 .modalButtonControl .ModalCancel:hover{
     background-color: #FE6D8E;
+}
+
+
+/*----------------------------------------------------Tablet View----------------------------------------------------*/
+@media (max-width: 768px){
+    #output{
+        width: 90px;
+        height: 90px;
+    }
+    .inputArea{
+        margin-top: 2vw;
+    }
+    .inputArea input{
+        margin-right: .8vw;
+        margin-bottom: .5vw;
+        height: 3.5vw;
+        width: 210px;
+    }
+    #id{
+        margin-top: .8vw;
+    }
+    #UserType{
+        margin-top: .8vw;
+        height: 3.5vw;
+        border: none;
+        font-size: 16px;
+    }
+    #ContactNumber{
+        margin-top: 1vw;
+        height: 3.5vw;
+    }
+    .inputArea textarea{
+        margin-top: .8vw;
+        margin-bottom: .8vw;
+        width: 99%;
+        height: 15vw;
+        padding: 10px 10px;
+        font-size: 16px;
+    }
+    .setSubjectSection{
+        font-size: 15px;
+        margin-bottom: .8vw;
+        width: 99%;
+        height: 3.5vw;
+    }
+    #btnsave{
+        margin-left: 68.2%;
+    }
+    .UserSetup input{
+        font-size: 15px;
+        height: 3.5vw;
+    }
+    
+    .modal-container label{
+        margin-top: 2vw;
+        margin-left: 3vw;
+    }
+    .modal-container .mainContent{
+        margin-left: 4vw;
+        width: 90%;
+        margin-top: 6vw;
+    }
+    .tableContainer{
+        margin-top: 5vw;
+        height: 320px;
+    }
+    .modalButtonControl{
+        margin-top: 44vw;
+    }
+    .modalButtonControl .ModalSubmit{
+        margin-left: 36vw;
+        margin-right: 1vw;
+    }
+}
+
+/*----------------------------------------------------Mobile View----------------------------------------------------*/
+@media (max-width: 425px){
+    #SubjectSection-table{
+        white-space: nowrap;
+        display: block;
+        overflow-x: auto;
+        width: 100%;
+    }
+    .imageArea{
+        margin-top: 3vw;
+        width: 100%;
+    }
+
+    .inputArea{
+        margin-top: 3vw;
+    }
+    .inputArea input{
+        margin-bottom: 2vw;
+        height: 8vw;
+        width: 100%;
+    }
+
+    #UserType{
+        background-color: white;
+        height: 8vw;
+        border: none;
+        font-size: 16px;
+    }
+    #ContactNumber{
+        margin-top: 3vw;
+        height: 8vw;
+    }
+    .inputArea textarea{
+        height: 25vw;
+    }
+    .setSubjectSection{
+        height: 8vw;
+        margin-bottom: 1vw;
+    }
+    .actionButton{
+        width: 100%;
+    }
+    #btnsave{
+        margin-left: 32%;
+    }
+
+    .UserSetup input{
+        font-size: 15px;
+        margin-top: 3vw;
+        width: 100%;
+        border: none;
+        padding: 0px 10px;
+        height: 8vw;
+    }
+    .UserSetup h5{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 80px;
+    }
+    .modal-container {
+        height: 480px;
+        width: 330px;
+    }
+   
+    .modal-container label{
+        margin-top: 4vw;
+        margin-left: 3vw;
+    }
+    .modal-container .mainContent{
+        margin-left: 3vw;
+        width: 92%;
+        margin-top: 15vw;
+    }
+
+    .tableContainer{
+        margin-top: 11vw;
+        height: 320px;
+    }
+    .modalButtonControl{
+        margin-top: 330px;
+    }
+    .modalButtonControl .ModalSubmit{
+        margin-left: 50px;
+        margin-right: 1vw;
+    }
+    .modal-container .close {
+       position: absolute;
+       left: 90%;
+    }
 }
