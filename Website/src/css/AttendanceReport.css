@@ -71,47 +71,7 @@ tr.shown td.details-control {
 .charts .LChart_cont{
     width: 30vw;
 }
-.invisible_panel{
-    display: none;
-    position: sticky;
-    flex-direction: row;
-    margin-top: .3vw;
-    width: fit-content;
-}
-.invisible_panel input[type=text]{
-    width: 7vw;
-}
-.invisible_panel input[type=date]{
-    width: 8.6vw;
-}
-#From_date{
-    padding: 0vw .5vw;
-    margin-right: .5vw;
-}
-#To_date{
-    padding: 0vw .5vw;
-    margin-left: .5vw;
-    margin-right: .3vw;
-}
-#cancel{
-    color: red;
-    margin-right: .5vw;
-}
-#cancel:hover{
-    cursor: pointer;
-}
-#cancel:active{
-    color: #FF6A6A;
-}
-#confirm{
-    color: rgb(91, 91, 238);
-}
-#confirm:hover{
-    cursor: pointer;
-}
-#confirm:active{
-    color: #8484F2;
-}
+
 .pie_parentdiv{
     width: 40%;
     height: 90%;
@@ -145,12 +105,6 @@ tr.shown td.details-control {
     }
     #pielbl{
         margin-left: 25%;
-    }
-    .invisible_panel input[type=text]{
-        width: 10vw;
-    }
-    .invisible_panel input[type=date]{
-        width: 17.8vw;
     }
     h4{
         font-size: large;
@@ -216,12 +170,6 @@ tr.shown td.details-control {
         flex-direction: column;
         margin-top: 3vw;
         width: 100%;    
-    }
-    .invisible_panel input[type=text]{
-        width: 20vw;
-    }
-    .invisible_panel input[type=date]{
-        width: 25vw;
     }
     #datatable img{
         width: 15vw;
