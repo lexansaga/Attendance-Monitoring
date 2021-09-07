@@ -114,30 +114,35 @@ $(document).ready(function() {
 } );
 
 
-function DisplaySelectedDate(){
+/*------------------------------------- MODAL CONFIG -------------------------------------*/ 
+
+$(window).click(function (e) {
+    if (e.target.className.includes('modal')) {
+        $('.modal').css('display', 'none');
+    }
+});
+$(".material-icons").click(function (e) {
+
+    $('.modal:eq(0)').css('display', 'block');
+
+});
+
+$(".close").click(function (e) {
+
+    $('.modal:eq(0)').css('display', 'none');
+
+});
+$("#modalCancel").click(function (e) {
+
+    $('.modal:eq(0)').css('display', 'none');
+
+});
+$("#modalSave").click(function (e) {
     let FromDate=document.getElementById("From_date").value;
     let ToDate=document.getElementById("To_date").value;
 
     document.getElementById("date-covered").innerHTML="Showing Data from "+FromDate+" to "+ToDate;
-    hideDateRangeDiv();
-}
+    $('.modal:eq(0)').css('display', 'none');
 
-
-  $(document).mouseup(function(e) 
-{
-    var container = $("#date_select");
-
-    // if the target of the click isn't the container nor a descendant of the container
-    if (!container.is(e.target) && container.has(e.target).length === 0) 
-    {
-        container.hide();
-
-        document.getElementById('From_date').value='';
-        document.getElementById('To_date').value='';
-
-        document.getElementById('From_date').type='text';
-        document.getElementById('To_date').type='text';
-    }
 });
-
 

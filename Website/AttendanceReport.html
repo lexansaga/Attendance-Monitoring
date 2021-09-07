@@ -9,7 +9,6 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    
     <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
     <title>Attendance Report- ATMS</title>
 </head>
@@ -180,6 +179,22 @@
                <br>
                <br>
             </div>
+
+            <div class="modal">
+               <div class="modal-container">
+                  <label id="setdatelbl">SET DATE</label>
+                   <span class="close"><i class='bx bx-x'></i></span>
+                   <div class="mainContent">
+                     <input placeholder="From" type="text" onfocus="(this.type='date')" id="From_date">
+                     <input placeholder="To" type="text" onfocus="(this.type='date')" id="To_date">
+
+                     <div class="modalMenu">
+                        <button id="modalSave">Save</button>
+                        <button id="modalCancel">Cancel</button>
+                     </div>
+                   </div>
+               </div>
+           </div>
            </main>
         </div>
     </div>
