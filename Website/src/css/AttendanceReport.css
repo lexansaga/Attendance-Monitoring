@@ -198,6 +198,13 @@ tr.shown td.details-control {
 
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
 @media (max-width: 768px){
+    .modalMenu{
+        margin-top: 10px;
+    }
+    .modal-container {
+        height: 35%;
+        width: 40%;
+    }
     .chart_labels label{
         font-weight: bold;
         margin-right: 20%;
@@ -244,6 +251,13 @@ tr.shown td.details-control {
 
 /*----------------------------------------------------Mobile View----------------------------------------------------*/
 @media (max-width: 425px){
+    .modalMenu{
+        margin-top: 10px;
+    }
+    .modal-container {
+        height: 25%;
+        width: 80%;
+    }
     .pie_parentdiv{
         margin-left: 8vw;
         margin-top: 15vw;
