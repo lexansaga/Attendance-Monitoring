@@ -168,6 +168,7 @@ tr.shown td.details-control {
 .mainContent input[type=date]{
     margin-bottom: 2vw;
     height: 30px;
+    width: 100%;
     font-size: 15px;
     padding: 0px 10px;
 }
