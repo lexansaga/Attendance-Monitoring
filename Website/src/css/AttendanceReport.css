@@ -3,7 +3,7 @@
 
 
 #date-covered{
-    font-size: 0.9vw;
+    font-size: 15px;
 }
 .data_config{
     margin-top: 0.5vw;
@@ -127,7 +127,9 @@ tr.shown td.details-control {
 }
 .chart_labels label{
     font-weight: bold;
-    margin-right: 40%;
+}
+#pielbl{
+    margin-left: 40%;
 }
 #pie_chart{
     width: 100%;
