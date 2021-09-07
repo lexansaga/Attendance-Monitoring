@@ -36,24 +36,10 @@ function drawChart() {
     ]);
 
     var options = {
-        legend: {position: 'bottom'},
-        chartArea:{top:10,width:200,height:150},
-        width: 360,
-        height: 210,
-        fontSize:13
+        backgroundColor:'transparent',
+        legend: {position: 'right'},
+        chartArea:{top:10,width:'100%',height:'100%'}
     };
-    if (tabview.matches) {
-        var options = {
-            legend: {position: 'bottom'},
-            chartArea:{top:10,width:150,height:135},
-            width: 300,
-            height: 180,
-            fontSize:10
-        };
-    }
-    else if(mobview.matches) {
-        
-    }
 
     var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
 
