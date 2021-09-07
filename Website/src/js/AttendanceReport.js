@@ -114,19 +114,6 @@ $(document).ready(function() {
 } );
 
 
-function showDateRangeDiv(){
-    document.getElementById('date_select').style.display="block";
-    document.getElementById('date_select').style.display="flex";
-  }
-function hideDateRangeDiv(){
-    document.getElementById('date_select').style.display="none";
-
-    document.getElementById('From_date').value='';
-    document.getElementById('To_date').value='';
-
-    document.getElementById('From_date').type='text';
-    document.getElementById('To_date').type='text';
-}
 function DisplaySelectedDate(){
     let FromDate=document.getElementById("From_date").value;
     let ToDate=document.getElementById("To_date").value;
