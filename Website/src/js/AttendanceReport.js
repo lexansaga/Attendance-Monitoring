@@ -120,6 +120,7 @@ $(window).click(function (e) {
     if (e.target.className.includes('modal')) {
         $('.modal').css('display', 'none');
     }
+    console.log(e.target.className);
 });
 $(".material-icons").click(function (e) {
 
