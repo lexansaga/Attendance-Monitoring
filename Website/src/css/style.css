@@ -1,33 +1,45 @@
 :root {
-
     --background-color: #F8F8F8;
     --primary-color: #5E6AB3;
     --secondary-color: #B2BBF7;
-
+    --color-accent-1: #42597D;
+    --color-accent-2: #C2DAFF;
+    --color-accent-3: #E1EDFF;
     --font-color-primary: #696969;
     --font-color-secondary: #484848;
     --font-light-color: white;
+
+    --green: #69E486;
+    --red: #FE5277;
+    --yellow: #FEB331;
+    --orange: #FF8D73;
+
+    --text-border: #B2B2B2;
+
+    --shadow: 0 2px 4px 0 rgb(0 0 0 / 21%);
     /* This root block contains static data */
 }
 
-  /* ------------------------------------------------------------Static CSS (Don't Alter) -------------------------------------------------------*/
+/* ------------------------------------------------------------Static CSS (Don't Alter) -------------------------------------------------------*/
 * {
     font-family: 'Karla', sans-serif;
 }
+
 body {
- 
+
     margin: 0px;
     padding: 0px;
     background-color: var(--background-color);
 }
-.body_bg
-{
+
+.body_bg {
     background-image: url('../assets/background.png');
-    
+
     background-repeat: repeat;
     background-size: cover;
-    background-position: center; 
+    background-position: center;
 }
+
 .container {
     margin: 0px;
 }
@@ -60,11 +72,11 @@ body {
     height: 100%;
 }
 
-  /* ------------------------------------------------------------Static CSS (Don't Alter) -------------------------------------------------------*/
+/* ------------------------------------------------------------Static CSS (Don't Alter) -------------------------------------------------------*/
 
 
-  
-  /* ------------------------------------------------------------Login Page -------------------------------------------------------*/
+
+/* ------------------------------------------------------------Login Page -------------------------------------------------------*/
 .logo {
     display: absolute;
 }
@@ -111,7 +123,7 @@ body {
     margin-left: 2vw;
     font-size: 1.2vw;
     margin-top: 2.5vw;
-    
+
 }
 
 .card>div>.l_design>div>p {
@@ -145,27 +157,26 @@ body {
     margin-top: 2vw;
     font-size: 0.9vw;
     color: var(--font-color-secondary);
-   
+
 
 }
 
 .r_forms>form>h3>span {
     border-bottom: var(--primary-color) solid 3px;
     margin-top: 2vw;
-    
+
 }
 
 
-.input_group
-{
+.input_group {
     display: absolute;
     margin-top: 1vw;
 }
-.input_group > input
-{
-   
+
+.input_group>input {
+
     position: relative;
-    outline:0;   
+    outline: 0;
     border: 0;
     padding: 0.6vw;
     font-size: medium;
@@ -173,18 +184,17 @@ body {
     font-size: 0.8vw;
     width: 17vw;
     left: 4vw;
-  
+
 }
 
-.input_group > hr
-{
+.input_group>hr {
     position: relative;
-   color: var(--font-color-primary);
-   width: 17vw;
+    color: var(--font-color-primary);
+    width: 17vw;
 }
 
-.r_forms>form>button
-{
+
+.r_forms>form>button {
     outline: none;
     border: var(--font-color-secondary) solid 1px;
     border-radius: 2vw;
@@ -196,84 +206,92 @@ body {
     margin: 3.5vw 0 0 7vw;
 
 }
-.r_forms>form>button:hover
-{
+
+.r_forms>form>button:hover {
     border: var(--font-color-secondary) solid 1px;
     background-color: white;
     color: var(--font-light-secondary);
 }
- /* ------------------------------------------------------------Login Page End -------------------------------------------------------*/
 
-
-
-
-
-
- /* ------------------------------------------------------------Main Page -------------------------------------------------------*/
-
-.top_nav
+/* ------------------------------------------------------------Login Page End -------------------------------------------------------*/
+.login-status 
 {
+   text-align: center;
+    font-size: 0.8vw;
+    font-weight: 600;
+    display: none;
+}
+
+
+
+
+
+/* ------------------------------------------------------------Main Page -------------------------------------------------------*/
+
+.top_nav {
     background-color: white;
     height: 3vw;
 }
 
-.top_nav > .search
-{
+.top_nav>.search {
     background-color: var(--primary-color);
     width: 10vw;
     height: 2vw;
 }
-.top_nav > .notification
-{
+
+.top_nav>.notification {
     background-color: var(--primary-color);
-   
+
 }
-.top_nav > .icon
-{
+
+.top_nav>.icon {
     background-color: var(--primary-color);
 }
 
-  /* ------------------------------------------------------------Main Page End -------------------------------------------------------*/
+/* ------------------------------------------------------------Main Page End -------------------------------------------------------*/
 
 /* Tablet Mode */
-@media (max-width: 768px){
+@media (max-width: 768px) {
 
-     /* ------------------------------------------------------------Login Page -------------------------------------------------------*/
+    /* ------------------------------------------------------------Login Page -------------------------------------------------------*/
 
 
 
 
     /* Centers the Text Logo*/
-    .logo{
+    .logo {
         display: flex;
         justify-content: center;
         align-items: center;
         text-align: center;
     }
-    .logo>p{
+
+    .logo>p {
         font-size: 2.5vw;
     }
 
     /*Removes unnecessary text in this view*/
-    .flow-y > p , h2{
+    .flow-y>p,
+    h2 {
         display: none;
     }
-    .flow-y
-    {
+
+    .flow-y {
         display: flex;
         flex-direction: column;
         height: 35%;
         align-items: center;
     }
+
     /*Brings image at the top of the card*/
-    .flow-x{
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-     
+    .flow-x {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
     }
-    .l_design
-    {
+
+    .l_design {
         position: relative;
         width: 100%;
         height: 35%;
@@ -282,92 +300,109 @@ body {
         /* align-content: stretch; */
         /* align-items: center; */
     }
-   
+
     /*changes card width*/
-    .card{
+    .card {
         display: flex;
         justify-content: center;
         width: 55vw;
         height: 68vw;
-    } 
+    }
 
     .x_half {
         width: 100%;
     }
-    .input_group
-    {
-       margin-top: 3vw;
-       width: 60%;
+
+    .input_group {
+        margin-top: 3vw;
+        width: 60%;
     }
-    .input_group > input{
+
+    .input_group>input {
         width: 33vw;
         font-size: 1.8vw;
         left: 0.5vw;
     }
-    .input_group > hr
-    {
-      width: 100%;
+
+    .input_group>hr {
+        width: 100%;
     }
-    .r_forms
-    {
+
+    .r_forms {
         height: inherit;
     }
-    .r_forms > form
-    {
+
+    .r_forms>form {
         height: inherit;
     }
-    .r_forms>form>h3{
-       font-size: 2.3vw;
-       margin-top: 5vw;
+
+    .r_forms>form>h3 {
+        font-size: 2.3vw;
+        margin-top: 5vw;
     }
-    .r_forms>form>button{
+
+    .r_forms>form>button {
         height: 4.5vw;
         font-size: 1.7vw;
         width: 23vw;
         margin: 5vw 0 0 0;
     }
-    .card>div>.l_design{
+
+    .card>div>.l_design {
         width: 100%;
     }
+
     .card>div>.l_design>div>.icon {
         width: 35%;
         margin: 2vw 0 2vw 0;
-        
+
+    }
+    .login-status 
+    {
+        font-size: 1.8vw;
     }
 
 
 
-
-      /* ------------------------------------------------------------Login Page -------------------------------------------------------*/
+    /* ------------------------------------------------------------Login Page -------------------------------------------------------*/
 }
 
 /* Mobile Mode */
-@media (max-width: 425px){
-   .logo>p{
-       font-size: 4vw;
-   }
-   .card{
-       width: 75vw;
-       height: 98vw;
-       margin-top: -30%;
-   }
-   .card>div>.l_design>div>.icon {
-    width: 50%;
-    margin: 2vw 0 2vw 0;
+@media (max-width: 425px) {
+    .logo>p {
+        font-size: 4vw;
     }
-    .r_forms>form>h3{
+
+    .card {
+        width: 75vw;
+        height: 98vw;
+        margin-top: -30%;
+    }
+
+    .card>div>.l_design>div>.icon {
+        width: 50%;
+        margin: 2vw 0 2vw 0;
+    }
+
+    .r_forms>form>h3 {
         font-size: 3.5vw;
         margin-top: 5vw;
-     }
-    .input_group > input{
+    }
+
+    .input_group>input {
         font-size: 3vw;
         width: 45vw;
     }
-    .r_forms>form>button{
+
+    .r_forms>form>button {
         height: 6vw;
         font-size: 3vw;
         width: 30vw;
         border-radius: 25px;
         margin: 8vw 0 0 0;
+    }
+    .login-status 
+    {
+        font-size: 3vw;
     }
 }

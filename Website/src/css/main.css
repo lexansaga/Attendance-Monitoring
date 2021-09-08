@@ -137,6 +137,8 @@
 	margin-top: 1.5vw;
 	padding: 1.5vw;
 	border-radius: 5px;
+	display: flex;
+	justify-content: center;
 }
 
 
