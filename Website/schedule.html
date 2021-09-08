@@ -7,6 +7,7 @@
 
     <link href="src/css/sidebar.css" rel="stylesheet" />
     <link href="src/css/schedule.css" rel="stylesheet" />
+    <link href="//cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet">
 
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -131,43 +132,33 @@
         </div>
         <!--Here goes the main content / -->
         <main class="item_container">
-          <h4>Schedule</h4>
-          <div class="search_bar">
+          <label>Schedule</label>
+
+          <div class="SearchControl_wrapper">
             <i class="material-icons">search</i>
             <input type="text" placeholder="Look for...">
             <div class="vl"></div>
-            <select>
-              <option value="Name">Name</option>
-              <option value="ID Number">ID Number</option>
+            <select id="userType">
+              <option>Student</option>
+              <option>Faculty</option>
             </select>
-            <input type="date">
-            <button class="search_btn">Search</button>
+            <button>Search</button>
           </div>
-          <div class="user_profile">
-            <img class="user_pfp" src="src/assets/profile.jpg">
-            <h2>Doe, John</h2>
-            <h4>02000017275</h4>
-            <h5>Student</h5>
+
+          <div class="UserInformation_wrapper">
+            <img class="userImage" src="src/assets/profile.jpg">
+            <div class="UserInfo">
+              <h1>Saga, Alexander P.</h1>
+              <h2>02000017275</h2>
+              <h3>Student</h3>
+            </div>
+
+            <div class="table_Wrapper">
+              <table id="userSchedule" class="dataTable hover stripe order-column" style="width:100%"></table>
+              <br>
+              <br>
+            </div>
           </div>
-          <table id="our-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Day</th>
-                <th>Time</th>
-                <th>Room</th>
-                <th>Professor</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody id="table-body">
-        
-            </tbody>
-          </table>
-          <div id="pagination-wrapper" class="pagination-button"></div>
-          <br>
-          <br>
         </main>
       </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -180,5 +171,6 @@
       </script>
 
       <script src="src/js/schedule.js"></script>
+      <script src="//cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
   </body>
 </html>

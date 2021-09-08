@@ -1,335 +1,153 @@
 @import url('root.css'); 
 /*Always include root css to access the root content and not to reinitialize code */
 
-* {
-    margin: 0;
-    padding: 0;
-    font-family: 'Karla', sans-serif;
+
+.item_container label{
+  font-weight: bold;
+  font-size: 20px;
 }
 
-.search_bar{
+.SearchControl_wrapper{
   display: flex;
-  padding-top: 1vw;
-}
-
-h4{
-  color: #515151;
-}
-
-.search_bar > input{
-  width: 20vw;
-  height: 2.3vw;
-  border: none;
-  padding: 12px 40px;
-}
-
-.search_bar > i{
-  position: absolute;
-  color: #8F8F8F;
-  padding-top: .3vw;
-  padding-left: .5vw;
-}
-
-.search_bar > select{
-  color: #8F8F8F;
-  border: none;
-  padding: 0px 20px;
-  width: max-content;
-}
-
-.search_bar > .vl{
-  position: absolute;
-  border-left: 1px solid #9F9F9F;
-  margin-top: .4vw;
-  margin-left: 20vw;
-  height: 1.5vw;
-}
-
-.search_bar > input[type=date]{
-  margin-left: 0.5vw;
-  width: 11.5vw;
-  padding: 0px 20px;
-  color: #8F8F8F;
-}
-
-.search_bar > button{
-  margin-left: .5vw;
-  color: #ffff;
-  background-color: #B2BBF7;
-  width: 5vw;
-  border: none;
-}
-.search_bar > button:active{
-  background-color: #8694F2;
-}
-
-#settings{
-  margin-left: 68%;
-  color: #515151;
-}
-
-#settings:active{
-  color: #909efa;
-}
-#settings:hover{
-  cursor: default;
-}
-
-.user_profile{
+  flex-direction: row;
+  width: 90%;
   margin-top: 1vw;
 }
 
-.user_profile>img{
-  position:static;
-  width: 5vw;
-  margin-top: .5vw;
-  border-top-left-radius: 50% 50%;
-  border-top-right-radius: 50% 50%;
-  border-bottom-right-radius: 50% 50%;
-  border-bottom-left-radius: 50% 50%;
-}
-
-.user_profile > h2{
-  padding-left: 6vw;
-  margin-top: -5vw;
-  color: #8694F2;
-}
-.user_profile > h2:hover{
-  cursor: default;
-}
-.user_profile > h4{
-  padding-left: 6vw;
-  margin-top: 0.3vw;
-  color: #8F8F8F;
-}
-.user_profile > h5{
-  padding-left: 6vw;
-  color: #8F8F8F;
-}
-
-.user_profile > h4:hover, h5:hover{
-  color: #8694F2;
-  cursor: default;
-}
-
-.user_profile >img:hover{
-  width: 5.4vw;
-}
-
-#our-table{
-  margin-top: 2vw;
-  width: 70vw;
-  border-collapse: collapse;
-  text-align: center;
-}
-
-#our-table , td{
-  font-size: 1vw;
-  padding: 8px;
-}
-#our-table tr:hover{
-  background-color: #D1D7FA;
-}
-
-#our-table th{
-  background-color: #B2BBF7;
-  color: #ffff;
-  font-size: 17px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-#our-table , th:hover{
-  cursor: default;
-}
-
-#our-table img{
-  width: 2vw;
-  border-top-left-radius: 50% 50%;
-  border-top-right-radius: 50% 50%;
-  border-bottom-right-radius: 50% 50%;
-  border-bottom-left-radius: 50% 50%;
-}
-
-.pagination-button{
-  margin-top: 0.5vw;
-  width: fit-content;
-}
-.pagination-pages{
-  padding: 5px 10px;
+.SearchControl_wrapper input{
+  height: 30px;
+  padding: 0px 40px;
+  width: 500px;
   border: none;
-  background-color: #ffff;
+}
+
+.SearchControl_wrapper select{
+  width: 200px;
+  padding: 0px 20px;
+  border: none;
+}
+
+.SearchControl_wrapper button{
+  width: 110px;
+  color: white;
+  background-color: #B2BBF7;
+  border: none;
+  margin-left: 20px;
+}
+.SearchControl_wrapper button:hover{
+  background-color: #9EA9F5;
+}
+.SearchControl_wrapper button:active{
+  background-color: #7E8DF1;
+}
+
+.SearchControl_wrapper i{
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 4px;
+  font-size: 20px;
+  color: #8F8F8F;
+}
+
+.vl {
+  border-left: 2px solid gray;
+  height: 20px;
+  margin-top: 5px;
+}
+
+.UserInformation_wrapper{
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin-top: 1.5vw;
+  width: 90%;
+}
+
+.userImage{
+  width: 120px;
   border-radius: 50%;
 }
-.pagination-pages:hover{
-  background-color: #B2BBF7;
-  color: #ffff;
+
+.UserInfo{
+  margin-left: 1vw;
 }
-.pagination-first{
-  width: 2vw;
-  margin-right: 0.5vw;
-  background-color: #ffff;
-  border: none;
-  height: 2vw;
-  font-size: 15px;
-  border-radius: 20%;
+.UserInfo h1{
+  color: #7E8DF1;
+  margin-top: 10px;
 }
-.pagination-first:hover{
-  background-color: #B2BBF7;
-  color: #ffff;
+.UserInfo h2, h3{
+  color: gray;
 }
-.pagination-last{
-  width: 2vw;
-  margin-left: 0.5vw;
-  background-color: #ffff;
-  border: none;
-  height: 2vw;
-  font-size: 15px;
-  border-radius: 20%;
+.UserInfo h1:hover, h2:hover, h3:hover{
+  cursor:default;
 }
-.pagination-last:hover{
-  background-color: #B2BBF7;
-  color: #ffff;
+
+.table_Wrapper{
+  position: absolute;
+  width: 70%;
+  margin-top: 10vw;
+  display: block;
+}
+
+.dataTable img{
+  width: 50px;
+  border-radius: 50%;
+}
+.dataTable{
+  text-align: center;
 }
 
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
 @media (max-width: 768px){
-  .search_bar > input{
-    width: 30vw;
-    padding: 12px 36px;
+  .userImage{
+    width: 100px;
   }
-  .search_bar > select{
-    width: 15vw;
-    padding: 0px 10px;
-    background-color: #ffff;
+  .table_Wrapper{
+    position: absolute;
+    width: 90%;
+    margin-top: 17vw;
   }
-  .search_bar > .vl{
-   margin-left: 30vw;
-   height: 2vw;
-  }
-  .search_bar > input[type=date]{
-    width: 19.5vw;
-    height: 3vw;
-    padding: 0px 10px;
-    background-color: #ffff;
-  }
-  .search_bar > button{
-   width: 10vw;
-  }
-  #settings{
-    margin-left: 88vw;
-  }
-  .user_profile{
-    margin-top: 3vw;
-  }
-  .user_profile>img{
-    width:8vw;
-  }
-  .user_profile>img:hover{
-    width: 8vw;
-  }
-  .user_profile>h5{
-    padding-left: 10vw;
-  }
-  .user_profile>h2{
-    padding-left: 10vw;
-    margin-top: -8vw;
-  }
-  .user_profile>h4{
-    padding-left: 10vw;
-  }
-  #our-table{
-    width: 90vw;
-  }
-  #our-table td{
-    font-size: 13px;
-  }
-  #our-table th{
-    font-size: 13px;
-  }
-  #our-table img{
-    width: 4vw;
+  .UserInformation_wrapper{
+    margin-top: 2vw;
+    width: 90%;
   }
 }
-
-
 /*----------------------------------------------------Mobile View----------------------------------------------------*/
-@media (max-width: 426px){
-  h4{
-    margin-top: 3vw;
-    font-size: 15px;
-    margin-bottom: 3vw;
+@media (max-width: 425px){ 
+  .table_Wrapper{
+    margin-top: 30vw;
   }
-  #settings{
-    margin-left: 83vw;
-    margin-top: -10vw;
+  .UserInformation_wrapper{
+    margin-top: 5vw;
   }
-  .search_bar > input{
-    width: 60vw;
-    padding: 12px 30px;
-  }
-  .search_bar > select{
-    width: 30vw;
-    padding: 0px 5px;
-    font-size: 3vw;
-    background-color: #ffff;
-  }
-  .search_bar > .vl{
-    margin-left: 57vw;
-    margin-top: 1vw;
-    height: 4.5vw;
-  }
-  .search_bar > input[type=date]{
+  .userImage{
+    width: 80px;
     position: absolute;
-    margin-top: 8vw;
-    padding: 0px 5px;
-    width: 30vw;
-    height: 7vw;
-    background-color: #ffff;
   }
-  .search_bar > button{
-   position: absolute;
-   width: 16vw;
-   height: 7vw;
-   margin-top: 8vw;
-   margin-left: 33vw;
+  .UserInfo h2{
+    font-size: 20px;
   }
-  .user_profile{
-    margin-top: 10vw;
+  .UserInfo{
+    margin-left: 25vw;
   }
-  .user_profile>img{
-    width:15vw;
+  .UserInfo h1{
+    font-size: 20px;
+    color: #7E8DF1;
+    margin-top: 0px;
   }
-  .user_profile>h5{
-    padding-left: 18vw;
-    margin-top: -3vw;
+  .SearchControl_wrapper input{
+    width: 160px;
   }
-  .user_profile>h2{
-    padding-left: 18vw;
-    margin-top: -14vw;
+  
+  .SearchControl_wrapper select{
+    width: 100px;
+    padding: 0px 10px;
+    background-color: white;
   }
-  .user_profile>h4{
-    padding-left: 18vw;
+  
+  .SearchControl_wrapper button{
+    padding: 0px 10px 0px 10px;
   }
-  .user_profile >img:hover{
-    width: 15vw;
-  }
-  #our-table{
-    white-space: nowrap;
-    display: block;
-    overflow-x: auto;
-    width: 90vw;
-  }
-  #our-table tbody{
-    width: 100%;
-  }
-  #our-table td{
-    font-size: 13px;
-  }
-  #our-table th{
-    font-size: 13px;
-  }
-  #our-table img{
-    width: 8vw;
-  }
+  
 }
 
