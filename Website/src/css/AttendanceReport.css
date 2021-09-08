@@ -3,7 +3,7 @@
 
 
 #date-covered{
-    font-size: 0.9vw;
+    font-size: 15px;
 }
 .data_config{
     margin-top: 0.5vw;
@@ -24,21 +24,13 @@
 }
 
 .charts{
-    margin-top: 2vw;
-}
-.charts label{
-    color: #515151; font-weight: bold; font-size: 1vw;
-}
-.charts .pie-lbl{
-    margin-left: 28.5vw;
+    margin-top: 1vw;
+    display: flex;
+    flex-direction: row;
 }
 
 .charts #line_chart{
     margin-top: 1vw;
-}
-.charts #pie_chart{
-    margin-top: -14.7vw;
-    margin-left: 33vw;
 }
 .data-table{
     margin-top: 2vw;
@@ -79,56 +71,147 @@ tr.shown td.details-control {
 .charts .LChart_cont{
     width: 30vw;
 }
-.invisible_panel{
-    display: none;
-    position: sticky;
+
+.pie_parentdiv{
+    width: 40%;
+    height: 90%;
+    margin-top: 1vw;
+    margin-left: 2vw;
+    overflow: hidden;
+}
+.chart_labels{
+    display: flex;
     flex-direction: row;
-    margin-top: .3vw;
-    width: fit-content;
+    margin-top: 1vw;
+    width: 100%;    
 }
-.invisible_panel input[type=text]{
-    width: 7vw;
+.chart_labels label{
+    font-weight: bold;
 }
-.invisible_panel input[type=date]{
-    width: 8.6vw;
+#pielbl{
+    margin-left: 40%;
 }
-#From_date{
-    padding: 0vw .5vw;
-    margin-right: .5vw;
+#pie_chart{
+    width: 100%;
+    height: 100%;
 }
-#To_date{
-    padding: 0vw .5vw;
-    margin-left: .5vw;
-    margin-right: .3vw;
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4)
 }
-#cancel{
-    color: red;
-    margin-right: .5vw;
+
+.modal-container {
+    position: relative;
+    z-index: 101;
+    margin: auto;
+    top: 50px;
+    background-color: white;
+    height: 35%;
+    width: 30%;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation: modal-animation;
+    animation-duration: 0.5s;
 }
-#cancel:hover{
-    cursor: pointer;
+
+/* Add Animation */
+@keyframes modal-animation {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 50;
+        opacity: 1
+    }
 }
-#cancel:active{
-    color: #FF6A6A;
+
+#setdatelbl{
+    position: absolute;
+    font-weight: bold;
+    font-size: 16px;
+    top: 15;
+    left: 20;
 }
-#confirm{
-    color: rgb(91, 91, 238);
+.close{
+    position: absolute;
+    right: 10;
+    top: 10;
 }
-#confirm:hover{
-    cursor: pointer;
+.close i{
+    font-size: 25px;
 }
-#confirm:active{
-    color: #8484F2;
+.mainContent{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-top: 15%;
+    width: 90%;
+    margin-left: 5%;
 }
-    
+
+.mainContent input[type=text]{
+    margin-bottom: 2vw;
+    height: 30px;
+    font-size: 15px;
+    padding: 0px 10px;
+}
+.mainContent input[type=date]{
+    margin-bottom: 2vw;
+    height: 30px;
+    width: 100%;
+    font-size: 15px;
+    padding: 0px 10px;
+}
+.modalMenu{
+    display: flex;
+    justify-content: space-evenly;
+}
+.modalMenu button{
+    border: none;
+    width: 100px;
+    height: 35px;
+    border-radius: 10px;
+}
+#modalSave{
+    background-color: #0DD26A;
+    color: white;
+}
+#modalSave:hover{
+    background-color: #0CC062;
+}
+#modalCancel{
+    background-color: #F45837;
+    color: white;
+}
+#modalCancel:hover{
+    background-color: #F34925;
+}
 
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
 @media (max-width: 768px){
-    .invisible_panel input[type=text]{
-        width: 10vw;
+    .modalMenu{
+        margin-top: 10px;
     }
-    .invisible_panel input[type=date]{
-        width: 17.8vw;
+    .modal-container {
+        height: 35%;
+        width: 40%;
+    }
+    .chart_labels label{
+        font-weight: bold;
+        margin-right: 20%;
+    }
+    #pielbl{
+        margin-left: 25%;
     }
     h4{
         font-size: large;
@@ -142,16 +225,6 @@ tr.shown td.details-control {
     }
     .charts{
         margin-top: 3vw;
-    }
-    .charts label{
-        font-size: 13px;
-    }
-    .charts #pie_chart{
-        margin-top: -29.3vw;
-        margin-left: 51vw;
-    }
-    .charts .pie-lbl{
-        margin-left: 43vw;
     }
     .data-table{
         margin-top: 5vw;
@@ -179,11 +252,38 @@ tr.shown td.details-control {
 
 /*----------------------------------------------------Mobile View----------------------------------------------------*/
 @media (max-width: 425px){
-    .invisible_panel input[type=text]{
-        width: 20vw;
+    .modalMenu{
+        margin-top: 10px;
     }
-    .invisible_panel input[type=date]{
-        width: 25vw;
+    .modal-container {
+        height: 25%;
+        width: 80%;
+    }
+    .pie_parentdiv{
+        margin-left: 8vw;
+        margin-top: 15vw;
+        width: 100%;
+        height: 60%;
+    }
+    .charts{
+        margin-top: 1vw;
+        display: flex;
+        flex-direction: column;
+        height: max-content;
+    }
+    #pielbl{
+        position: absolute;
+        margin-top: 50%;
+        margin-left: 0%;
+    }
+    .chart_labels label{
+        font-weight: bold;
+        margin-right: 0%;
+    }
+    .chart_labels{
+        flex-direction: column;
+        margin-top: 3vw;
+        width: 100%;    
     }
     #datatable img{
         width: 15vw;
@@ -206,24 +306,12 @@ tr.shown td.details-control {
         width: 85vw;
         height: 40vw;
     }
-    .charts .pie-lbl{
-        position: absolute;
-        left: -36.5vw;
-        margin-top: 47vw;
-    }
-    .charts label{
-        font-size: 13px;
-    }
     .data_config i{
         padding-left: 0.5vw;
         font-size:5vw;
     }
     #date-covered{
         font-size: 13px;
-    }
-    .charts #pie_chart{
-       margin-top: 9vw;
-       margin-left: 4vw;
     }
 
 }

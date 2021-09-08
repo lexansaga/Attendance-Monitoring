@@ -36,24 +36,10 @@ function drawChart() {
     ]);
 
     var options = {
-        legend: {position: 'bottom'},
-        chartArea:{top:10,width:200,height:150},
-        width: 360,
-        height: 210,
-        fontSize:13
+        backgroundColor:'transparent',
+        legend: {position: 'right'},
+        chartArea:{top:10,width:'100%',height:'100%'}
     };
-    if (tabview.matches) {
-        var options = {
-            legend: {position: 'bottom'},
-            chartArea:{top:10,width:150,height:135},
-            width: 300,
-            height: 180,
-            fontSize:10
-        };
-    }
-    else if(mobview.matches) {
-        
-    }
 
     var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
 
@@ -128,43 +114,36 @@ $(document).ready(function() {
 } );
 
 
-function showDateRangeDiv(){
-    document.getElementById('date_select').style.display="block";
-    document.getElementById('date_select').style.display="flex";
-  }
-function hideDateRangeDiv(){
-    document.getElementById('date_select').style.display="none";
+/*------------------------------------- MODAL CONFIG -------------------------------------*/ 
 
-    document.getElementById('From_date').value='';
-    document.getElementById('To_date').value='';
+$(window).click(function (e) {
+    if (e.target.className.includes('modal')) {
+        $('.modal').css('display', 'none');
+    }
+    console.log(e.target.className);
+});
+$(".material-icons").click(function (e) {
 
-    document.getElementById('From_date').type='text';
-    document.getElementById('To_date').type='text';
-}
-function DisplaySelectedDate(){
+    $('.modal:eq(0)').css('display', 'block');
+
+});
+
+$(".close").click(function (e) {
+
+    $('.modal:eq(0)').css('display', 'none');
+
+});
+$("#modalCancel").click(function (e) {
+
+    $('.modal:eq(0)').css('display', 'none');
+
+});
+$("#modalSave").click(function (e) {
     let FromDate=document.getElementById("From_date").value;
     let ToDate=document.getElementById("To_date").value;
 
     document.getElementById("date-covered").innerHTML="Showing Data from "+FromDate+" to "+ToDate;
-    hideDateRangeDiv();
-}
+    $('.modal:eq(0)').css('display', 'none');
 
-
-  $(document).mouseup(function(e) 
-{
-    var container = $("#date_select");
-
-    // if the target of the click isn't the container nor a descendant of the container
-    if (!container.is(e.target) && container.has(e.target).length === 0) 
-    {
-        container.hide();
-
-        document.getElementById('From_date').value='';
-        document.getElementById('To_date').value='';
-
-        document.getElementById('From_date').type='text';
-        document.getElementById('To_date').type='text';
-    }
 });
-
 

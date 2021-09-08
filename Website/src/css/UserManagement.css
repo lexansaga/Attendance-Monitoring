@@ -37,17 +37,17 @@
     flex-wrap: wrap;
 }
 .inputArea input{
-    margin-right: .5vw;
-    margin-bottom: .5vw;
     height: 2vw;
-    width: 22.3vw;
+    margin-bottom: 10px;
+    width: 31.8%;
+    margin-right: 1.5%;
     border-style: none;
     background-color: #fff;
     padding: 0px 10px;
     font-size: 16px;
 }
 .inputArea textarea{
-    width: 99%;
+    width: 98.4%;
     height: 10vw;
     padding: 10px 10px;
     font-size: 16px;
@@ -55,7 +55,7 @@
 
 #UserType{
     height: 2vw;
-    width: 99%;
+    width: 98.4%;
     padding: 0px 10px;
     border: none;
     font-size: 16px;
@@ -64,10 +64,10 @@
 #ContactNumber{
     padding: 0px 10px;
     margin-top: .5vw;
-    width: 99%;
+    width: 100%;
 }
 #ID{
-    width: 99%;
+    width: 100%;
 }
 
 .imageArea .SelectPicture{
@@ -85,7 +85,7 @@
     margin-top: .5vw;
     text-decoration: underline;
     font-size: 15px;
-    width: 99%;
+    width: 98.4%;
     height: 2vw;
     border: none;
     background-color: #fff;
@@ -227,7 +227,7 @@ margin-right: 2vw;
   }
 
   .actionButton{
-     width: 89%;
+     width: 100%;
   }
 
   .actionButton button{
@@ -268,7 +268,7 @@ margin-right: 2vw;
     margin: auto;
     top: 50px;
     background-color: white;
-    height: max-content;
+    height: 500px;
     width: 600px;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -301,26 +301,27 @@ margin-right: 2vw;
 
 .modal-container label{
     position: absolute;
-    margin-top: 1vw;
-    margin-left: 2vw;
+    left: 0;
+    margin-top: 15px;
+    margin-left: 30px;
     font-weight: bold;
     font-size: 15px;
 }
 
 .modal-container .mainContent{
     display: flex;
+    align-items: center;
     flex-direction: column;
     position: absolute;
-    margin-left: 2.5vw;
-    width: 85%;
+    width: 100%;
     height: fit-content;
-    margin-top: 5vw;
+    margin-top: 55px;
 }
 .tableContainer{
-    margin-top: 3vw;
+    margin-top: 50px;
     position: absolute;
     display: block;
-    width: 100%;
+    width: 90%;
     height: 75%;
     overflow-y: auto;
 }
@@ -347,7 +348,9 @@ margin-right: 2vw;
 }
 
 .modalButtonControl{
-    margin-top: 20vw;
+    margin-left: 55px;
+    margin-top: 53%;
+    width: 100%;
 }
 .modalButtonControl button{
     color: #fff;
@@ -367,7 +370,7 @@ margin-right: 2vw;
 }
 
 .modalButtonControl .ModalSubmit{
-    margin-left: 16.5vw;
+    margin-left: 50%;
     margin-right: .5vw;
     background-color: #42597D;
 }
