@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="src/css/reported.css" rel="stylesheet" />
+    <link href="src/css/profile.css" rel="stylesheet" />
     <link href="src/css/sidebar.css" rel="stylesheet" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -37,13 +37,13 @@
                     </a>
                 </li>
                 <li class="vert-line">
-                    <a href="#">
+                    <a href="attendance.html">
                         <i class='bx bxs-report'></i>
                         <span class="link_name">Attendance</span>
                     </a>
                 </li>
                 <li class="vert-line">
-                    <a href="attendance.html">
+                    <a href="attendancereport.html">
                         <i class='bx bxs-report'></i>
                         <span class="link_name">Attendance Report</span>
                     </a>
@@ -151,20 +151,87 @@
             <main class="item_container">
                 <h3><span>Pro</span>file</h3>
                 <!--Here goes the content / Remove the Preceeding and add yours-->
-                    
+                <div class="profile">
+                    <img src="src/assets/profile.jpg" />
+                    <div class="profile-information">
+                        <h1>Saga,Alexander</h1>
+                        <p>02000005455</p>
+                    </div>
+                </div>
+                <div class="table-container">
 
+                    <table id="datatable" class="hover row-border order-column">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Student Number</td>
+                                <td>02000005455</td>
+                            </tr>
+                            <tr>
+                                <td>Section</td>
+                                <td>BSIT-501A</td>
+                            </tr>
+                            <tr>
+                                <td>Address</td>
+                                <td>Purok 3 Brgy Sinalhan Sta. Rosa Laguna</td>
+                            </tr>
+                            <tr>
+                                <td>Contact Number</td>
+                                <td>09126997935</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="permission">
+                    <h1>Permission</h1>
+                    <label class="container">View Modify Schedule
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                      </label>
+                      
+                      <label class="container">Manage Users
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                      </label>
+                      
+                      <label class="container">Monitor Faculty Account
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                      </label>
+                      
+                      <label class="container">View Class Record
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                      </label>
+
+                      <label class="container">Take Attendance
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                      </label>
+
+                      <label class="container">Tap In / Out
+                        <input type="checkbox">
+                        <span class="checkmark"></span>
+                      </label>
+                </div>
             </main>
         </div>
     </div>
 
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
         integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
     <script src="src/js/script.js"></script>
-    <script src="src/js/reported.js"></script>
+    <script src="src/js/profile.js"></script>
     <script src="src/js/sidebar.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -177,9 +244,9 @@
 
         $(document).ready(function () {
             var table = $('#datatable').DataTable({
-
-                "paging": true,
-                "info": true
+                "searching":false,
+                "paging": false,
+                "info": false
             });
 
         });

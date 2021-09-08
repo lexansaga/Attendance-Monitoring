@@ -158,7 +158,7 @@
 }
 
 .header>.notification>i {
-	font-size: 2.8vh;
+	font-size: 30px;
 	color: #989898;
 	transition: 0.2s;
 }
@@ -526,7 +526,7 @@
 		padding: 1vw 3vw 1vw 0.5vw !important;
 	}
 	.profile-picture>i {
-		font-size: 2.5vh !important;
+		font-size: 25px !important;
 	}
     .profile-menu
     {
@@ -537,7 +537,7 @@
 		padding: 1vw 1.2vw 1vw 1vw !important;
 	}
 	.notification>i {
-		font-size: 2.5vh !important;
+		font-size: 25px !important;
 	}
     .notif-menu
     {
@@ -602,12 +602,12 @@
 		padding: 1vw 8vw 1vw 0.5vw !important;
 	}
 	.profile-picture>i {
-		font-size: 2.5vh !important;
+		font-size: 30px  !important;
 	}
 	.notification {
 		padding: 1vw 3vw 1vw 1vw !important;
 	}
 	.notification>i {
-		font-size: 2.5vh !important;
+		font-size: 22px !important;
 	}
 }
