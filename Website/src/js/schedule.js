@@ -55,3 +55,12 @@ $(document).ready(function() {
         ]
     });
 } );
+
+$('#searchbx').focusin(function()
+{
+    $('.search-result').css({"opacity" : "1","display":"block"}).animate();
+});
+$('#searchbx').focusout(function()
+{
+    $('.search-result').css({"opacity" : "0","display":"none"}).animate();
+});
