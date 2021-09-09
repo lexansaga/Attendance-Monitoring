@@ -98,7 +98,7 @@
 }
 
 .search-result{
-  display: block;
+  display: none;
 	position: absolute;
 	list-style-type: none;
 	width: 30vw;
