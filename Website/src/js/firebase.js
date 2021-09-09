@@ -49,7 +49,7 @@ class Firebase {
         static GET(Path) {
 
             var query = firebase.database().ref(Path);
-            query.on("value", snap => {
+            query.once("value", snap => {
 
                 sessionStorage.setItem("Data", JSON.stringify(snap.val()));
             });

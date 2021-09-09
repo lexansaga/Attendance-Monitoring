@@ -1,0 +1,108 @@
+{
+  "Attendance" : {
+    "Gate" : {
+      "2021-01-01" : {
+        "GATEATT0000000001" : {
+          "EnteredID" : "IDSTUD1000001",
+          "ID" : "GATEATT0000000001",
+          "Location" : "B3",
+          "Status" : "In",
+          "Timestamp" : "2021-01-01||10:10:10",
+          "isValid" : "True"
+        }
+      }
+    },
+    "Professor" : {
+      "2021-01-01" : {
+        "PROFATT0000000001" : {
+          "ID" : "PROFATT0000000001",
+          "Location" : "B3",
+          "Name" : "John Doe",
+          "ProfessorID" : "IDPROF1000001",
+          "Status" : "In",
+          "Timestamp" : "2020-01-01 10:10:10"
+        }
+      }
+    },
+    "Student" : {
+      "2021-01-01" : {
+        "STUDATT0000000001" : {
+          "ID" : "STUDATT0000000001",
+          "Location" : "B3",
+          "Name" : "Larry Mitchell",
+          "StudentID" : "IDSTUD1000001",
+          "TimeStamp" : "2021-01-01||10:10:10"
+        }
+      }
+    }
+  },
+  "Data" : {
+    "Subject" : {
+      "SUB1000001" : {
+        "Code" : "SUB1000001",
+        "Description" : "Just a Dummy Subject",
+        "Schedule" : "Monday 08:00:00-13:30:00",
+        "Title" : "Dummy Subject"
+      }
+    }
+    ,
+  "Professor" : {
+    "Information" : {
+      "PROF00001" : {
+        "Address" : "Sample Address",
+        "Department" : "Engineering",
+        "ID" : "IDPROF1000001",
+        "Name" : "Saga&&Alexander&&Pelin",
+        "Subjects" : "SUB1000001&&SUB1000002",
+        "Type" : "Faculty"
+      }
+    }
+  },
+  "Student" : {
+    "Information" : {
+      "IDSTUD1000001" : {
+        "Address" : "Broadway St. Manila",
+        "Contact" : "+639125226987",
+        "Course_Code" : "BSIT",
+        "ID" : "IDSTUD1000001",
+        "Name" : "Larry Mitchell",
+        "Subject" : "SUB1000001&&SUB1000002"
+      }
+    }
+  }
+  },
+  "User" : {
+    "USER00001" : {
+      "Account_Type" : "Admin",
+      "Notification" : {
+        "NOTIF000001" : {
+          "DatePosted" : "2021-01-01 10:10:10",
+          "Description" : "Dummy Notification Description",
+          "Icon" : "1",
+          "NotifID" : "NOTIF00001",
+          "Title" : "Dummy Notification Title"
+        }
+      },
+      "Password" : "admin",
+      "Role" : "Administrator",
+      "UserID" : "PROF10000001",
+      "Username" : "admin"
+    },
+    "USER00002" : {
+      "Account_Type" : "Faculty",
+      "Notification" : {
+        "NOTIF000001" : {
+          "DatePosted" : "2021-01-01 10:10:10",
+          "Description" : "Dummy Notification Description",
+          "Icon" : "1",
+          "NotifID" : "NOTIF00001",
+          "Title" : "Dummy Notification Title"
+        }
+      },
+      "Password" : "faculty",
+      "Role" : "Faculty",
+      "UserID" : "PROF10000001",
+      "Username" : "faculty"
+    }
+  }
+}
