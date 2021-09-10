@@ -59,11 +59,11 @@
     padding: 0px 10px;
     border: none;
     font-size: 16px;
+    margin-bottom: 10px;
 }
 
 #ContactNumber{
     padding: 0px 10px;
-    margin-top: .5vw;
     width: 100%;
 }
 #ID{
@@ -133,6 +133,7 @@
     flex-wrap: wrap;
     align-items: center;
     display: block;
+    margin-top: 1vw;
 }
 .UserSetup input{
     font-size: 15px;
@@ -144,9 +145,9 @@
     height: 2vw;
 }
 
-.UserSetup h5{
-    margin-top: 1vw;
-    margin-left: 44%;
+.CustomCheckboxes h5{
+    margin-bottom: 1vw;
+    margin-left: 50%;
     font-size: 15px;
 }
 .CustomCheckboxes{

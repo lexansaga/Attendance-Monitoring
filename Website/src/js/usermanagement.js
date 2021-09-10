@@ -1,91 +1,37 @@
-var sections = [
-    {
-        id: 0,
-        text: 'BSIT-601A'
-    },
-    {
-        id: 1,
-        text: 'BSIT-501A'
-    },
-    {
-        id: 2,
-        text: 'BSBA-601A'
-    },
-    {
-        id: 3,
-        text: 'BSBA-501A'
-    },
-    {
-        id: 4,
-        text: 'BSTM-601A'
-    },
-    {
-        id: 5,
-        text: 'BSTM-501A'
-    }
-];
-
-var subjects = [
-    {
-        id: 0,
-        text: 'Computer Programming 1'
-    },
-    {
-        id: 1,
-        text: 'Euthenics 1'
-    },
-    {
-        id: 2,
-        text: 'Rizals Life and Work'
-    },
-    {
-        id: 3,
-        text: 'Game Development'
-    },
-    {
-        id: 4,
-        text: 'Mobile Systems and Technologies'
-    },
-    {
-        id: 5,
-        text: 'IT Capstone 1'
-    }
-];
-
 const SubjectScheduleData=[{
-    'id':'1',
-    'subject':'Computer Programming',
-    'day':"Monday",
-    'time':'11:00AM - 3:00PM',
-    'room':'B1201',
-    'section':'BSIT101A',
-    'professor':'Dr. Wuzowski'
-    },
-    {
-        'id':'2',
-        'subject':'Computer Programming',
+        'ClassNumber':'C1101',
+        'CourseDescription':'Computer Programming',
+        'section':'BSIT101A',
         'day':"Monday",
         'time':'11:00AM - 3:00PM',
         'room':'B1201',
-        'section':'BSIT101A',
         'professor':'Dr. Wuzowski'
     },
     {
-        'id':'3',
-        'subject':'Computer Programming',
+        'ClassNumber':'C1202',
+        'CourseDescription':'Computer Programming',
+        'section':'BSIT101A',
         'day':"Monday",
         'time':'11:00AM - 3:00PM',
         'room':'B1201',
-        'section':'BSIT101A',
         'professor':'Dr. Wuzowski'
     },
     {
-        'id':'4',
-        'subject':'Computer Programming',
+        'ClassNumber':'B2105',
+        'CourseDescription':'Computer Programming',
+        'section':'BSIT101A',
         'day':"Monday",
         'time':'11:00AM - 3:00PM',
         'room':'B1201',
+        'professor':'Dr. Wuzowski'
+    },
+    {
+        'ClassNumber':'F2106',
+        'CourseDescription':'Computer Programming',
         'section':'BSIT101A',
+        'day':"Monday",
+        'time':'11:00AM - 3:00PM',
+        'room':'B1201',
         'professor':'Dr. Wuzowski'
     }
 ]
@@ -96,7 +42,7 @@ buildTable();
 $(document).ready(function(){ 
     $("#Select_Section").select2({
         //only select Specific Properties From an Array of Objects
-        data:sections.map(a => a.text)
+        data:SubjectScheduleData.map(a => a.ClassNumber)
     });
 
     $('#output').click(function(){ $('#selectPicture').trigger('click'); });
@@ -137,11 +83,10 @@ function buildTable() {
 
     for (var i = 1 in SubjectScheduleData) {
         var row = `<tr>
-                  <td>${SubjectScheduleData[i].subject}</td>
+                  <td>${SubjectScheduleData[i].CourseDescription}</td>
+                  <td>${SubjectScheduleData[i].section}</td>
                   <td>${SubjectScheduleData[i].day}</td>
                   <td>${SubjectScheduleData[i].time}</td>
-                  <td>${SubjectScheduleData[i].room}</td>
-                  <td>${SubjectScheduleData[i].section}</td>
                   <td>${SubjectScheduleData[i].professor}</td>
                   `
         table.append(row)
@@ -153,34 +98,56 @@ function VerifyType(){
     const e = selected.options[selected.selectedIndex].text;
     
     if(e == "Student"){
-        document.getElementById("ContactNumber").disabled = false;
-        document.getElementById("Address").disabled = false;
-        document.getElementById("setSubject").disabled = false;
-        document.getElementById("username").disabled = false;
-        document.getElementById("password").disabled = false;
-        document.getElementById("cbx").style.display = "none";
         document.getElementById("UserSetup").style.display = "none";
-        document.getElementById("btnsave").disabled = false;
-        document.getElementById("btndelete").disabled = false;
+        document.getElementById("cbx").style.display = "none";
+        document.getElementById('mainBTN').style.display = "block";
+        document.getElementById('Maintable').style.display = "block";
+
+        document.getElementById('LName').style.display = "block";
+        document.getElementById('FName').style.display = "block";
+        document.getElementById('MName').style.display = "block";
+        document.getElementById('ID').style.display = "block";
+        document.getElementById('ContactNumber').style.display = "block";
+        document.getElementById('Address').style.display = "block";
+        document.getElementById('setSubject').style.display = "block";
     }else if(e=="Faculty"){
-        document.getElementById("ContactNumber").disabled = false;
-        document.getElementById("Address").disabled = false;
-        document.getElementById("setSubject").disabled = false;
-        document.getElementById("username").disabled = false;
-        document.getElementById("password").disabled = false;
-        document.getElementById("cbx").style.display = "block";
         document.getElementById("UserSetup").style.display = "block";
-        document.getElementById("btnsave").disabled = false;
-        document.getElementById("btndelete").disabled = false;
-    }else{
-        document.getElementById("ContactNumber").disabled = true;
-        document.getElementById("Address").disabled = true;
-        document.getElementById("setSubject").disabled = true;
-        document.getElementById("username").disabled = true;
-        document.getElementById("password").disabled = true;
+        document.getElementById("cbx").style.display = "block";
+        document.getElementById('mainBTN').style.display = "block";
+        document.getElementById('Maintable').style.display = "block";
+
+        document.getElementById('LName').style.display = "block";
+        document.getElementById('FName').style.display = "block";
+        document.getElementById('MName').style.display = "block";
+        document.getElementById('ID').style.display = "block";
+        document.getElementById('ContactNumber').style.display = "block";
+        document.getElementById('Address').style.display = "block";
+        document.getElementById('setSubject').style.display = "block";
+    }else if(e=="Gate"){
+        document.getElementById("UserSetup").style.display = "block";
+        document.getElementById('ID').style.display = "block";
+        document.getElementById('mainBTN').style.display = "block";
+
         document.getElementById("cbx").style.display = "none";
+        document.getElementById('Maintable').style.display = "none";
+        document.getElementById('LName').style.display = "none";
+        document.getElementById('FName').style.display = "none";
+        document.getElementById('MName').style.display = "none";
+        document.getElementById('ContactNumber').style.display = "none";
+        document.getElementById('Address').style.display = "none";
+        document.getElementById('setSubject').style.display = "none";
+    }else{
         document.getElementById("UserSetup").style.display = "none";
-        document.getElementById("btnsave").disabled = true;
-        document.getElementById("btndelete").disabled = true;
+        document.getElementById("cbx").style.display = "none";
+        document.getElementById('mainBTN').style.display = "none";
+        document.getElementById('Maintable').style.display = "none";
+
+        document.getElementById('LName').style.display = "none";
+        document.getElementById('FName').style.display = "none";
+        document.getElementById('MName').style.display = "none";
+        document.getElementById('ID').style.display = "none";
+        document.getElementById('ContactNumber').style.display = "none";
+        document.getElementById('Address').style.display = "none";
+        document.getElementById('setSubject').style.display = "none";
     }
 }

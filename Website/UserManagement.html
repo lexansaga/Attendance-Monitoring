@@ -164,30 +164,31 @@
             </div>
 
             <div class="inputArea">
-               <input id="LName" type="text" placeholder="Last Name">
-               <input id="FName"type="text" placeholder="First Name">
-               <input id="MName"type="text" placeholder="Middle Name">
-               <input type="text" placeholder="Faculty ID / Student ID" id="ID">
-
                <select id="UserType" onchange="VerifyType()">
                   <option value="" disabled selected>Select User Type</option>
                   <option value="student">Student</option>
                   <option value="faculty">Faculty</option>
+                  <option value="faculty">Gate</option>
                </select>
+
+               <input type="text" placeholder="Faculty ID / Student ID / Gate ID" id="ID">
+
+               <input id="LName" type="text" placeholder="Last Name">
+               <input id="FName"type="text" placeholder="First Name">
+               <input id="MName"type="text" placeholder="Middle Name">
 
                <input type="text" placeholder="Contact Number" id="ContactNumber">
                <textarea placeholder="Address" style="resize: none" id="Address"></textarea>
                <button class="setSubjectSection" id="setSubject">Set User Subject and Section</button>
             </div>
-            <div class="UserSectionnSubject">
+            <div class="UserSectionnSubject" id="Maintable">
                <table id="SubjectSection-table">
                   <thead>
                     <tr>
-                      <th>Subject</th>
+                      <th>Course Description</th>
+                      <th>Section</th>
                       <th>Day</th>
                       <th>Time</th>
-                      <th>Room</th>
-                      <th>Section</th>
                       <th>Professor</th>
                     </tr>
                   </thead>
@@ -201,10 +202,10 @@
                <h4>Setup User</h4>
                <input type="text" placeholder="Username" id="username">
                <input type="password" placeholder="Password" id="password">
-               <h5>---Permissions---</h5>
             </div>
 
             <div class="CustomCheckboxes" id="cbx">
+               <h5>---Permissions---</h5>
                <label class="container">Require Tap-in First before taking class attendance.
                   <input class="cbx" type="checkbox">
                   <span class="checkmark"></span>
@@ -219,7 +220,7 @@
                 </label>
             </div>
 
-            <div class="actionButton">
+            <div class="actionButton" id="mainBTN">
                <button id="btnsave">Save</button>
                <button id="btndelete">Delete</button>
                <br>
