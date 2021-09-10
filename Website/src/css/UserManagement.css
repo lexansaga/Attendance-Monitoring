@@ -227,9 +227,7 @@ margin-right: 2vw;
     transform: rotate(45deg);
   }
 
-  .actionButton{
-     width: 100%;
-  }
+  
 
   .actionButton button{
       margin-right: 10px;
@@ -241,7 +239,7 @@ margin-right: 2vw;
       color: #fff;
   }
   #btnsave{
-      margin-left: 80%;
+
   }
 
   .actionButton button:hover{
@@ -269,7 +267,7 @@ margin-right: 2vw;
     margin: auto;
     top: 50px;
     background-color: white;
-    height: 500px;
+    height: 550px;
     width: 600px;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -350,8 +348,9 @@ margin-right: 2vw;
 
 .modalButtonControl{
     margin-left: 55px;
-    margin-top: 53%;
+    margin-top: 65%;
     width: 100%;
+    display: flex;
 }
 .modalButtonControl button{
     color: #fff;
@@ -433,7 +432,9 @@ margin-right: 2vw;
         height: 3.5vw;
     }
     #btnsave{
-        margin-left: 68.2%;
+      
+    }.actionButton{
+        left: 55%;
     }
     .UserSetup input{
         font-size: 15px;
@@ -453,9 +454,7 @@ margin-right: 2vw;
         margin-top: 5vw;
         height: 320px;
     }
-    .modalButtonControl{
-        margin-top: 44vw;
-    }
+  
     .modalButtonControl .ModalSubmit{
         margin-left: 36vw;
         margin-right: 1vw;
@@ -502,10 +501,10 @@ margin-right: 2vw;
         margin-bottom: 1vw;
     }
     .actionButton{
-        width: 100%;
+        left: 42%;
     }
     #btnsave{
-        margin-left: 32%;
+   
     }
 
     .UserSetup input{
@@ -522,7 +521,7 @@ margin-right: 2vw;
         margin-left: 80px;
     }
     .modal-container {
-        height: 480px;
+        height: 500px;
         width: 330px;
     }
    
@@ -541,6 +540,7 @@ margin-right: 2vw;
         height: 320px;
     }
     .modalButtonControl{
+        margin-left: 0;
         margin-top: 330px;
     }
     .modalButtonControl .ModalSubmit{
