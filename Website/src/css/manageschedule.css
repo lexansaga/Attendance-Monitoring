@@ -64,7 +64,7 @@ input[type=time]{
     width: 80%;
 }
 .btnControl{
-    margin-top: 25%;
+    margin-top: 20%;
     display: flex;
     justify-content: flex-end;
     width: 90%;
