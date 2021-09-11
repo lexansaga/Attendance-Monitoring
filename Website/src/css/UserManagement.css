@@ -230,9 +230,7 @@ margin-right: 2vw;
     transform: rotate(45deg);
   }
 
-  
-
-  .actionButton button{
+.actionButton button{
       margin-right: 10px;
       margin-top: 20px;
       width: 90px;
@@ -240,10 +238,7 @@ margin-right: 2vw;
       border: none;
       background-color: #B2BBF7;
       color: #fff;
-  }
-  #btnsave{
-
-  }
+}
 
   .actionButton button:hover{
     background-color: #97A3F4;
@@ -434,9 +429,7 @@ margin-right: 2vw;
         width: 99%;
         height: 3.5vw;
     }
-    #btnsave{
-      
-    }.actionButton{
+    .actionButton{
         left: 55%;
     }
     .UserSetup input{
@@ -506,10 +499,6 @@ margin-right: 2vw;
     .actionButton{
         left: 42%;
     }
-    #btnsave{
-   
-    }
-
     .UserSetup input{
         font-size: 15px;
         margin-top: 3vw;
