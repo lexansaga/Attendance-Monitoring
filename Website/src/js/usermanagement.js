@@ -103,6 +103,7 @@ function VerifyType(){
         document.getElementById('mainBTN').style.display = "block";
         document.getElementById('Maintable').style.display = "block";
 
+        document.getElementById("Email").style.display = "block";
         document.getElementById('LName').style.display = "block";
         document.getElementById('FName').style.display = "block";
         document.getElementById('MName').style.display = "block";
@@ -115,6 +116,7 @@ function VerifyType(){
         document.getElementById("cbx").style.display = "block";
         document.getElementById('mainBTN').style.display = "block";
         document.getElementById('Maintable').style.display = "block";
+        document.getElementById("Email").style.display = "none";
 
         document.getElementById('LName').style.display = "block";
         document.getElementById('FName').style.display = "block";
@@ -127,6 +129,7 @@ function VerifyType(){
         document.getElementById("UserSetup").style.display = "block";
         document.getElementById('ID').style.display = "block";
         document.getElementById('mainBTN').style.display = "block";
+        document.getElementById("Email").style.display = "none";
 
         document.getElementById("cbx").style.display = "none";
         document.getElementById('Maintable').style.display = "none";
@@ -137,6 +140,7 @@ function VerifyType(){
         document.getElementById('Address').style.display = "none";
         document.getElementById('setSubject').style.display = "none";
     }else{
+        document.getElementById("Email").style.display = "none";
         document.getElementById("UserSetup").style.display = "none";
         document.getElementById("cbx").style.display = "none";
         document.getElementById('mainBTN').style.display = "none";
