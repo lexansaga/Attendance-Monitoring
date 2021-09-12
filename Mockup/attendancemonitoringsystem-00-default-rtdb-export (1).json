@@ -1,108 +1,246 @@
 {
-  "Attendance" : {
-    "Gate" : {
-      "2021-01-01" : {
-        "GATEATT0000000001" : {
-          "EnteredID" : "IDSTUD1000001",
-          "ID" : "GATEATT0000000001",
-          "Location" : "B3",
-          "Status" : "In",
-          "Timestamp" : "2021-01-01||10:10:10",
-          "isValid" : "True"
-        }
-      }
-    },
-    "Professor" : {
-      "2021-01-01" : {
-        "PROFATT0000000001" : {
-          "ID" : "PROFATT0000000001",
-          "Location" : "B3",
-          "Name" : "John Doe",
-          "ProfessorID" : "IDPROF1000001",
-          "Status" : "In",
-          "Timestamp" : "2020-01-01 10:10:10"
-        }
-      }
-    },
-    "Student" : {
-      "2021-01-01" : {
-        "STUDATT0000000001" : {
-          "ID" : "STUDATT0000000001",
-          "Location" : "B3",
-          "Name" : "Larry Mitchell",
-          "StudentID" : "IDSTUD1000001",
-          "TimeStamp" : "2021-01-01||10:10:10"
-        }
-      }
-    }
-  },
-  "Data" : {
-    "Subject" : {
-      "SUB1000001" : {
-        "Code" : "SUB1000001",
-        "Description" : "Just a Dummy Subject",
-        "Schedule" : "Monday 08:00:00-13:30:00",
-        "Title" : "Dummy Subject"
-      }
-    }
-    ,
-  "Professor" : {
-    "Information" : {
-      "PROF00001" : {
-        "Address" : "Sample Address",
-        "Department" : "Engineering",
-        "ID" : "IDPROF1000001",
-        "Name" : "Saga&&Alexander&&Pelin",
-        "Subjects" : "SUB1000001&&SUB1000002",
-        "Type" : "Faculty"
-      }
-    }
-  },
-  "Student" : {
-    "Information" : {
-      "IDSTUD1000001" : {
-        "Address" : "Broadway St. Manila",
-        "Contact" : "+639125226987",
-        "Course_Code" : "BSIT",
-        "ID" : "IDSTUD1000001",
-        "Name" : "Larry Mitchell",
-        "Subject" : "SUB1000001&&SUB1000002"
-      }
-    }
-  }
-  },
-  "User" : {
-    "USER00001" : {
-      "Account_Type" : "Admin",
-      "Notification" : {
-        "NOTIF000001" : {
-          "DatePosted" : "2021-01-01 10:10:10",
-          "Description" : "Dummy Notification Description",
-          "Icon" : "1",
-          "NotifID" : "NOTIF00001",
-          "Title" : "Dummy Notification Title"
+  "Attendance": {
+    "Gate": {
+      "2021-01-01": {
+        "ATTGATE0000000001": {
+          "EnteredID": "STUD1000001",
+          "ID": "ATTGATE0000000001",
+          "Location": "B3",
+          "Status": "In",
+          "Timestamp": "2021-01-01&&10:10:10",
+          "isValid": "True"
+
+        },
+        "ATTGATE0000000002": {
+          "EnteredID": "STUD1000002",
+          "ID": "ATTGATE0000000002",
+          "Location": "B3",
+          "Status": "Out",
+          "Timestamp": "2021-01-01&&11:10:10",
+          "isValid": "True"
+        },
+        "ATTGATE0000000003": {
+          "EnteredID": "STUD1000003",
+          "ID": "ATTGATE0000000003",
+          "Location": "B2",
+          "Status": "In",
+          "Timestamp": "2021-01-01&&10:11:10",
+          "isValid": "True"
+        },
+        "ATTGATE0000000004": {
+          "EnteredID": "STUD1000004",
+          "ID": "ATTGATE0000000004",
+          "Location": "B2",
+          "Status": "Out",
+          "Timestamp": "2021-01-01&&11:11:10",
+          "isValid": "True"
         }
       },
-      "Password" : "admin",
-      "Role" : "Administrator",
-      "UserID" : "PROF10000001",
-      "Username" : "admin"
+      "2021-01-02": {
+        "ATTGATE0000000001": {
+          "EnteredID": "IDSTUD1000001",
+          "ID": "ATTGATE0000000001",
+          "Location": "B3",
+          "Status": "In",
+          "Timestamp": "2021-01-01&&10:10:10",
+          "isValid": "True"
+        },
+        "ATTGATE0000000002": {
+          "EnteredID": "IDSTUD1000002",
+          "ID": "ATTGATE0000000002",
+          "Location": "B3",
+          "Status": "Out",
+          "Timestamp": "2021-01-01&&11:10:10",
+          "isValid": "True"
+        }
+      }
     },
-    "USER00002" : {
-      "Account_Type" : "Faculty",
-      "Notification" : {
-        "NOTIF000001" : {
-          "DatePosted" : "2021-01-01 10:10:10",
-          "Description" : "Dummy Notification Description",
-          "Icon" : "1",
-          "NotifID" : "NOTIF00001",
-          "Title" : "Dummy Notification Title"
+    "Professor": {
+      "2021-01-01": {
+        "ATTPROF0000000001": {
+          "ID": "ATTPROF0000000001",
+          "Location": "B3",
+          "EnteredID": "PROF1000001",
+          "Status": "In",
+          "Timestamp": "2020-01-01&&10:10:10",
+          "isValid": "True"
+        }
+      }
+    },
+    "Student": {
+      "2021-01-01": {
+        "ATTSTUD0000000001": {
+          "ID": "ATTSTUD0000000001",
+          "Location": "B3",
+          "Status":"In",
+          "StudentID": "STUD1000001",
+          "TimeStamp": "2021-01-01&&10:10:10",
+          "Attendance_Status": "Absent"
+        },
+        "ATTSTUD0000000002": {
+          "ID": "ATTSTUD0000000002",
+          "Location": "B3",
+          "Status":"In",
+          "StudentID": "STUD1000002",
+          "TimeStamp": "2021-01-01&&10:10:10",
+          "Attendance_Status": "Late"
+        },
+        "ATTSTUD0000000003": {
+          "ID": "ATTSTUD0000000003",
+          "Location": "B3",
+          "Status":"Out",
+          "StudentID": "STUD1000003",
+          "TimeStamp": "2021-01-01&&10:10:10",
+          "Attendance_Status": "Present"
+        }
+      }
+    }
+  },
+  "Data": {
+    "Subject": {
+      "SUB1000001": {
+        "Code": "SUB1000001",
+        "Description": "Just a Dummy Subject",
+        "Schedule": "Monday&&13:00:00-15:45:00",
+        "Title": "Dummy Subject",
+        "Day": "Monday",
+        "Location": "B2101"
+      },
+      "SUB1000002": {
+        "Code": "SUB1000002",
+        "Description": "Just a Dummy Subject",
+        "Schedule": "Tuesday&&16:00:00-19:30:00",
+        "Title": "Dummy Subject",
+        "Day": "Monday",
+        "Location": "B2101"
+      }
+    },
+    "Professor": {
+      "Information": {
+        "PROF1000001": {
+          "Address": "Sample Address",
+          "Department": "Engineering",
+          "ID": "PROF1000001",
+          "Name": "Saga&&Alexander&&Pelin",
+          "Subjects": "SUB1000001&&SUB1000002",
+          "Type": "Faculty"
+        }
+        ,  "PROF1000002": {
+          "Address": "Sample Address",
+          "Department": "Engineering",
+          "ID": "PROF1000002",
+          "Name": "Saga&&Alexander&&Pelin",
+          "Subjects": "SUB1000001&&SUB1000002",
+          "Type": "Faculty"
+        },
+        "PROF1000003": {
+          "Address": "Sample Address",
+          "Department": "Engineering",
+          "ID": "PROF1000003",
+          "Name": "Saga&&Alexander&&Pelin",
+          "Subjects": "SUB1000001&&SUB1000002",
+          "Type": "Faculty"
+        }
+      }
+    },
+    "Student": {
+      "Information": {
+        "STUD1000001": {
+          "Address": "Broadway St. Manila",
+          "Contact": "+639125226987",
+          "Course_Code": "BSIT",
+          "ID": "STUD1000001",
+          "Name": "Mitchell&&Larry&&Reyes",
+          "Subject": "SUB1000001&&SUB1000002",
+          "Profile": "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2Fprofile.jpg?alt=media&token=275a1bc4-a4d6-454b-b04b-6affe7006466"
+        },
+        "STUD1000002": {
+          "Address": "Rosa  St. Cavite",
+          "Contact": "+639124522697",
+          "Course_Code": "BSIT",
+          "ID": "STUD1000002",
+          "Name": "Cruz&&Mike&&Dela Cruz",
+          "Subject": "SUB1000001&&SUB1000002",
+          "Profile": "Link"
+        }
+      }
+    }
+  },
+  "User": {
+    "USER00001": {
+      "ID":"USER00001",
+      "Account_Type": "Admin",
+      "Notification": {
+        "NOTIF000001": {
+          "DatePosted": "2021-01-01&&10:10:10",
+          "Description": "Dummy Notification Description",
+          "Icon": "1",
+          "NotifID": "NOTIF00001",
+          "Title": "Dummy Notification Title",
+          "Priority": "1"
         }
       },
-      "Password" : "faculty",
-      "Role" : "Faculty",
-      "UserID" : "PROF10000001",
-      "Username" : "faculty"
+      "Password": "admin",
+      "Role": "Administrator",
+      "UserID": "PROF10000001",
+      "Username": "admin"
+    },
+    "USER00002": {
+      "ID":"USER00002",
+      "Account_Type": "Faculty",
+      "Notification": {
+        "NOTIF000001": {
+          "DatePosted": "2021-01-01&&10:10:10",
+          "Description": "Dummy Notification Description",
+          "Icon": "1",
+          "NotifID": "NOTIF00001",
+          "Title": "Dummy Notification Title",
+          "Priority": "1"
+
+        }
+      },
+      "Password": "faculty",
+      "Role": "Faculty",
+      "UserID": "PROF10000002",
+      "Username": "faculty"
+    },
+    "USER00003": {
+      "ID":"USER00003",
+      "Account_Type": "Guidance",
+      "Notification": {
+        "NOTIF000001": {
+          "DatePosted": "2021-01-01&&10:10:10",
+          "Description": "Dummy Notification Description",
+          "Icon": "1",
+          "NotifID": "NOTIF00001",
+          "Title": "Dummy Notification Title",
+          "Priority": "1"
+
+        }
+      },
+      "Password": "guidance",
+      "Role": "Guidance",
+      "UserID": "PROF10000003",
+      "Username": "guidance"
+    },
+    "USER00004": {
+      "ID":"USER00004",
+      "Account_Type": "Gate",
+      "Notification": {
+        "NOTIF000001": {
+          "DatePosted": "2021-01-01&&10:10:10",
+          "Description": "Dummy Notification Description",
+          "Icon": "1",
+          "NotifID": "NOTIF00001",
+          "Title": "Dummy Notification Title",
+          "Priority": "1"
+
+        }
+      },
+      "Password": "gate1",
+      "Role": "Gate",
+      "UserID": "",
+      "Username": "gate1"
     }
   }
 }

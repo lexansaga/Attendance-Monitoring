@@ -51,10 +51,27 @@ class Firebase {
             var query = firebase.database().ref(Path);
             query.once("value", snap => {
 
+      
                 sessionStorage.setItem("Data", JSON.stringify(snap.val()));
+            
             });
 
             return JSON.parse(sessionStorage.getItem("Data"));
+
+        }
+        static COUNT(Path) {
+
+            var query = firebase.database().ref(Path);
+  
+            query.once("value", snap => {
+
+          //      console.log(snap.numChildren());
+                sessionStorage.removeItem("Count");
+                sessionStorage.setItem("Count",snap.numChildren());
+            
+            });
+
+            return sessionStorage.getItem("Count");
 
         }
         static SET(Path, Data) {
@@ -187,8 +204,8 @@ function SORT(input, key) {
 // Getting Data(Return Dictionary) 
 //console.log(Firebase.Database.Get("User"));
 // Setting Data with specific Referrence Firebase.Database.SET("User/USER0003",{Name:"Lexan"})
-console.log(Firebase.Database.PUSH("User", {
-    Name: "Lexan"
-}));
+//console.log(Firebase.Database.PUSH("User", {
+  //  Name: "Lexan"
+//}));
 // Pushing Data with Random Key Firebase.Database.PUSH("User/USER0003",{Name:"Lexan"})
 // Pushing Data with Random Key Firebase.Database.DELETE("User/USER0003")

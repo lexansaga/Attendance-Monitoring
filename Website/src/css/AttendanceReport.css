@@ -196,7 +196,21 @@ tr.shown td.details-control {
 #modalCancel:hover{
     background-color: #F34925;
 }
-
+#datatable {
+    padding: 15px;
+    border-bottom: 0 !important;
+  }
+  table.dataTable thead th, table.dataTable thead td
+  {
+  border-bottom: 0 !important;
+  }
+  
+  th {
+    font-weight: 500 !important;
+    background-color: var(--secondary-color);
+    color: white;
+  
+  }
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
 @media (max-width: 768px){
     .modalMenu{

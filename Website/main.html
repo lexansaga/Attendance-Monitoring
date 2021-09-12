@@ -64,6 +64,12 @@
                   <li><a href="#">Delete User</a></li>
                </ul>
             </li>
+            <li class="vert-line">
+               <a href="manageschedule.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Subjects</span>
+               </a>
+            </li>
             <div class="bottom-image">
                <img src="src/assets/icon.png" />
                <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
@@ -166,25 +172,25 @@
                   <img class="d-items-img" src="src/assets/ic_cap.svg"
                      style="filter: invert(57%) sepia(11%) saturate(6857%) hue-rotate(206deg) brightness(73%) contrast(89%);" />
                   <h5 class="d-items-label">Total Students</h5>
-                  <h1 id="cnt_students">1,150</h1>
+                  <h1 id="cnt_students">——</h1>
                </div>
                <div class="d-items">
                   <img src="src/assets/ic_cap.svg"
                      style="filter:invert(33%) sepia(37%) saturate(586%) hue-rotate(177deg) brightness(90%) contrast(87%)" />
                   <h5>Total number of present </h5>
-                  <h1 id="cnt_students">1,150</h1>
+                  <h1 id="cnt_students">——</h1>
                </div>
                <div class="d-items">
                   <img src="src/assets/ic_cap.svg"
                      style="filter:invert(80%) sepia(4%) saturate(3140%) hue-rotate(189deg) brightness(104%) contrast(106%)" />
                   <h5>Total number of absent</h5>
-                  <h1 id="cnt_students">1,150</h1>
+                  <h1 id="cnt_students">——</h1>
                </div>
                <div class="d-items">
                   <img src="src/assets/ic_cap.svg"
                      style="filter:invert(91%) sepia(58%) saturate(1585%) hue-rotate(178deg) brightness(105%) contrast(104%)" />
                   <h5>Total number of lates</h5>
-                  <h1 id="cnt_students">1,150</h1>
+                  <h1 id="cnt_students">——</h1>
                </div>
             </div>
             <div class="dash-row">
@@ -208,41 +214,7 @@
                   </h3>
                   <div class="prof_container">
                      <ul>
-                        <li>
-                           <a id="prof_link" href="#" style="color:white">
-                              <img id="ic_prof" src="src/assets/profile.jpg" />
-                              <h2>Saga,Alexander</h2>
-                              <h3>Faculty</h3>
-                           </a>
-                        </li>
-                        <li>
-                           <a id="prof_link" href="#">
-                              <img id="ic_prof" src="https://picsum.photos/200/300" />
-                              <h2>Saga,Alexander</h2>
-                              <h3>Faculty</h3>
-                           </a>
-                        </li>
-                        <li>
-                           <a id="prof_link" href="#">
-                              <img id="ic_prof" src="src/assets/profile.jpg" />
-                              <h2>Saga,Alexander</h2>
-                              <h3>Faculty</h3>
-                           </a>
-                        </li>
-                        <li>
-                           <a id="prof_link" href="#">
-                              <img id="ic_prof" src="src/assets/profile.jpg" />
-                              <h2>Saga,Alexander</h2>
-                              <h3>Faculty</h3>
-                           </a>
-                        </li>
-                        <li>
-                           <a id="prof_link" href="#">
-                              <img id="ic_prof" src="src/assets/profile.jpg" />
-                              <h2>Saga,Alexander</h2>
-                              <h3>Faculty</h3>
-                           </a>
-                        </li>
+                       
                      </ul>
                      <a href="#">View all</a>
                   </div>
@@ -251,12 +223,29 @@
          </main>
       </div>
    </div>
+      <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+   <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+
+   <!-- Add Firebase products that you want to use -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
       integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+      <script src="src/js/firebase.js"></script>
    <script src="src/js/script.js"></script>
    <script src="src/js/sidebar.js"></script>
    <script src="src/js/main.js"></script>
+
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
    <script>

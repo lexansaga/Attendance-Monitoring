@@ -199,8 +199,7 @@
 }
 
 .prof_container>ul>li {
-	padding: 15px 0 10px 15px;
-	transition: 0.1s;
+	padding: 15px 0 10px 15px; 
 }
 
 .prof_container>ul>li:hover {
@@ -216,7 +215,10 @@
 	box-shadow: 0px 1px 1px 1px var(--primary-color);
 	border-radius: 5px;
 }
-
+.prof_container>ul>li:nth-child(1) > a 
+{
+	color:white;
+}
 .prof_container>ul>li>a {
 	display: grid;
 	grid-template-columns: 0.3fr 1fr;
