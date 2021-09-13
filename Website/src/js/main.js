@@ -15,6 +15,7 @@ $(document).ready(function () {
 
 
 
+    var list = [];
 
     firebase.database().ref("Attendance/Gate").on("value", snap => {
         $('.d-items:nth-child(2) > h1').html(snap.numChildren()); // For Total Students
@@ -24,6 +25,10 @@ $(document).ready(function () {
 
 
         $('.d-items:nth-child(3) > h1').html(snap.numChildren()); // For Count of Present Students
+        list.push(
+            {
+                "Present":snap.numChildren()
+            });
     });
 
     firebase.database().ref("Attendance/Student/2021-01-01").orderByChild('Attendance_Status').equalTo('Absent').on("value", snap => {
@@ -38,12 +43,9 @@ $(document).ready(function () {
         $('.d-items:nth-child(5) > h1').html(snap.numChildren()); // For Count of Late Students
     });
 
-    firebase.database().ref("Attendance/Gate/2021-01-01").orderByKey().limitToLast(5).on("value", snap => {
 
 
-    });
-
-
+    console.log(list.Present);
 
 
 
@@ -51,7 +53,7 @@ $(document).ready(function () {
 
     firebase.database().ref("Attendance/Gate/2021-01-01").orderByKey().limitToLast(5).on("value", snap => {
         snap.forEach(childSnapshot => {
-            console.log(childSnapshot.child("EnteredID").val());
+           // console.log(childSnapshot.child("EnteredID").val());
             let dataPath = "";
             if (childSnapshot.child("EnteredID").val().includes('STUD')) {
                 dataPath = "Data/Student/Information";
@@ -60,20 +62,20 @@ $(document).ready(function () {
             }
 
 
-            console.log(dataPath + "/" + childSnapshot.child("EnteredID").val());
+        //    console.log(dataPath + "/" + childSnapshot.child("EnteredID").val());
             Object.keys(childSnapshot).reverse();
             firebase.database().ref(dataPath + "/" + childSnapshot.child("EnteredID").val()).on("value", profilesnap => {
 
-                console.log(profilesnap.val())
+         //       console.log(profilesnap.val())
 
 
                 if (profilesnap.val() != null) {
-                    console.log(profilesnap.child("Name").val());
+                //    console.log(profilesnap.child("Name").val());
                     let profName = profilesnap.child("Name").val().split('&&')
                     let image = profilesnap.child("Profile").val().toString().includes('firebasestorage') ?
                         profilesnap.child("Profile").val().toString() : 'src/assets/avatar.png' 
 
-                        console.log(image);
+                 //       console.log(image);
                     $('.prof_container > ul ').prepend(
                         " <li>" +
                         "<a id=\"prof_link\" href=\"#\">" +
