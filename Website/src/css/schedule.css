@@ -1,61 +1,66 @@
-@import url('root.css'); 
+@import url('root.css');
 /*Always include root css to access the root content and not to reinitialize code */
 
 
-.item_container label{
+.item_container label {
   font-weight: bold;
   font-size: 20px;
 }
 
-.SearchControl_wrapper{
+.SearchControl_wrapper {
   display: flex;
   flex-direction: row;
-  width: 90%;
+  width: fit-content;
   margin-top: 1vw;
 }
 
-.SearchControl_wrapper input{
-  height: 30px;
+.SearchControl_wrapper input {
+  height: 45px;
   padding: 0px 40px;
-  width: 500px;
+  width: 30vw;
   border: none;
+  outline: none;
 }
 
-.SearchControl_wrapper select{
+.SearchControl_wrapper select {
   width: 200px;
   padding: 0px 20px;
   border: none;
+  outline: none;
 }
 
-.SearchControl_wrapper button{
+.SearchControl_wrapper button {
   width: 110px;
   color: white;
   background-color: #B2BBF7;
   border: none;
-  margin-left: 20px;
+  margin-left: 2px;
 }
-.SearchControl_wrapper button:hover{
+
+.SearchControl_wrapper button:hover {
   background-color: #9EA9F5;
 }
-.SearchControl_wrapper button:active{
+
+.SearchControl_wrapper button:active {
   background-color: #7E8DF1;
 }
 
-.SearchControl_wrapper i{
+.SearchControl_wrapper i {
   position: absolute;
   margin-left: 10px;
-  margin-top: 4px;
+  margin-top: 12px;
   font-size: 20px;
   color: #8F8F8F;
 }
 
 .vl {
-  border-left: 2px solid gray;
-  height: 20px;
-  margin-top: 5px;
+  border-left: 1px solid var(--font-color-primary);
+  height: 60%;
+  /* margin-top: 5px; */
+  margin: auto 0;
 }
 
-.UserInformation_wrapper{
+.UserInformation_wrapper {
   display: flex;
   flex-direction: row;
   align-content: center;
@@ -63,105 +68,115 @@
   width: 90%;
 }
 
-.userImage{
+.userImage {
   width: 120px;
-  border-radius: 50%;
 }
 
-.UserInfo{
+.UserInfo {
   margin-left: 1vw;
 }
-.UserInfo h1{
+
+.UserInfo h1 {
   color: #7E8DF1;
-  margin-top: 10px;
-}
-.UserInfo h2, h3{
-  color: gray;
-}
-.UserInfo h1:hover, h2:hover, h3:hover{
-  cursor:default;
+  margin:10px 0 10px 0;
+
 }
 
-.table_Wrapper{
+.UserInfo h2
+ {
+  color: gray;
+  font-weight: 500;
+}
+
+.UserInfo h1:hover,
+h2:hover {
+  cursor: default;
+}
+
+.table_Wrapper {
   position: absolute;
   width: 70%;
-  margin-top: 10vw;
+  margin-top: 150px;
   display: block;
 }
 
-.dataTable img{
+.dataTable img {
   width: 50px;
   border-radius: 50%;
 }
-.dataTable{
+
+.dataTable {
   text-align: center;
 }
 
-.search-result{
+.search-result {
   display: none;
-	position: absolute;
-	list-style-type: none;
-	width: 30vw;
-	background-color: white;
-  top: 10.8vw;
-	margin-left: 2.3vw;
-  min-width: 250px;
-	box-shadow: 0 2px 4px 0 rgb(0 0 0 / 21%);
-	z-index: 1;
+  position: absolute;
+  list-style-type: none;
+  background-color: white;
+  width: 30vw;
+  /* top: 10.8vw; */
+  margin-top: 45px;
+  min-width: 300px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 21%);
+  z-index: 1;
   transition: .2s;
 }
-
 .search-result>li {
-	padding: 15px 0 15px 15px;
-	border-bottom: #f5f5f5 solid 1px;
+  padding: 15px 0 15px 15px;
+  border-bottom: #f5f5f5 solid 1px;
 }
 
 .search-result>li:hover {
-	background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 .search-result>li:hover a {
-	color: white;
+  color: white;
 }
+
 .search-result>li>a {
-	color: var(--font-color-primary);
-	display: grid;
-	text-decoration: none;
-	grid-template-columns: 0.2fr 1fr;
-	grid-template-rows: 1fr 1fr;
-	grid-template-areas:
-	 'search_icon search_title'
-	 'search_icon search_description';
+  color: var(--font-color-primary);
+  display: grid;
+  text-decoration: none;
+  grid-template-columns: 0.2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    'search_icon search_title'
+    'search_icon search_description';
 }
+
 .search-result>li>a>img {
-	width: 40px;
-	border-radius: 50px;
-	grid-area: search_icon;
-	margin: auto 0;
+  width: 40px;
+  border-radius: 50px;
+  grid-area: search_icon;
+  margin: auto 0;
 }
 
 .search-result>li>a>h1 {
-	font-size: 15px;
-	grid-area: search_title;
-	font-weight: 600;
+  font-size: 15px;
+  grid-area: search_title;
+  font-weight: 600;
 }
 
 .search-result>li>a>h3 {
-	grid-area: search_description;
-	font-size: 12px;
-	font-weight: 400;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	padding: 0 30px 0 0;
-	overflow: hidden;
+  grid-area: search_description;
+  font-size: 12px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 30px 0 0;
+  overflow: hidden;
 }
+
 #userSchedule {
   padding: 15px;
   border-bottom: 0 !important;
 }
-table.dataTable thead th, table.dataTable thead td
-{
-border-bottom: 0 !important;
+
+table.dataTable thead th,
+table.dataTable thead td {
+  border-bottom: 0 !important;
 }
 
 th {
@@ -170,65 +185,69 @@ th {
   color: white;
 
 }
+
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
-@media (max-width: 768px){
-  .userImage{
+@media (max-width: 768px) {
+  .userImage {
     width: 100px;
   }
-  .table_Wrapper{
+
+  .table_Wrapper {
     position: absolute;
     width: 90%;
-    margin-top: 17vw;
+    margin-top: 150px;  
   }
-  .UserInformation_wrapper{
-    margin-top: 2vw;
+
+  .UserInformation_wrapper {
+    margin-top: 20px;
     width: 90%;
   }
-  .search-result{
-    width: 45vw;
-    top: 16vw;
-    margin-left: 5vw;
-  }
+
+ 
 }
+
 /*----------------------------------------------------Mobile View----------------------------------------------------*/
-@media (max-width: 425px){ 
-  .table_Wrapper{
-    margin-top: 30vw;
+@media (max-width: 425px) {
+  .table_Wrapper {
+    margin-top: 110px;
   }
-  .UserInformation_wrapper{
+
+  .UserInformation_wrapper {
     margin-top: 5vw;
   }
-  .userImage{
+
+  .userImage {
     width: 80px;
     position: absolute;
   }
-  .UserInfo h2{
+
+  .UserInfo h2 {
     font-size: 20px;
   }
-  .UserInfo{
-    margin-left: 25vw;
+
+  .UserInfo {
+    margin-left: 90px;
   }
-  .UserInfo h1{
-    font-size: 20px;
+
+  .UserInfo h1 {
+    font-size: 22px;
     color: #7E8DF1;
     margin-top: 0px;
+    margin-bottom: 2px;
   }
-  .SearchControl_wrapper input{
-    width: 160px;
-  }
+
   
-  .SearchControl_wrapper select{
+
+  .SearchControl_wrapper select {
     width: 100px;
     padding: 0px 10px;
     background-color: white;
   }
-  
-  .SearchControl_wrapper button{
+
+  .SearchControl_wrapper button {
     padding: 0px 10px 0px 10px;
   }
-  .search-result{
-    top: 30vw;
-  }
-  
-}
 
+ 
+
+}

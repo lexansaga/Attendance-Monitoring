@@ -120,27 +120,22 @@ $(window).click(function (e) {
     if (e.target.className.includes('modal')) {
         $('.modal').css('display', 'none');
     }
-    console.log(e.target.className);
+  //  console.log(e.target.className);
 });
 $(".material-icons").click(function (e) {
 
     $('.modal:eq(0)').css('display', 'block');
 
 });
+$('.modal > div > span, .btn-cancel').click(function () {
 
-$(".close").click(function (e) {
+    $('.modal').css('display', 'none');
 
-    $('.modal:eq(0)').css('display', 'none');
-
-});
-$("#modalCancel").click(function (e) {
-
-    $('.modal:eq(0)').css('display', 'none');
 
 });
-$("#modalSave").click(function (e) {
-    let FromDate=document.getElementById("From_date").value;
-    let ToDate=document.getElementById("To_date").value;
+$(".btn-submit").click(function (e) {
+    let FromDate= $('.modal-container > main > input').eq(0).val();
+    let ToDate=$('.modal-container > main > input').eq(1).val();
 
     document.getElementById("date-covered").innerHTML="Showing Data from "+FromDate+" to "+ToDate;
     $('.modal:eq(0)').css('display', 'none');

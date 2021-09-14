@@ -25,45 +25,58 @@
             </div>
             <ul class="nav-links">
                 <li class="vert-line">
-                    <a href="main.html">
-                        <i class='bx bxs-home'></i>
-                        <span class="link_name">Home</span>
-                    </a>
+                   <a href="main.html">
+                      <i class='bx bxs-home'></i>
+                      <span class="link_name">Home</span>
+                   </a>
                 </li>
                 <li class="vert-line">
-                    <a href="schedule.html">
-                        <i class='bx bx-calendar'></i>
-                        <span class="link_name">Schedule</span>
-                    </a>
+                   <a href="schedule.html">
+                      <i class='bx bx-calendar'></i>
+                      <span class="link_name">Schedule</span>
+                   </a>
+                </li>
+               
+                <li class="vert-line">
+                   <a href="attendance.html">
+                      <i class='bx bxs-report'></i>
+                      <span class="link_name">Attendance</span>
+                   </a>
                 </li>
                 <li class="vert-line">
-                    <a href="#">
-                        <i class='bx bxs-report'></i>
-                        <span class="link_name">Attendance</span>
-                    </a>
+                   <a href="attendancereport.html">
+                      <i class='bx bxs-report'></i>
+                      <span class="link_name">Attendance Report</span>
+                   </a>
                 </li>
                 <li class="vert-line">
-                    <a href="attendance.html">
-                        <i class='bx bxs-report'></i>
-                        <span class="link_name">Attendance Report</span>
-                    </a>
+                   <a href="reported.html">
+                      <i class='bx bxs-report'></i>
+                      <span class="link_name">Reported</span>
+                   </a>
                 </li>
                 <li class="vert-line">
-                    <a href="#">
-                        <i class='bx bxs-user-account'></i>
-                        <span class="link_name">User Management</span>
-                    </a>
-                    <ul class="sub-menu">
-                        <li><a href="#">Add User</a></li>
-                        <li><a href="#">Edit User</a></li>
-                        <li><a href="#">Delete User</a></li>
-                    </ul>
+                   <a href="#">
+                      <i class='bx bxs-user-account'></i>
+                      <span class="link_name">User Management</span>
+                   </a>
+                   <ul class="sub-menu">
+                      <li><a href="#">Add User</a></li>
+                      <li><a href="#">Edit User</a></li>
+                      <li><a href="#">Delete User</a></li>
+                   </ul>
+                </li>
+                <li class="vert-line">
+                   <a href="manageschedule.html">
+                      <i class='bx bxs-report'></i>
+                      <span class="link_name">Subjects</span>
+                   </a>
                 </li>
                 <div class="bottom-image">
-                    <img src="src/assets/icon.png" />
-                    <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
+                   <img src="src/assets/icon.png" />
+                   <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
                 </div>
-            </ul>
+             </ul>
         </div>
         <div class="main_content">
             <div class="header">
@@ -242,6 +255,18 @@
         </div>
     </div>
 
+      <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+   <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+
+   <!-- Add Firebase products that you want to use -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
         integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="

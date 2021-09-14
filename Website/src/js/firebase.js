@@ -51,9 +51,9 @@ class Firebase {
             var query = firebase.database().ref(Path);
             query.once("value", snap => {
 
-      
+
                 sessionStorage.setItem("Data", JSON.stringify(snap.val()));
-            
+
             });
 
             return JSON.parse(sessionStorage.getItem("Data"));
@@ -62,13 +62,13 @@ class Firebase {
         static COUNT(Path) {
 
             var query = firebase.database().ref(Path);
-  
+
             query.once("value", snap => {
 
-          //      console.log(snap.numChildren());
+                //      console.log(snap.numChildren());
                 sessionStorage.removeItem("Count");
-                sessionStorage.setItem("Count",snap.numChildren());
-            
+                sessionStorage.setItem("Count", snap.numChildren());
+
             });
 
             return sessionStorage.getItem("Count");
@@ -105,7 +105,7 @@ class Firebase {
 
         CURRENT_USER;
 
-        CREATE_ACCOUNT(Email, Password) {
+        static CREATE_ACCOUNT(Email, Password) {
             firebase.auth().createUserWithEmailAndPassword(Email, Password)
                 .then((userCredential) => {
                     sessionStorage.setItem("CREATE_ACCOUNT_STATUS", "Success");
@@ -122,7 +122,7 @@ class Firebase {
         }
 
 
-        LOGIN_ACCOUNT(Email, Password) {
+        static LOGIN_ACCOUNT(Email, Password) {
             firebase.auth().signInWithEmailAndPassword(Email, Password)
                 .then((userCredential) => {
                     // Signed in
@@ -144,7 +144,7 @@ class Firebase {
         }
 
 
-        CHANGE_PASSWORD(Password) {
+        static CHANGE_PASSWORD(Password) {
             this.CURRENT_USER.updatePassword($PASSWORD).then(() => {
                 sessionStorage.setItem("CHANGE_PASSWORD_STATUS", "Success");
             }).catch((error) => {
@@ -160,10 +160,10 @@ class Firebase {
         }
 
 
-        VERIFY_ACCOUNT() {
+        static VERIFY_ACCOUNT() {
 
         }
-        RESET_ACCOUNT(Email) {
+        static RESET_ACCOUNT(Email) {
             firebase.auth().sendPasswordResetEmail(Email)
                 .then(() => {
                     // Password reset email sent!
@@ -177,7 +177,7 @@ class Firebase {
                     sessionStorage.setItem("RESET_ACCOUNT_STATUS", errorCode + "," + errorMessage);
                 });
         }
-        LOGOUT() {
+        static LOGOUT() {
             if (this.CURRENT_USER) {
                 firebase.auth().signOut().then(() => {
                     sessionStorage.setItem("LOGOUT_STATUS", true);
@@ -205,7 +205,7 @@ function SORT(input, key) {
 //console.log(Firebase.Database.Get("User"));
 // Setting Data with specific Referrence Firebase.Database.SET("User/USER0003",{Name:"Lexan"})
 //console.log(Firebase.Database.PUSH("User", {
-  //  Name: "Lexan"
+//  Name: "Lexan"
 //}));
 // Pushing Data with Random Key Firebase.Database.PUSH("User/USER0003",{Name:"Lexan"})
 // Pushing Data with Random Key Firebase.Database.DELETE("User/USER0003")

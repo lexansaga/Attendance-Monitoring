@@ -25,10 +25,9 @@ $(document).ready(function () {
 
 
         $('.d-items:nth-child(3) > h1').html(snap.numChildren()); // For Count of Present Students
-        list.push(
-            {
-                "Present":snap.numChildren()
-            });
+        list.push({
+            "Present": snap.numChildren()
+        });
     });
 
     firebase.database().ref("Attendance/Student/2021-01-01").orderByChild('Attendance_Status').equalTo('Absent').on("value", snap => {
@@ -53,7 +52,7 @@ $(document).ready(function () {
 
     firebase.database().ref("Attendance/Gate/2021-01-01").orderByKey().limitToLast(5).on("value", snap => {
         snap.forEach(childSnapshot => {
-           // console.log(childSnapshot.child("EnteredID").val());
+            // console.log(childSnapshot.child("EnteredID").val());
             let dataPath = "";
             if (childSnapshot.child("EnteredID").val().includes('STUD')) {
                 dataPath = "Data/Student/Information";
@@ -62,43 +61,82 @@ $(document).ready(function () {
             }
 
 
-        //    console.log(dataPath + "/" + childSnapshot.child("EnteredID").val());
+            //    console.log(dataPath + "/" + childSnapshot.child("EnteredID").val());
             Object.keys(childSnapshot).reverse();
             firebase.database().ref(dataPath + "/" + childSnapshot.child("EnteredID").val()).on("value", profilesnap => {
-
-         //       console.log(profilesnap.val())
+              
+                //       console.log(profilesnap.val())
 
 
                 if (profilesnap.val() != null) {
-                //    console.log(profilesnap.child("Name").val());
+                    //    console.log(profilesnap.child("Name").val());
                     let profName = profilesnap.child("Name").val().split('&&')
                     let image = profilesnap.child("Profile").val().toString().includes('firebasestorage') ?
-                        profilesnap.child("Profile").val().toString() : 'src/assets/avatar.png' 
+                        profilesnap.child("Profile").val().toString() : 'src/assets/avatar.png'
 
-                 //       console.log(image);
+                    //       console.log(image);
                     $('.prof_container > ul ').prepend(
                         " <li>" +
                         "<a id=\"prof_link\" href=\"#\">" +
-                        "<img id=\"ic_prof\" src=\"" + image+ "\" />" +              
+                        "<img id=\"ic_prof\" src=\"" + image + "\" />" +
                         "<h2>" + profName[0] + "," + profName[1] + " " + profName[2].toString().substr(0, 1).toUpperCase() + "." +
                         "</h2>" +
                         "   <h3>Faculty</h3>" +
                         "  </a>" +
                         "  </li>"
-                    ).css("opacity","0").animate({opacity : '1'});
+                    ).css("opacity", "0").animate({
+                        opacity: '1'
+                    });
                 } else {
 
                 }
-
-
             });
         });
-
     });
+
+
+    $('.d-item-main').click(function()
+    {
+        window.location.href = 'profile.html';
+    });
+   
 
 });
 
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        let uid = user.uid;
+        firebase.database().ref('User/' + uid).on('value', snap => {
+            let Account_Type = snap.child('Account_Type').val();
+            let ID = snap.child('ID').val();
+            let Role = snap.child('Role').val();
+            let User = snap.child('UserID').val();
+            console.log(snap.val());
+            console.log('Account_Type:'+Account_Type);
+            console.log('ID:'+ID);
+            console.log('Role:'+Role);
+            console.log('UserID:'+User);
+            firebase.database().ref('Data/Professor/Information/' + User).on('value', uidsnap => 
+            {
+                console.log(uidsnap.val());
+                let profile = uidsnap.child('Profile').val();
+                let name = uidsnap.child('Name').val().split('&&');
+                console.log('Profile:'+profile);
+                console.log('Name:'+name);
+                $('#d-profile').attr('src',profile);
+                $('#d-name').html(name[1]+ " " + name[0] );
+                $('#d-pos').html(Role);
+            });
+        });
+        // ...
+    } else {
+        // User is signed out
+        // ...
 
+    }
+});
 
 function AutoUpdate() {
 

@@ -1,3 +1,19 @@
+var firebaseConfig = {
+    apiKey: "AIzaSyC3-mndhgpckYObAr23oH9s2_mDOnqtRaE",
+    authDomain: "attendancemonitoringsystem-00.firebaseapp.com",
+    databaseURL: "https://attendancemonitoringsystem-00-default-rtdb.firebaseio.com",
+    projectId: "attendancemonitoringsystem-00",
+    storageBucket: "attendancemonitoringsystem-00.appspot.com",
+    messagingSenderId: "782052298274",
+    appId: "1:782052298274:web:207c8b25cffae05e36047b",
+    measurementId: "G-P53BX41RFX"
+};
+
+firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
+
+
 function TimeStamp()
 {
 

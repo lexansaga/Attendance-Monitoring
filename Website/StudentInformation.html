@@ -145,37 +145,48 @@
                </ul>
             </div>
             <div class="profile-picture" title="Profile">
-               <img src="https://picsum.photos/200" />
+               <img src="src/assets/avatar.png" />
                <ul class="profile-menu">
-                  <li><a href="profile.html">Profile</a></li>
-                  <li><a href="settings.html">Settings</a></li>
-                  <li><a href="index.html">Logout</a></li>
+                  <li><a href="usermanagement.html?type=add">Add User</a></li>
+                  <li><a href="usermanagement.html?type=update">Edit User</a></li>
+                  <li><a href="usermanagement.html?type=delete">Delete User</a></li>
                </ul>
             </div>
          </div>
          <main class="item_container">
             <div class="StudentInf">
-                <img src="src/assets/profile.jpg">
-                <label id="studentName">Jose Protacio Realonda Y Rizal</label>
-                <button id="btnReport" onclick="showReportDiv()">Report</button>
+               <img src="src/assets/profile.jpg">
+               <label id="studentName">Jose Protacio Realonda Y Rizal</label>
+               <button id="btnReport" onclick="showReportDiv()">Report</button>
             </div>
             <div class="Pop_Up_ReportOption" id="popup">
-               <textarea id="textarea_bx"cols="40" rows="5" style="resize: none;" placeholder="Describe the nature of your report here." maxlength="200"></textarea>
+               <textarea id="textarea_bx" cols="40" rows="5" style="resize: none;"
+                  placeholder="Describe the nature of your report here." maxlength="200"></textarea>
                <button class="cancel_btn" onclick="hideReportDiv()">Cancel</button>
                <button class="Submit_btn">Submit</button>
             </div>
             <hr>
             <div class="info-grid">
-                <div class="grid-item"><h4>Student Number:</h4></div>
-                <div class="grid-item">02000017275</div>
-                <div class="grid-item"><h4>Section:</h4></div>  
-                <div class="grid-item">BSIT-601A</div>
-                <div class="grid-item"><h4>Address:</h4></div>
-                <div class="grid-item">232 Rizal Boulevard, Brgy. Tagapo, City of Santa Rosa Laguna</div>  
-                <div class="grid-item"><h4>Contact Number:</h4></div>
-                <div class="grid-item">0953435323524232</div>
-                <div class="grid-item"><h4>Status:</h4></div> 
-                <div class="grid-item" id="status">Active</div> 
+               <div class="grid-item">
+                  <h4>Student Number:</h4>
+               </div>
+               <div class="grid-item">02000017275</div>
+               <div class="grid-item">
+                  <h4>Section:</h4>
+               </div>
+               <div class="grid-item">BSIT-601A</div>
+               <div class="grid-item">
+                  <h4>Address:</h4>
+               </div>
+               <div class="grid-item">232 Rizal Boulevard, Brgy. Tagapo, City of Santa Rosa Laguna</div>
+               <div class="grid-item">
+                  <h4>Contact Number:</h4>
+               </div>
+               <div class="grid-item">0953435323524232</div>
+               <div class="grid-item">
+                  <h4>Status:</h4>
+               </div>
+               <div class="grid-item" id="status">Active</div>
             </div>
             <div class="text-labels">
                <h3>Attendance Graph</h3>
@@ -199,6 +210,19 @@
          </main>
       </div>
    </div>
+
+   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+   <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+
+   <!-- Add Firebase products that you want to use -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
       integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>

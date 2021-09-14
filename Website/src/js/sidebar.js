@@ -36,51 +36,55 @@ $(document).ready(function () {
         alert("Back button clicked");
     }
 
-    $('#input-search').focusin(function()
-    {
-        $('.search-menu').css({"opacity" : "1","display":"block"}).animate();
+    $('#input-search').focusin(function () {
+        $('.search-menu').css({
+            "opacity": "1",
+            "display": "block"
+        }).animate();
     });
-    $('#input-search').focusout(function()
-    {
-        $('.search-menu').css({"opacity" : "0","display":"none"}).animate();
-    });
-
-  
-/*
-    $(".profile-picture").click(function (e) {
-         
-        e.stopPropagation();
-        var opacity;
-        var menu = $('.profile-menu');
-        menu.css("opacity", 0);
-        if (menu.hasClass("show-menu")) {
-            //      alert("Has menu");
-            opacity = 0;
-            menu.removeClass("show-menu").animate({
-                opacity: opacity / 10
-            }, {
-                duration: 600,
-                queue: false
-            });
-
-
-        } else {
-            // alert("No menu");
-            opacity = 10;
-            menu.css("top", $(".header").height()).show();
-            menu.addClass("show-menu").animate({
-                opacity: opacity / 10
-            }, {
-                duration: 600,
-                queue: false
-            });
-        }
-
-        ToggleProfile(e, opacity);
-
+    $('#input-search').focusout(function () {
+        $('.search-menu').css({
+            "opacity": "0",
+            "display": "none"
+        }).animate();
     });
 
-*/
+
+    /*
+        $(".profile-picture").click(function (e) {
+             
+            e.stopPropagation();
+            var opacity;
+            var menu = $('.profile-menu');
+            menu.css("opacity", 0);
+            if (menu.hasClass("show-menu")) {
+                //      alert("Has menu");
+                opacity = 0;
+                menu.removeClass("show-menu").animate({
+                    opacity: opacity / 10
+                }, {
+                    duration: 600,
+                    queue: false
+                });
+
+
+            } else {
+                // alert("No menu");
+                opacity = 10;
+                menu.css("top", $(".header").height()).show();
+                menu.addClass("show-menu").animate({
+                    opacity: opacity / 10
+                }, {
+                    duration: 600,
+                    queue: false
+                });
+            }
+
+            ToggleProfile(e, opacity);
+
+        });
+
+    */
 
 
     MediaQuery();
@@ -88,8 +92,76 @@ $(document).ready(function () {
     // DashBoardResponsive();
     Chart.defaults.global.defaultFontFamily = "Karla";
 
+
 });
 
+
+
+var sidebarlinks = $('.nav-links > li');
+sidebarlinks.css('display', 'none');
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        let uid = user.uid;
+        firebase.database().ref('User/' + uid).on('value', snap => {
+            let Account_Type = snap.child('Account_Type').val();
+            let ID = snap.child('ID').val();
+            let Role = snap.child('Role').val();
+            let User = snap.child('UserID').val();
+        
+            // console.log(snap.val());
+            // console.log('Account_Type:'+Account_Type);
+            // console.log('ID:'+ID);
+            // console.log('Role:'+Role);
+            // console.log('UserID:'+User);
+            if (Account_Type.includes('Admin')) {
+                // User is Admin 
+                sidebarlinks.eq(0).css({
+                    'display': ''
+                }) //Home
+                sidebarlinks.eq(1).css('display', '') //Schedule
+                sidebarlinks.eq(3).css('display', '') // Attendance Report
+                sidebarlinks.eq(5).css('display', '') // User Management
+
+
+            } else if (Account_Type.includes('Guidance')) {
+                // User is Guidance 
+                sidebarlinks.eq(0).css({
+                    'display': ''
+                }) //Home
+                sidebarlinks.eq(1).css('display', '') //Schedule
+                sidebarlinks.eq(3).css('display', '') // Attendance Report
+                sidebarlinks.eq(2).css('display', '') // Attendance
+
+            } else {
+
+                sidebarlinks.eq(0).css({
+                    'display': ''
+                }) //Home
+                sidebarlinks.eq(1).css('display', '') //Schedule
+                sidebarlinks.eq(3).css('display', '') // Attendance Report
+                sidebarlinks.eq(4).css('display', '') // Reported
+
+                // User is Faculty
+            }
+            firebase.database().ref('Data/Professor/Information/' + User).on('value', uidsnap => {
+                //    console.log(uidsnap.val());
+                let profile = uidsnap.child('Profile').val();
+                let name = uidsnap.child('Name').val().split('&&');
+                //    console.log('Profile:' + profile);
+                //    console.log('Name:' + name);
+                $('.profile-picture > img').attr('src', profile);
+
+            });
+        });
+        // ...
+    } else {
+        // User is signed out
+        // ...
+
+    }
+});
 
 
 function ToggleNavbar(event, point) {
@@ -117,7 +189,7 @@ function ToggleNavbar(event, point) {
 
 function ToggleProfile(event, opacity) {
     $('body,html').click(function (e) {
-      
+
         e.stopImmediatePropagation();
         var menu = $('.profile-menu');
         //  alert(!menu.is(e.target));
@@ -125,7 +197,7 @@ function ToggleProfile(event, opacity) {
             menu.has(e.target).length === 0 &&
             menu.has("show-menu")) {
 
-           
+
 
             menu.removeClass("show-menu").animate();
         }
@@ -190,5 +262,15 @@ function MediaQuery() {
             //   alert("Mobile");
         }
         SideBarResponsive();
+    });
+}
+
+
+function Logout() {
+    firebase.auth().signOut().then(() => {
+        window.location.href = 'index.html';
+    }).catch((error) => {
+        // An error happened.
+        console.log(error.errorCode + '' + error.errorMessage);
     });
 }

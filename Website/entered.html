@@ -1,354 +1,368 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="src/css/entered.css" rel="stylesheet" />
-    <link href="src/css/sidebar.css" rel="stylesheet" />
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
-    
-    <title>Just Entered - ATMS</title>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="src/css/entered.css" rel="stylesheet" />
+   <link href="src/css/sidebar.css" rel="stylesheet" />
+   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+   <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
+
+   <title>Just Entered - ATMS</title>
 </head>
 
 <body>
 
-    <div class="main_container">
-        <div class="s-navbar" data-aos="fade-right">
-            <div class="logo-name">
-               <a href="main.html">
-                  <H3>
-                     ATTENDANCE<BR>MONITORING</H1>
-               </a>
-            </div>
-            <ul class="nav-links">
-               <li class="vert-line">
-                  <a href="main.html">
-                     <i class='bx bxs-home'></i>
-                     <span class="link_name">Home</span>
-                  </a>
-               </li>
-               <li class="vert-line">
-                  <a href="schedule.html">
-                     <i class='bx bx-calendar'></i>
-                     <span class="link_name">Schedule</span>
-                  </a>
-               </li>
-              
-               <li class="vert-line">
-                  <a href="attendance.html">
-                     <i class='bx bxs-report'></i>
-                     <span class="link_name">Attendance</span>
-                  </a>
-               </li>
-               <li class="vert-line">
-                  <a href="attendancereport.html">
-                     <i class='bx bxs-report'></i>
-                     <span class="link_name">Attendance Report</span>
-                  </a>
-               </li>
-               <li class="vert-line">
-                  <a href="reported.html">
-                     <i class='bx bxs-report'></i>
-                     <span class="link_name">Reported</span>
-                  </a>
-               </li>
-               <li class="vert-line">
-                  <a href="#">
-                     <i class='bx bxs-user-account'></i>
-                     <span class="link_name">User Management</span>
-                  </a>
-                  <ul class="sub-menu">
-                     <li><a href="#">Add User</a></li>
-                     <li><a href="#">Edit User</a></li>
-                     <li><a href="#">Delete User</a></li>
-                  </ul>
-               </li>
-               <li class="vert-line">
-                  <a href="manageschedule.html">
-                     <i class='bx bxs-report'></i>
-                     <span class="link_name">Subjects</span>
-                  </a>
-               </li>
-               <div class="bottom-image">
-                  <img src="src/assets/icon.png" />
-                  <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
-               </div>
-            </ul>
+   <div class="main_container">
+      <div class="s-navbar" data-aos="fade-right">
+         <div class="logo-name">
+            <a href="main.html">
+               <H3>
+                  ATTENDANCE<BR>MONITORING</H1>
+            </a>
          </div>
-         <div class="main_content">
-            <div class="header">
-               <div id="btn_menu">
-                  <i class='bx bx-menu-alt-left'></i>
-               </div>
-               <div class="search-bar">
-                  <input id="input-search" type="text" placeholder="Look for..." />
-                  <i class='bx bx-search'></i>
-                  <ul class="search-menu">
-                     <li>
-                        <a href="#">
-                           <img src="src/assets/avatar.png" />
-                           <h1>
-                              Title
-                           </h1>
-                           <h3>
-                              Description
-                           </h3>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#" class="view-notif">
-                           Powered By ATMS
-                        </a>
-                     </li>
-                  </ul>
-   
-   
-   
-               </div>
-   
-               <div class="notification " title="Notification">
-                  <i class='bx bxs-bell'></i>
-                  <ul class="notif-menu">
-                     <li>
-                        <a href="#">
-                           <img src="src/assets/avatar.png" />
-                           <h1>
-                              Title
-                           </h1>
-                           <h3>
-                              Description
-                           </h3>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#">
-                           <img src="src/assets/avatar.png" />
-                           <h1>
-                              Title
-                           </h1>
-                           <h3>
-                              Description
-                           </h3>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#">
-                           <img src="src/assets/avatar.png" />
-                           <h1>
-                              Title
-                           </h1>
-                           <h3>
-                              Description
-                           </h3>
-                        </a>
-                     </li>
-                     <li>
-                        <a href="#" class="view-notif">
-                           View all notification
-                        </a>
-                     </li>
-                  </ul>
-               </div>
-               <div class="profile-picture" title="Profile">
-                  <img src="https://picsum.photos/200" />
-                  <ul class="profile-menu">
-                     <li><a href="profile.html">Profile</a></li>
-                     <li><a href="settings.html">Settings</a></li>
-                     <li><a href="index.html">Logout</a></li>
-                  </ul>
-               </div>
+         <ul class="nav-links">
+            <li class="vert-line">
+               <a href="main.html">
+                  <i class='bx bxs-home'></i>
+                  <span class="link_name">Home</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="schedule.html">
+                  <i class='bx bx-calendar'></i>
+                  <span class="link_name">Schedule</span>
+               </a>
+            </li>
+
+            <li class="vert-line">
+               <a href="attendance.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Attendance</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="attendancereport.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Attendance Report</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="reported.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Reported</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="#">
+                  <i class='bx bxs-user-account'></i>
+                  <span class="link_name">User Management</span>
+               </a>
+               <ul class="sub-menu">
+                  <li><a href="#">Add User</a></li>
+                  <li><a href="#">Edit User</a></li>
+                  <li><a href="#">Delete User</a></li>
+               </ul>
+            </li>
+            <li class="vert-line">
+               <a href="manageschedule.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Subjects</span>
+               </a>
+            </li>
+            <div class="bottom-image">
+               <img src="src/assets/icon.png" />
+               <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
             </div>
-            <main class="item_container">
-                <h3><span>Just</span> Entered</h3>
-                <!--Here goes the content / Remove the Preceeding and add yours-->
-                <a class="reported-dates" href="#">
-                    <p>
-                        * Showing Data from 01/12/2021 - << Present Date>>‎<span><i class='bx bxs-calendar'></i> </span>
-                    </p>
-                </a>
-                <a class="archive" href="archive.html">
-                    <i class='bx bxs-archive'></i> Archive
-                </a>
-                <div class="list-attendance">
-                    <table id="datatable" class="hover row-border order-column">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Name</th>
-                                <th>Timestamp</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    08:14:32 AM
-                                </td>
-                                <td>In</td>
-                                <td><button class="btn-take-action">Take Action</button>
-                                    <button class="btn-delete">Delete Report</button></td>
-                            </tr>
-
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    08:14:31 AM
-                                </td>
-                                <td>Out</td>
-                                <td><button class="btn-take-action">Take Action</button>
-                                    <button class="btn-delete">Delete Report</button></td>
-                            </tr>
-
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    This contains the reason why the student
-                                </td>
-                                <td>Jeann B. Log</td>
-                                <td><button class="btn-take-action">Take Action</button>
-                                    <button class="btn-delete">Delete Report</button></td>
-                            </tr>
-
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    This contains the reason why the student
-                                </td>
-                                <td>Jeann B. Log</td>
-                                <td><button class="btn-take-action">Take Action</button>
-                                    <button class="btn-delete">Delete Report</button></td>
-                            </tr>
-
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    This contains the reason why the student
-                                </td>
-                                <td>Jeann B. Log</td>
-                                <td><button class="btn-take-action">Take Action</button>
-                                    <button class="btn-delete">Delete Report</button></td>
-                            </tr>
-
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    This contains the reason why the student
-                                </td>
-                                <td>Jeann B. Log</td>
-                                <td><button class="btn-take-action">Take Action</button>
-                                    <button class="btn-delete">Delete Report</button></td>
-                            </tr>
-
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    This contains the reason why the student
-                                </td>
-                                <td>Jeann B. Log</td>
-                                <td><button class="btn-take-action">Take Action</button>
-                                    <button class="btn-delete">Delete Report</button></td>
-                            </tr>
+         </ul>
+      </div>
+      <div class="main_content">
+         <div class="header">
+            <div id="btn_menu">
+               <i class='bx bx-menu-alt-left'></i>
+            </div>
+            <div class="search-bar">
+               <input id="input-search" type="text" placeholder="Look for..." />
+               <i class='bx bx-search'></i>
+               <ul class="search-menu">
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png" />
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="view-notif">
+                        Powered By ATMS
+                     </a>
+                  </li>
+               </ul>
 
 
 
-                        </tbody>
-                    </table>
-                </div>
+            </div>
+
+            <div class="notification " title="Notification">
+               <i class='bx bxs-bell'></i>
+               <ul class="notif-menu">
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png" />
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png" />
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png" />
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="view-notif">
+                        View all notification
+                     </a>
+                  </li>
+               </ul>
+            </div>
+            <div class="profile-picture" title="Profile">
+               <img src="https://picsum.photos/200" />
+               <ul class="profile-menu">
+                  <li><a href="usermanagement.html?type=add">Add User</a></li>
+                  <li><a href="usermanagement.html?type=update">Edit User</a></li>
+                  <li><a href="usermanagement.html?type=delete">Delete User</a></li>
+               </ul>
+            </div>
+         </div>
+         <main class="item_container">
+            <h3><span>Just</span> Entered</h3>
+            <!--Here goes the content / Remove the Preceeding and add yours-->
+            <a class="reported-dates" href="#">
+               <p>
+                  * Showing Data from 01/12/2021 - << Present Date>>‎<span><i class='bx bxs-calendar'></i> </span>
+               </p>
+            </a>
+            <a class="archive" href="archive.html">
+               <i class='bx bxs-archive'></i> Archive
+            </a>
+            <div class="list-attendance">
+               <table id="datatable" class="hover row-border order-column">
+                  <thead>
+                     <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Timestamp</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr>
+                        <td><img src="src/assets/profile.jpg" /></td>
+                        <td>Alexander Saga</td>
+                        <td>
+                           08:14:32 AM
+                        </td>
+                        <td>In</td>
+                        <td><button class="btn-take-action">Take Action</button>
+                           <button class="btn-delete">Delete Report</button></td>
+                     </tr>
+
+                     <tr>
+                        <td><img src="src/assets/profile.jpg" /></td>
+                        <td>Alexander Saga</td>
+                        <td>
+                           08:14:31 AM
+                        </td>
+                        <td>Out</td>
+                        <td><button class="btn-take-action">Take Action</button>
+                           <button class="btn-delete">Delete Report</button></td>
+                     </tr>
+
+                     <tr>
+                        <td><img src="src/assets/profile.jpg" /></td>
+                        <td>Alexander Saga</td>
+                        <td>
+                           This contains the reason why the student
+                        </td>
+                        <td>Jeann B. Log</td>
+                        <td><button class="btn-take-action">Take Action</button>
+                           <button class="btn-delete">Delete Report</button></td>
+                     </tr>
+
+                     <tr>
+                        <td><img src="src/assets/profile.jpg" /></td>
+                        <td>Alexander Saga</td>
+                        <td>
+                           This contains the reason why the student
+                        </td>
+                        <td>Jeann B. Log</td>
+                        <td><button class="btn-take-action">Take Action</button>
+                           <button class="btn-delete">Delete Report</button></td>
+                     </tr>
+
+                     <tr>
+                        <td><img src="src/assets/profile.jpg" /></td>
+                        <td>Alexander Saga</td>
+                        <td>
+                           This contains the reason why the student
+                        </td>
+                        <td>Jeann B. Log</td>
+                        <td><button class="btn-take-action">Take Action</button>
+                           <button class="btn-delete">Delete Report</button></td>
+                     </tr>
+
+                     <tr>
+                        <td><img src="src/assets/profile.jpg" /></td>
+                        <td>Alexander Saga</td>
+                        <td>
+                           This contains the reason why the student
+                        </td>
+                        <td>Jeann B. Log</td>
+                        <td><button class="btn-take-action">Take Action</button>
+                           <button class="btn-delete">Delete Report</button></td>
+                     </tr>
+
+                     <tr>
+                        <td><img src="src/assets/profile.jpg" /></td>
+                        <td>Alexander Saga</td>
+                        <td>
+                           This contains the reason why the student
+                        </td>
+                        <td>Jeann B. Log</td>
+                        <td><button class="btn-take-action">Take Action</button>
+                           <button class="btn-delete">Delete Report</button></td>
+                     </tr>
 
 
-            </main>
-        </div>
-    </div>
 
-    <div class="modal action">
-        <div class="modal-container">
-            <span class="close"><i class='bx bx-x'></i></span>
-            <main>
-                <h1>Take Action</h1>
-                <select>
-                    <option value="Name">Name</option>
-                    <option value="Name">Name</option>
-                    <option value="Name">Name</option>
-                </select>
-                <textarea placeholder="Summary"></textarea>
-
-                <div class="buttons">
-                    <button class="btn-submit">Submit</button>
-                    <button class="btn-cancel">Cancel</button>
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <div class="modal date">
-        <div class="modal-container">
-            <span class="close"><i class='bx bx-x'></i></span>
-            <main>
-                <h1>Select Date</h1>
-                <p>Date From: </p>
-                <input type="date" title="Input Date" />
-                <p>Date To: </p>
-                <input type="date" title="Input Date" placeholder="Month / Date / Year" />
-                <div class="buttons">
-                    <button class="btn-submit">Submit</button>
-                    <button class="btn-cancel">Cancel</button>
-                </div>
-            </main>
-        </div>
-    </div>
-
-    <div class="modal delete" >
-        <div class="modal-container" >
-            <span class="close"><i class='bx bx-x'></i></span>
-            <main>
-                <h1 style="text-align: center;">Are you sure you want to delete this?</h1>
-              
-                <div class="buttons">
-                    <button class="btn-submit">Yes</button>
-                    <button class="btn-cancel">Cancel</button>
-                </div>
-            </main>
-        </div>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
-        integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+                  </tbody>
+               </table>
+            </div>
 
 
-    <script src="src/js/script.js"></script>
-    <script src="src/js/entered.js"></script>
-    <script src="src/js/sidebar.js"></script>
+         </main>
+      </div>
+   </div>
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
-    </script>
+   <div class="modal action">
+      <div class="modal-container">
+         <span class="close"><i class='bx bx-x'></i></span>
+         <main>
+            <h1>Take Action</h1>
+            <select>
+               <option value="Name">Name</option>
+               <option value="Name">Name</option>
+               <option value="Name">Name</option>
+            </select>
+            <textarea placeholder="Summary"></textarea>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
+            <div class="buttons">
+               <button class="btn-submit">Submit</button>
+               <button class="btn-cancel">Cancel</button>
+            </div>
+         </main>
+      </div>
+   </div>
 
-        $(document).ready(function () {
-            var table = $('#datatable').DataTable({
+   <div class="modal date">
+      <div class="modal-container">
+         <span class="close"><i class='bx bx-x'></i></span>
+         <main>
+            <h1>Select Date</h1>
+            <p>Date From: </p>
+            <input type="date" title="Input Date" />
+            <p>Date To: </p>
+            <input type="date" title="Input Date" placeholder="Month / Date / Year" />
+            <div class="buttons">
+               <button class="btn-submit">Submit</button>
+               <button class="btn-cancel">Cancel</button>
+            </div>
+         </main>
+      </div>
+   </div>
 
-               "autoWidth":true,
-                "paging": true,
-                "info": true
-            });
+   <div class="modal delete">
+      <div class="modal-container">
+         <span class="close"><i class='bx bx-x'></i></span>
+         <main>
+            <h1 style="text-align: center;">Are you sure you want to delete this?</h1>
 
-        });
-    </script>
+            <div class="buttons">
+               <button class="btn-submit">Yes</button>
+               <button class="btn-cancel">Cancel</button>
+            </div>
+         </main>
+      </div>
+   </div>
+
+   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+   <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+
+   <!-- Add Firebase products that you want to use -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+      integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+   <script src="src/js/script.js"></script>
+   <script src="src/js/entered.js"></script>
+   <script src="src/js/sidebar.js"></script>
+
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
+   </script>
+
+   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+   <script>
+      AOS.init();
+
+      $(document).ready(function () {
+         var table = $('#datatable').DataTable({
+
+            "autoWidth": true,
+            "paging": true,
+            "info": true
+         });
+
+      });
+   </script>
 </body>
 
 </html>

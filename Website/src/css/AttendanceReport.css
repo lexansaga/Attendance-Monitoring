@@ -114,8 +114,8 @@ tr.shown td.details-control {
     margin: auto;
     top: 50px;
     background-color: white;
-    height: 35%;
-    width: 30%;
+    height: 480px;
+    width: 600px;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation: modal-animation;
@@ -135,67 +135,122 @@ tr.shown td.details-control {
     }
 }
 
-#setdatelbl{
-    position: absolute;
-    font-weight: bold;
-    font-size: 16px;
-    top: 15;
-    left: 20;
-}
-.close{
-    position: absolute;
-    right: 10;
-    top: 10;
-}
-.close i{
-    font-size: 25px;
-}
-.mainContent{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    margin-top: 15%;
-    width: 90%;
-    margin-left: 5%;
+.modal-container span {
+    position: relative;
+    left: 92%;
+    top: 15px;
+    cursor: pointer;
 }
 
-.mainContent input[type=text]{
-    margin-bottom: 2vw;
-    height: 30px;
-    font-size: 15px;
-    padding: 0px 10px;
+.modal-container span i {
+    font-size: 25px;
 }
-.mainContent input[type=date]{
-    margin-bottom: 2vw;
-    height: 30px;
-    width: 100%;
-    font-size: 15px;
-    padding: 0px 10px;
-}
-.modalMenu{
+
+.modal main {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: column;
+    margin: 20px 30px;
+    height: 100%;
 }
-.modalMenu button{
+
+.modal-container main h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--font-color-primary);
+}
+
+.modal-container main select {
     border: none;
-    width: 100px;
-    height: 35px;
-    border-radius: 10px;
+    outline: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    scroll-behavior: smooth;
+    background-color: var(--font-light-color);
+    border-bottom: 1px solid var(--text-border);
 }
-#modalSave{
-    background-color: #0DD26A;
-    color: white;
+
+.modal-container main select option {
+    outline: none;
+    border: none;
 }
-#modalSave:hover{
-    background-color: #0CC062;
+
+.modal-container main select option:hover {
+    background-color: aqua;
 }
-#modalCancel{
-    background-color: #F45837;
-    color: white;
+
+.modal-container main textarea {
+    margin-top: 10px;
+    padding: 20px 15px;
+    height: 60%;
+    outline: none;
+    border: 1px solid var(--text-border);
+    resize: none;
+
 }
-#modalCancel:hover{
-    background-color: #F34925;
+
+.buttons {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    right: 0;
+    top: 15px;
 }
+
+.buttons button {
+    outline: none;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.buttons button:nth-child(1) {
+    background-color: var(--color-accent-1);
+    color: var(--font-light-color);
+    margin-right: 10px;
+
+}
+
+.buttons button:nth-child(2) {
+    background-color: var(--red);
+    color: var(--font-light-color);
+
+}
+
+.buttons button:nth-child(1):hover {
+    background-color: rgba(66, 89, 125, 0.9);
+
+
+}
+
+.buttons button:nth-child(2):hover {
+    background-color: rgba(254, 82, 119, 0.9);
+
+
+}
+
+.date .modal-container main p {
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.date .modal-container main input[type="date"] {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--text-border);
+    text-transform: uppercase;
+    padding: 8px 0;
+}
+
+.delete .modal-container {
+    height: 130px;
+}
+
+.date .modal-container {
+    height: 320px;
+}
+
 #datatable {
     padding: 15px;
     border-bottom: 0 !important;
