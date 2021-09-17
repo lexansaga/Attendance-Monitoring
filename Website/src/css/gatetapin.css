@@ -7,9 +7,8 @@
 
 img {
   vertical-align: middle;
-  padding-top: 10px;
-  width: 98%;
-  height: 730px;
+  height: 700px;
+  margin-top: 1vw;
   object-fit: fill;
 }
 
@@ -55,7 +54,7 @@ img {
 .settings i{
   display: none;
   font-size: 40px;
-  color: #fff;
+  color:black;
   margin-top: 25px;
 }
 
@@ -65,4 +64,21 @@ img {
 }
 .settings i:active{
   color: #15A2FF;
+}
+
+.inf{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 15;
+  top: 10;
+}
+
+#LogInName{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#dateTime{
+  font-size: 20px
 }

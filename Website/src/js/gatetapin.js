@@ -18,6 +18,17 @@ function showSlides() {
   setTimeout(showSlides, 10000); // Change image every 2 seconds
 }
 
+const timecont =document.getElementById('dateTime');
+function time() {
+  var d = new Date();
+  var s = d.getSeconds();
+  var m = d.getMinutes();
+  var h = d.getHours();
+  timecont.textContent = d.toLocaleString();
+}
+
+setInterval(time, 1000);
+
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
