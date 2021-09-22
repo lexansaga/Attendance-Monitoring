@@ -64,10 +64,10 @@ input[type=time]{
     width: 80%;
 }
 .btnControl{
-    margin-top: 20%;
+    margin-top: 1vw;
+    margin-right: 110px;
     display: flex;
     justify-content: flex-end;
-    width: 90%;
 }
 .btnControl button{
     border: none;
@@ -83,6 +83,10 @@ input[type=time]{
 }
 .btnControl button:active{
     background-color: #5164EC;
+}
+.table_Wrapper{
+    width: 90%;
+    margin-top: 5vw;
 }
 
 /*----------------------------------------------------Tablet View----------------------------------------------------*/

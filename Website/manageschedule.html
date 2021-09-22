@@ -11,6 +11,9 @@
     
    <!-- Select2 CSS --> 
    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" /> 
+
+   <!-- DATA TABLE -->
+   <link href="//cdn.datatables.net/1.11.1/css/jquery.dataTables.min.css" rel="stylesheet">
     <title>Manage Schedule- ATMS</title>
 </head>
 <body>
@@ -194,6 +197,12 @@
                <button>Delete</button>
             </div>
 
+            <div class="table_Wrapper">
+               <table id="Scheduletbl" class="dataTable hover stripe order-column" style="width:100%"></table>
+               <br>
+               <br>
+             </div>
+
            </main>
         </div>
     </div>
@@ -228,5 +237,8 @@
 
    <!-- Select2 JS --> 
    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+
+   <!-- DATA TABLE -->
+   <script src="//cdn.datatables.net/1.11.1/js/jquery.dataTables.min.js"></script>
 </body>
 </html>
