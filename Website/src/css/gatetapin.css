@@ -1,0 +1,84 @@
+* {box-sizing: border-box;
+}
+
+.mySlides {
+  display: none;
+}
+
+img {
+  vertical-align: middle;
+  height: 700px;
+  margin-top: 1vw;
+  object-fit: fill;
+}
+
+/* Slideshow container */
+.slideshow-container {
+  position: relative;
+  height: fit-content;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #006CB7;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+.settings{
+  position:absolute;
+  width: 200px;
+  height: 300px;
+  text-align: left;
+  padding: 0px 30px;
+}
+
+.settings i{
+  display: none;
+  font-size: 40px;
+  color:black;
+  margin-top: 25px;
+}
+
+.settings i:hover{
+  cursor: pointer;
+  color: #66C1FF;
+}
+.settings i:active{
+  color: #15A2FF;
+}
+
+.inf{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  right: 15;
+  top: 10;
+}
+
+#LogInName{
+  font-size: 25px;
+  font-weight: bold;
+}
+
+#dateTime{
+  font-size: 20px
+}

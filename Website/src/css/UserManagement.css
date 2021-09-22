@@ -433,6 +433,7 @@ margin-right: 2vw;
         left: 55%;
     }
     .UserSetup input{
+        width: 100%;
         font-size: 15px;
         height: 3.5vw;
     }
