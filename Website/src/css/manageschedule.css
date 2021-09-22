@@ -96,7 +96,7 @@ input[type=time]{
         margin-top: 3vw;
     }
     .btnControl{
-        margin-top: 20%;
+        margin-right: 55px;
     }
 }
 
@@ -106,7 +106,12 @@ input[type=time]{
         margin-top: 8vw;
     }
     .btnControl{
-        margin-top: 45%;
+        margin-right: 4px;
+    }
+    .btnControl button{
+        width: 75px;
+        height: 35px;
+        margin-left: 10px;
     }
     input[type=time]{
         width: 40%;
