@@ -44,7 +44,7 @@ $(document).ready(function () {
 
 
 
-    console.log(list.Present);
+    // console.log(list.Present);
 
 
 
@@ -59,8 +59,6 @@ $(document).ready(function () {
             } else {
                 dataPath = "Data/Professor/Information";
             }
-
-
             //    console.log(dataPath + "/" + childSnapshot.child("EnteredID").val());
             Object.keys(childSnapshot).reverse();
             firebase.database().ref(dataPath + "/" + childSnapshot.child("EnteredID").val()).on("value", profilesnap => {
@@ -101,10 +99,13 @@ $(document).ready(function () {
     });
    
 
+
+    
 });
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+        var META_DATA = [];
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         let uid = user.uid;
@@ -112,22 +113,43 @@ firebase.auth().onAuthStateChanged((user) => {
             let Account_Type = snap.child('Account_Type').val();
             let ID = snap.child('ID').val();
             let Role = snap.child('Role').val();
-            let User = snap.child('UserID').val();
-            console.log(snap.val());
-            console.log('Account_Type:'+Account_Type);
-            console.log('ID:'+ID);
-            console.log('Role:'+Role);
-            console.log('UserID:'+User);
-            firebase.database().ref('Data/Professor/Information/' + User).on('value', uidsnap => 
+            let UserID = snap.child('UserID').val();
+            let Notification = snap.child('Notification').val();
+
+            console.log(Notification);
+            // console.log(snap.val());
+            // console.log('Account_Type:'+Account_Type);
+            // console.log('ID:'+ID);
+            // console.log('Role:'+Role);
+            // console.log('UserID:'+User);
+            firebase.database().ref('Data/Professor/Information/' + UserID).on('value', uidsnap => 
             {
                 console.log(uidsnap.val());
                 let profile = uidsnap.child('Profile').val();
                 let name = uidsnap.child('Name').val().split('&&');
-                console.log('Profile:'+profile);
-                console.log('Name:'+name);
+                let address = uidsnap.child('Address').val();
+                let department = uidsnap.child('Department').val();
+            //    console.log('Profile:'+profile);
+            //    console.log('Name:'+name);
                 $('#d-profile').attr('src',profile);
                 $('#d-name').html(name[1]+ " " + name[0] );
                 $('#d-pos').html(Role);
+
+                META_DATA.push(
+                    {
+                        UID: uid,
+                        Account_Type: Account_Type,
+                        ID : ID,
+                        Role : Role,
+                        UserID : UserID,
+                        Profile : profile,
+                        Name:name,  
+                        Address:address,
+                        Department:department,
+                        Notification:Notification            
+                    });
+
+                    sessionStorage.setItem("META_DATA",JSON.stringify(META_DATA));
             });
         });
         // ...
@@ -136,6 +158,8 @@ firebase.auth().onAuthStateChanged((user) => {
         // ...
 
     }
+
+    console.log(JSON.parse(sessionStorage.getItem('META_DATA')))
 });
 
 function AutoUpdate() {

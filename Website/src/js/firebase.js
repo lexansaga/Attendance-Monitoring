@@ -22,23 +22,6 @@ function addScript(src) {
 
 // addScript("https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js");
 
-// 
-
-
-
-var firebaseConfig = {
-    apiKey: "AIzaSyC3-mndhgpckYObAr23oH9s2_mDOnqtRaE",
-    authDomain: "attendancemonitoringsystem-00.firebaseapp.com",
-    databaseURL: "https://attendancemonitoringsystem-00-default-rtdb.firebaseio.com",
-    projectId: "attendancemonitoringsystem-00",
-    storageBucket: "attendancemonitoringsystem-00.appspot.com",
-    messagingSenderId: "782052298274",
-    appId: "1:782052298274:web:207c8b25cffae05e36047b",
-    measurementId: "G-P53BX41RFX"
-};
-
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
 
 
 class Firebase {
@@ -59,19 +42,11 @@ class Firebase {
             return JSON.parse(sessionStorage.getItem("Data"));
 
         }
-        static COUNT(Path) {
-
+        static async COUNT(Path) {
             var query = firebase.database().ref(Path);
-
-            query.once("value", snap => {
-
-                //      console.log(snap.numChildren());
-                sessionStorage.removeItem("Count");
-                sessionStorage.setItem("Count", snap.numChildren());
-
-            });
-
-            return sessionStorage.getItem("Count");
+            var async = query.once("value").then();
+            console.log(async.val());
+            return  async;
 
         }
         static SET(Path, Data) {
@@ -93,11 +68,87 @@ class Firebase {
         static GET() {
 
         }
-        static UPLOAD() {
+
+        static async UPLOAD(Path, File) {
+            var storageRef = firebase.storage().ref(Path);
+            await storageRef.put(File).then();
+            alert('File Added Successfully');
+        }
+        
+        static DOWNLOAD(PATH) {
+            // Create a reference to the file we want to download
+            var storageRef = firebase.storage().ref(PATH);
+
+            // Get the download URL
+            storageRef.getDownloadURL()
+                .then((url) => {
+                    // Insert url into an <img> tag to "download"
+                    var link = document.createElement("a");
+                    // If you don't know the name or want to use
+                    // the webserver default set name = ''
+                    link.setAttribute('download', '');
+                    link.href = url;
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                })
+                .catch((error) => {
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                        case 'storage/object-not-found':
+                            // File doesn't exist
+                            break;
+                        case 'storage/unauthorized':
+                            // User doesn't have permission to access the object
+                            break;
+                        case 'storage/canceled':
+                            // User canceled the upload
+                            break;
+
+                            // ...
+
+                        case 'storage/unknown':
+                            // Unknown error occurred, inspect the server response
+                            break;
+                    }
+                });
 
         }
-        static DOWNLOAD() {
-            return window.location.href = $PATH;
+
+        static LOADIMAGE(PATH, Image) {
+            // Create a reference to the file we want to download
+            var storageRef = firebase.storage().ref(PATH);
+
+            // Get the download URL
+            storageRef.getDownloadURL()
+                .then((url) => {
+                    // Insert url into an <img> tag to "download"
+                    Image.src = url;
+                    console.log(url);
+                })
+                .catch((error) => {
+                    // A full list of error codes is available at
+                    // https://firebase.google.com/docs/storage/web/handle-errors
+                    switch (error.code) {
+                        case 'storage/object-not-found':
+                            // File doesn't exist
+                            break;
+                        case 'storage/unauthorized':
+                            // User doesn't have permission to access the object
+                            break;
+                        case 'storage/canceled':
+                            // User canceled the upload
+                            break;
+
+                            // ...
+
+                        case 'storage/unknown':
+                            // Unknown error occurred, inspect the server response
+                            break;
+                    }
+                });
+
         }
 
     }

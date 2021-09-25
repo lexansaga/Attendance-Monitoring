@@ -99,69 +99,43 @@ $(document).ready(function () {
 
 var sidebarlinks = $('.nav-links > li');
 sidebarlinks.css('display', 'none');
-firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
-        let uid = user.uid;
-        firebase.database().ref('User/' + uid).on('value', snap => {
-            let Account_Type = snap.child('Account_Type').val();
-            let ID = snap.child('ID').val();
-            let Role = snap.child('Role').val();
-            let User = snap.child('UserID').val();
-        
-            // console.log(snap.val());
-            // console.log('Account_Type:'+Account_Type);
-            // console.log('ID:'+ID);
-            // console.log('Role:'+Role);
-            // console.log('UserID:'+User);
-            if (Account_Type.includes('Admin')) {
-                // User is Admin 
-                sidebarlinks.eq(0).css({
-                    'display': ''
-                }) //Home
-                sidebarlinks.eq(1).css('display', '') //Schedule
-                sidebarlinks.eq(3).css('display', '') // Attendance Report
-                sidebarlinks.eq(5).css('display', '') // User Management
+
+var META_DATA = JSON.parse(sessionStorage.getItem('META_DATA'))[0];
+var Account_Type = META_DATA.Account_Type;
+// console.log(Account_Type.includes('Admin'));
+// console.log(Account_Type);
+$('.profile-picture > img').attr('src', META_DATA.Profile);
+if (Account_Type.includes('Admin')) {
+    // User is Admin 
+    sidebarlinks.eq(0).css({
+        'display': ''
+    }) //Home
+    sidebarlinks.eq(1).css('display', '') //Schedule
+    sidebarlinks.eq(3).css('display', '') // Attendance Report
+    sidebarlinks.eq(5).css('display', '') // User Management
 
 
-            } else if (Account_Type.includes('Guidance')) {
-                // User is Guidance 
-                sidebarlinks.eq(0).css({
-                    'display': ''
-                }) //Home
-                sidebarlinks.eq(1).css('display', '') //Schedule
-                sidebarlinks.eq(3).css('display', '') // Attendance Report
-                sidebarlinks.eq(2).css('display', '') // Attendance
+} else if (Account_Type.includes('Guidance')) {
+    // User is Guidance 
+    sidebarlinks.eq(0).css({
+        'display': ''
+    }) //Home
+    sidebarlinks.eq(1).css('display', '') //Schedule
+    sidebarlinks.eq(3).css('display', '') // Attendance Report
+    sidebarlinks.eq(2).css('display', '') // Attendance
 
-            } else {
+} else {
 
-                sidebarlinks.eq(0).css({
-                    'display': ''
-                }) //Home
-                sidebarlinks.eq(1).css('display', '') //Schedule
-                sidebarlinks.eq(3).css('display', '') // Attendance Report
-                sidebarlinks.eq(4).css('display', '') // Reported
+    sidebarlinks.eq(0).css({
+        'display': ''
+    }) //Home
+    sidebarlinks.eq(1).css('display', '') //Schedule
+    sidebarlinks.eq(3).css('display', '') // Attendance Report
+    sidebarlinks.eq(4).css('display', '') // Reported
 
-                // User is Faculty
-            }
-            firebase.database().ref('Data/Professor/Information/' + User).on('value', uidsnap => {
-                //    console.log(uidsnap.val());
-                let profile = uidsnap.child('Profile').val();
-                let name = uidsnap.child('Name').val().split('&&');
-                //    console.log('Profile:' + profile);
-                //    console.log('Name:' + name);
-                $('.profile-picture > img').attr('src', profile);
+    // User is Faculty
+}
 
-            });
-        });
-        // ...
-    } else {
-        // User is signed out
-        // ...
-
-    }
-});
 
 
 function ToggleNavbar(event, point) {

@@ -1,3 +1,37 @@
+
+  $('.UserInformation_wrapper').css('display','none');
+
+$(document).ready(function() 
+{
+
+    $('#userSchedule').DataTable({
+        scrollX:true,
+        bLengthChange: false,
+        data:tableData,
+        columns:[
+            {title:"Subject"},
+            {title:"Day"},
+            {title:"Time"},
+            {title:"Room"},
+            {title:"Professor"},
+            {title:""}
+        ]
+    });
+
+    console.log(JSON.parse(sessionStorage.getItem('META_DATA')));
+  
+ 
+
+    $('#searchbx').on('input',function(e){
+
+        var inputVal = $(this).val();
+        firebase.database().ref('Data/Professor/Information/').orderByChild('ID').startAt(inputVal).endAt(inputVal+"\uf8ff").on('value', snap =>
+        {
+           console.log(snap.val());
+        });
+    });
+});
+
 let tableData = [[
     "IT Capstone Project 2",
     "Wednesday",
@@ -40,21 +74,6 @@ let tableData = [[
     ],
 ]
 
-$(document).ready(function() {
-    $('#userSchedule').DataTable({
-        scrollX:true,
-        bLengthChange: false,
-        data:tableData,
-        columns:[
-            {title:"Subject"},
-            {title:"Day"},
-            {title:"Time"},
-            {title:"Room"},
-            {title:"Professor"},
-            {title:""}
-        ]
-    });
-} );
 
 $('#searchbx').focusin(function()
 {
