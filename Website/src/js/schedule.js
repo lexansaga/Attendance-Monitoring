@@ -18,7 +18,7 @@ $(document).ready(function()
         ]
     });
 
-    console.log(JSON.parse(sessionStorage.getItem('META_DATA')));
+    console.log(JSON.parse(localStorage.getItem('META_DATA')));
   
  
 

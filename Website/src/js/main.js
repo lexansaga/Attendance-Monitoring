@@ -1,8 +1,5 @@
 $(document).ready(function () {
 
-
-    // alert("loaded");
-    // DashBoardResponsive();
     sOnLoadMediaQuery();
     sMediaQuery();
     Chart.defaults.global.defaultFontFamily = "Karla";
@@ -102,13 +99,14 @@ $(document).ready(function () {
 
     
 });
-
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
+     
         var META_DATA = [];
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         let uid = user.uid;
+        console.log(uid);
         firebase.database().ref('User/' + uid).on('value', snap => {
             let Account_Type = snap.child('Account_Type').val();
             let ID = snap.child('ID').val();
@@ -116,12 +114,6 @@ firebase.auth().onAuthStateChanged((user) => {
             let UserID = snap.child('UserID').val();
             let Notification = snap.child('Notification').val();
 
-            console.log(Notification);
-            // console.log(snap.val());
-            // console.log('Account_Type:'+Account_Type);
-            // console.log('ID:'+ID);
-            // console.log('Role:'+Role);
-            // console.log('UserID:'+User);
             firebase.database().ref('Data/Professor/Information/' + UserID).on('value', uidsnap => 
             {
                 console.log(uidsnap.val());
@@ -129,6 +121,7 @@ firebase.auth().onAuthStateChanged((user) => {
                 let name = uidsnap.child('Name').val().split('&&');
                 let address = uidsnap.child('Address').val();
                 let department = uidsnap.child('Department').val();
+                let contact = uidsnap.child('Contact').val();
             //    console.log('Profile:'+profile);
             //    console.log('Name:'+name);
                 $('#d-profile').attr('src',profile);
@@ -146,10 +139,11 @@ firebase.auth().onAuthStateChanged((user) => {
                         Name:name,  
                         Address:address,
                         Department:department,
-                        Notification:Notification            
+                        Notification:Notification,
+                        Contact : contact            
                     });
 
-                    sessionStorage.setItem("META_DATA",JSON.stringify(META_DATA));
+                    localStorage.setItem("META_DATA",JSON.stringify(META_DATA));
             });
         });
         // ...
@@ -158,8 +152,8 @@ firebase.auth().onAuthStateChanged((user) => {
         // ...
 
     }
-
-    console.log(JSON.parse(sessionStorage.getItem('META_DATA')))
+console.log("Local Storage MetaData");
+    console.log(JSON.parse(localStorage.getItem('META_DATA')))
 });
 
 function AutoUpdate() {

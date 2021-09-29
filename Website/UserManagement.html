@@ -178,6 +178,11 @@
                   <option value="faculty">Faculty</option>
                   <option value="faculty">Gate</option>
                </select>
+               <select id="Role">
+                  <option value="" disabled selected>Select Role (Default : Faculty)</option>
+                  <option value="Administrator">Administrator</option>
+                  <option value="Guidance">Guidance</option>
+               </select>
 
                <input type="text" placeholder="" id="ID" disabled>
 
@@ -219,12 +224,12 @@
                   <input class="cbx" type="checkbox">
                   <span class="checkmark"></span>
                </label>
-               <label class="container">Enable Add, Edit, and Delete Student.
+               <label class="container" style="display: none;" >Enable Add, Edit, and Delete Student.
                   <input type="checkbox">
                   <span class="checkmark"></span>
                </label>
-               <label class="container">Administrator Privilege
-                  <input type="checkbox">
+               <label class="container" style="display: none;">Administrator Privilege
+                  <input type="checkbox" >
                   <span class="checkmark"></span>
                </label>
             </div>

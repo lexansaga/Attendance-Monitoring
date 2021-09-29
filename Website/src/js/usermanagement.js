@@ -1,5 +1,5 @@
 //Start -- Initializaion of Objects 
-
+var role = $('#Role');
 var studentEmail = $('#Email');
 var lastName = $('#LName');
 var firstName = $('#FName');
@@ -150,7 +150,7 @@ var reset = function () {
     $('.inputArea >  input, .inputArea > textarea,.UserSetup > input').each(function () {
 
         $(this).css({
-            'border': 'none'
+         //   'border': 'none'
         });
 
     })
@@ -220,7 +220,7 @@ function VerifyType() {
         subject.css({
             'display': 'block'
         });
-
+        role.css({'display':'none'});
 
         loadid('Student');
 
@@ -269,6 +269,8 @@ function VerifyType() {
             'display': 'block'
         });
 
+        role.css({'display':'block'});
+
         loadid('Professor');
 
 
@@ -316,6 +318,8 @@ function VerifyType() {
             'display': 'none'
         });
 
+        role.css({'display':'none'});
+
         loadid('Gate');
 
     } else {
@@ -333,6 +337,47 @@ function VerifyType() {
         document.getElementById('ContactNumber').style.display = "none";
         document.getElementById('Address').style.display = "none";
         document.getElementById('setSubject').style.display = "none";
+
+        userSetup.css({
+            'display': 'none'
+        });
+        permission.css({
+            'display': 'none'
+        });
+        mainButton.css({
+            'display': 'none'
+        });
+        mainTable.css({
+            'display': 'none'
+        });
+
+        studentEmail.css({
+            'display': 'none'
+        });
+        lastName.css({
+            'display': 'none'
+        });
+        firstName.css({
+            'display': 'none'
+        });
+        middleName.css({
+            'display': 'none'
+        });
+        ID.css({
+            'display': 'none'
+        });
+        ID.attr('placeholder', 'Enter Gate ID');
+
+        contact.css({
+            'display': 'none'
+        });
+        address.css({
+            'display': 'none'
+        });
+        subject.css({
+            'display': 'none'
+        });
+        role.css({'display':'none'});
     }
 }
 
@@ -340,6 +385,9 @@ function VerifyType() {
 $('#btnsave').click(function (event) {
     const selected = document.getElementById("UserType");
     const e = selected.options[selected.selectedIndex].text;
+
+    const Role = document.getElementById("Role");
+    const selectedRole = Role.options[Role.selectedIndex].text;
 
     if (e == 'Student') {
         event.stopPropagation();
@@ -498,7 +546,7 @@ $('#btnsave').click(function (event) {
                                     'Account_Type': e,
                                     'ID': uid,
                                     'Password': dPassword,
-                                    'Role': e,
+                                    'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole ,
                                     'UserID': dId,
                                     'Email': dEmail
                                 });

@@ -102,7 +102,7 @@ $(document).ready(function () {
 var sidebarlinks = $('.nav-links > li');
 sidebarlinks.css('display', 'none');
 
-var META_DATA = JSON.parse(sessionStorage.getItem('META_DATA'))[0];
+var META_DATA = JSON.parse(localStorage.getItem('META_DATA'))[0];
 var Account_Type = META_DATA.Account_Type;
 console.log('META_DATA');
 console.log(META_DATA);

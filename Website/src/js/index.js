@@ -1,4 +1,4 @@
-var dummyEmail = "@sti.com";
+
 
 function Login() {
     var email = $("#username").val();
