@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+   
+
 
     SideBarResponsive();
     $("#btn_menu").click(function (e) {
@@ -102,6 +104,8 @@ sidebarlinks.css('display', 'none');
 
 var META_DATA = JSON.parse(sessionStorage.getItem('META_DATA'))[0];
 var Account_Type = META_DATA.Account_Type;
+console.log('META_DATA');
+console.log(META_DATA);
 // console.log(Account_Type.includes('Admin'));
 // console.log(Account_Type);
 $('.profile-picture > img').attr('src', META_DATA.Profile);

@@ -52,6 +52,8 @@
     height: 10vw;
     padding: 10px 10px;
     font-size: 16px;
+    outline: none;
+    border: none;
 }
 
 #UserType{
@@ -91,7 +93,7 @@
     text-decoration: underline;
     font-size: 15px;
     width: 98.4%;
-    height: 2vw;
+    height: 45px;
     border: none;
     background-color: #fff;
 }
@@ -116,11 +118,18 @@
 #SubjectSection-table tr:hover{
     background-color: #D1D7FA;
 }
+#SubjectSection-table thead
+{
+
+}
   
  #SubjectSection-table th{
     background-color: #B2BBF7;
     color: #ffff;
     font-size: 17px;
+    height: 45px;
+
+    font-weight: 300;
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -316,6 +325,13 @@ margin-right: 2vw;
     height: fit-content;
     margin-top: 55px;
 }
+#Select_Section
+{
+    width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid var(--font-color-primary);
+}
 .tableContainer{
     margin-top: 50px;
     position: absolute;
@@ -399,8 +415,7 @@ margin-right: 2vw;
         margin-top: 2vw;
     }
     .inputArea input{
-        margin-right: .8vw;
-        margin-bottom: .5vw;
+        margin-bottom: 10px;
         height: 45px;
         width: 210px;
     }
