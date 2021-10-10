@@ -37,7 +37,7 @@ $(document).ready(function () {
         // This Promise will read Subject Data on Firebase and add on Select object on modal Table
         snap.forEach(childSnap => {
             console.log(childSnap.val());
-            $("#Select_Section").append(new Option(childSnap.child('Code').val(), childSnap.child('Code').val(), false, false)).trigger('change');
+            $("#Select_Section").append(new Option("("+childSnap.child('Code').val()+")"+childSnap.child('Title').val(), childSnap.child('Code').val(), false, false)).trigger('change');
 
         });
     });

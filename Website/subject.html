@@ -4,15 +4,19 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="src/css/main.css" rel="stylesheet" />
    <link href="src/css/sidebar.css" rel="stylesheet" />
+   <link href="src/css/subject.css" rel="stylesheet" />
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-   <title>Dashboard</title>
+
+   <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
+
+   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+   <title>Attendance Report- ATMS</title>
 </head>
 
 <body>
-
    <div class="main_container">
       <div class="s-navbar" data-aos="fade-right">
          <div class="logo-name">
@@ -166,69 +170,40 @@
             </div>
          </div>
          <main class="item_container">
-            <h3><span>Dash</span>board</h3>
-            <!--Here goes the content / Remove the Preceeding and add yours-->
-            <div class="d_container">
-               <div class="d-item-main d-item-highlight">
-                  <img id="d-profile" src="src/assets/avatar.png" />
-                  <h3 id="d-name">——</h3>
-                  <h5 id="d-pos">——</h5>
-               </div>
-               <div class="d-items">
-                  <img class="d-items-img" src="src/assets/ic_cap.svg"
-                     style="filter: invert(57%) sepia(11%) saturate(6857%) hue-rotate(206deg) brightness(73%) contrast(89%);" />
-                  <h5 class="d-items-label">Total Students</h5>
-                  <h1 id="cnt_students">——</h1>
-               </div>
-               <div class="d-items">
-                  <img src="src/assets/ic_cap.svg"
-                     style="filter:invert(33%) sepia(37%) saturate(586%) hue-rotate(177deg) brightness(90%) contrast(87%)" />
-                  <h5>Total number of present </h5>
-                  <h1 id="cnt_students">——</h1>
-               </div>
-               <div class="d-items">
-                  <img src="src/assets/ic_cap.svg"
-                     style="filter:invert(80%) sepia(4%) saturate(3140%) hue-rotate(189deg) brightness(104%) contrast(106%)" />
-                  <h5>Total number of absent</h5>
-                  <h1 id="cnt_students">——</h1>
-               </div>
-               <div class="d-items">
-                  <img src="src/assets/ic_cap.svg"
-                     style="filter:invert(91%) sepia(58%) saturate(1585%) hue-rotate(178deg) brightness(105%) contrast(104%)" />
-                  <h5>Total number of lates</h5>
-                  <h1 id="cnt_students">——</h1>
-               </div>
-            </div>
-            <div class="dash-row">
-               <div class="pie-chart">
-                  <h3><span>Pie</span> Report</h3>
-                  <div class="pie-container">
-                     <canvas id="pieChart"></canvas>
-                  </div>
-               </div>
-               <div class="line-chart">
-                  <h3>
-                     <span> Line</span> Report
-                  </h3>
-                  <div class="line_container">
-                     <canvas id="lineChart"></canvas>
-                  </div>
-               </div>
-               <div class="professor">
-                  <h3>
-                     <span> Pro</span>fessor
-                  </h3>
-                  <div class="prof_container">
-                     <ul>
+            <h3>Subject</h3>
 
-                     </ul>
-                     <a href="#">View all</a>
-                  </div>
-               </div>
+            <input id="sub_id" type="text" placeholder="Subject ID" disabled />
+            <input id="sub_name" type="text" placeholder="Subject Name" />
+            <input id="sub_description" type="text" placeholder="Subject Description" />
+            <input id="sub_location" type="text" placeholder="Subject Location" />
+            <input id="sub_start" type="time" placeholder="Subject Start Time" />
+            <input id="sub_end" type="time" placeholder="Subject End Time" />
+            <select class="js-example-basic-single" id="sub_days" name="state">
+               <option value="" disabled selected>Select Day</option>
+               <option value="Sunday">Sunday</option>
+               <option value="Monday">Monday</option>
+               <option value="Tuesday">Tuesday</option>
+               <option value="Wednesday">Wednesday</option>
+               <option value="Thursday">Thursday</option>
+               <option value="Friday">Friday</option>
+               <option value="Saturday">Saturday</option>
+            </select>
+            <select class="js-example-basic-single" id="professors">
+               <option value="" disabled selected>Select Professor</option>
+            </select>
+            <div class="function">
+               <button id="submits">
+                  Submit
+               </button>
+               <button id="cancel">
+                  Cancel
+               </button>
+
             </div>
          </main>
       </div>
    </div>
+
    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -242,21 +217,26 @@
    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
-
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
       integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-   <script src="src/js/script.js"></script>
-   <script src="src/js/main.js"></script>
-   <script src="src/js/sidebar.js"></script>
-  
 
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+   <script src="src/js/script.js"></script>
+   <script src="src/js/sidebar.js"></script>
+   <script src="src/js/subject.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
    <script>
       AOS.init();
    </script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

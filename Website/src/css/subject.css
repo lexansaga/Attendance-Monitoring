@@ -1,0 +1,61 @@
+@import url(root.css);
+
+
+main input,select{
+    height: 45px;
+    margin-bottom: 10px;
+    width: 90%;
+    margin-right: 1.5%;
+    background-color: #fff;
+    padding: 0px 10px;
+    font-size: 16px;
+    outline: none;
+    border: solid 1.5px var(--color-accent-3)
+}
+main input:nth-child(2)
+{
+    margin-top: 50px;
+}
+main input:not(:placeholder-shown) {
+    background-color: var(--color-accent-3) !important;
+}
+
+main input:focus{
+    box-shadow: 0 0 1pt 1pt var(--color-accent-3);
+    outline-width: 0px;
+}
+#sub_start::before {
+    content: attr(placeholder) !important;
+    color: var(--font-color-primary);
+    margin-right: 0.5em;
+  }
+  #sub_start:focus:before,
+  #sub_start:valid:before {
+    content: "";
+  }
+  #sub_end::before {
+    content: attr(placeholder) !important;
+    color: var(--font-color-primary);
+    margin-right: 0.5em;
+  }
+  #sub_end:focus:before,
+  #sub_end:valid:before {
+    content: "";
+  }
+.function button
+{
+    margin-right: 10px;
+    margin-top: 20px;
+    width: 90px;
+    height: 40px;
+    border: none;
+    background-color: #B2BBF7;
+    color: #fff;
+}
+.function button:hover {
+    background-color: #97A3F4;
+}
+
+.function button:active {
+    background-color: #6D7DEF;
+}

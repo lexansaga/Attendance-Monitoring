@@ -14,8 +14,9 @@ $(document).ready(function () {
 
     var list = [];
 
-    firebase.database().ref("Attendance/Gate").on("value", snap => {
+    firebase.database().ref("Attendance/Gate/2021-01-01").on("value", snap => {
         $('.d-items:nth-child(2) > h1').html(snap.numChildren()); // For Total Students
+        console.log(snap.val());
     });
 
     firebase.database().ref("Attendance/Student/2021-01-01").orderByChild('Attendance_Status').equalTo('Present').on("value", snap => {
@@ -56,19 +57,19 @@ $(document).ready(function () {
             } else {
                 dataPath = "Data/Professor/Information";
             }
-            //    console.log(dataPath + "/" + childSnapshot.child("EnteredID").val());
+             
             Object.keys(childSnapshot).reverse();
             firebase.database().ref(dataPath + "/" + childSnapshot.child("EnteredID").val()).on("value", profilesnap => {
               
                 //       console.log(profilesnap.val())
 
-
+                console.log(dataPath + "/" + childSnapshot.child("EnteredID").val());
                 if (profilesnap.val() != null) {
                     //    console.log(profilesnap.child("Name").val());
                     let profName = profilesnap.child("Name").val().split('&&')
                     let image = profilesnap.child("Profile").val().toString().includes('firebasestorage') ?
                         profilesnap.child("Profile").val().toString() : 'src/assets/avatar.png'
-
+                   
                     //       console.log(image);
                     $('.prof_container > ul ').prepend(
                         " <li>" +
@@ -83,7 +84,7 @@ $(document).ready(function () {
                         opacity: '1'
                     });
                 } else {
-
+                    $('.prof_container > ul ').html('<p style="font-size:18px;text-align:center;background-color:transparent;font-weight:600;width:100%"> No one entered yet. </P>');
                 }
             });
         });
@@ -128,22 +129,7 @@ firebase.auth().onAuthStateChanged((user) => {
                 $('#d-name').html(name[1]+ " " + name[0] );
                 $('#d-pos').html(Role);
 
-                META_DATA.push(
-                    {
-                        UID: uid,
-                        Account_Type: Account_Type,
-                        ID : ID,
-                        Role : Role,
-                        UserID : UserID,
-                        Profile : profile,
-                        Name:name,  
-                        Address:address,
-                        Department:department,
-                        Notification:Notification,
-                        Contact : contact            
-                    });
 
-                    localStorage.setItem("META_DATA",JSON.stringify(META_DATA));
             });
         });
         // ...
@@ -152,8 +138,6 @@ firebase.auth().onAuthStateChanged((user) => {
         // ...
 
     }
-console.log("Local Storage MetaData");
-    console.log(JSON.parse(localStorage.getItem('META_DATA')))
 });
 
 function AutoUpdate() {

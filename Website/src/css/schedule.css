@@ -203,6 +203,7 @@ th {
     width: 90%;
   }
 
+
  
 }
 
@@ -236,7 +237,14 @@ th {
     margin-bottom: 2px;
   }
 
-  
+  .SearchControl_wrapper
+  {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    margin: 1vw auto; 
+  }
+
 
   .SearchControl_wrapper select {
     width: 100px;

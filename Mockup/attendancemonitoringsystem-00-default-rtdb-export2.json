@@ -1,0 +1,209 @@
+{
+  "Attendance": {
+    "Gate": {
+      "2021-01-01": {
+        "ATTGATE0000000001": {
+          "EnteredID": "STUD1000001",
+          "ID": "ATTGATE0000000001",
+          "Location": "B3",
+          "Status": "In",
+          "Timestamp": "2021-01-01&&10:10:10",
+          "isValid": "True"
+        },
+        "ATTGATE0000000002": {
+          "EnteredID": "STUD1000002",
+          "ID": "ATTGATE0000000002",
+          "Location": "B3",
+          "Status": "Out",
+          "Timestamp": "2021-01-01&&11:10:10",
+          "isValid": "True"
+        },
+        "ATTGATE0000000003": {
+          "EnteredID": "STUD1000003",
+          "ID": "ATTGATE0000000003",
+          "Location": "B2",
+          "Status": "In",
+          "Timestamp": "2021-01-01&&10:11:10",
+          "isValid": "True"
+        },
+        "ATTGATE0000000004": {
+          "EnteredID": "STUD1000004",
+          "ID": "ATTGATE0000000004",
+          "Location": "B2",
+          "Status": "Out",
+          "Timestamp": "2021-01-01&&11:11:10",
+          "isValid": "True"
+        }
+      },
+      "2021-01-02": {
+        "ATTGATE0000000001": {
+          "EnteredID": "IDSTUD1000001",
+          "ID": "ATTGATE0000000001",
+          "Location": "B3",
+          "Status": "In",
+          "Timestamp": "2021-01-01&&10:10:10",
+          "isValid": "True"
+        },
+        "ATTGATE0000000002": {
+          "EnteredID": "IDSTUD1000002",
+          "ID": "ATTGATE0000000002",
+          "Location": "B3",
+          "Status": "Out",
+          "Timestamp": "2021-01-01&&11:10:10",
+          "isValid": "True"
+        }
+      }
+    },
+    "Professor": {
+      "2021-01-01": {
+        "ATTPROF0000000001": {
+          "EnteredID": "PROF1000001",
+          "ID": "ATTPROF0000000001",
+          "Location": "B3",
+          "Status": "In",
+          "Timestamp": "2020-01-01&&10:10:10",
+          "isValid": "True"
+        }
+      }
+    },
+    "Student": {
+      "2021-01-01": {
+        "ATTSTUD0000000001": {
+          "Attendance_Status": "Absent",
+          "ID": "ATTSTUD0000000001",
+          "Location": "B3",
+          "Status": "In",
+          "StudentID": "STUD1000001",
+          "TimeStamp": "2021-01-01&&10:10:10"
+        },
+        "ATTSTUD0000000002": {
+          "Attendance_Status": "Late",
+          "ID": "ATTSTUD0000000002",
+          "Location": "B3",
+          "Status": "In",
+          "StudentID": "STUD1000002",
+          "TimeStamp": "2021-01-01&&10:10:10"
+        },
+        "ATTSTUD0000000003": {
+          "Attendance_Status": "Present",
+          "ID": "ATTSTUD0000000003",
+          "Location": "B3",
+          "Status": "Out",
+          "StudentID": "STUD1000003",
+          "TimeStamp": "2021-01-01&&10:10:10"
+        }
+      }
+    },
+    "Subject":
+    {
+      "01":
+      {
+        "TimeStamp":"",
+        "ClassNumber":"100001",
+        "Professor":"PROF1000001",
+        "Student":
+        {
+          "STUD1000001" : "Present",
+          "STUD1000002" : "Absent",
+          "STUD1000003" : "Arrived Late",
+          "STUD1000004" : "Leave Early"
+        }
+      }
+    }
+  },
+  "Data": {
+    "Professor": {
+      "Information": {
+        "PROF1000001": {
+          "Address": "Sinalhan",
+          "Contact": "09126997937",
+          "ID": "PROF1000001",
+          "Name": "Saga&&Alexander&&Pelin",
+          "Profile": "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FProfessor%2FPROF1000001?alt=media&token=f9283c61-7674-4fd7-a1b1-3581aff411ba",
+          "Subject": ""
+        },
+        "PROF1000002": {
+          "Address": "Tagapo",
+          "Contact": "09123456789",
+          "ID": "PROF1000002",
+          "Name": "Serrano&&Mitch&&Almarinez",
+          "Profile": "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FProfessor%2FPROF1000002?alt=media&token=5fce958b-cc90-4a7d-bafa-2fb24c5df1a9",
+          "Subject": ""
+        }
+      }
+    },
+    "Subject": {
+      "SUB1000001": {
+        "Code": "SUB1000001",
+        "Day": "Monday",
+        "Description": "Just a Dummy Subject",
+        "Location": "B2101",
+        "Schedule": "Monday&&13:00:00-15:45:00",
+        "Title": "Dummy Subject",
+        "Professor": "PROF1000001&&PROF1000002"
+      },
+      "SUB1000002": {
+        "Code": "SUB1000002",
+        "Day": "Monday",
+        "Description": "Just a Dummy Subject",
+        "Location": "B2101",
+        "Schedule": "Tuesday&&16:00:00-19:30:00",
+        "Title": "Dummy Subject",
+        "Professor": "PROF1000001&&PROF1000002"
+      }
+    }
+  },
+  "Report": {
+    "Statistics": {
+      "2021-01-01": {
+          "01": {
+            "ID": "STUD1000001",
+            "TimeStamp": "Tuesday&&16:00:00-19:30:000",
+            "Status": "Present"
+          }
+        
+      }
+    },
+    "Attendance": {
+      "STUD1000001": {
+        "01": {
+          "CourseCode": "SUB1000001",
+          "Status": "Absent",
+          "Remarks": "This is a Remarks",
+          "TimeStamp": "Tuesday&&16:00:00-19:30:00"
+        },
+        "02": {
+          "CourseCode": "SUB1000001",
+          "Status": "Late",
+          "Remarks": "This is a Remarks",
+          "TimeStamp": "Tuesday&&16:00:00-19:30:00"
+        },
+        "03": {
+          "CourseCode": "SUB1000001",
+          "Status": "Present",
+          "Remarks": "This is a Remarks",
+          "TimeStamp": "Tuesday&&16:00:00-19:30:00"
+        }
+
+      }
+    }
+  },
+  "User": {
+    "EdFsIZpYVyYSzDftUicr1qTSCsr2": {
+      "Account_Type": "Faculty",
+      "Email": "lexansaga72@ATMS.com",
+      "ID": "EdFsIZpYVyYSzDftUicr1qTSCsr2",
+      "Password": "admin123456",
+      "Role": "Administrator",
+      "UserID": "PROF1000001"
+    },
+    "YDIBr89FxmTxn4RNfRiovH7o1V63": {
+      "Account_Type": "Faculty",
+      "Email": "serranomitch@ATMS.com",
+      "ID": "YDIBr89FxmTxn4RNfRiovH7o1V63",
+      "Password": "serrano123456",
+      "Role": "Administrator",
+      "UserID": "PROF1000002"
+    }
+  }
+}
