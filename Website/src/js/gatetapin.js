@@ -43,5 +43,5 @@ function HideSettings(){
 }
 
 $(document).ready(function () {
-  $('.modal:eq(0)').css('display', 'block');
+  //$('.modal:eq(0)').css('display', 'block');
 });
