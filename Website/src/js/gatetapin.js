@@ -41,3 +41,7 @@ function HideSettings(){
     document.getElementById("logout").style.display="none";
     document.getElementById("settings").style.display="none";
 }
+
+$(document).ready(function () {
+  $('.modal:eq(0)').css('display', 'block');
+});
