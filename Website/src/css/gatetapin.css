@@ -178,3 +178,6 @@ table{
 a{
   text-decoration: none;
 }
+#rfid_card{
+  opacity: 0;
+}

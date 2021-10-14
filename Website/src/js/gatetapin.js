@@ -44,4 +44,29 @@ function HideSettings(){
 
 $(document).ready(function () {
   //$('.modal:eq(0)').css('display', 'block');
+  document.getElementById("rfid_card").focus();
 });
+
+//TRAP FOCUS IN THE INPUT AREA EVEN IF USER CLICK ANYWHERE IN THE BODY
+$('#rfid_card').blur(function (event) {
+  setTimeout(function () { $("#rfid_card").focus(); }, 20);
+});
+
+
+
+// READING RFID CARD VALUE
+var IDValue = "";
+
+document.getElementById("rfid_card").onchange = function() {
+  $('.modal:eq(0)').css('display', 'block');
+  IDValue = document.getElementById("rfid_card").value;
+  console.log(IDValue);
+
+  if($('.modal').css('display') == 'block'){
+    setTimeout(function() {
+      $('.modal').css('display', 'none');
+    }, 5000); // <-- time in milliseconds
+   }
+
+   document.getElementById("rfid_card").value = '';
+};
