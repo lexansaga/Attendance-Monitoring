@@ -35,11 +35,9 @@ $(document).ready(function(){
 
 function ShowSettings(){
     document.getElementById("logout").style.display="block";
-    document.getElementById("settings").style.display="block";
 }
 function HideSettings(){
     document.getElementById("logout").style.display="none";
-    document.getElementById("settings").style.display="none";
 }
 
 $(document).ready(function () {
@@ -58,15 +56,11 @@ $('#rfid_card').blur(function (event) {
 var IDValue = "";
 
 document.getElementById("rfid_card").onchange = function() {
-  $('.modal:eq(0)').css('display', 'block');
-  IDValue = document.getElementById("rfid_card").value;
-  console.log(IDValue);
+    $('.modal:eq(0)').css('display', 'block');
+    IDValue = document.getElementById("rfid_card").value;
+    document.getElementById("rfid_card").value = '';
 
-  if($('.modal').css('display') == 'block'){
-    setTimeout(function() {
-      $('.modal').css('display', 'none');
-    }, 5000); // <-- time in milliseconds
-   }
-
-   document.getElementById("rfid_card").value = '';
+      setTimeout(function() {
+        $('.modal').css('display', 'none');
+      }, 3000); // <-- timeout in milliseconds
 };
