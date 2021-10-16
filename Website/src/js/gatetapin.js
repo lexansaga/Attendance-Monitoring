@@ -35,9 +35,32 @@ $(document).ready(function(){
 
 function ShowSettings(){
     document.getElementById("logout").style.display="block";
-    document.getElementById("settings").style.display="block";
 }
 function HideSettings(){
     document.getElementById("logout").style.display="none";
-    document.getElementById("settings").style.display="none";
 }
+
+$(document).ready(function () {
+  //$('.modal:eq(0)').css('display', 'block');
+  document.getElementById("rfid_card").focus();
+});
+
+//TRAP FOCUS IN THE INPUT AREA EVEN IF USER CLICK ANYWHERE IN THE BODY
+$('#rfid_card').blur(function (event) {
+  setTimeout(function () { $("#rfid_card").focus(); }, 20);
+});
+
+
+
+// READING RFID CARD VALUE
+var IDValue = "";
+
+document.getElementById("rfid_card").onchange = function() {
+    $('.modal:eq(0)').css('display', 'block');
+    IDValue = document.getElementById("rfid_card").value;
+    document.getElementById("rfid_card").value = '';
+
+      setTimeout(function() {
+        $('.modal').css('display', 'none');
+      }, 3000); // <-- timeout in milliseconds
+};
