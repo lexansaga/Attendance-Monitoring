@@ -35,9 +35,30 @@ $(document).ready(function(){
 
 function ShowSettings(){
     document.getElementById("logout").style.display="block";
+    document.getElementById("Maximize").style.display="block";
+    $('.settings').css('opacity', '100');
 }
 function HideSettings(){
     document.getElementById("logout").style.display="none";
+    document.getElementById("Maximize").style.display="none";
+    $('.settings').css('opacity', '0');
+}
+function getFullscreenElement() {
+  return document.fullscreenElement
+}
+function maximizeme(){
+  document.documentElement.requestFullscreen()
+  document.getElementById("Maximize").textContent="close_fullscreen";
+  if(getFullscreenElement()) {
+    document.exitFullscreen();
+    document.getElementById("Maximize").textContent="open_in_full";
+  }
+}
+function ShowInput(){
+  $('#rfid_card').css('opacity', '100');
+}
+function HideInput(){
+  $('#rfid_card').css('opacity', '0');
 }
 
 $(document).ready(function () {
@@ -45,7 +66,7 @@ $(document).ready(function () {
   document.getElementById("rfid_card").focus();
 });
 
-//TRAP FOCUS IN THE INPUT AREA EVEN IF USER CLICK ANYWHERE IN THE BODY
+//TRAP FOCUS IN THE INPUT AREA IF USER CLICK ANYWHERE IN THE BODY
 $('#rfid_card').blur(function (event) {
   setTimeout(function () { $("#rfid_card").focus(); }, 20);
 });

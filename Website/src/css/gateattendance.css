@@ -7,17 +7,16 @@
 
 img {
   vertical-align: middle;
-  height: 700px;
-  margin-top: 1vw;
+  height: 100%;
+  width: 100%;
   object-fit: fill;
 }
 
 /* Slideshow container */
 .slideshow-container {
-  position: relative;
-  height: fit-content;
+  width: 100%;
+  height: 100%;
 }
-
 /* The dots/bullets/indicators */
 .dot {
   height: 15px;
@@ -30,7 +29,7 @@ img {
 }
 
 .active {
-  background-color: #006CB7;
+  background-color: #FFF200;
 }
 
 @-webkit-keyframes fade {
@@ -44,18 +43,24 @@ img {
 }
 
 .settings{
+  right: 15;
+  top: 185;
   position:absolute;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #003B68;
   width: 200px;
-  height: 300px;
+  height: 80px;
   text-align: left;
-  padding: 0px 30px;
+  opacity: 0;
 }
 
 .settings i{
   display: none;
   font-size: 40px;
-  color:black;
-  margin-top: 25px;
+  color:#fff;
 }
 
 .settings i:hover{
@@ -72,15 +77,20 @@ img {
   flex-direction: column;
   right: 15;
   top: 10;
+  background-color: #fff;
+  width: 200px;
+  border: 1px solid black;
+  box-shadow: 10px 10px 20px black;
 }
 
 #LogInName{
+  margin-top: 10px;
   font-size: 25px;
   font-weight: bold;
 }
 
 #dateTime{
-  font-size: 20px
+  font-size: 20px;
 }
 
 /* MODAL DESIGN */
@@ -102,7 +112,7 @@ img {
   margin: auto;
   top: 50px;
   background-color: white;
-  height: 600px;
+  height: 650px;
   width: 800px;
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
@@ -179,5 +189,10 @@ a{
   text-decoration: none;
 }
 #rfid_card{
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  padding: 0 10px;
   opacity: 0;
 }
