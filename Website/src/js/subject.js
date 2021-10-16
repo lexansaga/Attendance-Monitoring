@@ -5,9 +5,13 @@ var sublocation = $('#sub_location');
 var start = $('#sub_start');
 var end = $('#sub_end');
 var day = $('#sub_days');
+
 var professors = $('#professors');
+$(document).ready(function () {
+    //$('.js-example-theme-multiple').select2();
+});
+
 $(window).on('load', function () {
-    $("js-example-basic-single").select2();
 
 
     firebase.database().ref('Data/Professor/Information').on('value', snap => {
@@ -19,7 +23,7 @@ $(window).on('load', function () {
         });
     });
 
-  
+
     loadid();
     console.log('Load');
 });
@@ -73,10 +77,9 @@ var reset = function () {
 
 }
 
-var loadid = function()
-{
+var loadid = function () {
     firebase.database().ref('Data/Subject/').on('value', snap => {
         var count = (snap.numChildren() + 1).toString();
-        id.val('SUB'+ '1' + ('000000' + count).substring(count.length));
+        id.val('SUB' + '1' + ('000000' + count).substring(count.length));
     });
 }

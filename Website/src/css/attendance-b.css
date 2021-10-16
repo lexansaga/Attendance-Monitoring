@@ -1,0 +1,131 @@
+@import url(root.css);
+
+
+.function {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 35px 105px 0 0;
+    justify-content: flex-end;
+}
+
+.function div {
+    cursor: pointer;
+    padding: 0 20px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.function div i {
+    color: var(--font-color-primary);
+    font-size: 20px;
+}
+
+.function div span {
+    margin-left: 10px;
+}
+
+.function div:hover i,
+.function div:hover span {
+    color: var(--primary-color);
+}
+
+.legend {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.legend div {
+    padding: 0 25px;
+    display: flex;
+
+}
+
+.legend div i {
+    color: var(--font-color-primary);
+    font-size: 20px;
+}
+
+.legend div span {
+    margin-left: 10px;
+}
+
+
+
+
+
+
+.attendance-table {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    width: 95%;
+    margin-top: 38px;
+}
+
+.name {
+    table-layout: fixed;
+
+}
+
+.name tr td:nth-child(1) {
+
+   padding: 12px 22px;
+   min-width: 180px;
+   background-color: var(--primary-color);
+   color: var(--font-light-color);
+   border: none !important;
+   margin: 0 !important;
+}
+.name tr td:not(:nth-child(1)){
+    padding: 10px 10px;
+    cursor: pointer;
+    text-align: center;
+ }
+ table thead td,table tfoot td
+ {
+     
+    background-color: var(--red);
+    color: var(--font-light-color);
+ }
+
+table tr td {
+    border: 1px solid var(--secondary-color);
+    height: 35px;
+    width: 10%;
+    padding: 1pt 0 1pt 0;
+    min-width: 120px;
+    padding-left: 20px;
+}
+
+button
+{
+    width: 220px;
+    padding: 18px;
+    margin: 38px 12px 0 0;
+    border: none;
+    outline: none;
+    background-color: var(--orange);
+    color: var(--font-light-color);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+input[type="date"]
+{
+    font-size: 14px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: transparent;
+    text-align: center;
+    text-transform: uppercase;
+    
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator 
+{
+    filter: invert(1);
+}

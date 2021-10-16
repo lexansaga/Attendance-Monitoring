@@ -7,59 +7,16 @@
   font-size: 20px;
 }
 
-.SearchControl_wrapper {
+.SearchControl_wrapper
+{
   display: flex;
-  flex-direction: row;
-  width: fit-content;
-  margin-top: 1vw;
+  flex-direction: column;
+  margin-top: 18px;
 }
-
-.SearchControl_wrapper input {
-  height: 45px;
-  padding: 0px 40px;
-  width: 30vw;
-  border: none;
-  outline: none;
+.SearchControl_wrapper > p 
+{
+  margin: 12px 0;
 }
-
-.SearchControl_wrapper select {
-  width: 200px;
-  padding: 0px 20px;
-  border: none;
-  outline: none;
-}
-
-.SearchControl_wrapper button {
-  width: 110px;
-  color: white;
-  background-color: #B2BBF7;
-  border: none;
-  margin-left: 2px;
-}
-
-.SearchControl_wrapper button:hover {
-  background-color: #9EA9F5;
-}
-
-.SearchControl_wrapper button:active {
-  background-color: #7E8DF1;
-}
-
-.SearchControl_wrapper i {
-  position: absolute;
-  margin-left: 10px;
-  margin-top: 12px;
-  font-size: 20px;
-  color: #8F8F8F;
-}
-
-.vl {
-  border-left: 1px solid var(--font-color-primary);
-  height: 60%;
-  /* margin-top: 5px; */
-  margin: auto 0;
-}
-
 .UserInformation_wrapper {
   display: flex;
   flex-direction: row;
@@ -188,6 +145,11 @@ th {
 
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
 @media (max-width: 768px) {
+
+  .search-result
+  {
+    width: 88%
+  }
   .userImage {
     width: 100px;
   }
@@ -235,25 +197,6 @@ th {
     color: #7E8DF1;
     margin-top: 0px;
     margin-bottom: 2px;
-  }
-
-  .SearchControl_wrapper
-  {
-    display: flex;
-    flex-direction: row;
-    width: fit-content;
-    margin: 1vw auto; 
-  }
-
-
-  .SearchControl_wrapper select {
-    width: 100px;
-    padding: 0px 10px;
-    background-color: white;
-  }
-
-  .SearchControl_wrapper button {
-    padding: 0px 10px 0px 10px;
   }
 
  

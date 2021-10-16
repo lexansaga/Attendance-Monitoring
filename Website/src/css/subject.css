@@ -12,6 +12,10 @@ main input,select{
     outline: none;
     border: solid 1.5px var(--color-accent-3)
 }
+.select2
+{
+  margin-top: 10px;
+}
 main input:nth-child(2)
 {
     margin-top: 50px;
