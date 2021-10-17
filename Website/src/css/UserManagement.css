@@ -455,6 +455,12 @@ th:hover {
     background-color: #FE6D8E;
 }
 
+.containerSearchPerson
+{
+    width: 100%;
+    display: none;
+    margin-bottom: 10px;
+}
 
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
 @media (max-width: 768px) {

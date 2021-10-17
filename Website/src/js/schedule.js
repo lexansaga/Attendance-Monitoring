@@ -6,6 +6,7 @@ $(document).ready(function () {
         width: '90%',
         margin: '10px 10px 0 0'
     })
+    
     $('#userType').select2({
         width: '90%',
         margin: '10px 10px 0 0'

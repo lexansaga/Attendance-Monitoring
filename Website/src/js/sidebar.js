@@ -1,6 +1,8 @@
 $(document).ready(function () {
 
-   
+    var url = new URL(window.location.href);
+  
+    console.log(url.searchParams.get('id'));
 
 
     SideBarResponsive();
@@ -146,10 +148,14 @@ firebase.auth().onAuthStateChanged((user) => {
 
                 // User is Faculty
             }
-            firebase.database().ref('Data/Professor/Information/' + User).on('value', uidsnap => {
+            firebase.database().ref('Data/Faculty/Information/' + User).on('value', uidsnap => {
                 //    console.log(uidsnap.val());
                 let profile = uidsnap.child('Profile').val();
-                let name = uidsnap.child('Name').val().split('&&');
+                let name = [];
+                uidsnap.child("Name").forEach(names =>
+                    {
+                        name.push(names);
+                    });
                 //    console.log('Profile:' + profile);
                 //    console.log('Name:' + name);
                 $('.profile-picture > img').attr('src', profile);

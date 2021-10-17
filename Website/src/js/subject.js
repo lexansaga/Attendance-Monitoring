@@ -14,7 +14,7 @@ $(document).ready(function () {
 $(window).on('load', function () {
 
 
-    firebase.database().ref('Data/Professor/Information').on('value', snap => {
+    firebase.database().ref('Data/Faculty/Information').on('value', snap => {
         snap.forEach(childSnap => {
             var profID = childSnap.child('ID').val();
             var profName = childSnap.child('Name').val().split('&&');

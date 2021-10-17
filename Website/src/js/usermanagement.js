@@ -19,12 +19,40 @@ var permission = $('#cbx');
 var mainTable = $('#Maintable');
 var mainButton = $('#mainBTN');
 
+var searchperson = $('#SearchPerson');
+
+var profilePicture = $('#output');
 
 //End -- Initializaion of Objects
 
 //Start -- Onload Function
 
 $(document).ready(function () {
+
+
+    var url = new URL(window.location.href);
+    let usermanagementType = url.searchParams.get('type');
+    console.log(usermanagementType);
+
+    if (usermanagementType.includes('add')) {
+        // alert("Add");
+
+    } else if (usermanagementType.includes('update')) {
+        //alert("Update");
+
+    } else {
+        //alert("Delete");
+
+    }
+
+    $('.js-example-basic-single').select2();
+    searchperson.select2({
+        containerCssClass: "show-hide",
+        width: '98.5%',
+        margin: '10px 10px 15px 0'
+    });
+
+
 
     $('#output').click(function () {
         //This method for selecting image
@@ -37,7 +65,7 @@ $(document).ready(function () {
         // This Promise will read Subject Data on Firebase and add on Select object on modal Table
         snap.forEach(childSnap => {
             console.log(childSnap.val());
-            $("#Select_Section").append(new Option("("+childSnap.child('Code').val()+")"+childSnap.child('Title').val(), childSnap.child('Code').val(), false, false)).trigger('change');
+            $("#Select_Section").append(new Option("(" + childSnap.child('ClassNbr').val() + ")" + childSnap.child('Title').val(), childSnap.child('ClassNbr').val(), false, false)).trigger('change');
 
         });
     });
@@ -51,12 +79,20 @@ $(document).ready(function () {
         if ((data != null || data != '') &&
             $(`#modal-table tbody tr > td:contains(${data})`).length == 0) {
             firebase.database().ref('Data/Subject/' + data).on('value', snap => {
+
+                // console.log(snap.child('Schedule').val());
+                let schedule = []
+                snap.child('Schedule').forEach(schedules => {
+                    schedule.push(schedules.val());
+                });
                 $('#modal-table tbody').append(`
           <tr>
-          <td>${snap.child('Code').val()}</td>
+          <td>${snap.child('ClassNbr').val()}</td>
+          <td>${snap.child('Title').val()}</td>
           <td>${snap.child('Description').val()}</td>
-          <td>${snap.child('Schedule').val().split('&&')[0]}</td>
-          <td>${snap.child('Schedule').val().split('&&')[1]}</td>
+          <td>${schedule[0]}</td>
+          <td>${schedule[1]}</td>
+          <td>${snap.child('Professor').val()}</td>
           <td><i class="material-icons delete-row">delete_forever</i></td>
        </tr>
        `);
@@ -150,10 +186,13 @@ var reset = function () {
     $('.inputArea >  input, .inputArea > textarea,.UserSetup > input').each(function () {
 
         $(this).css({
-         //   'border': 'none'
+            //   'border': 'none'
         });
 
-    })
+    });
+
+    searchperson.val("default").trigger('change');
+
 
 }
 
@@ -173,8 +212,11 @@ var loadid = function (USER) {
 function VerifyType() {
     const selected = document.getElementById("UserType");
     const e = selected.options[selected.selectedIndex].text;
-    console.log(e);
+    console.log('Selected:' + e);
 
+    var url = new URL(window.location.href);
+    let usermanagementType = url.searchParams.get('type');
+    console.log(usermanagementType);
 
 
 
@@ -220,9 +262,40 @@ function VerifyType() {
         subject.css({
             'display': 'block'
         });
-        role.css({'display':'none'});
+        role.css({
+            'display': 'none'
+        });
 
-        loadid('Student');
+
+        LoadSearch(e);
+
+
+        //  alert('Student Selected');
+        if (usermanagementType.includes('add')) {
+            // alert("Add");
+            loadid('Student');
+
+
+        } else if (usermanagementType.includes('update')) {
+            //alert("Update");
+            $(".containerSearchPerson").css({
+                'display': 'block'
+            });
+
+            $('.inputArea > input,textarea, #UserSetup input, #setSubject').prop('disabled', true).css({
+                'background-color': 'white'
+            });
+            $('#btnsave').html('Update');
+        } else {
+            //alert("Delete");
+            $(".containerSearchPerson").css({
+                'display': 'block'
+            });
+            $('.inputArea > input,textarea, #UserSetup input, #setSubject').prop('disabled', true).css({
+                'background-color': 'white'
+            });
+            $('#btnsave').html('Delete');
+        }
 
 
 
@@ -269,12 +342,42 @@ function VerifyType() {
             'display': 'block'
         });
 
-        role.css({'display':'block'});
+        role.css({
+            'display': 'block'
+        });
 
-        loadid('Professor');
 
 
 
+
+        //  alert('Student Selected');
+        if (usermanagementType.includes('add')) {
+            // alert("Add");
+            loadid('Student');
+
+
+        } else if (usermanagementType.includes('update')) {
+            //alert("Update");
+            $(".containerSearchPerson").css({
+                'display': 'block'
+            });
+
+            $('.inputArea > input,textarea, #UserSetup input, #setSubject').prop('disabled', true).css({
+                'background-color': 'white'
+            });
+            $('#btnsave').html('Update');
+        } else {
+            //alert("Delete");
+            $(".containerSearchPerson").css({
+                'display': 'block'
+            });
+            $('.inputArea > input,textarea, #UserSetup input, #setSubject').prop('disabled', true).css({
+                'background-color': 'white'
+            });
+            $('#btnsave').html('Delete');
+        }
+
+        LoadSearch(e);
 
     } else if (e == "Gate") {
         reset();
@@ -318,10 +421,40 @@ function VerifyType() {
             'display': 'none'
         });
 
-        role.css({'display':'none'});
+        role.css({
+            'display': 'none'
+        });
 
-        loadid('Gate');
 
+
+        //  alert('Student Selected');
+        if (usermanagementType.includes('add')) {
+            // alert("Add");
+            loadid('Student');
+
+
+        } else if (usermanagementType.includes('update')) {
+            //alert("Update");
+            $(".containerSearchPerson").css({
+                'display': 'block'
+            });
+            $('.inputArea > input:not(#ID),textarea, #UserSetup input, #setSubject').prop('disabled', true).css({
+                'background-color': 'white'
+            });
+            $('#btnsave').html('Update');
+        } else {
+            //alert("Delete");
+            $(".containerSearchPerson").css({
+                'display': 'block'
+            });
+            $('.inputArea > input,textarea, #UserSetup input, #setSubject').prop('disabled', true).css({
+                'background-color': 'white'
+            });
+            $('#btnsave').html('Delete');
+        }
+
+
+        LoadSearch(e);
     } else {
         reset();
         document.getElementById("Email").style.display = "none";
@@ -377,7 +510,10 @@ function VerifyType() {
         subject.css({
             'display': 'none'
         });
-        role.css({'display':'none'});
+        role.css({
+            'display': 'none'
+        });
+
     }
 }
 
@@ -418,9 +554,9 @@ $('#btnsave').click(function (event) {
         }
         //End -- Check fields if no values
 
-        var subject = '';
+        let Subject = [];
         for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
-            subject += $('#modal-table tbody tr:eq(' + i + ') td').html() + "&&";
+            Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
             //This will append all the subjects and create a certain format
         }
 
@@ -437,8 +573,13 @@ $('#btnsave').click(function (event) {
                         "Address": address.val(),
                         "Contact": contact.val(),
                         "ID": ID.val(),
-                        "Name": lastName.val() + '&&' + firstName.val() + '&&' + middleName.val(),
-                        "Subject": subject.substring(0, subject.length - 2),
+                        "Email": studentEmail.val(),
+                        "Name": {
+                            "First": firstName.val(),
+                            "Middle": middleName.val(),
+                            "Last": lastName.val()
+                        },
+                        Subject,
                         "Profile": url
                     });
                     alert('Student Save Successfully');
@@ -511,24 +652,29 @@ $('#btnsave').click(function (event) {
         //End -- Check Password Validation
 
 
-        var subject = '';
+        let Subject = [];
         for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
-            subject += $('#modal-table tbody tr:eq(' + i + ') td').html() + "&&";
+            Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
             //This will append all the subjects and create a certain format
         }
 
         var file = document.getElementById("file");
         file = file.files[0];
-        var storageRef = firebase.storage().ref('Profile/Professor/' + ID.val());
+        var storageRef = firebase.storage().ref('Profile/Faculty/' + ID.val());
         storageRef.put(file).then((snapshot) => {
             storageRef.getDownloadURL()
                 .then((url) => {
-                    firebase.database().ref(`Data/Professor/Information/${ID.val()}`).set({
+                    firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).set({
                         "Address": address.val(),
                         "Contact": contact.val(),
                         "ID": ID.val(),
-                        "Name": lastName.val() + '&&' + firstName.val() + '&&' + middleName.val(),
-                        "Subject": subject.substring(0, subject.length - 2),
+
+                        "Name": {
+                            "First": firstName.val(),
+                            "Middle": middleName.val(),
+                            "Last": lastName.val()
+                        },
+                        Subject,
                         "Profile": url
                     });
 
@@ -546,7 +692,7 @@ $('#btnsave').click(function (event) {
                                     'Account_Type': e,
                                     'ID': uid,
                                     'Password': dPassword,
-                                    'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole ,
+                                    'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
                                     'UserID': dId,
                                     'Email': dEmail
                                 });
@@ -555,9 +701,9 @@ $('#btnsave').click(function (event) {
                                 console.log('Error ' + error)
                             });
                     }
-                    alert('Professor Save Successfully');
+                    alert('Faculty Save Successfully');
                     reset();
-                    loadid('Professor');
+                    loadid('Faculty');
                 })
                 .catch((error) => {
                     console.log('Error ' + error)
@@ -664,3 +810,168 @@ $('#btnsave').click(function (event) {
 
     }
 });
+
+
+
+
+
+$('#SearchPerson').on("select2:select", function (e) {
+    // what you would like to happen
+    // OnSelect on SearchPerson for Edit and Delete
+    //Start -- Initializaion of Objects 
+
+    let uid = $(this).val();
+
+    let Path = '';
+    if (uid.includes('STUD')) {
+        $('#modal-table tbody, #SubjectSection-table tbody').html(' ')
+
+        Path = "Data/Student/Information/" + uid;
+        firebase.database().ref(Path).once('value', snap => {
+            let name = [];
+            snap.child('Name').forEach(names => {
+                name.push(names.val());
+            });
+            //  alert(snap.child('ID').val());
+            let profileLink = snap.child('Profile').val();
+            if (profileLink != null) {
+                profilePicture.attr('src', snap.child('Profile').val());
+            }
+            ID.val(snap.child('ID').val());
+            lastName.val(name[1]);
+            firstName.val(name[0]);
+            middleName.val(name[2]);
+            contact.val(snap.child('Contact').val());
+            studentEmail.val(snap.child('Email').val());
+            address.val(snap.child('Address').val());
+
+            console.log(snap.child("Subject").val());
+            snap.child("Subject").forEach(subject => {
+
+                firebase.database().ref("Data/Subject/" + subject.val()).once('value', subSnap => {
+
+                    console.log(subSnap.val());
+
+
+
+
+
+                    let schedule = []
+                    subSnap.child('Schedule').forEach(schedules => {
+                        schedule.push(schedules.val());
+                    });
+
+                    $('#modal-table tbody, #SubjectSection-table tbody').append(`
+                    <tr>
+                    <td>${subSnap.child('ClassNbr').val()}</td>
+                    <td>${subSnap.child('Title').val()}</td>
+                    <td>${subSnap.child('Description').val()}</td>
+                    <td>${schedule[0]}</td>
+                    <td>${schedule[1]}</td>
+                    <td>${subSnap.child('Professor').val()}</td>
+                    <td><i class="material-icons delete-row">delete_forever</i></td>
+                 </tr>
+                 `);
+
+
+                })
+            });
+
+        });
+
+    } else if (uid.includes('FAC') || uid.includes('PROF')) {
+        $('#modal-table tbody, #SubjectSection-table tbody').html(' ')
+
+        Path = "Data/Faculty/Information/" + uid;
+        firebase.database().ref(Path).once('value', snap => {
+            firebase.database().ref("User").orderByChild('UserID').equalTo(snap.child("ID").val()).once('value', user => {
+
+                if (user.exists()) {
+                    user.forEach((child) => {
+                        $('#Role').val(child.child('Role').val());
+                        console.log(child.child('Account_Type').val());
+                    })
+                }
+            });
+
+            let profileLink = snap.child('Profile').val();
+            if (profileLink != null) {
+                profilePicture.attr('src', snap.child('Profile').val());
+            }
+
+            let name = [];
+            snap.child('Name').forEach(names => {
+                name.push(names.val());
+            });
+
+            ID.val(snap.child('ID').val());
+            lastName.val(name[1]);
+            firstName.val(name[0]);
+            middleName.val(name[2]);
+            contact.val(snap.child('Contact').val());
+            studentEmail.val(snap.child('Email').val());
+            address.val(snap.child('Address').val());
+
+            console.log(snap.child("Subject").val());
+            snap.child("Subject").forEach(subject => {
+
+                firebase.database().ref("Data/Subject/" + subject.val()).once('value', subSnap => {
+
+
+
+
+                    let schedule = []
+                    subSnap.child('Schedule').forEach(schedules => {
+                        schedule.push(schedules.val());
+                    });
+
+                    $('#modal-table tbody, #SubjectSection-table tbody').append(`
+                    <tr>
+                    <td>${subSnap.child('ClassNbr').val()}</td>
+                    <td>${subSnap.child('Title').val()}</td>
+                    <td>${subSnap.child('Description').val()}</td>
+                    <td>${schedule[0]}</td>
+                    <td>${schedule[1]}</td>
+                    <td>${subSnap.child('Professor').val()}</td>
+                    <td><i class="material-icons delete-row">delete_forever</i></td>
+                 </tr>
+                 `);
+
+
+                })
+            });
+
+        });
+    } else {
+        Path = "Data/Gate/Information";
+    }
+
+    var url = new URL(window.location.href);
+    let usermanagementType = url.searchParams.get('type');
+
+    if (usermanagementType.includes('update')) {
+        $('.inputArea > input,textarea, #UserSetup input, #setSubject, #Role, #setSubject').prop('disabled', false)
+    }
+    // ;
+
+
+
+});
+
+
+function LoadSearch(UserType) {
+    searchperson.html(' ');
+    searchperson.append(`<option disabled selected> Select ${UserType} </option>`);
+
+    firebase.database().ref('Data/' + UserType + '/Information/').on('value', snap => {
+
+        snap.forEach(childSnap => {
+
+            var name = [];
+            childSnap.child('Name').forEach(names => {
+                name.push(names.val());
+            })
+            searchperson.append(`<option value='${childSnap.child('ID').val()}'> ${`<span style="color:#cccccc">(${childSnap.child('ID').val()}) </span>`+name[1] +','+ name[0] +' ' +name[2]} </option>`);
+        });
+    });
+}

@@ -95,7 +95,7 @@
                <ul class="search-menu">
                   <li>
                      <a href="#">
-                        <img src="src/assets/avatar.png" />
+                        <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
                         <h1>
                            Title
                         </h1>
@@ -120,7 +120,7 @@
                <ul class="notif-menu">
                   <li>
                      <a href="#">
-                        <img src="src/assets/avatar.png" />
+                        <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
                         <h1>
                            Title
                         </h1>
@@ -131,7 +131,7 @@
                   </li>
                   <li>
                      <a href="#">
-                        <img src="src/assets/avatar.png" />
+                        <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
                         <h1>
                            Title
                         </h1>
@@ -142,7 +142,7 @@
                   </li>
                   <li>
                      <a href="#">
-                        <img src="src/assets/avatar.png" />
+                        <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
                         <h1>
                            Title
                         </h1>
@@ -159,7 +159,7 @@
                </ul>
             </div>
             <div class="profile-picture" title="Profile">
-               <img src="src/assets/avatar.png" />
+               <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
                <ul class="profile-menu">
                   <li><a href="profile.html">Profile</a></li>
                   <li><a href="settings.html">Settings</a></li>
@@ -171,7 +171,7 @@
             <h3>Manage User</h3>
             <div class="imageArea">
                <img id="output" src="src/assets/avatar.png"
-                  onerror="this.onerror=null; this.src='src/assets/avatar.jpg'" />
+                  onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
                <input type="file" accept="image/*" onchange="loadFile(event)" name="image" id="file"
                   style="display: none;">
                <label class="SelectPicture" for="file" id="selectPicture">Select a picture</label>
@@ -184,6 +184,15 @@
                   <option value="faculty">Faculty</option>
                   <option value="faculty">Gate</option>
                </select>
+
+               <div class="containerSearchPerson">
+                  <select id="SearchPerson">
+                     <option value="default" disabled selected>Select Person</option>
+                  </select>
+
+               </div>
+
+
                <select id="Role">
                   <option value="" disabled selected>Select Role (Default : Faculty)</option>
                   <option value="Administrator">Administrator</option>
@@ -205,11 +214,13 @@
                <table id="SubjectSection-table">
                   <thead>
                      <tr>
-                        <th>Course Description</th>
-                        <th>Section</th>
+                        <th>ClassNbr</th>
+                        <th>Title</th>
+                        <th>Description</th>
                         <th>Day</th>
                         <th>Time</th>
                         <th>Professor</th>
+                        <th></th>
                      </tr>
                   </thead>
                   <tbody id="table-body"></tbody>
@@ -230,19 +241,19 @@
                   <input class="cbx" type="checkbox">
                   <span class="checkmark"></span>
                </label>
-               <label class="container" style="display: none;" >Enable Add, Edit, and Delete Student.
+               <label class="container" style="display: none;">Enable Add, Edit, and Delete Student.
                   <input type="checkbox">
                   <span class="checkmark"></span>
                </label>
                <label class="container" style="display: none;">Administrator Privilege
-                  <input type="checkbox" >
+                  <input type="checkbox">
                   <span class="checkmark"></span>
                </label>
             </div>
 
             <div class="actionButton" id="mainBTN">
                <button id="btnsave">Save</button>
-               <button id="btndelete">Delete</button>
+               <button id="btndelete" hidden>Delete</button>
                <br>
                <br>
             </div>
@@ -261,10 +272,12 @@
                         <table id="modal-table">
                            <thead>
                               <tr>
-                                 <th>Section</th>
-                                 <th>Subject</th>
+                                 <th>ClassNbr</th>
+                                 <th>Title</th>
+                                 <th>Description</th>
                                  <th>Day</th>
                                  <th>Time</th>
+                                 <th>Professor</th>
                                  <th></th>
                               </tr>
                            </thead>

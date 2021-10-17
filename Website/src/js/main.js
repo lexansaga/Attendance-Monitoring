@@ -1,5 +1,9 @@
 $(document).ready(function () {
 
+    var url = new URL(window.location.href);
+
+    // console.log(url.searchParams.get('id'));
+
     sOnLoadMediaQuery();
     sMediaQuery();
     Chart.defaults.global.defaultFontFamily = "Karla";
@@ -16,7 +20,7 @@ $(document).ready(function () {
 
     firebase.database().ref("Attendance/Gate/2021-01-01").on("value", snap => {
         $('.d-items:nth-child(2) > h1').html(snap.numChildren()); // For Total Students
-        console.log(snap.val());
+        //    console.log(snap.val());
     });
 
     firebase.database().ref("Attendance/Student/2021-01-01").orderByChild('Attendance_Status').equalTo('Present').on("value", snap => {
@@ -50,64 +54,72 @@ $(document).ready(function () {
 
     firebase.database().ref("Attendance/Gate/2021-01-01").orderByKey().limitToLast(5).on("value", snap => {
         snap.forEach(childSnapshot => {
+            var type = "";
             // console.log(childSnapshot.child("EnteredID").val());
             let dataPath = "";
             if (childSnapshot.child("EnteredID").val().includes('STUD')) {
                 dataPath = "Data/Student/Information";
+                type = "Student";
             } else {
-                dataPath = "Data/Professor/Information";
+                dataPath = "Data/Faculty/Information";
+                type = "Faculty";
             }
-             
+
             Object.keys(childSnapshot).reverse();
             firebase.database().ref(dataPath + "/" + childSnapshot.child("EnteredID").val()).on("value", profilesnap => {
-              
-                //       console.log(profilesnap.val())
+                console.log(profilesnap.val())
 
-                console.log(dataPath + "/" + childSnapshot.child("EnteredID").val());
+                //          console.log(dataPath + "/" + childSnapshot.child("EnteredID").val());
                 if (profilesnap.val() != null) {
-                    //    console.log(profilesnap.child("Name").val());
-                    let profName = profilesnap.child("Name").val().split('&&')
+                    let name = [];
+                    profilesnap.child("Name").forEach(names => {
+                        //   console.log(names.val());
+                        name.push(names.val());
+                    });
+                    //    alert(name);
+                    // let profName = profilesnap.child("Name").val().split('&&')
                     let image = profilesnap.child("Profile").val().toString().includes('firebasestorage') ?
                         profilesnap.child("Profile").val().toString() : 'src/assets/avatar.png'
-                   
+
                     //       console.log(image);
                     $('.prof_container > ul ').prepend(
                         " <li>" +
                         "<a id=\"prof_link\" href=\"#\">" +
                         "<img id=\"ic_prof\" src=\"" + image + "\" />" +
-                        "<h2>" + profName[0] + "," + profName[1] + " " + profName[2].toString().substr(0, 1).toUpperCase() + "." +
+                        "<h2>" + name[1] + "," + name[0] + " " + name[2].toString().substr(0, 1).toUpperCase() + "." +
                         "</h2>" +
-                        "   <h3>Faculty</h3>" +
+                        "   <h3>"+type+"</h3>" +
                         "  </a>" +
                         "  </li>"
                     ).css("opacity", "0").animate({
                         opacity: '1'
                     });
-                } else {
-                    $('.prof_container > ul ').html('<p style="font-size:18px;text-align:center;background-color:transparent;font-weight:600;width:100%"> No one entered yet. </P>');
                 }
             });
         });
+
+        if (snap == null) {
+            $('.prof_container > ul ').html('<p style="font-size:18px;text-align:center;background-color:transparent;font-weight:600;width:100%"> No one entered yet. </P>');
+        }
     });
 
 
-    $('.d-item-main').click(function()
-    {
+    $('.d-item-main').click(function () {
         window.location.href = 'profile.html';
     });
-   
 
 
-    
+
+
 });
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-     
-        var META_DATA = [];
+
+    
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         let uid = user.uid;
-        console.log(uid);
+        // console.log(uid);
         firebase.database().ref('User/' + uid).on('value', snap => {
             let Account_Type = snap.child('Account_Type').val();
             let ID = snap.child('ID').val();
@@ -115,18 +127,24 @@ firebase.auth().onAuthStateChanged((user) => {
             let UserID = snap.child('UserID').val();
             let Notification = snap.child('Notification').val();
 
-            firebase.database().ref('Data/Professor/Information/' + UserID).on('value', uidsnap => 
-            {
-                console.log(uidsnap.val());
+            firebase.database().ref('Data/Faculty/Information/' + UserID).on('value', uidsnap => {
+                //   console.log(uidsnap.val());
                 let profile = uidsnap.child('Profile').val();
-                let name = uidsnap.child('Name').val().split('&&');
+                // let name = uidsnap.child('Name').val().split('&&');
+                let name = [];
                 let address = uidsnap.child('Address').val();
                 let department = uidsnap.child('Department').val();
                 let contact = uidsnap.child('Contact').val();
-            //    console.log('Profile:'+profile);
-            //    console.log('Name:'+name);
-                $('#d-profile').attr('src',profile);
-                $('#d-name').html(name[1]+ " " + name[0] );
+                //    console.log('Profile:'+profile);
+                //    console.log('Name:'+name);
+                //    console.log("Debug:");
+                uidsnap.child('Name').forEach(names => {
+                    name.push(names.val());
+                });
+                console.log(name[0]);
+
+                $('#d-profile').attr('src', profile);
+                $('#d-name').html(name[1] + ", " + name[0]);
                 $('#d-pos').html(Role);
 
 
