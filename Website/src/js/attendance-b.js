@@ -23,10 +23,10 @@ $().click(function()
 });
 
 var attstatus = {
-    'Present': `<i  data-status='present' class='bx bxs-circle' style="color:#69E486;"></i>`,
-    'Absent': `<i data-status='absent' class='bx bxs-circle' style="color:#FE5277;"></i>`,
-    'ArriveLate': `<i data-status='arrivelate' class='bx bx-chevrons-left' style="color: #FEB331; "></i>`,
-    'LeaveEarly': `<i data-status='leaveearly' class='bx bx-chevrons-right' style="color: #FEB331;"></i>`
+    'Present': `<i  data-status='present' class='bx bxs-circle' style="color:#69E486;"></i><button title="Add Remarks" class="remarks">Add Remarks</button>`,
+    'Absent': `<i data-status='absent' class='bx bxs-circle' style="color:#FE5277;"></i><button title="Add Remarks" class="remarks">Add Remarks</button>`,
+    'ArriveLate': `<i data-status='arrivelate' class='bx bx-chevrons-left' style="color: #FEB331; "></i><button title="Add Remarks" class="remarks">Add Remarks</button>`,
+    'LeaveEarly': `<i data-status='leaveearly' class='bx bx-chevrons-right' style="color: #FEB331;"></i><button title="Add Remarks" class="remarks">Add Remarks</button>`
 }
 
 $('table').on('click', 'tbody tr td:not(".n")', function () {

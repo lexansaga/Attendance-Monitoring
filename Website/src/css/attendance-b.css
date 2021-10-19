@@ -112,7 +112,21 @@ button
     font-weight: 500;
     font-size: 14px;
 }
-
+.remarks:hover{
+    cursor: pointer;
+}
+.remarks{
+   width: 100%;
+   padding: 5px;
+   margin: 10 0 0 0;
+   border: 1px solid var(--secondary-color);
+   background-color: #F8F8F8;
+   border-radius: 20px;
+   color: black;
+}
+.remarks i{
+    color: black;
+}
 input[type="date"]
 {
     font-size: 14px;
