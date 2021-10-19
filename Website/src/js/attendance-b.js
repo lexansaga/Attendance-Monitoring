@@ -9,11 +9,13 @@ $('#add').click(function () {
     
 
     var table = $('tbody tr .n');
-    var headfoot = $('thead tr .n,tfoot tr .n');
+    var head = $('thead tr .n');
+    var foot = $('tfoot tr .n');
 
     table.after(`<td></td>`);
  //   headfoot.after(`<td><input type="date"  value='${year + '-' + month + '-' + day}'/></td>`);
- headfoot.after(`<td><input type="date"/></td>`);
+    head.after(`<td><input type="date"/></td>`);
+    foot.after(`<td><input type="date" disabled/></td>`);
 
 });
 

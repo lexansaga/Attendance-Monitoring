@@ -55,7 +55,7 @@ function maximizeme(){
   }
 }
 function ShowInput(){
-  $('#rfid_card').css('opacity', '100');
+//  $('#rfid_card').css('opacity', '100');
 }
 function HideInput(){
   $('#rfid_card').css('opacity', '0');
