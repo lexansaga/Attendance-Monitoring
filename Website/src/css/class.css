@@ -1,0 +1,87 @@
+@import url(root.css);
+
+.class_container{
+    margin-top: 45px;
+    width: 93%;
+}
+.student_container
+{
+    width: 93%;
+    margin-top: 15px;
+}
+
+
+.table
+{
+    margin-top: 45px;
+    width: 93%;
+}
+
+#datatable {
+    padding: 15px;
+    border-bottom: unset;
+
+
+}
+
+tr {
+    margin: 10px 0 0 0;
+}
+
+th {
+    font-weight: 500 !important;
+    background-color: var(--secondary-color);
+    color: white;
+
+}
+
+td:nth-child(1) {
+    width: 80px;
+
+}
+
+td {
+    text-align: center;
+}
+
+
+tbody tr td img
+{
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    
+}
+tbody tr td:nth-child(1){
+    width: 10%;
+}
+
+td button
+{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 24px;
+}
+td button:hover
+{
+    color: var(--red);
+}
+.function button {
+    margin-right: 10px;
+    margin-top: 20px;
+    width: 90px;
+    height: 40px;
+    border: none;
+    background-color: #B2BBF7;
+    color: #fff;
+  }
+  
+  .function button:hover {
+    background-color: #97A3F4;
+  }
+  
+  .function button:active {
+    background-color: #6D7DEF;
+  }

@@ -124,8 +124,9 @@ firebase.auth().onAuthStateChanged((user) => {
                 }) //Home
                 sidebarlinks.eq(1).css('display', '') //Schedule
                 sidebarlinks.eq(3).css('display', '') // Attendance Report
-                sidebarlinks.eq(5).css('display', '') // User Management
-                sidebarlinks.eq(6).css('display', '') // User Management
+                sidebarlinks.eq(5).css('display', '') // Subject
+                sidebarlinks.eq(6).css('display', '') // Class
+                sidebarlinks.eq(7).css('display', '') // Class
 
 
             } else if (Role.includes('Guidance')) {

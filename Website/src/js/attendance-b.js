@@ -6,21 +6,20 @@ var day = date.getDate();
 
 var i = 0;
 $('#add').click(function () {
-    
+
 
     var table = $('tbody tr .n');
     var head = $('thead tr .n');
     var foot = $('tfoot tr .n');
 
     table.after(`<td></td>`);
- //   headfoot.after(`<td><input type="date"  value='${year + '-' + month + '-' + day}'/></td>`);
+    //   headfoot.after(`<td><input type="date"  value='${year + '-' + month + '-' + day}'/></td>`);
     head.after(`<td><input type="date"/></td>`);
     foot.after(`<td><input type="date" disabled/></td>`);
 
 });
 
-$().click(function()
-{
+$().click(function () {
 
 });
 
@@ -34,40 +33,29 @@ var attstatus = {
 $('table').on('click', 'tbody tr td:not(".n")', function () {
     //  alert($(this).html());
     var value = $(this).children().attr('data-status');
-   // alert(value)
-    if(value == null)
-    {
+    // alert(value)
+    if (value == null) {
         $(this).html(attstatus[Object.keys(attstatus)[0]]);
-    }
-    else if(value == 'present')
-    {
+    } else if (value == 'present') {
         $(this).html(attstatus[Object.keys(attstatus)[1]]);
-    }
-    else if(value == 'absent')
-    {
+    } else if (value == 'absent') {
         $(this).html(attstatus[Object.keys(attstatus)[2]]);
-    }
-    else if(value == 'arrivelate')
-    {
+    } else if (value == 'arrivelate') {
         $(this).html(attstatus[Object.keys(attstatus)[3]]);
-    }
-    else if(value == 'leaveearly')
-    {
+    } else if (value == 'leaveearly') {
         $(this).html(attstatus[Object.keys(attstatus)[0]]);
-    }
-    else
-    {
-       
+    } else {
+
     }
 
     console.log(value);
 
 });
 
-function OpenModal(){
+function OpenModal() {
     $('.modal:eq(0)').css('display', 'block');
 }
 
-  function CloseModal(){
+function CloseModal() {
     $('.modal:eq(0)').css('display', 'none');
-  }
+}

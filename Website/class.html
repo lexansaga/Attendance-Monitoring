@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="src/css/attendance-b.css" rel="stylesheet" />
     <link href="src/css/sidebar.css" rel="stylesheet" />
+    <link href="src/css/class.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
-    <title>Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <title>Attendance Report- ATMS</title>
 </head>
 
 <body>
-
     <div class="main_container">
         <div class="s-navbar" data-aos="fade-right">
             <div class="logo-name">
@@ -57,21 +59,21 @@
                 </li>
                 <li class="vert-line">
                     <a href="#">
-                       <i class='bx bxs-report'></i>
-                       <span class="link_name">Subject</span>
+                        <i class='bx bxs-report'></i>
+                        <span class="link_name">Subject</span>
                     </a>
                     <ul class="sub-menu">
-                       <li><a href="subject.html?type=add">Add Subject</a></li>
-                       <li><a href="subject.html?type=update">Edit Subject</a></li>
-                       <li><a href="subject.html?type=delete">Delete Subject</a></li>
+                        <li><a href="subject.html?type=add">Add Subject</a></li>
+                        <li><a href="subject.html?type=update">Edit Subject</a></li>
+                        <li><a href="subject.html?type=delete">Delete Subject</a></li>
                     </ul>
-                 </li>
-                 <li class="vert-line">
+                </li>
+                <li class="vert-line">
                     <a href="#">
-                       <i class='bx bxs-report'></i>
-                       <span class="link_name">Class</span>
+                        <i class='bx bxs-report'></i>
+                        <span class="link_name">Class</span>
                     </a>
-                 </li>
+                </li>
                 <li class="vert-line">
                     <a href="#">
                         <i class='bx bxs-user-account'></i>
@@ -106,7 +108,8 @@
                     <ul class="search-menu">
                         <li>
                             <a href="#">
-                                <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                                <img src="src/assets/avatar.png"
+                                    onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
                                 <h1>
                                     Title
                                 </h1>
@@ -121,9 +124,6 @@
                             </a>
                         </li>
                     </ul>
-
-
-
                 </div>
 
                 <div class="notification " title="Notification">
@@ -131,7 +131,8 @@
                     <ul class="notif-menu">
                         <li>
                             <a href="#">
-                                <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                                <img src="src/assets/avatar.png"
+                                    onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
                                 <h1>
                                     Title
                                 </h1>
@@ -142,7 +143,8 @@
                         </li>
                         <li>
                             <a href="#">
-                                <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                                <img src="src/assets/avatar.png"
+                                    onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
                                 <h1>
                                     Title
                                 </h1>
@@ -153,7 +155,8 @@
                         </li>
                         <li>
                             <a href="#">
-                                <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                                <img src="src/assets/avatar.png"
+                                    onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
                                 <h1>
                                     Title
                                 </h1>
@@ -170,129 +173,54 @@
                     </ul>
                 </div>
                 <div class="profile-picture" title="Profile">
-                    <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                    <img src="src/assets/avatar.png" onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
                     <ul class="profile-menu">
-                        <li><a href="usermanagement.html?type=add">Add User</a></li>
-                        <li><a href="usermanagement.html?type=update">Edit User</a></li>
-                        <li><a href="usermanagement.html?type=delete">Delete User</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="settings.html">Settings</a></li>
+                        <li><a href="#" onclick="Logout()">Logout</a></li>
                     </ul>
                 </div>
             </div>
             <main class="item_container">
-                <h3><span>Atten</span>dance</h3>
-                <div class="function">
-                    <H1>BSIT701A</H1>
-                    <div id="form">
-                        <i class='bx bxs-book-alt'></i>
-                        <span>Form</span>
-                    </div>
-                    <div id="export">
-                        <i class='bx bxl-microsoft'></i>
-                        <span>Export</span>
-                    </div>
-                    <div id="add">
-                        <i class='bx bxs-layer-plus'></i>
-                        <span>Add</span>
-                    </div>
+                <h3>Manage Class</h3>
+
+                <div class="class_container">
+                    <select id="select_class">
+                    </select>
                 </div>
-                <div class="legend">
-                    <div>
-                        <i class='bx bxs-circle' style="color:#69E486"></i>
-                        <span>Present</span>
-                    </div>
-                    <div>
-                        <i class='bx bxs-circle' style="color:#FE5277"></i>
-                        <span>Absent</span>
-                    </div>
-                    <div>
-                        <i class='bx bx-chevrons-left' style="color: #FEB331;"></i>
-                        <span>Arrive Late</span>
-                    </div>
-                    <div>
-                        <i class='bx bx-chevrons-right' style="color: #FEB331;"></i>
-                        <span>Leave Early</span>
-                    </div>
+                <div class="student_container">
+                    <select id="select_student">
+                    </select>
                 </div>
 
-                <div class="attendance-table">
-                    <table class="name">
+                <div class="table">
+
+                    <table id="datatable" class="hover row-border order-column">
                         <thead>
                             <tr>
-                                <td class='n'>Name</td>
+                                <th></th>
+                                <th>ID Number</th>
+                                <th>Name</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga asdasdsdsd</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
+                           
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td class='n'>Name</td>
-                            </tr>
-                        </tfoot>
                     </table>
+    
                 </div>
-                <button>
-                    Submit
-                </button>
-                <br>
-                <br>
 
-                            <!-- MODAL -->
-                <div class="modal">
-                    <div class="modal-container">
-                       <div class="modal-body">
-                        <i onclick="CloseModal()" title="Close"class="material-icons" style="position: absolute; right: 10; top: 10; color: #ffff;">close</i>
-                            <span style="width: 100%; background-color: #FE5277; color: #ffff;"> 
-                                <h3>Add/View Remarks</h3>
-                            </span>
-                           <div class="Student-info">
-                               <div style="width: 100%; margin-left: 15px;"><label>Student Name:</label>
-                                    <label>Mitch A. Serrano</label>
-                                </div>
-                                <div style="width: 100%; margin-left: 15px; margin-top: 5px;">
-                                    <label>Student ID.:</label>
-                                    <label>02000017275</label>
-                                </div>
-                           </div>
-                           <textarea placeholder="Enter Remarks"></textarea>
-                           <div class="modal-controls">
-                               <button>Save</button>
-                               <button onclick="CloseModal()">Cancel</button>
-                           </div>
-                       </div>
-                    </div>
+
+                <div class="function">
+                    <button id="submits">
+                        Submit
+                    </button>
+                    <button id="cancel" hidden>
+                        Cancel
+                    </button>
+
                 </div>
-                <!-- MODAL END -->
-
             </main>
         </div>
     </div>
@@ -314,29 +242,22 @@
         integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
-    </script>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <script src="src/js/script.js"></script>
     <script src="src/js/sidebar.js"></script>
-    <script src="src/js/attendance-b.js"></script>
-
+    <script src="src/js/class.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
     <script>
         AOS.init();
-        $(document).ready(function () {
-            var table = $('#datatable').DataTable({
-                "paging": false,
-                "info": false
-            });
-
-        });
     </script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

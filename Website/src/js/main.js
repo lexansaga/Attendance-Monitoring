@@ -85,7 +85,7 @@ $(document).ready(function () {
                     $('.prof_container > ul ').prepend(
                         " <li>" +
                         "<a id=\"prof_link\" href=\"#\">" +
-                        "<img id=\"ic_prof\" src=\"" + image + "\" />" +
+                        "<img id=\"ic_prof\" src=\"" + image + "\" onerror=\"this.onerror=null; this.src='src/assets/avatar.png'\" />" +
                         "<h2>" + name[1] + "," + name[0] + " " + name[2].toString().substr(0, 1).toUpperCase() + "." +
                         "</h2>" +
                         "   <h3>"+type+"</h3>" +

@@ -58,9 +58,20 @@
                </a>
             </li>
             <li class="vert-line">
-               <a href="subject.html">
+               <a href="#">
                   <i class='bx bxs-report'></i>
                   <span class="link_name">Subject</span>
+               </a>
+               <ul class="sub-menu">
+                  <li><a href="subject.html?type=add">Add Subject</a></li>
+                  <li><a href="subject.html?type=update">Edit Subject</a></li>
+                  <li><a href="subject.html?type=delete">Delete Subject</a></li>
+               </ul>
+            </li>
+            <li class="vert-line">
+               <a href="#">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Class</span>
                </a>
             </li>
             <li class="vert-line">
@@ -172,13 +183,19 @@
          <main class="item_container">
             <h3>Subject</h3>
 
+
+            <div class="containerSearchSubject">
+               <select id="search_subject">
+                </select>
+            </div>
+
             <input id="sub_id" type="text" placeholder="Subject ID" disabled />
             <input id="sub_name" type="text" placeholder="Subject Name" />
             <input id="sub_description" type="text" placeholder="Subject Description" />
             <input id="sub_location" type="text" placeholder="Subject Location" />
             <input id="sub_start" type="time" placeholder="Subject Start Time" />
             <input id="sub_end" type="time" placeholder="Subject End Time" />
-            <select class="js-example-basic-single" id="sub_days" name="state">
+            <select id="sub_days" name="state">
                <option value="" disabled selected>Select Day</option>
                <option value="Sunday">Sunday</option>
                <option value="Monday">Monday</option>
@@ -188,14 +205,14 @@
                <option value="Friday">Friday</option>
                <option value="Saturday">Saturday</option>
             </select>
-            <select class="js-example-basic-single" id="professors">
+            <select id="professors">
                <option value="" disabled selected>Select Professor</option>
             </select>
             <div class="function">
                <button id="submits">
                   Submit
                </button>
-               <button id="cancel">
+               <button id="cancel" hidden>
                   Cancel
                </button>
 

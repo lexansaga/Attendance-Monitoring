@@ -23,6 +23,8 @@ var searchperson = $('#SearchPerson');
 
 var profilePicture = $('#output');
 
+var cardID = $('#Card_ID');
+
 //End -- Initializaion of Objects
 
 //Start -- Onload Function
@@ -148,6 +150,7 @@ const loadFile = function (event) {
     // This function will load the image from source to img
     const image = document.getElementById('output');
     image.src = URL.createObjectURL(event.target.files[0]);
+    alert(event.target.files[0]);
 
 };
 
@@ -174,6 +177,8 @@ var reset = function () {
 
     email.val('');
     password.val('');
+
+    cardID.val('');
 
     $('#output').attr('src', 'src/assets/avatar.png');
     $('#file').val('');
@@ -252,6 +257,10 @@ function VerifyType() {
             'display': 'block'
         });
         ID.attr('placeholder', 'Enter Student ID');
+
+        cardID.css({
+            'display': 'block'
+        });
 
         contact.css({
             'display': 'block'
@@ -335,6 +344,11 @@ function VerifyType() {
         contact.css({
             'display': 'block'
         });
+
+        cardID.css({
+            'display': 'block'
+        });
+
         address.css({
             'display': 'block'
         });
@@ -391,6 +405,10 @@ function VerifyType() {
             'display': 'block'
         });
         mainTable.css({
+            'display': 'none'
+        });
+
+        cardID.css({
             'display': 'none'
         });
 
@@ -470,6 +488,11 @@ function VerifyType() {
         document.getElementById('ContactNumber').style.display = "none";
         document.getElementById('Address').style.display = "none";
         document.getElementById('setSubject').style.display = "none";
+
+
+        cardID.css({
+            'display': 'none'
+        });
 
         userSetup.css({
             'display': 'none'
@@ -572,6 +595,7 @@ $('#btnsave').click(function (event) {
                     firebase.database().ref(`Data/Student/Information/${ID.val()}`).set({
                         "Address": address.val(),
                         "Contact": contact.val(),
+                        "Card_ID": cardID.val(),
                         "ID": ID.val(),
                         "Email": studentEmail.val(),
                         "Name": {
@@ -668,7 +692,7 @@ $('#btnsave').click(function (event) {
                         "Address": address.val(),
                         "Contact": contact.val(),
                         "ID": ID.val(),
-
+                        "Card_ID": cardID.val(),
                         "Name": {
                             "First": firstName.val(),
                             "Middle": middleName.val(),
@@ -836,8 +860,11 @@ $('#SearchPerson').on("select2:select", function (e) {
             let profileLink = snap.child('Profile').val();
             if (profileLink != null) {
                 profilePicture.attr('src', snap.child('Profile').val());
+               
+                $('#file').attr('value',snap.child('Profile').val());
             }
             ID.val(snap.child('ID').val());
+            cardID.val(snap.child('Card_ID').val());
             lastName.val(name[1]);
             firstName.val(name[0]);
             middleName.val(name[2]);
@@ -845,16 +872,13 @@ $('#SearchPerson').on("select2:select", function (e) {
             studentEmail.val(snap.child('Email').val());
             address.val(snap.child('Address').val());
 
+
             console.log(snap.child("Subject").val());
             snap.child("Subject").forEach(subject => {
 
                 firebase.database().ref("Data/Subject/" + subject.val()).once('value', subSnap => {
 
                     console.log(subSnap.val());
-
-
-
-
 
                     let schedule = []
                     subSnap.child('Schedule').forEach(schedules => {
@@ -905,6 +929,7 @@ $('#SearchPerson').on("select2:select", function (e) {
             });
 
             ID.val(snap.child('ID').val());
+            cardID.val(snap.child('Card_ID').val());
             lastName.val(name[1]);
             firstName.val(name[0]);
             middleName.val(name[2]);

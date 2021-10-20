@@ -6,19 +6,65 @@ var start = $('#sub_start');
 var end = $('#sub_end');
 var day = $('#sub_days');
 
+var searchSubject = $('#search_subject');
+var searchSubjectContainer = $('.containerSearchSubject');
 var professors = $('#professors');
+
+var submit = $('#submits');
+
 $(document).ready(function () {
-    //$('.js-example-theme-multiple').select2();
+
+    professors.select2({
+        containerCssClass: "show-hide",
+        margin: '10px 10px 15px 0'
+    });
+
+    searchSubject.select2({
+        containerCssClass: "show-hide",
+        margin: '10px 10px 15px 0'
+    });
+
+
+    var url = new URL(window.location.href);
+    let subjectType = url.searchParams.get('type');
+    console.log(subjectType);
+
+    if (subjectType.includes('add')) {
+
+
+        submit.html('Add');
+        searchSubjectContainer.css({
+            'display': 'none'
+        });
+        id.css({
+            'margin-top': '50px'
+        });
+
+    } else if (subjectType.includes('update')) {
+        //alert("Update");
+        LoadSubjects();
+        submit.html('Update');
+
+    } else {
+        //alert("Delete");
+        LoadSubjects();
+        submit.html('Delete');
+
+    }
 });
 
 $(window).on('load', function () {
 
 
+
     firebase.database().ref('Data/Faculty/Information').on('value', snap => {
         snap.forEach(childSnap => {
             var profID = childSnap.child('ID').val();
-            var profName = childSnap.child('Name').val().split('&&');
-            professors.append(`<option value="${profID}"> ${profName[0]+', '+profName[1]+' '+profName[2]} (${profID})  </option>`);
+            let name = [];
+            childSnap.child('Name').forEach(names => {
+                name.push(names.val());
+            })
+            professors.append(`<option value="${profID}"> ${name[1]+', '+name[0]+' '+name[2]} (${profID})  </option>`);
 
         });
     });
@@ -30,32 +76,47 @@ $(window).on('load', function () {
 
 
 $('#submits').click(function () {
-    console.log(id.val());
-    console.log(subname.val());
-    console.log(description.val());
-    console.log(start.val());
-    console.log(end.val());
-    console.log(day.val());
+    // console.log(id.val());
+    // console.log(subname.val());
+    // console.log(description.val());
+    // console.log(start.val());
+    // console.log(end.val());
+    // console.log(day.val());
 
+    if (submit.html().includes('Add') || submit.html().includes('Update')) {
+        if (id.val() != null && subname.val() != null &&
+            description.val() != null && start.val() != null &&
+            end.val() != null && day.val() != null &&
+            sublocation.val() != null && professors.val() != null) {
+            firebase.database().ref('Data/Subject/' + id.val()).set({
+                ClassNbr: id.val(),
+                Description: description.val(),
+                Location: sublocation.val(),
+                Professor: professors.val(),
+                Schedule: {
+                    Day: day.val(),
+                    Time: start.val() + '-' + end.val()
+                },
+                Title: subname.val()
 
-    if (id.val() != null && subname.val() != null &&
-        description.val() != null && start.val() != null &&
-        end.val() != null && day.val() != null &&
-        sublocation.val() != null && professors.val() != null) {
-        firebase.database().ref('Data/Subject/' + id.val()).set({
-            Code: id.val(),
-            Description: description.val(),
-            Location: sublocation.val(),
-            Professor: professors.val(),
-            Schedule: day.val() + '&&' + start.val() + '&&' + end.val(),
-            Title: subname.val()
-
-        });
-        reset();
-        loadid();
-        alert('Subject Data Inserted Successfully!');
+            });
+            reset();
+            loadid();
+            alert('Subject Data Inserted Successfully!');
+        } else {
+            alert('Fill up all information');
+        }
     } else {
-        alert('Fill up all information');
+        var val = confirm("Are you sure you want to delete this?");
+        if (val == true) {
+            firebase.database().ref('Data/Subject/' + id.val()).remove();
+            alert('Subject Deleted Sucessfully');
+            return true;
+        } else {
+            alert('Subject Deletion Cancelled');
+            return false;
+        }
+
     }
 
 });
@@ -81,5 +142,52 @@ var loadid = function () {
     firebase.database().ref('Data/Subject/').on('value', snap => {
         var count = (snap.numChildren() + 1).toString();
         id.val('SUB' + '1' + ('000000' + count).substring(count.length));
+    });
+}
+
+
+$('#search_subject').on("select2:select", function (e) {
+
+
+    let uid = $(this).val();
+    alert(uid);
+    firebase.database().ref('Data/Subject/' + uid).on('value', snap => {
+        id.val(snap.child('ClassNbr').val());
+        subname.val(snap.child('Title').val());
+        description.val(snap.child('Description').val());
+        sublocation.val(snap.child('Location').val());
+
+        let sched = snap.child('Schedule').child('Time').val();
+
+        if (sched != null) {
+            sched = snap.child('Schedule').child('Time').val().split('-')
+            start.val(sched[0]);
+            end.val(sched[1]);
+
+            day.val(snap.child('Schedule').child('Day').val());
+
+            professors.val(snap.child('Professor').val()).trigger('change');
+        } else {
+            alert("No Schedule Available");
+
+        }
+
+
+
+
+        //   alert(snap.child('Professor').val());
+    });
+
+});
+
+function LoadSubjects() {
+    firebase.database().ref('Data/Subject/').on('value', snap => {
+        searchSubject.html(' ');
+        searchSubject.append(`<option disabled selected> Select Subject </option>`);
+        snap.forEach(childSnap => {
+
+            console.log('Subject Added');
+            searchSubject.append(`<option value='${childSnap.child('ClassNbr').val()}'> ${`<span style="color:#cccccc">(${childSnap.child('ClassNbr').val()}) </span>`+childSnap.child('Title').val()} </option>`);
+        });
     });
 }
