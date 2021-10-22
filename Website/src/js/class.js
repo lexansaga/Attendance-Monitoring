@@ -18,7 +18,9 @@ $(document).ready(function () {
           width: '100%',
      });
 
-     $('#datatable').DataTable();
+     $('#datatable').DataTable({
+          ordering: false
+     });
 
      LoadSubjects();
      LoadStudents();
@@ -47,9 +49,9 @@ select_student.on('select2:select', function (e) {
                               .val()}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
                          snap.child('ID').val(),
                          snap.child('Name').child('Last').val() +
-                              ',' +
-                              snap.child('Name').child('First').val() +
-                              snap.child('Name').child('Middle').val(),
+                         ',' +
+                         snap.child('Name').child('First').val() +
+                         snap.child('Name').child('Middle').val(),
                          `<button onclick="Delete(this)"><i class='bx bxs-trash'></i></button>`,
                     ])
                     .draw();
@@ -79,16 +81,16 @@ select_class.on('select2:select', function (e) {
                                              .val()}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
                                         data.child('ID').val(),
                                         data.child('Name').child('Last').val() +
-                                             ', ' +
-                                             data
-                                                  .child('Name')
-                                                  .child('First')
-                                                  .val() +
-                                             ' ' +
-                                             data
-                                                  .child('Name')
-                                                  .child('Middle')
-                                                  .val(),
+                                        ', ' +
+                                        data
+                                        .child('Name')
+                                        .child('First')
+                                        .val() +
+                                        ' ' +
+                                        data
+                                        .child('Name')
+                                        .child('Middle')
+                                        .val(),
                                         `<button onclick="Delete(this)"><i class='bx bxs-trash'></i></button>`,
                                    ])
                                    .draw();
@@ -102,12 +104,35 @@ var tobedeleted = [];
 function Delete(e) {
      //  alert('I am delete');
      //  $(e).parent().parent().remove();
-     let index = $(e).closest('td').parent()[0].sectionRowIndex;
-     // alert();
-     datatable.DataTable().row(index).remove().draw();
 
-  //   alert();
-     console.log($(e).parent().parent().eq(2).html());
+     let index = $(e).closest('td').parent()[0].sectionRowIndex;
+
+     let id = $(`#datatable tbody tr:eq(${index}) td:eq(${1})`).html();
+
+
+     // alert(id);
+     tobedeleted.push(id);
+     datatable.DataTable().row(index).remove().draw();
+     console.log(tobedeleted);
+     //   $(`#datatable tbody tr:eq(${index})`).remove()
+     //  alert(index);
+     // let index = datatable.DataTable().row(e).index();
+
+     //  alert(index)
+     // alert();
+
+
+     // alert(index);
+     //   let id = datatable.find('tr').eq(index).find('td').eq(1).html();
+
+     //  alert(id);
+     //tobedeleted.push(id)
+     //console.log(tobedeleted);
+     //   alert();
+     //   console.log($(e).parent('tr').data());
+     //  console.log($.parseHTML($(e).parent().parent().html())[1]);
+     //   tobedeleted.push($.parseHTML($(e).parent().parent().html())[1])
+     //    console.log(tobedeleted);
 }
 
 function LoadSubjects() {
@@ -167,6 +192,9 @@ $('#submits').click(function () {
           alert('Select your class first!');
           return;
      }
+
+ 
+
      let class_set = [];
      $('#datatable tbody tr').each(function () {
           //  alert($(this).find('td').eq(1).text() + " " + $(this).find('td').eq(2).text());
@@ -175,28 +203,27 @@ $('#submits').click(function () {
                Name: $(this).find('td').eq(2).text(),
           });
 
-          alert($(this)
-          .find('td')
-          .eq(1)
-          .text());
+          // alert($(this)
+          //      .find('td')
+          //      .eq(1)
+          //      .text());
           firebase
                .database()
                .ref(`Data/Student/Information/${$(this)
                          .find('td')
                          .eq(1)
-                         .text()}/Subject/`
-               )
-               .on('value', (subjects) => {
+                         .text()}/Subject/`)
+               .once('value', (subjects) => {
 
-                  //  console.log(subjects.val());
+                    //  console.log(subjects.val());
                     let subject = [];
                     subjects.forEach((childSubject) => {
-                    console.log('Subjects' + childSubject.val());
+                         console.log('Subjects' + childSubject.val());
                          subject.push(childSubject.val());
                     });
                     subject.push(select_class.val());
 
-                
+
                     let newSubject = [...new Set(subject)]; //This will remove duplicates
                     firebase.database().ref(`Data/Student/Information/${$(this)
                         .find('td')
@@ -205,7 +232,26 @@ $('#submits').click(function () {
                });
      });
 
-     console.log(class_set);
+
+     // tobedeleted.forEach(deleted => {
+     //      console.log(deleted);
+     //        firebase.database().ref(`Data/Student/Information/${deleted}/Subject/`).once('value', snap => {
+     //                  console.log(snap.val());
+  
+     //                  snap.forEach(ids =>
+     //                       {
+     //                            console.log(ids.key+':'+ids.val());
+     //                            if(ids.val() == select_class.val())
+     //                            {
+     //                                 console.log("ID Equal True" + ids.key);
+     //                               firebase.database().ref(`Data/Student/Information/${deleted}/Subject/${ids.key}`).remove()
+     //                            }
+     //                       });
+     //        });
+     //   })
+  
+
+  //   console.log(class_set);
      firebase
           .database()
           .ref('Data/Subject/' + select_class.val() + '/Students/')

@@ -9,7 +9,6 @@
   <link href="src/css/sidebar.css" rel="stylesheet" />
   <link href="src/css/schedule.css" rel="stylesheet" />
   <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
-
   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
@@ -186,21 +185,22 @@
         <h3>Schedule</h3>
 
         <div class="SearchControl_wrapper">
-    
-          <p>Select Data</p>
-          <select id="look" class='js-example-basic-single'>
-          </select>
-
           <p>Select Type <span style="color:red">(Default: Faculty)</span></p>
           <select id="userType"  class='js-example-basic-single'>
             <option selected disabled>Select Type </option>
             <option  value="Student">Student</option>
-            <option value="Professor">Faculty</option>
+            <option value="Faculty">Faculty</option>
           </select>
+
+          <p>Select Data</p>
+          <select id="look" class='js-example-basic-single'>
+          </select>
+
+       
         </div>
 
         <div class="UserInformation_wrapper">
-          <img class="userImage" id="userImage" src="src/assets/avatar.png">
+          <img class="userImage" id="userImage" src="src/assets/avatar.png" onerror="this.onerror=null; this.src='src/assets/avatar.png'">
           <div class="UserInfo">
             <h1 id="infoName">Saga, Alexander P.</h1>
             <h2 id="infoId">02000017275</h2>
@@ -208,7 +208,16 @@
           </div>
 
           <div class="table_Wrapper">
-            <table id="userSchedule" class="dataTable hover stripe order-column" style="width:100%"></table>
+            <table id="userSchedule" class="dataTable hover stripe order-column" style="width:100%">
+              <thead><tr>
+                <td>Title</td>
+                <td>Day</td>
+                <td>Time</td>
+                <td>Location</td>
+                <td>Professor</td>
+                </tr></thead>
+              
+              </table>
             <br>
             <br>
           </div>
@@ -237,19 +246,12 @@
     <script>
       AOS.init();
 
-      $(document).ready(function () {
-         var table = $('#userSchedule').DataTable({
-            "paging": false,
-            "info": false
-         });
-
-      });
    </script>
 
     <script src="src/js/script.js"></script>
     <script src="src/js/sidebar.js"></script>
     <script src="src/js/schedule.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

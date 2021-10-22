@@ -424,7 +424,7 @@ function VerifyType() {
         //  alert('Student Selected');
         if (usermanagementType.includes('add')) {
             // alert("Add");
-            loadid('Student');
+            loadid('Faculty');
 
 
         } else if (usermanagementType.includes('update')) {
@@ -505,7 +505,7 @@ function VerifyType() {
         //  alert('Student Selected');
         if (usermanagementType.includes('add')) {
             // alert("Add");
-            loadid('Student');
+            loadid('Gate');
 
 
         } else if (usermanagementType.includes('update')) {

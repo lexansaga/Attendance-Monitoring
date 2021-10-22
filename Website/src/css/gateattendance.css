@@ -107,6 +107,7 @@ img {
 }
 
 .modal-container {
+  overflow: auto;
   position: relative;
   z-index: 101;
   margin: auto;
@@ -118,6 +119,7 @@ img {
   -webkit-animation-duration: 0.4s;
   animation: modal-animation;
   animation-duration: 0.5s;
+  padding-bottom: 26px;
 }
 
 @keyframes modal-animation {

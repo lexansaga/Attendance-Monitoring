@@ -136,12 +136,15 @@ table.dataTable thead td {
   border-bottom: 0 !important;
 }
 
-th {
+thead td {
   font-weight: 500 !important;
   background-color: var(--secondary-color);
   color: white;
 
 }
+
+
+
 
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
 @media (max-width: 768px) {
