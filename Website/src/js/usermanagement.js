@@ -25,6 +25,11 @@ var profilePicture = $('#output');
 
 var cardID = $('#Card_ID');
 
+var subjectselection = $('#Select_Section');
+
+var tableModal = $('#modal-table');
+var tableSubject = $('#SubjectSection-table');
+
 //End -- Initializaion of Objects
 
 //Start -- Onload Function
@@ -47,7 +52,7 @@ $(document).ready(function () {
 
     }
 
-    $('.js-example-basic-single').select2();
+
     searchperson.select2({
         containerCssClass: "show-hide",
         width: '98.5%',
@@ -72,57 +77,108 @@ $(document).ready(function () {
         });
     });
 
-    // Start - Modal table Function
 
-    $('.ModalAdd').click(function () {
-        // This function add row on modal table
-        var data = $('#Select_Section').find(':selected').val();
-        console.log($(`#modal-table tbody tr > td:contains(${data})`).length);
-        if ((data != null || data != '') &&
-            $(`#modal-table tbody tr > td:contains(${data})`).length == 0) {
-            firebase.database().ref('Data/Subject/' + data).on('value', snap => {
 
-                // console.log(snap.child('Schedule').val());
-                let schedule = []
-                snap.child('Schedule').forEach(schedules => {
-                    schedule.push(schedules.val());
-                });
-                $('#modal-table tbody').append(`
-          <tr>
-          <td>${snap.child('ClassNbr').val()}</td>
-          <td>${snap.child('Title').val()}</td>
-          <td>${snap.child('Description').val()}</td>
-          <td>${schedule[0]}</td>
-          <td>${schedule[1]}</td>
-          <td>${snap.child('Professor').val()}</td>
-          <td><i class="material-icons delete-row">delete_forever</i></td>
-       </tr>
-       `);
-            });
-        }
+
+    subjectselection.select2({});
+
+
+    tableModal.DataTable({
+        "aaSorting": [],
+        'searching': false,
+        paging: false,
+        order: [
+            [1, 'desc']
+        ],
+
+        "bDestroy": true
     });
-
-    $('.ModalSubmit').click(function () {
-        // This fuction hide the modal table
-        $('.modal:eq(0)').css('display', 'none');
-
-        $('#SubjectSection-table tbody').html($('#modal-table tbody').html());
+    tableSubject.DataTable({
+        "aaSorting": [],
+        order: [
+            [1, 'desc']
+        ],
+        "bDestroy": true
     });
-
-    $('.ModalCancel').click(function () {
-        // This fuction hide the modal table
-        $('.modal:eq(0)').css('display', 'none');
-    });
-    //End -- Modal table Function
-
-
-
 
 });
 
 // End -- Onload Function
 
 
+// Start - Modal table Function
+subjectselection.on('select2:select', function (e) {
+    var data = $('#Select_Section').find(':selected').val();
+    console.log($(`#modal-table tbody tr > td:contains(${data})`).length);
+    if ((data != null || data != '') &&
+        $(`#modal-table tbody tr > td:contains(${data})`).length == 0) {
+        firebase.database().ref('Data/Subject/' + data).on('value', snap => {
+
+            // console.log(snap.child('Schedule').val());
+            let schedule = []
+            snap.child('Schedule').forEach(schedules => {
+                schedule.push(schedules.val());
+            });
+            //             $('#modal-table tbody').append(`
+            //       <tr>
+            //       <td>${snap.child('ClassNbr').val()}</td>
+            //       <td>${snap.child('Title').val()}</td>
+            //       <td>${snap.child('Description').val()}</td>
+            //       <td>${schedule[0]}</td>
+            //       <td>${schedule[1]}</td>
+            //       <td>${snap.child('Professor').val()}</td>
+            //       <td><i class="material-icons delete-row">delete_forever</i></td>
+            //    </tr>
+            //    `);
+            tableModal.DataTable().row.add(
+                [
+                    snap.child('ClassNbr').val(),
+                    snap.child('Title').val(),
+                    snap.child('Description').val(),
+                    schedule[0],
+                    schedule[1],
+                    snap.child('Professor').val(),
+                    `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+                ]).draw();
+            tableSubject.DataTable().row.add(
+                [
+                    snap.child('ClassNbr').val(),
+                    snap.child('Title').val(),
+                    snap.child('Description').val(),
+                    schedule[0],
+                    schedule[1],
+                    snap.child('Professor').val(),
+                    `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+                ]).draw();
+        });
+    }
+
+
+});
+
+$('.ModalAdd').click(function () {
+    // This function add row on modal table
+
+});
+
+$('.ModalSubmit').click(function () {
+    // This fuction hide the modal table
+    $('.modal:eq(0)').css('display', 'none');
+
+    //  $('#SubjectSection-table tbody').html($('#modal-table tbody').html());
+});
+
+$('.ModalCancel').click(function () {
+    // This fuction hide the modal table
+    $('.modal:eq(0)').css('display', 'none');
+});
+//End -- Modal table Function
+
+function DeleteRow(e) {
+    let index = $(e).closest('td').parent()[0].sectionRowIndex;
+    tableModal.DataTable().row(index).remove().draw();
+    tableSubject.DataTable().row(index).remove().draw();
+}
 
 $(window).click(function (e) {
     if (e.target.className == 'modal') {
@@ -150,7 +206,7 @@ const loadFile = function (event) {
     // This function will load the image from source to img
     const image = document.getElementById('output');
     image.src = URL.createObjectURL(event.target.files[0]);
-    alert(event.target.files[0]);
+  //  alert(event.target.files[0]);
 
 };
 
@@ -183,7 +239,8 @@ var reset = function () {
     $('#output').attr('src', 'src/assets/avatar.png');
     $('#file').val('');
 
-    $('table >  tbody').html('');
+    tableModal.DataTable().clear().draw();
+    tableSubject.DataTable().clear().draw();
     $("#Select_Section").val('');
 
     $("input[type=checkbox]").prop("checked", false);
@@ -475,19 +532,19 @@ function VerifyType() {
         LoadSearch(e);
     } else {
         reset();
-        document.getElementById("Email").style.display = "none";
-        document.getElementById("UserSetup").style.display = "none";
-        document.getElementById("cbx").style.display = "none";
-        document.getElementById('mainBTN').style.display = "none";
-        document.getElementById('Maintable').style.display = "none";
+        // document.getElementById("Email").style.display = "none";
+        // document.getElementById("UserSetup").style.display = "none";
+        // document.getElementById("cbx").style.display = "none";
+        // document.getElementById('mainBTN').style.display = "none";
+        // document.getElementById('Maintable').style.display = "none";
 
-        document.getElementById('LName').style.display = "none";
-        document.getElementById('FName').style.display = "none";
-        document.getElementById('MName').style.display = "none";
-        document.getElementById('ID').style.display = "none";
-        document.getElementById('ContactNumber').style.display = "none";
-        document.getElementById('Address').style.display = "none";
-        document.getElementById('setSubject').style.display = "none";
+        // document.getElementById('LName').style.display = "none";
+        // document.getElementById('FName').style.display = "none";
+        // document.getElementById('MName').style.display = "none";
+        // document.getElementById('ID').style.display = "none";
+        // document.getElementById('ContactNumber').style.display = "none";
+        // document.getElementById('Address').style.display = "none";
+        // document.getElementById('setSubject').style.display = "none";
 
 
         cardID.css({
@@ -560,7 +617,7 @@ $('#btnsave').click(function (event) {
 
             alert('Fill up necessary information!');
             // Start -- This will check for each empty input and mark red
-            $('.inputArea >  input, .inputArea >  textarea').each(function () {
+            $('.inputArea >  input:not(#Card_ID), .inputArea >  textarea').each(function () {
                 if ($(this).val() == '') {
                     $(this).css({
                         'border': '1px solid red'
@@ -586,35 +643,58 @@ $('#btnsave').click(function (event) {
 
         var file = document.getElementById("file");
         file = file.files[0];
+        if (file != null) {
+            // Start - If image has no value or null, Insert Image
+            var storageRef = firebase.storage().ref('Profile/Student/' + ID.val());
+            storageRef.put(file).then((snapshot) => {
+                storageRef.getDownloadURL()
+                    .then((url) => {
+                        // Insert url into an <img> tag to "download"
+                        firebase.database().ref(`Data/Student/Information/${ID.val()}`).update({
+                            "Address": address.val(),
+                            "Contact": contact.val(),
+                            "Card_ID": cardID.val(),
+                            "ID": ID.val(),
+                            "Email": studentEmail.val(),
+                            "Name": {
+                                "First": firstName.val(),
+                                "Middle": middleName.val(),
+                                "Last": lastName.val()
+                            },
+                            Subject,
+                            "Profile": url
+                        });
+                        alert('Student Save Successfully');
+                        reset();
+                        loadid('Student');
+                    })
+                    .catch((error) => {
 
-        var storageRef = firebase.storage().ref('Profile/Student/' + ID.val());
-        storageRef.put(file).then((snapshot) => {
-            storageRef.getDownloadURL()
-                .then((url) => {
-                    // Insert url into an <img> tag to "download"
-                    firebase.database().ref(`Data/Student/Information/${ID.val()}`).set({
-                        "Address": address.val(),
-                        "Contact": contact.val(),
-                        "Card_ID": cardID.val(),
-                        "ID": ID.val(),
-                        "Email": studentEmail.val(),
-                        "Name": {
-                            "First": firstName.val(),
-                            "Middle": middleName.val(),
-                            "Last": lastName.val()
-                        },
-                        Subject,
-                        "Profile": url
+                        console.log('Error ' + error)
                     });
-                    alert('Student Save Successfully');
-                    reset();
-                    loadid('Student');
-                })
-                .catch((error) => {
+            });
+            // End - If image has no value or null, Insert Image
+        } else {
+            // Start - If image has no value ,Decline insert Image
+            firebase.database().ref(`Data/Student/Information/${ID.val()}`).update({
+                "Address": address.val(),
+                "Contact": contact.val(),
+                "Card_ID": cardID.val(),
+                "ID": ID.val(),
+                "Email": studentEmail.val(),
+                "Name": {
+                    "First": firstName.val(),
+                    "Middle": middleName.val(),
+                    "Last": lastName.val()
+                },
+                Subject
+            });
+            alert('Student Save Successfully');
+            reset();
+            loadid('Student');
+            // End - If image has no value ,Decline insert Image
+        }
 
-                    console.log('Error ' + error)
-                });
-        });
 
 
 
@@ -632,7 +712,7 @@ $('#btnsave').click(function (event) {
 
             alert('Fill up necessary information!');
             // Start -- This will check for each empty input and mark red
-            $('.inputArea >  input,.inputArea >  textarea,#UserSetup > input').each(function () {
+            $('.inputArea >  input:not(#Card_ID),.inputArea >  textarea,#UserSetup > input').each(function () {
                 if ($(this).val() == '') {
                     $(this).css({
                         'border': '1px solid red'
@@ -684,56 +764,107 @@ $('#btnsave').click(function (event) {
 
         var file = document.getElementById("file");
         file = file.files[0];
-        var storageRef = firebase.storage().ref('Profile/Faculty/' + ID.val());
-        storageRef.put(file).then((snapshot) => {
-            storageRef.getDownloadURL()
-                .then((url) => {
-                    firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).set({
-                        "Address": address.val(),
-                        "Contact": contact.val(),
-                        "ID": ID.val(),
-                        "Card_ID": cardID.val(),
-                        "Name": {
-                            "First": firstName.val(),
-                            "Middle": middleName.val(),
-                            "Last": lastName.val()
-                        },
-                        Subject,
-                        "Profile": url
-                    });
 
-                    var dEmail = email.val(),
-                        dPassword = password.val(),
-                        dId = ID.val();
+        if (file != null) {
+             // Start - If image has  value, Insert Image
+            var storageRef = firebase.storage().ref('Profile/Faculty/' + ID.val());
+            storageRef.put(file).then((snapshot) => {
+                storageRef.getDownloadURL()
+                    .then((url) => {
+                        firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).update({
+                            "Address": address.val(),
+                            "Contact": contact.val(),
+                            "ID": ID.val(),
+                            "Card_ID": cardID.val(),
+                            "Name": {
+                                "First": firstName.val(),
+                                "Middle": middleName.val(),
+                                "Last": lastName.val()
+                            },
+                            Subject,
+                            "Profile": url
+                        });
+
+                        var dEmail = email.val(),
+                            dPassword = password.val(),
+                            dId = ID.val();
 
 
-                    if (email.val() != null && password.val() != null) {
-                        firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
-                            .then((userCredential) => {
-                                var uid = userCredential.user.uid;
+                        if (email.val() != null && password.val() != null) {
+                            firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+                                .then((userCredential) => {
+                                    var uid = userCredential.user.uid;
 
-                                firebase.database().ref('User/' + uid).set({
-                                    'Account_Type': e,
-                                    'ID': uid,
-                                    'Password': dPassword,
-                                    'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
-                                    'UserID': dId,
-                                    'Email': dEmail
+                                    firebase.database().ref('User/' + uid).update({
+                                        'Account_Type': e,
+                                        'ID': uid,
+                                        'Password': dPassword,
+                                        'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                        'UserID': dId,
+                                        'Email': dEmail
+                                    });
+                                })
+                                .catch((error) => {
+                                    console.log('Error ' + error)
                                 });
-                            })
-                            .catch((error) => {
-                                console.log('Error ' + error)
-                            });
-                    }
-                    alert('Faculty Save Successfully');
-                    reset();
-                    loadid('Faculty');
-                })
-                .catch((error) => {
-                    console.log('Error ' + error)
+                        }
+                        alert('Faculty Save Successfully');
+                        reset();
+                        loadid('Faculty');
+                    })
+                    .catch((error) => {
+                        console.log('Error ' + error)
 
-                });
-        });
+                    });
+            });
+
+              // End - If image has  value, Insert Image
+        } else {
+
+            // Start - If image has no value or , Declined insert Image
+            firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).update({
+                "Address": address.val(),
+                "Contact": contact.val(),
+                "ID": ID.val(),
+                "Card_ID": cardID.val(),
+                "Name": {
+                    "First": firstName.val(),
+                    "Middle": middleName.val(),
+                    "Last": lastName.val()
+                },
+                Subject
+            });
+
+            var dEmail = email.val(),
+                dPassword = password.val(),
+                dId = ID.val();
+
+
+            if (email.val() != null && password.val() != null) {
+                firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+                    .then((userCredential) => {
+                        var uid = userCredential.user.uid;
+
+                        firebase.database().ref('User/' + uid).update({
+                            'Account_Type': e,
+                            'ID': uid,
+                            'Password': dPassword,
+                            'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                            'UserID': dId,
+                            'Email': dEmail
+                        });
+                    })
+                    .catch((error) => {
+                        console.log('Error ' + error)
+                    });
+            }
+            alert('Faculty Save Successfully');
+            reset();
+            loadid('Faculty');
+
+              // End - If image has no value or , Declined insert Image
+        }
+
     } else if (e == 'Gate') {
 
         event.stopPropagation();
@@ -791,45 +922,87 @@ $('#btnsave').click(function (event) {
 
         var file = document.getElementById("file");
         file = file.files[0];
-        var storageRef = firebase.storage().ref('Profile/Gate/' + $('#ID').val());
-        storageRef.put(file).then((snapshot) => {
-            storageRef.getDownloadURL()
-                .then((url) => {
-                    firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).set({
-                        "ID": $('#ID').val()
-                    });
 
-                    var dEmail = email.val(),
-                        dPassword = password.val(),
-                        dId = ID.val();
-
-
-                    if (email.val() != null && password.val() != null) {
-                        firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
-                            .then((userCredential) => {
-                                var uid = userCredential.user.uid;
-
-                                firebase.database().ref('User/' + uid).set({
-                                    'Account_Type': e,
-                                    'ID': uid,
-                                    'Password': dPassword,
-                                    'Role': e,
-                                    'UserID': dId,
-                                    'Email': dEmail
+        if(file != null)
+        { // Start - If image has  value  ,  Insert Image
+            var storageRef = firebase.storage().ref('Profile/Gate/' + $('#ID').val());
+            storageRef.put(file).then((snapshot) => {
+                storageRef.getDownloadURL()
+                    .then((url) => {
+                        firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
+                            "ID": $('#ID').val()
+                        });
+    
+                        var dEmail = email.val(),
+                            dPassword = password.val(),
+                            dId = ID.val();
+    
+    
+                        if (email.val() != null && password.val() != null) {
+                            firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+                                .then((userCredential) => {
+                                    var uid = userCredential.user.uid;
+    
+                                    firebase.database().ref('User/' + uid).update({
+                                        'Account_Type': e,
+                                        'ID': uid,
+                                        'Password': dPassword,
+                                        'Role': e,
+                                        'UserID': dId,
+                                        'Email': dEmail
+                                    });
+                                })
+                                .catch((error) => {
+                                    console.log('Error ' + error)
                                 });
-                            })
-                            .catch((error) => {
-                                console.log('Error ' + error)
-                            });
-                    }
-                    alert('Gate Save Successfully');
-                    reset();
-                    loadid('Gate');
-                })
-                .catch((error) => {
-                    console.log('Error ' + error)
-                });
-        });
+                        }
+                        alert('Gate Save Successfully');
+                        reset();
+                        loadid('Gate');
+                    })
+                    .catch((error) => {
+                        console.log('Error ' + error)
+                    });
+            });
+            // End - If image has  value  ,  Insert Image
+        }
+        else
+        {
+            // Start - If image has no  value  , Declined insert Image
+            firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
+                "ID": $('#ID').val()
+            });
+
+            var dEmail = email.val(),
+                dPassword = password.val(),
+                dId = ID.val();
+
+
+            if (email.val() != null && password.val() != null) {
+                firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+                    .then((userCredential) => {
+                        var uid = userCredential.user.uid;
+
+                        firebase.database().ref('User/' + uid).update({
+                            'Account_Type': e,
+                            'ID': uid,
+                            'Password': dPassword,
+                            'Role': e,
+                            'UserID': dId,
+                            'Email': dEmail
+                        });
+                    })
+                    .catch((error) => {
+                        console.log('Error ' + error)
+                    });
+            }
+            alert('Gate Save Successfully');
+            reset();
+            loadid('Gate'); 
+
+             // End - If image has no  value  , Declined insert Image
+        }
+     
     } else {
 
     }
@@ -860,8 +1033,8 @@ $('#SearchPerson').on("select2:select", function (e) {
             let profileLink = snap.child('Profile').val();
             if (profileLink != null) {
                 profilePicture.attr('src', snap.child('Profile').val());
-               
-                $('#file').attr('value',snap.child('Profile').val());
+
+                $('#file').attr('value', snap.child('Profile').val());
             }
             ID.val(snap.child('ID').val());
             cardID.val(snap.child('Card_ID').val());
@@ -876,27 +1049,50 @@ $('#SearchPerson').on("select2:select", function (e) {
             console.log(snap.child("Subject").val());
             snap.child("Subject").forEach(subject => {
 
+             //   alert(subject.val());
                 firebase.database().ref("Data/Subject/" + subject.val()).once('value', subSnap => {
+                    console.log("Subjects");
+                    //  console.log(subSnap.val());
 
-                    console.log(subSnap.val());
 
                     let schedule = []
                     subSnap.child('Schedule').forEach(schedules => {
                         schedule.push(schedules.val());
                     });
 
-                    $('#modal-table tbody, #SubjectSection-table tbody').append(`
-                    <tr>
-                    <td>${subSnap.child('ClassNbr').val()}</td>
-                    <td>${subSnap.child('Title').val()}</td>
-                    <td>${subSnap.child('Description').val()}</td>
-                    <td>${schedule[0]}</td>
-                    <td>${schedule[1]}</td>
-                    <td>${subSnap.child('Professor').val()}</td>
-                    <td><i class="material-icons delete-row">delete_forever</i></td>
-                 </tr>
-                 `);
+                    tableModal.DataTable().row.add(
+                        [
+                            subSnap.child('ClassNbr').val(),
+                            subSnap.child('Title').val(),
+                            subSnap.child('Description').val(),
+                            schedule[0],
+                            schedule[1],
+                            subSnap.child('Professor').val(),
+                            `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+                        ]).draw();
+                    tableSubject.DataTable().row.add(
+                        [
+                            subSnap.child('ClassNbr').val(),
+                            subSnap.child('Title').val(),
+                            subSnap.child('Description').val(),
+                            schedule[0],
+                            schedule[1],
+                            subSnap.child('Professor').val(),
+                            `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+                        ]).draw();
 
+
+                    //     $('#modal-table tbody, #SubjectSection-table tbody').append(`
+                    //     <tr>
+                    //     <td>${subSnap.child('ClassNbr').val()}</td>
+                    //     <td>${subSnap.child('Title').val()}</td>
+                    //     <td>${subSnap.child('Description').val()}</td>
+                    //     <td>${schedule[0]}</td>
+                    //     <td>${schedule[1]}</td>
+                    //     <td>${subSnap.child('Professor').val()}</td>
+                    //     <td><i class="material-icons delete-row">delete_forever</i></td>
+                    //  </tr>
+                    //  `);
 
                 })
             });
@@ -950,17 +1146,38 @@ $('#SearchPerson').on("select2:select", function (e) {
                         schedule.push(schedules.val());
                     });
 
-                    $('#modal-table tbody, #SubjectSection-table tbody').append(`
-                    <tr>
-                    <td>${subSnap.child('ClassNbr').val()}</td>
-                    <td>${subSnap.child('Title').val()}</td>
-                    <td>${subSnap.child('Description').val()}</td>
-                    <td>${schedule[0]}</td>
-                    <td>${schedule[1]}</td>
-                    <td>${subSnap.child('Professor').val()}</td>
-                    <td><i class="material-icons delete-row">delete_forever</i></td>
-                 </tr>
-                 `);
+                    //     $('#modal-table tbody, #SubjectSection-table tbody').append(`
+                    //     <tr>
+                    //     <td>${subSnap.child('ClassNbr').val()}</td>
+                    //     <td>${subSnap.child('Title').val()}</td>
+                    //     <td>${subSnap.child('Description').val()}</td>
+                    //     <td>${schedule[0]}</td>
+                    //     <td>${schedule[1]}</td>
+                    //     <td>${subSnap.child('Professor').val()}</td>
+                    //     <td><i class="material-icons delete-row">delete_forever</i></td>
+                    //  </tr>
+                    //  `);
+                    tableModal.DataTable().row.add(
+                        [
+                            subSnap.child('ClassNbr').val(),
+                            subSnap.child('Title').val(),
+                            subSnap.child('Description').val(),
+                            schedule[0],
+                            schedule[1],
+                            subSnap.child('Professor').val(),
+                            `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+                        ]).draw();
+                    tableSubject.DataTable().row.add(
+                        [
+                            subSnap.child('ClassNbr').val(),
+                            subSnap.child('Title').val(),
+                            subSnap.child('Description').val(),
+                            schedule[0],
+                            schedule[1],
+                            subSnap.child('Professor').val(),
+                            `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+                        ]).draw();
+
 
 
                 })

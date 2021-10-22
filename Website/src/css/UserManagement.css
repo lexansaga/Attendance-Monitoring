@@ -115,8 +115,8 @@ textarea:not(:placeholder-shown),
 
 .UserSectionnSubject {
     display: block;
-    width: 89.2%;
-    margin-top: .5vw;
+    width: 88.5%;
+    margin-top: 18px;
 }
 
 .setSubjectSection {
@@ -138,7 +138,6 @@ textarea:not(:placeholder-shown),
 }
 
 #SubjectSection-table {
-    margin-top: .5vw;
     width: 100%;
     border-collapse: collapse;
     text-align: center;
@@ -166,7 +165,16 @@ td {
     padding-top: 5px;
     padding-bottom: 5px;
 }
-
+td button
+{
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+td button:hover
+{
+   color: var(--red);
+}
 #SubjectSection-table tbody {
     background-color: #fff;
 }
@@ -383,28 +391,6 @@ th:hover {
     overflow-y: auto;
 }
 
-#modal-table {
-    width: 100%;
-    word-wrap: normal;
-    border-collapse: collapse;
-}
-
-#modal-table th {
-    position: sticky;
-    top: 0;
-    background-color: #B2BBF7;
-    height: 25px;
-    color: #fff;
-}
-
-#modal-table tr:hover {
-    cursor: pointer;
-    background-color: #D1D7FA;
-}
-
-#modal-table i:hover {
-    color: red;
-}
 
 .modalButtonControl {
     margin-left: 55px;
@@ -462,6 +448,33 @@ th:hover {
     margin-bottom: 10px;
 }
 
+
+#SubjectSection-table,#modal-table{
+    
+    border-bottom: 0 !important;
+}
+table.dataTable thead th, table.dataTable thead td
+{
+border-bottom: 0 !important;
+
+}
+tr td:nth-child(1)
+{
+    font-weight: 600;
+}
+
+table.dataTable td {
+    padding: 20px 10px 20px 0 !important;
+    background-color: var(--background-color) !important;
+  }
+th {
+    font-weight: 500 !important;
+    background-color: var(--secondary-color);
+    color: white;
+
+}
+
+
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
 @media (max-width: 768px) {
     #output {
@@ -504,7 +517,7 @@ th:hover {
         font-size: 15px;
         margin-bottom: .8vw;
         width: 99%;
-        height: 3.5vw;
+        height: 45px;
     }
 
     .actionButton {
@@ -579,7 +592,7 @@ th:hover {
     }
 
     .setSubjectSection {
-        height: 8vw;
+        height: 45px;
         margin-bottom: 1vw;
     }
 

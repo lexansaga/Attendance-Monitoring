@@ -34,7 +34,7 @@ $(document).ready(function () {
 
 
     if (performance.navigation.type == 2) {
-        alert("Back button clicked");
+       // alert("Back button clicked");
     }
 
     $('#input-search').focusin(function () {
