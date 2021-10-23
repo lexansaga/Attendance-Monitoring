@@ -48,7 +48,20 @@ table.dataTable thead td {
 tr {
     margin: 10px 0 0 0;
 }
-
+td:nth-child(1)
+{
+    width: 100px;
+}
+td:nth-child(2)
+{
+    width: 200px;
+    text-align: center;
+}
+td:nth-child(3)
+{
+    width: 800px;
+    text-align: left;
+}
 th {
     font-weight: 500 !important;
     background-color: var(--secondary-color);
@@ -56,14 +69,18 @@ th {
 
 }
 
-td:nth-child(4) {
-   background-color: var(--red);
-   color: white;
+td:nth-child(5) {
+ background-color: var(--red);
+   color: var(--font-light-color);
+   text-transform: capitalize !important;
 
 }
+td:nth-child(5) > span {
+    text-transform: capitalize !important;
+}
+
 
 td:nth-child(3) {
-    width: 80px;
 
 }
 td {
@@ -74,34 +91,19 @@ td>img {
     width: 50px;
     height: 50px;
     border-radius: 50px;
+    object-fit: cover;
 }
 
 td:nth-child(1) {
-    width: 100px;
 
 }
 
 td:nth-child(2)
 {
-    width: 900;
     text-align: left;
   
 }
-td:nth-child(3)
-{
-    width: 200;
-  
-}
-td:nth-child(4)
-{
-    width: 200;
-  
-}
-td:nth-child(5)
-{
-    width: 350;
-  
-}
+
 td:nth-child(5) button:nth-child(1) {
     border: none;
     outline: none;

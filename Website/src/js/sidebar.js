@@ -119,9 +119,7 @@ firebase.auth().onAuthStateChanged((user) => {
             // console.log('UserID:'+User);
             if (Role.includes('Administrator')) {
                 // User is Admin 
-                sidebarlinks.eq(0).css({
-                    'display': ''
-                }) //Home
+                sidebarlinks.eq(0).css('display', '') //Home
                 sidebarlinks.eq(1).css('display', '') //Schedule
                 sidebarlinks.eq(3).css('display', '') // Attendance Report
                 sidebarlinks.eq(5).css('display', '') // Subject
@@ -129,25 +127,21 @@ firebase.auth().onAuthStateChanged((user) => {
                 sidebarlinks.eq(7).css('display', '') // Class
 
 
-            } else if (Role.includes('Guidance')) {
-                // User is Guidance 
-                sidebarlinks.eq(0).css({
-                    'display': ''
-                }) //Home
+            } else if (Role.includes('Faculty')) {
+                // User is Faculty 
+                sidebarlinks.eq(0).css('display', '') //Home
                 sidebarlinks.eq(1).css('display', '') //Schedule
                 sidebarlinks.eq(3).css('display', '') // Attendance Report
                 sidebarlinks.eq(2).css('display', '') // Attendance
 
             } else {
 
-                sidebarlinks.eq(0).css({
-                    'display': ''
-                }) //Home
+                sidebarlinks.eq(0).css('display', '')//Home
                 sidebarlinks.eq(1).css('display', '') //Schedule
                 sidebarlinks.eq(3).css('display', '') // Attendance Report
                 sidebarlinks.eq(4).css('display', '') // Reported
 
-                // User is Faculty
+                // User is Guidance
             }
             firebase.database().ref('Data/Faculty/Information/' + User).on('value', uidsnap => {
                 //    console.log(uidsnap.val());

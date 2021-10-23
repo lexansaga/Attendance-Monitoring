@@ -38,7 +38,7 @@
             </li>
 
             <li class="vert-line">
-               <a href="attendance.html">
+               <a href="attendance-b.html">
                   <i class='bx bxs-report'></i>
                   <span class="link_name">Attendance</span>
                </a>
@@ -186,100 +186,18 @@
                   * Showing Data from 01/12/2021 - << Present Date>>‎<span><i class='bx bxs-calendar'></i> </span>
                </p>
             </a>
-            <a class="archive" href="archive.html">
-               <i class='bx bxs-archive'></i> Archive
-            </a>
             <div class="list-attendance">
                <table id="datatable" class="hover row-border order-column">
                   <thead>
                      <tr>
                         <th></th>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Timestamp</th>
                         <th>Status</th>
-                        <th>Actions</th>
                      </tr>
                   </thead>
                   <tbody>
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Alexander Saga</td>
-                        <td>
-                           08:14:32 AM
-                        </td>
-                        <td>In</td>
-                        <td><button class="btn-take-action">Take Action</button>
-                           <button class="btn-delete">Delete Report</button></td>
-                     </tr>
-
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Alexander Saga</td>
-                        <td>
-                           08:14:31 AM
-                        </td>
-                        <td>Out</td>
-                        <td><button class="btn-take-action">Take Action</button>
-                           <button class="btn-delete">Delete Report</button></td>
-                     </tr>
-
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Alexander Saga</td>
-                        <td>
-                           This contains the reason why the student
-                        </td>
-                        <td>Jeann B. Log</td>
-                        <td><button class="btn-take-action">Take Action</button>
-                           <button class="btn-delete">Delete Report</button></td>
-                     </tr>
-
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Alexander Saga</td>
-                        <td>
-                           This contains the reason why the student
-                        </td>
-                        <td>Jeann B. Log</td>
-                        <td><button class="btn-take-action">Take Action</button>
-                           <button class="btn-delete">Delete Report</button></td>
-                     </tr>
-
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Alexander Saga</td>
-                        <td>
-                           This contains the reason why the student
-                        </td>
-                        <td>Jeann B. Log</td>
-                        <td><button class="btn-take-action">Take Action</button>
-                           <button class="btn-delete">Delete Report</button></td>
-                     </tr>
-
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Alexander Saga</td>
-                        <td>
-                           This contains the reason why the student
-                        </td>
-                        <td>Jeann B. Log</td>
-                        <td><button class="btn-take-action">Take Action</button>
-                           <button class="btn-delete">Delete Report</button></td>
-                     </tr>
-
-                     <tr>
-                        <td><img src="src/assets/profile.jpg" /></td>
-                        <td>Alexander Saga</td>
-                        <td>
-                           This contains the reason why the student
-                        </td>
-                        <td>Jeann B. Log</td>
-                        <td><button class="btn-take-action">Take Action</button>
-                           <button class="btn-delete">Delete Report</button></td>
-                     </tr>
-
-
-
                   </tbody>
                </table>
             </div>
@@ -315,9 +233,9 @@
          <main>
             <h1>Select Date</h1>
             <p>Date From: </p>
-            <input type="date" title="Input Date" />
+            <input id="datefrom" type="date" title="Input Date" />
             <p>Date To: </p>
-            <input type="date" title="Input Date" placeholder="Month / Date / Year" />
+            <input id="dateto" type="date" title="Input Date" placeholder="Month / Date / Year" disabled/>
             <div class="buttons">
                <button class="btn-submit">Submit</button>
                <button class="btn-cancel">Cancel</button>
@@ -369,16 +287,6 @@
    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
    <script>
       AOS.init();
-
-      $(document).ready(function () {
-         var table = $('#datatable').DataTable({
-
-            "autoWidth": true,
-            "paging": true,
-            "info": true
-         });
-
-      });
    </script>
 </body>
 

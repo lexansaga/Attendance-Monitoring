@@ -1,3 +1,8 @@
+var unformmated_date = new Date();
+var month = unformmated_date.getMonth() + 1;
+var year = unformmated_date.getFullYear();
+var day = unformmated_date.getDate();
+var date = month + '-' + day + '-' + year;
 $(document).ready(function () {
 
     var url = new URL(window.location.href);
@@ -14,11 +19,9 @@ $(document).ready(function () {
         window.location = "../../entered.html"
     });
 
-
-
     var list = [];
 
-    firebase.database().ref("Attendance/Gate/2021-01-01").on("value", snap => {
+    firebase.database().ref(`Data/Student/Information/`).on("value", snap => {
         $('.d-items:nth-child(2) > h1').html(snap.numChildren()); // For Total Students
         //    console.log(snap.val());
     });
@@ -52,7 +55,8 @@ $(document).ready(function () {
 
 
 
-    firebase.database().ref("Attendance/Gate/2021-01-01").orderByKey().limitToLast(5).on("value", snap => {
+    firebase.database().ref(`Attendance/Gate/${date}`).orderByKey().limitToLast(5).on("value", snap => {
+        $('.prof_container > ul ').html(' ');
         snap.forEach(childSnapshot => {
             var type = "";
             // console.log(childSnapshot.child("EnteredID").val());
@@ -88,7 +92,7 @@ $(document).ready(function () {
                         "<img id=\"ic_prof\" src=\"" + image + "\" onerror=\"this.onerror=null; this.src='src/assets/avatar.png'\" />" +
                         "<h2>" + name[1] + "," + name[0] + " " + name[2].toString().substr(0, 1).toUpperCase() + "." +
                         "</h2>" +
-                        "   <h3>"+type+"</h3>" +
+                        "   <h3>" + type + "</h3>" +
                         "  </a>" +
                         "  </li>"
                     ).css("opacity", "0").animate({
@@ -115,7 +119,7 @@ $(document).ready(function () {
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
 
-    
+
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/firebase.User
         let uid = user.uid;

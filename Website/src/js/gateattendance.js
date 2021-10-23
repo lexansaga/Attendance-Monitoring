@@ -91,101 +91,202 @@ document.getElementById("rfid_card").onchange = function () {
   IDValue = document.getElementById("rfid_card").value;
   document.getElementById("rfid_card").value = '';
 
-// alert(IDValue);
+  // alert(IDValue);
 
   $('.user_sched > tbody').html(' ')
-  $('#userpfp').attr('src','src/assets/avatar.png');
+  $('#userpfp').attr('src', 'src/assets/avatar.png');
   $('.user_name').html('--')
   $('.user_id').html('--')
   $('.user_section').html('--')
 
   firebase.database().ref(`Data/Student/Information/`).orderByChild('Card_ID').startAt(IDValue).endAt(IDValue).once('value', snap => {
-    snap.forEach(data => {
-
-      console.log(data.val());
-      $('.user_name').html(`${data.child('Name').child('Last').val()}, ${data.child('Name').child('First').val()} ${data.child('Name').child('Middle').val().substring(0,1)}`);
-
-      $('.user_id').html(data.child('ID').val());
-
-      $('#userpfp').attr('src', data.child('Profile').val());
-
-      var unformmated_date = new Date();
-      var month = unformmated_date.getMonth() + 1;
-      var year = unformmated_date.getFullYear();
-      var day = unformmated_date.getDate();
-      let id = data.child('ID').val();
-      let location = $('#LogInName').html().split(' ')[0];
-      let status = $('#LogInName').html().split(' ')[1];
-      let timestamp = Date.now();
-      let isValid = true;
-      let date = month +'-' + day + '-' + year;
-
-      console.log("ID : " + id);
-      console.log("Location : " + location);
-      console.log("Status : " + status);
-      console.log("Timestamp : " + timestamp);
-      console.log("isValid : " + isValid);
-      console.log("Date : " + date);
-      firebase
-        .database()
-        .ref(`Data/Subject/`)
-        .once('value', (scheduleSnap) => { // Get All the Subjects
-
-          scheduleSnap.forEach((schedule) => { //Loop on all Schedule
-            schedule.child('Students').forEach((childSchedule) => { //Redirect on Student child
-              //console.log('IDS : '+childSchedule.child('ID').val());
-              if (childSchedule.child('ID').val() ==
-                data.child('ID').val()) {
-                // Check if the child of Students are equal to dropdown val
-                console.log('Parent : ' + childSchedule.ref.parent.parent.key);
-
-                firebase
-                  .database()
-                  .ref(
-                    `Data/Subject/${childSchedule.ref.parent.parent.key}/`
-                  ) // Get of Parent of this child
-                  .once('value', (subjects) => {
 
 
+    if (snap.val() == null) {
+      //If student doesnt match any IDS check for professor
+      console.log('Searching for Professor...');
+      firebase.database().ref(`Data/Faculty/Information/`).orderByChild(`Card_ID`).startAt(IDValue).endAt(IDValue).once('value', data => {
+        console.log(data.val());
 
-                    console.log('Subjecs : '+subjects.val());
-                    firebase
-                      .database()
-                      .ref(
-                        `Data/Faculty/Information/${subjects
-                                  .child('Professor')
-                                  .val()}`
-                      )
-                      .once('value', (professor) => {
-                        // Get Professor Data
-                        console.log(
-                          `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
-                        );
-                        // tableUserSched.DataTable().row.add([subjects.child('Title').val(), subjects.child('Schedule').child('Day').val(), subjects.child('Schedule').child('Time').val(), subjects.child('Location').val(),
-                        //         `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
-                        //     ])
-                        //     .draw();
-                        let schedule = subjects.child('Schedule').child('Time').val().split('-');
-                        $('.user_sched > tbody').append(`<tr>
-                                      <td>${subjects.child('Title').val()}</td>
-                                      <td>${toStandardTime(schedule[0].substring(1,schedule[0].length - 3))} - ${toStandardTime(schedule[1].substring(1,schedule[0].length - 3))}</td>
-                                      <td>${subjects.child('Location').val()}</td>
-                                      <td>${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()}</td>
-                                 </tr>`);
+        data.forEach(profData => {
+          console.log(profData.val());
 
-                      });
+          $('.user_name').html(`${profData.child('Name').child('Last').val()}, ${profData.child('Name').child('First').val()} ${profData.child('Name').child('Middle').val().substring(0,1)}`);
+
+          $('.user_id').html(profData.child('ID').val());
+
+          $('#userpfp').attr('src', profData.child('Profile').val());
+
+          let unformmated_date = new Date();
+          let month = unformmated_date.getMonth() + 1;
+          let year = unformmated_date.getFullYear();
+          let day = unformmated_date.getDate();
+          let id = profData.child('ID').val();
+          let location = $('#LogInName').html().split(' ')[0];
+          let status = $('#LogInName').html().split(' ')[1];
+          let timestamp = Date.now();
+          let IsValid = true;
+          let date = month + '-' + day + '-' + year;
+          let hours = unformmated_date.getHours();
+          let minute = unformmated_date.getMinutes();
+          let seconds = unformmated_date.getSeconds();
+
+          let time = hours + ':' + minute + ":" + seconds;
 
 
-                  });
-              }
-            });
+          console.log("ID : " + id);
+          console.log("Location : " + location);
+          console.log("Status : " + status);
+          console.log("Timestamp : " + timestamp);
+          console.log("isValid : " + IsValid);
+          console.log("Date : " + date);
+          console.log("Time : " + time);
+
+          var key = firebase.database().ref(`Attendance/Gate/${date}`).push().key;
+          firebase.database().ref(`Attendance/Gate/${date}/${key}`).set({
+            ID: key,
+            EnteredID: id,
+            Location: location,
+            Status: status,
+            TimeStamp: timestamp,
+            isValid: IsValid,
+            "Date": date,
+            Time: GetClockNow()
           });
+
+
+          firebase
+            .database()
+            .ref(`Data/Subject/`).orderByChild('Professor').startAt(id).endAt(id)
+            .once('value', (scheduleSnap) => { // Get All the Subjects
+              console.log(scheduleSnap.val());
+
+              scheduleSnap.forEach(subjects => {
+                console.log(`Subjects`);
+                console.log(subjects.val());
+                let schedule = subjects.child('Schedule').child('Time').val().split('-')
+
+                $('.user_sched > tbody').append(`<tr>
+                <td>${subjects.child('Title').val()}</td>
+                <td>${toStandardTime(schedule[0].substring(1,schedule[0].length - 3))} - ${toStandardTime(schedule[1].substring(1,schedule[0].length - 3))}</td>
+                <td>${subjects.child('Location').val()}</td>
+                <td>${profData.child('Name').child('Last').val()}, ${profData.child('Name').child('First').val()} ${profData.child('Name').child('Middle').val()}</td>
+           </tr>`);
+              });
+
+            });
+
+        })
+      })
+    } else {
+      //Else student  match any IDS, show data
+      console.log('Searching for Student...');
+      snap.forEach(data => {
+
+        console.log(data.val());
+        $('.user_name').html(`${data.child('Name').child('Last').val()}, ${data.child('Name').child('First').val()} ${data.child('Name').child('Middle').val().substring(0,1)}`);
+
+        $('.user_id').html(data.child('ID').val());
+
+        $('#userpfp').attr('src', data.child('Profile').val());
+
+        let unformmated_date = new Date();
+        let month = unformmated_date.getMonth() + 1;
+        let year = unformmated_date.getFullYear();
+        let day = unformmated_date.getDate();
+        let id = data.child('ID').val();
+        let location = $('#LogInName').html().split(' ')[0];
+        let status = $('#LogInName').html().split(' ')[1];
+        let timestamp = Date.now();
+        let IsValid = true;
+        let date = month + '-' + day + '-' + year;
+        let hours = unformmated_date.getHours();
+        let minute = unformmated_date.getMinutes();
+        let seconds = unformmated_date.getSeconds();
+
+        let time = hours + ':' + minute + ":" + seconds;
+
+        console.log("ID : " + id);
+        console.log("Location : " + location);
+        console.log("Status : " + status);
+        console.log("Timestamp : " + timestamp);
+        console.log("isValid : " + IsValid);
+        console.log("Date : " + date);
+        console.log("Time : " + time);
+
+        var key = firebase.database().ref(`Attendance/Gate/${date}`).push().key;
+        firebase.database().ref(`Attendance/Gate/${date}/${key}`).set({
+          ID: key,
+          EnteredID: id,
+          Location: location,
+          Status: status,
+          TimeStamp: timestamp,
+          isValid: IsValid,
+          "Date": date,
+          Time: GetClockNow()
         });
 
-    });
+        firebase
+          .database()
+          .ref(`Data/Subject/`)
+          .once('value', (scheduleSnap) => { // Get All the Subjects
+
+            scheduleSnap.forEach((schedule) => { //Loop on all Schedule
+              schedule.child('Students').forEach((childSchedule) => { //Redirect on Student child
+                //console.log('IDS : '+childSchedule.child('ID').val());
+                if (childSchedule.child('ID').val() ==
+                  data.child('ID').val()) {
+                  // Check if the child of Students are equal to dropdown val
+                  //  console.log('Parent : ' + childSchedule.ref.parent.parent.key);
+
+                  firebase
+                    .database()
+                    .ref(
+                      `Data/Subject/${childSchedule.ref.parent.parent.key}/`
+                    ) // Get of Parent of this child
+                    .once('value', (subjects) => {
+
+
+
+                      //   console.log('Subjects : '+subjects.val());
+                      firebase
+                        .database()
+                        .ref(
+                          `Data/Faculty/Information/${subjects
+                                .child('Professor')
+                                .val()}`
+                        )
+                        .once('value', (professor) => {
+                          // Get Professor Data
+                          console.log(
+                            `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
+                          );
+                          // tableUserSched.DataTable().row.add([subjects.child('Title').val(), subjects.child('Schedule').child('Day').val(), subjects.child('Schedule').child('Time').val(), subjects.child('Location').val(),
+                          //         `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
+                          //     ])
+                          //     .draw();
+                          let schedule = subjects.child('Schedule').child('Time').val().split('-');
+                          $('.user_sched > tbody').append(`<tr>
+                                    <td>${subjects.child('Title').val()}</td>
+                                    <td>${toStandardTime(schedule[0].substring(1,schedule[0].length - 3))} - ${toStandardTime(schedule[1].substring(1,schedule[0].length - 3))}</td>
+                                    <td>${subjects.child('Location').val()}</td>
+                                    <td>${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()}</td>
+                               </tr>`);
+
+                        });
+
+
+                    });
+                }
+              });
+            });
+          });
+
+      });
+    }
 
   })
   setTimeout(function () {
-   $('.modal').css('display', 'none');
+    $('.modal').css('display', 'none');
   }, 3000); // <-- timeout in milliseconds
 };

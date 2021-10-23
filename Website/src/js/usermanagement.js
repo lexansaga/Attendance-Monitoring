@@ -206,7 +206,7 @@ const loadFile = function (event) {
     // This function will load the image from source to img
     const image = document.getElementById('output');
     image.src = URL.createObjectURL(event.target.files[0]);
-  //  alert(event.target.files[0]);
+    //  alert(event.target.files[0]);
 
 };
 
@@ -368,9 +368,6 @@ function VerifyType() {
 
     } else if (e == "Faculty") {
         reset();
-        userSetup.css({
-            'display': 'block'
-        });
         permission.css({
             'display': 'block'
         });
@@ -426,7 +423,9 @@ function VerifyType() {
             // alert("Add");
             loadid('Faculty');
 
-
+            userSetup.css({
+                'display': 'block'
+            });
         } else if (usermanagementType.includes('update')) {
             //alert("Update");
             $(".containerSearchPerson").css({
@@ -436,11 +435,18 @@ function VerifyType() {
             $('.inputArea > input,textarea, #UserSetup input, #setSubject').prop('disabled', true).css({
                 'background-color': 'white'
             });
+            userSetup.css({
+                'display': 'none'
+            });
             $('#btnsave').html('Update');
         } else {
             //alert("Delete");
             $(".containerSearchPerson").css({
                 'display': 'block'
+            });
+
+            userSetup.css({
+                'display': 'none'
             });
             $('.inputArea > input,textarea, #UserSetup input, #setSubject').prop('disabled', true).css({
                 'background-color': 'white'
@@ -532,19 +538,6 @@ function VerifyType() {
         LoadSearch(e);
     } else {
         reset();
-        // document.getElementById("Email").style.display = "none";
-        // document.getElementById("UserSetup").style.display = "none";
-        // document.getElementById("cbx").style.display = "none";
-        // document.getElementById('mainBTN').style.display = "none";
-        // document.getElementById('Maintable').style.display = "none";
-
-        // document.getElementById('LName').style.display = "none";
-        // document.getElementById('FName').style.display = "none";
-        // document.getElementById('MName').style.display = "none";
-        // document.getElementById('ID').style.display = "none";
-        // document.getElementById('ContactNumber').style.display = "none";
-        // document.getElementById('Address').style.display = "none";
-        // document.getElementById('setSubject').style.display = "none";
 
 
         cardID.css({
@@ -704,7 +697,7 @@ $('#btnsave').click(function (event) {
         console.log(e);
 
         //Start -- Check fields if no values
-        if (email.val() == '' || password.val() == '' ||
+        if (
             lastName.val() == '' ||
             firstName.val() == '' || middleName.val() == '' ||
             ID.val() == '' || contact.val() == '' ||
@@ -727,33 +720,39 @@ $('#btnsave').click(function (event) {
             return;
 
         }
-        //End -- Check fields if no values
+
+        if (email.val() != '' && password.val() != '') {
+            //End -- Check fields if no values
+            alert(email.val());
+            alert(password.val());
+
+            //Start - Check email Validation
+            const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (!regex.test(email.val())) {
+                alert('Invalid Email');
+                return
+            }
+            //End -- Check email Validation
 
 
-        //Start - Check email Validation
-        const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (!regex.test(email.val())) {
-            alert('Invalid Email');
-            return
+            //Start -- Check Password Validation
+            if (password.val().length < 8) {
+                alert("Your password must be at least 8 characters");
+                return;
+            }
+            if (password.val().search(/[a-z]/i) < 0) {
+                alert("Your password must contain at least one letter.");
+                return;
+            }
+            if (password.val().search(/[0-9]/) < 0) {
+                alert("Your password must contain at least one digit.");
+                return;
+            }
+
+            //End -- Check Password Validation
         }
-        //End -- Check email Validation
 
 
-        //Start -- Check Password Validation
-        if (password.val().length < 8) {
-            alert("Your password must be at least 8 characters");
-            return;
-        }
-        if (password.val().search(/[a-z]/i) < 0) {
-            alert("Your password must contain at least one letter.");
-            return;
-        }
-        if (password.val().search(/[0-9]/) < 0) {
-            alert("Your password must contain at least one digit.");
-            return;
-        }
-
-        //End -- Check Password Validation
 
 
         let Subject = [];
@@ -766,7 +765,7 @@ $('#btnsave').click(function (event) {
         file = file.files[0];
 
         if (file != null) {
-             // Start - If image has  value, Insert Image
+            // Start - If image has  value, Insert Image
             var storageRef = firebase.storage().ref('Profile/Faculty/' + ID.val());
             storageRef.put(file).then((snapshot) => {
                 storageRef.getDownloadURL()
@@ -782,7 +781,11 @@ $('#btnsave').click(function (event) {
                                 "Last": lastName.val()
                             },
                             Subject,
-                            "Profile": url
+                            "Profile": url,
+                            "Permission":
+                            {
+                                "TapIn_First" : $('.cbx').is(":checked")
+                            }
                         });
 
                         var dEmail = email.val(),
@@ -818,7 +821,7 @@ $('#btnsave').click(function (event) {
                     });
             });
 
-              // End - If image has  value, Insert Image
+            // End - If image has  value, Insert Image
         } else {
 
             // Start - If image has no value or , Declined insert Image
@@ -832,7 +835,11 @@ $('#btnsave').click(function (event) {
                     "Middle": middleName.val(),
                     "Last": lastName.val()
                 },
-                Subject
+                Subject,
+                "Permission":
+                {
+                    "TapIn_First" : $('.cbx').is(":checked")
+                }
             });
 
             var dEmail = email.val(),
@@ -862,7 +869,7 @@ $('#btnsave').click(function (event) {
             reset();
             loadid('Faculty');
 
-              // End - If image has no value or , Declined insert Image
+            // End - If image has no value or , Declined insert Image
         }
 
     } else if (e == 'Gate') {
@@ -923,8 +930,7 @@ $('#btnsave').click(function (event) {
         var file = document.getElementById("file");
         file = file.files[0];
 
-        if(file != null)
-        { // Start - If image has  value  ,  Insert Image
+        if (file != null) { // Start - If image has  value  ,  Insert Image
             var storageRef = firebase.storage().ref('Profile/Gate/' + $('#ID').val());
             storageRef.put(file).then((snapshot) => {
                 storageRef.getDownloadURL()
@@ -932,17 +938,17 @@ $('#btnsave').click(function (event) {
                         firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
                             "ID": $('#ID').val()
                         });
-    
+
                         var dEmail = email.val(),
                             dPassword = password.val(),
                             dId = ID.val();
-    
-    
+
+
                         if (email.val() != null && password.val() != null) {
                             firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
                                 .then((userCredential) => {
                                     var uid = userCredential.user.uid;
-    
+
                                     firebase.database().ref('User/' + uid).update({
                                         'Account_Type': e,
                                         'ID': uid,
@@ -965,9 +971,7 @@ $('#btnsave').click(function (event) {
                     });
             });
             // End - If image has  value  ,  Insert Image
-        }
-        else
-        {
+        } else {
             // Start - If image has no  value  , Declined insert Image
             firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
                 "ID": $('#ID').val()
@@ -998,11 +1002,11 @@ $('#btnsave').click(function (event) {
             }
             alert('Gate Save Successfully');
             reset();
-            loadid('Gate'); 
+            loadid('Gate');
 
-             // End - If image has no  value  , Declined insert Image
+            // End - If image has no  value  , Declined insert Image
         }
-     
+
     } else {
 
     }
@@ -1049,7 +1053,7 @@ $('#SearchPerson').on("select2:select", function (e) {
             console.log(snap.child("Subject").val());
             snap.child("Subject").forEach(subject => {
 
-             //   alert(subject.val());
+                //   alert(subject.val());
                 firebase.database().ref("Data/Subject/" + subject.val()).once('value', subSnap => {
                     console.log("Subjects");
                     //  console.log(subSnap.val());
@@ -1101,7 +1105,8 @@ $('#SearchPerson').on("select2:select", function (e) {
 
     } else if (uid.includes('FAC') || uid.includes('PROF')) {
         $('#modal-table tbody, #SubjectSection-table tbody').html(' ')
-
+        tableModal.DataTable().clear().draw();
+        tableSubject.DataTable().clear().draw();
         Path = "Data/Faculty/Information/" + uid;
         firebase.database().ref(Path).once('value', snap => {
             firebase.database().ref("User").orderByChild('UserID').equalTo(snap.child("ID").val()).once('value', user => {
@@ -1132,14 +1137,19 @@ $('#SearchPerson').on("select2:select", function (e) {
             contact.val(snap.child('Contact').val());
             studentEmail.val(snap.child('Email').val());
             address.val(snap.child('Address').val());
-
-            console.log(snap.child("Subject").val());
+            $(".cbx").prop("checked", snap.child('Permission').child('TapIn_First').val());
+            //           console.log(snap.child("Subject").val());
             snap.child("Subject").forEach(subject => {
-
+                console.log("Subject");
+                console.log(subject.val());
                 firebase.database().ref("Data/Subject/" + subject.val()).once('value', subSnap => {
 
+                    //    console.log(subSnap.val());
 
-
+                    if (subSnap.val() == null) {
+                        alert("We can't find any data!");
+                        return;
+                    }
 
                     let schedule = []
                     subSnap.child('Schedule').forEach(schedules => {
@@ -1157,6 +1167,8 @@ $('#SearchPerson').on("select2:select", function (e) {
                     //     <td><i class="material-icons delete-row">delete_forever</i></td>
                     //  </tr>
                     //  `);
+
+
                     tableModal.DataTable().row.add(
                         [
                             subSnap.child('ClassNbr').val(),
