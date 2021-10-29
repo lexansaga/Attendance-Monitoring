@@ -1,0 +1,1119 @@
+{
+  "Attendance" : {
+    "Gate" : {
+      "10-23-2021" : {
+        "-MmhknldeuxQ5xWIg6zV" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "STUD1000001",
+          "ID" : "-MmhknldeuxQ5xWIg6zV",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:27:6",
+          "TimeStamp" : 1635002826518,
+          "isValid" : true
+        },
+        "-Mmhkp4-T886YVvuilOQ" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "PROF1000001",
+          "ID" : "-Mmhkp4-T886YVvuilOQ",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:27:11",
+          "TimeStamp" : 1635002831846,
+          "isValid" : true
+        },
+        "-Mmhkx5VUlNde0DBsnBk" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "STUD1000002",
+          "ID" : "-Mmhkx5VUlNde0DBsnBk",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:27:44",
+          "TimeStamp" : 1635002864713,
+          "isValid" : true
+        },
+        "-MmhlYSQl8QaheRK1q5B" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "STUD1000002",
+          "ID" : "-MmhlYSQl8QaheRK1q5B",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:30:21",
+          "TimeStamp" : 1635003021833,
+          "isValid" : true
+        },
+        "-MmhmEnL_JDqUi1sCRf1" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "STUD1000002",
+          "ID" : "-MmhmEnL_JDqUi1sCRf1",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:33:23",
+          "TimeStamp" : 1635003203461,
+          "isValid" : true
+        },
+        "-MmhmG2yoQsldhlJXtCf" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "PROF1000001",
+          "ID" : "-MmhmG2yoQsldhlJXtCf",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:33:28",
+          "TimeStamp" : 1635003208620,
+          "isValid" : true
+        },
+        "-MmhmGxz_Cd0o-3P6rKK" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "STUD1000001",
+          "ID" : "-MmhmGxz_Cd0o-3P6rKK",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:33:32",
+          "TimeStamp" : 1635003212333,
+          "isValid" : true
+        },
+        "-MmhmHX7AE3WGJGijP7K" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "STUD1000001",
+          "ID" : "-MmhmHX7AE3WGJGijP7K",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:33:34",
+          "TimeStamp" : 1635003214641,
+          "isValid" : true
+        },
+        "-MmhmHxBOFIafFlyhPcm" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "STUD1000001",
+          "ID" : "-MmhmHxBOFIafFlyhPcm",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:33:36",
+          "TimeStamp" : 1635003216377,
+          "isValid" : true
+        },
+        "-MmhmP5bjNH1vgeJG7Sz" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "STUD1000001",
+          "ID" : "-MmhmP5bjNH1vgeJG7Sz",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:34:5",
+          "TimeStamp" : 1635003245654,
+          "isValid" : true
+        },
+        "-MmhmPnRuLMGAMzMQx0X" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "PROF1000001",
+          "ID" : "-MmhmPnRuLMGAMzMQx0X",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:34:8",
+          "TimeStamp" : 1635003248520,
+          "isValid" : true
+        },
+        "-MmhmV_he1DB-WQGK2eQ" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "STUD1000002",
+          "ID" : "-MmhmV_he1DB-WQGK2eQ",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:34:32",
+          "TimeStamp" : 1635003272220,
+          "isValid" : true
+        },
+        "-Mmhmdg3HFesu2eECP0D" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "STUD1000002",
+          "ID" : "-Mmhmdg3HFesu2eECP0D",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:35:9",
+          "TimeStamp" : 1635003309489,
+          "isValid" : true
+        },
+        "-Mmhn-7HagCDElD4sQ2s" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "PROF1000001",
+          "ID" : "-Mmhn-7HagCDElD4sQ2s",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:36:41",
+          "TimeStamp" : 1635003401406,
+          "isValid" : true
+        },
+        "-Mmhn-kFyCRBNyxODOaY" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "PROF1000001",
+          "ID" : "-Mmhn-kFyCRBNyxODOaY",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "23:36:43",
+          "TimeStamp" : 1635003403964,
+          "isValid" : true
+        },
+        "-Mmhn0UhZUkWwbdc0CEe" : {
+          "Date" : "10-23-2021",
+          "EnteredID" : "STUD1000001",
+          "ID" : "-Mmhn0UhZUkWwbdc0CEe",
+          "Location" : "B1",
+          "Status" : "Out",
+          "Time" : "23:36:47",
+          "TimeStamp" : 1635003407002,
+          "isValid" : true
+        }
+      },
+      "10-24-2021" : {
+        "-Mmi9KQ7Y1N8ZcrXgRss" : {
+          "Date" : "10-24-2021",
+          "EnteredID" : "STUD1000001",
+          "ID" : "-Mmi9KQ7Y1N8ZcrXgRss",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "01:18:37 AM",
+          "TimeStamp" : 1635009517743,
+          "isValid" : true
+        },
+        "-Mmi9LRKx6OsVRrTKU8s" : {
+          "Date" : "10-24-2021",
+          "EnteredID" : "PROF1000001",
+          "ID" : "-Mmi9LRKx6OsVRrTKU8s",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "01:18:41 AM",
+          "TimeStamp" : 1635009521916,
+          "isValid" : true
+        },
+        "-Mmi9N2yzCFHuZAmFQ2j" : {
+          "Date" : "10-24-2021",
+          "EnteredID" : "STUD1000002",
+          "ID" : "-Mmi9N2yzCFHuZAmFQ2j",
+          "Location" : "B1",
+          "Status" : "IN",
+          "Time" : "01:18:48 AM",
+          "TimeStamp" : 1635009528549,
+          "isValid" : true
+        }
+      },
+      "2021-01-01" : {
+        "ATTGATE0000000001" : {
+          "Date" : "2021-01-01",
+          "EnteredID" : "STUD1000001",
+          "ID" : "ATTGATE0000000001",
+          "Location" : "B3",
+          "Status" : "In",
+          "Time" : "10:10:10",
+          "Timestamp" : 1634472615,
+          "isValid" : "True"
+        },
+        "ATTGATE0000000002" : {
+          "Date" : "2021-01-01",
+          "EnteredID" : "STUD1000002",
+          "ID" : "ATTGATE0000000002",
+          "Location" : "B3",
+          "Status" : "Out",
+          "Time" : "10:10:10",
+          "Timestamp" : 1634472615,
+          "isValid" : "True"
+        },
+        "ATTGATE0000000003" : {
+          "Date" : "2021-01-01",
+          "EnteredID" : "STUD1000003",
+          "ID" : "ATTGATE0000000003",
+          "Location" : "B2",
+          "Status" : "In",
+          "Time" : "10:10:10",
+          "Timestamp" : 1634472615,
+          "isValid" : "True"
+        },
+        "ATTGATE0000000004" : {
+          "Date" : "2021-01-01",
+          "EnteredID" : "PROF1000001",
+          "ID" : "ATTGATE0000000004",
+          "Location" : "B2",
+          "Status" : "Out",
+          "Time" : "10:10:10",
+          "Timestamp" : 1634472615,
+          "isValid" : "True"
+        }
+      },
+      "2021-01-02" : {
+        "ATTGATE0000000001" : {
+          "Date" : "2021-01-01",
+          "EnteredID" : "IDSTUD1000001",
+          "ID" : "ATTGATE0000000001",
+          "Location" : "B3",
+          "Status" : "In",
+          "Time" : "10:10:10",
+          "Timestamp" : 1634472615,
+          "isValid" : "True"
+        },
+        "ATTGATE0000000002" : {
+          "Date" : "2021-01-01",
+          "EnteredID" : "IDSTUD1000002",
+          "ID" : "ATTGATE0000000002",
+          "Location" : "B3",
+          "Status" : "Out",
+          "Time" : "10:10:10",
+          "Timestamp" : 1634472615,
+          "isValid" : "True"
+        }
+      }
+    },
+    "Summary" : {
+      "Class" : {
+        "01" : {
+          "ClassNumber" : "100001",
+          "Day" : "2021-01-02",
+          "Professor" : "PROF1000001",
+          "Student" : {
+            "STUD1000001" : "Present",
+            "STUD1000002" : "Absent",
+            "STUD1000003" : "Arrived Late",
+            "STUD1000004" : "Leave Early"
+          },
+          "Time" : "10:10:10",
+          "TimeStamp" : 1634472615
+        }
+      },
+      "Faculty" : {
+        "PROF1000001" : {
+          "Attendance" : [ {
+            "Date" : "2021-01-01",
+            "Location" : "B3",
+            "Status" : "Absent",
+            "Time" : "10:10:10",
+            "Timestamp" : 1634472615
+          }, {
+            "Date" : "2021-01-02",
+            "Location" : "B3",
+            "Status" : "Present",
+            "Time" : "13:10:10",
+            "Timestamp" : 1634472615
+          } ],
+          "ID" : "PROF1000001"
+        }
+      },
+      "Student" : {
+        "PROF1000001" : {
+          "Attendance" : [ {
+            "Date" : "2021-01-01",
+            "Location" : "B3",
+            "Status" : "Absent",
+            "Time" : "10:10:10",
+            "Timestamp" : 1634472615
+          }, {
+            "Date" : "2021-01-02",
+            "Location" : "B3",
+            "Status" : "Present",
+            "Time" : "13:10:10",
+            "Timestamp" : 1634472615
+          } ],
+          "ID" : "PROF1000001"
+        }
+      }
+    }
+  },
+  "Data" : {
+    "Faculty" : {
+      "Information" : {
+        "FACU1000003" : {
+          "Address" : "03",
+          "Card_ID" : "",
+          "Contact" : "03",
+          "ID" : "FACU1000003",
+          "Name" : {
+            "First" : "03",
+            "Last" : "03",
+            "Middle" : "03"
+          },
+          "Permission" : {
+            "TapIn_First" : true
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FFaculty%2FPROF1000001?alt=media&token=24f42d03-c15f-4aa1-8911-9a9ef1c39875",
+          "Subject" : [ "SUB1000001", "SUB1000002" ]
+        },
+        "PROF1000001" : {
+          "Address" : "Sinalhan",
+          "Card_ID" : "15311f33",
+          "Contact" : "09126997937",
+          "ID" : "PROF1000001",
+          "Name" : {
+            "First" : "Alexander",
+            "Last" : "Saga",
+            "Middle" : "Pelin"
+          },
+          "Permission" : {
+            "TapIn_First" : true
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FFaculty%2FPROF1000001?alt=media&token=24f42d03-c15f-4aa1-8911-9a9ef1c39875",
+          "Subject" : [ "SUB1000001" ]
+        },
+        "PROF1000002" : {
+          "Address" : "Tagapo",
+          "Contact" : "09123456789",
+          "ID" : "PROF1000002",
+          "Name" : {
+            "First" : "Mitch",
+            "Last" : "Seranno",
+            "Middle" : "Almarinez"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FProfessor%2FPROF1000002?alt=media&token=5fce958b-cc90-4a7d-bafa-2fb24c5df1a9",
+          "Subject" : [ "SUB1000001" ]
+        }
+      }
+    },
+    "Report" : {
+      "Statistics" : {
+        "2021-01-01" : {
+          "01" : {
+            "ID" : "STUD1000001",
+            "Status" : "Present",
+            "TimeStamp" : "Tuesday&&16:00:00-19:30:000"
+          }
+        }
+      }
+    },
+    "Student" : {
+      "Information" : {
+        "STUD1000001" : {
+          "Address" : "Broadway St. Manila",
+          "Card_ID" : "177d2de3",
+          "Contact" : "+639125226987",
+          "Email" : "email@gmail.com",
+          "ID" : "STUD1000001",
+          "Name" : {
+            "First" : "Mitchell",
+            "Last" : "Larry",
+            "Middle" : "Reyes"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000001?alt=media&token=63d036f3-d71f-4e39-a128-ed19e135266c",
+          "Subject" : [ "SUB1000001", "SUB1000002" ]
+        },
+        "STUD1000002" : {
+          "Address" : "Rosa  St. Cavite",
+          "Card_ID" : "153ca433",
+          "Contact" : "+639124522697",
+          "Course_Code" : "BSIT",
+          "Email" : "lexansaga72@gmail.com",
+          "ID" : "STUD1000002",
+          "Name" : {
+            "First" : "Alexander",
+            "Last" : "Saga",
+            "Middle" : "Pelin"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000002?alt=media&token=b3e26607-046a-4316-be93-38d88d647896",
+          "Subject" : [ "SUB1000001", "SUB1000002" ]
+        },
+        "STUD1000003" : {
+          "Address" : "1574 Rizal blvd. Tagapo, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09128128128128",
+          "Email" : "ser.mitch2k@gmail.com",
+          "ID" : "STUD1000003",
+          "Name" : {
+            "First" : "Mitch",
+            "Last" : "Serrano",
+            "Middle" : "Almarinez"
+          },
+          "Subject" : [ "SUB1000001", "SUB1000002" ]
+        },
+        "STUD1000004" : {
+          "Address" : "232 Rizal blvd. Tagapo, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "0963436231",
+          "Email" : "joseph.duncan@sti.edu.ph",
+          "ID" : "STUD1000004",
+          "Name" : {
+            "First" : "Joseph",
+            "Last" : "Duncan",
+            "Middle" : "Porter"
+          },
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000005" : {
+          "Address" : "Blk.3 Lot.4 Stanford Ville, Binan City, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09456856543",
+          "Email" : "jason.quinn@sti.edu.ph",
+          "ID" : "STUD1000005",
+          "Name" : {
+            "First" : "Jason",
+            "Last" : "Quinn",
+            "Middle" : "Ledwaba"
+          },
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000006" : {
+          "Address" : "400 Wallstreet, New York, Cubao",
+          "Card_ID" : "",
+          "Contact" : "09236574543",
+          "Email" : "diane.walsh@sti.edu.ph",
+          "ID" : "STUD1000006",
+          "Name" : {
+            "First" : "Diane",
+            "Last" : "Walsh",
+            "Middle" : "Alabas"
+          },
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000007" : {
+          "Address" : "Purok 2, Brgy. Macabling, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09734912959",
+          "Email" : "leonard.wilson@sti.edu.ph",
+          "ID" : "STUD1000007",
+          "Name" : {
+            "First" : "Leonard",
+            "Last" : "Wilson",
+            "Middle" : "Wallace"
+          },
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000008" : {
+          "Address" : "Blk 2, Lot 1, Phase 3, Merville Village, San Pedro, Laguna",
+          "Card_ID" : "",
+          "Contact" : "091205050230",
+          "Email" : "eric.lee@sti.edu.ph",
+          "ID" : "STUD1000008",
+          "Name" : {
+            "First" : "Eric",
+            "Last" : "Lee",
+            "Middle" : "Choi"
+          },
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000009" : {
+          "Address" : "123 Old Natl. Road, Brgy. Platero, Binan city, Laguna",
+          "Card_ID" : "",
+          "Contact" : "0973420603042",
+          "Email" : "paul.greene@sti.edu.ph",
+          "ID" : "STUD1000009",
+          "Name" : {
+            "First" : "Paul",
+            "Last" : "Greene",
+            "Middle" : "Bleu"
+          },
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000010" : {
+          "Address" : "Blk.3 Lot.4 Garden Villas, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "0923868284",
+          "Email" : "wanda.may@sti.edu.ph",
+          "ID" : "STUD1000010",
+          "Name" : {
+            "First" : "May",
+            "Last" : "Wanda",
+            "Middle" : "Roberts"
+          },
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000011" : {
+          "Address" : "157 Purok 4, Rizal blvd. Tagapo, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "0923623002",
+          "Email" : "phil.wright@sti.edu.ph",
+          "ID" : "STUD1000011",
+          "Name" : {
+            "First" : "Phil",
+            "Last" : "Wright",
+            "Middle" : "Williams"
+          },
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000012" : {
+          "Address" : "Lot.1 Blk4, Pineapple Street, Agatha village, Brgy. Market Area, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09640230502",
+          "Email" : "lauren.wilson@sti.edu.ph",
+          "ID" : "STUD1000012",
+          "Name" : {
+            "First" : "Lauren",
+            "Last" : "Wilson",
+            "Middle" : "Dimas"
+          },
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000013" : {
+          "Address" : "152 Bridgeton, San Pedro City, Laguna",
+          "Card_ID" : "",
+          "Contact" : "095302003",
+          "Email" : "wendy.peake@sti.edu.ph",
+          "ID" : "STUD1000013",
+          "Name" : {
+            "First" : "Wendy",
+            "Last" : "Peake",
+            "Middle" : "Alliason"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000013?alt=media&token=04cf8c62-6337-495d-93f1-4e4a64efdc83",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000014" : {
+          "Address" : "Blk 3 Lot 1, Penville, Binan City, Laguna",
+          "Card_ID" : "",
+          "Contact" : "094301204",
+          "Email" : "alison.allan@sti.edu.ph",
+          "ID" : "STUD1000014",
+          "Name" : {
+            "First" : "Alan",
+            "Last" : "Alison",
+            "Middle" : "Cordova"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000014?alt=media&token=25c7c18c-3354-4533-838a-f6bb7a1ca8ce",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000015" : {
+          "Address" : "Blk 2 Lot 23, Alcatraz St. Marco Polo Village, Tagapo, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "094201204023",
+          "Email" : "irene.slater@sti.edu.ph",
+          "ID" : "STUD1000015",
+          "Name" : {
+            "First" : "Irene",
+            "Last" : "Slater",
+            "Middle" : "Alcantara"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000015?alt=media&token=372fdff4-d78f-42a5-b5ce-1519a5c576ea",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000016" : {
+          "Address" : "110 Natl. Rd., Barangay Macabling, Santa Rosa City, Laguna",
+          "Card_ID" : "",
+          "Contact" : "0953429292",
+          "Email" : "charles.paige@sti.edu.ph",
+          "ID" : "STUD1000016",
+          "Name" : {
+            "First" : "Charles",
+            "Last" : "Paige",
+            "Middle" : " "
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000016?alt=media&token=369cf444-6bca-4b02-8309-feea69e4b2e3",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000017" : {
+          "Address" : "Blk. 2 Lot, 4 Phase 3, San Lorenzo South, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09423029329",
+          "Email" : "molly.mathis@sti.edu.ph",
+          "ID" : "STUD1000017",
+          "Name" : {
+            "First" : "Molly",
+            "Last" : "Mathis",
+            "Middle" : "Quinn"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000017?alt=media&token=d78d89e8-f67a-44ed-898f-9fa078aaec4e",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000018" : {
+          "Address" : "L2 Street, Brgy. Marinig, Cabuyao Laguna",
+          "Card_ID" : "",
+          "Contact" : "096482348382",
+          "Email" : "alexandra.dickens@sti.edu.ph",
+          "ID" : "STUD1000018",
+          "Name" : {
+            "First" : "Alexandra",
+            "Last" : "Dickens",
+            "Middle" : "Yldeso"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000018?alt=media&token=692c848b-13ec-4daf-adfb-0bed0f38004c",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000019" : {
+          "Address" : "Blk. 5, Lot. 19, Alfonso Subd. Barangay Market Area, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "094372377347",
+          "Email" : "yvonne.bailey@sti.edu.ph",
+          "ID" : "STUD1000019",
+          "Name" : {
+            "First" : "Yvonne",
+            "Last" : "Bailey",
+            "Middle" : "Tyler"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000019?alt=media&token=0e8a6a41-cfa3-4750-b645-8e01888ed688",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000020" : {
+          "Address" : "1234 King Fisher Rd. BratonVille, Barangay Santo Domingo, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09348382382",
+          "Email" : "diana.pullman@sti.edu.ph",
+          "ID" : "STUD1000020",
+          "Name" : {
+            "First" : "Diana",
+            "Last" : "Pullman",
+            "Middle" : "Humpton"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000020?alt=media&token=a8a7021b-7b8a-4290-b08c-f29d2801f182",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000021" : {
+          "Address" : "Blk. 3, Lot 41, Lakeville, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "0942757374",
+          "Email" : "maria.quinn@sti.edu.ph",
+          "ID" : "STUD1000021",
+          "Name" : {
+            "First" : "Maria",
+            "Last" : "Quinn",
+            "Middle" : "Strongman"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000021?alt=media&token=a3009a84-b95a-40e9-85af-5f0d10271b81",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000022" : {
+          "Address" : "Purok 2, Pulong Santa Cruz, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09437237723",
+          "Email" : "nicola.miller@sti.edu.ph",
+          "ID" : "STUD1000022",
+          "Name" : {
+            "First" : "Nicola",
+            "Last" : "Miller",
+            "Middle" : "Tesla"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000022?alt=media&token=8697e67f-fe15-43e6-812b-b941bef6d7a3",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000023" : {
+          "Address" : "223 Rizal blvd. Barangay Balibago, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "0942723772",
+          "Email" : "sarah.bower@sti.edu.ph",
+          "ID" : "STUD1000023",
+          "Name" : {
+            "First" : "Sara",
+            "Last" : "Bower",
+            "Middle" : "Morty"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000023?alt=media&token=1a88bf60-f51d-4853-8767-2093be71d34b",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000024" : {
+          "Address" : "223 Rizal blvd. Barangay Balibago, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09237437273",
+          "Email" : "mary.bower@sti.edu.ph",
+          "ID" : "STUD1000024",
+          "Name" : {
+            "First" : "Mary",
+            "Last" : "Bower",
+            "Middle" : "Morty"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000024?alt=media&token=e940794d-9201-44cb-a532-d7c850731e76",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000025" : {
+          "Address" : "Blk. 6, Lot. 23, Santa Rosa Village, Santa Rosa City, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09327427273",
+          "Email" : "theresa.berry@sti.edu.ph",
+          "ID" : "STUD1000025",
+          "Name" : {
+            "First" : "Theresa",
+            "Last" : "Berry",
+            "Middle" : "Almarinez"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000025?alt=media&token=990fbc3b-0e77-4db4-8901-6c97404588fe",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000026" : {
+          "Address" : "343 Rizal Blvd. Brgy. Kanluran, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "093274727372",
+          "Email" : "joseph.reid@sti.edu.ph",
+          "ID" : "STUD1000026",
+          "Name" : {
+            "First" : "Joseph",
+            "Last" : "Reid",
+            "Middle" : "James"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000026?alt=media&token=cd8814a6-4b29-431d-888e-c48cc25b50c3",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000027" : {
+          "Address" : "710 Bridgerton Heights, San Pedro City, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09237437372",
+          "Email" : "james.skinner@sti.edu.ph",
+          "ID" : "STUD1000027",
+          "Name" : {
+            "First" : "James",
+            "Last" : "Skinner",
+            "Middle" : "Riley"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000027?alt=media&token=501f75bc-f771-4663-a7bf-3ae74fa1ffa7",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000028" : {
+          "Address" : "Blk. 6, Lot. 2. Santa Rosa De Lima Village, Barangay Kanluran, City of Santa Rosa, Laguna 4026",
+          "Card_ID" : "",
+          "Contact" : "0927327723",
+          "Email" : "colin.bell@sti.edu.ph",
+          "ID" : "STUD1000028",
+          "Name" : {
+            "First" : "Colin",
+            "Last" : "Bell",
+            "Middle" : "Jameson"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000028?alt=media&token=a1bd3f9c-b8b0-4119-95e1-67f0a4edee1d",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000029" : {
+          "Address" : "Blk. 2, Lot 3, Santa Monica Village, Calamba City, Laguna",
+          "Card_ID" : "",
+          "Contact" : "094373272372",
+          "Email" : "eric.berry@sti.edu.ph",
+          "ID" : "STUD1000029",
+          "Name" : {
+            "First" : "Eric",
+            "Last" : "Berry",
+            "Middle" : "James"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000029?alt=media&token=a695abe1-b755-4eb1-86c9-6370709b50a5",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000030" : {
+          "Address" : "555 Argentina St., Barangay San Antonio, Binan, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09327612771",
+          "Email" : "william.glover@sti.edu.ph",
+          "ID" : "STUD1000030",
+          "Name" : {
+            "First" : "William",
+            "Last" : "Glover",
+            "Middle" : "N/A"
+          },
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000031" : {
+          "Address" : "232 Rizal blvd. Tagapo, City of Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "092712748238",
+          "Email" : "adrian.slater@sti.edu.ph",
+          "ID" : "STUD1000031",
+          "Name" : {
+            "First" : "Adrian",
+            "Last" : "Slater",
+            "Middle" : "N/A"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000031?alt=media&token=b289d253-f520-48dc-aeae-feba02cee975",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000032" : {
+          "Address" : "567 Purok 2, Barangay Caingin, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09218328238",
+          "Email" : "sean.edmunds@sti.edu.ph",
+          "ID" : "STUD1000032",
+          "Name" : {
+            "First" : "Sean",
+            "Last" : "Edmunds",
+            "Middle" : "Serrano"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000032?alt=media&token=7b0166ca-25ec-4019-8db1-d92f6d1d8c8b",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000033" : {
+          "Address" : "Blk. 4, Lot 56. Marco Polo, Tagapo, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "0923732782",
+          "Email" : "carolyn.burgess@sti.edu.ph",
+          "ID" : "STUD1000033",
+          "Name" : {
+            "First" : "Carolyn",
+            "Last" : "Burgess",
+            "Middle" : "Saga"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000033?alt=media&token=db08b490-20b6-4c0f-81af-3cbb4508c204",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000034" : {
+          "Address" : "45 Rizal blvd. Barangay Tagapo, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09237438823",
+          "Email" : "piers.north@sti.edu.ph",
+          "ID" : "STUD1000034",
+          "Name" : {
+            "First" : "Piers",
+            "Last" : "North",
+            "Middle" : "Jane"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000034?alt=media&token=c8d2441c-fb33-4158-bf5c-bdeb579c3a89",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000035" : {
+          "Address" : "Blk. 1, Lot 1, Camella Homes, Barangay Santo Domingo, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "093271277121",
+          "Email" : "connor.dickens@sti.edu.ph",
+          "ID" : "STUD1000035",
+          "Name" : {
+            "First" : "Conor",
+            "Last" : "Dickens",
+            "Middle" : "Tray"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000035?alt=media&token=daeedc27-4234-4182-8362-a4e51b9201e9",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000036" : {
+          "Address" : "Blk. 6, Lot. 4 San Lorenzo South, Santa Rosa City, Laguna",
+          "Card_ID" : "",
+          "Contact" : "0912842838",
+          "Email" : "zoe.paige@sti.edu.ph",
+          "ID" : "STUD1000036",
+          "Name" : {
+            "First" : "Zoe",
+            "Last" : "Paige",
+            "Middle" : "Alcobar"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000036?alt=media&token=92e02394-3d96-4435-babd-163e42e0ee01",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000037" : {
+          "Address" : "598 Crossing Rd. Calamba City, Laguna",
+          "Card_ID" : "",
+          "Contact" : "092182188432",
+          "Email" : "caroline.rutherford@sti.edu.ph",
+          "ID" : "STUD1000037",
+          "Name" : {
+            "First" : "Caroline",
+            "Last" : "Rutherford",
+            "Middle" : "July"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000037?alt=media&token=f10e22d8-b9c5-4ad6-9000-41a2af29be38",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000038" : {
+          "Address" : "Blk. 1, Lot. 1, Barangay Langkiwa, Binan City, Laguna",
+          "Card_ID" : "",
+          "Contact" : "08237437372",
+          "Email" : "neil.oliver@sti.edu.ph",
+          "ID" : "STUD1000038",
+          "Name" : {
+            "First" : "Neil",
+            "Last" : "Oliver",
+            "Middle" : "N/A"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000038?alt=media&token=06bf67b0-069f-4bbd-b960-344b7850078d",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000039" : {
+          "Address" : "187 Old Natl. Hi-Way, Barangay Macabling, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09767236573",
+          "Email" : "frank.lee@sti.edu.ph",
+          "ID" : "STUD1000039",
+          "Name" : {
+            "First" : "Frank",
+            "Last" : "Lee",
+            "Middle" : "Chua"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000039?alt=media&token=908bed89-ad0c-4930-9be0-75fddec1431b",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000040" : {
+          "Address" : "1556 Burgos St. Barangay Casile, Santa Cruz, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09127327",
+          "Email" : "jake.hart@sti.edu.ph",
+          "ID" : "STUD1000040",
+          "Name" : {
+            "First" : "Jake",
+            "Last" : "Hart",
+            "Middle" : "Hammilton"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000040?alt=media&token=bfb54c07-f227-4579-8f6f-6fbae35183d6",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000041" : {
+          "Address" : "BLK. 23, LOT 4 Marco Polo Village, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09218321818",
+          "Email" : "jessica.mathis@sti.edu.ph",
+          "ID" : "STUD1000041",
+          "Name" : {
+            "First" : "Jessica",
+            "Last" : "Mathis",
+            "Middle" : "Couldron"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000041?alt=media&token=d1ee845f-e181-401f-8d74-0ecc8d9caed9",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000042" : {
+          "Address" : "Unit 4, SRC Apartment, Tiongco Subd. Tagapo, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "092382882",
+          "Email" : "alan.wallace@sti.edu.ph",
+          "ID" : "STUD1000042",
+          "Name" : {
+            "First" : "Alan",
+            "Last" : "Walace",
+            "Middle" : "Pearson"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000042?alt=media&token=d7bdcb58-87a8-495d-9872-74d38fa11d05",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000043" : {
+          "Address" : "111 Old Natl. Hi Way, Barangay Balibago, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "09238238283",
+          "Email" : "heather.watson@sti.edu.ph",
+          "ID" : "STUD1000043",
+          "Name" : {
+            "First" : "Heather",
+            "Last" : "Watson",
+            "Middle" : "Specter"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000043?alt=media&token=b139673d-8e3a-430b-bc2d-5fd4a9e1f30c",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000044" : {
+          "Address" : "Blk. 6 Lot 6. Zavalla 2, Tagapo, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "091272372",
+          "Email" : "dorothy.russell@sti.edu.ph",
+          "ID" : "STUD1000044",
+          "Name" : {
+            "First" : "Dorothy",
+            "Last" : "Russell",
+            "Middle" : "Torch"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000044?alt=media&token=c844d4f1-71f3-4e7f-85a3-d6c3651d65b5",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000045" : {
+          "Address" : "Blk.7 Lot.8 Camella Heights, Santo Domingo, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "098727372",
+          "Email" : "colin.kerr@sti.edu.ph",
+          "ID" : "STUD1000045",
+          "Name" : {
+            "First" : "Colin",
+            "Last" : "Kerr",
+            "Middle" : "Doofersmith"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000045?alt=media&token=99e62c46-4220-46e5-bfa6-14d913908d28",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000046" : {
+          "Address" : "513 Santa Rosa-Tagaytay Rd. Barangay Pulong Santa Cruz, Santa Rosa, Laguna",
+          "Card_ID" : "",
+          "Contact" : "0932832838",
+          "Email" : "donna.powell@sti.edu.ph",
+          "ID" : "STUD1000046",
+          "Name" : {
+            "First" : "Donna",
+            "Last" : "Powell",
+            "Middle" : "Litt"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000046?alt=media&token=682b2694-84cc-4bea-beb8-8b284623344b",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000047" : {
+          "Address" : "999 Emergency Ave. Makati City",
+          "Card_ID" : "",
+          "Contact" : "0923727223",
+          "Email" : "stephanie.cameron@sti.edu.ph",
+          "ID" : "STUD1000047",
+          "Name" : {
+            "First" : "Stephanie",
+            "Last" : "Cameron",
+            "Middle" : "South"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000047?alt=media&token=2b8f3fc9-2a35-4af7-8574-1e8b213642b9",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000048" : {
+          "Address" : "Blk.6 Lot 4. Tagaytay Heights, Silang, Cavite",
+          "Card_ID" : "",
+          "Contact" : "0923828382",
+          "Email" : "angela.bailey@sti.edu.ph",
+          "ID" : "STUD1000048",
+          "Name" : {
+            "First" : "Angela",
+            "Last" : "Bailey",
+            "Middle" : "Abot"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000048?alt=media&token=14f5bc7f-428a-4608-9d73-19bdeb1b7d7e",
+          "Subject" : [ "No data available in table" ]
+        },
+        "STUD1000049" : {
+          "Address" : "456 Villamor Airbase, Paranaque",
+          "Card_ID" : "",
+          "Contact" : "0987654323",
+          "Email" : "claire.hodges@sti.edu.ph",
+          "ID" : "STUD1000049",
+          "Name" : {
+            "First" : "Claire",
+            "Last" : "Hodges",
+            "Middle" : "Frank"
+          },
+          "Profile" : "https://firebasestorage.googleapis.com/v0/b/attendancemonitoringsystem-00.appspot.com/o/Profile%2FStudent%2FSTUD1000049?alt=media&token=6b810655-59a9-4f2d-a84e-7ee165e98670",
+          "Subject" : [ "No data available in table" ]
+        }
+      }
+    },
+    "Subject" : {
+      "SUB1000001" : {
+        "ClassNbr" : "SUB1000001",
+        "Description" : "Just a Dummy Subject",
+        "Location" : "B2101",
+        "Professor" : "PROF1000001",
+        "Schedule" : {
+          "Day" : "Monday",
+          "Time" : "13:00:00-15:45:00"
+        },
+        "Students" : [ {
+          "ID" : "STUD1000002",
+          "Name" : "Saga, Alexander Pelin"
+        } ],
+        "Title" : "Dummy Subject"
+      },
+      "SUB1000002" : {
+        "ClassNbr" : "SUB1000002",
+        "Description" : "Just a Dummy Subject",
+        "Location" : "B2101",
+        "Professor" : "PROF1000002",
+        "Schedule" : {
+          "Day" : "Monday",
+          "Time" : "13:00:00-15:45:00"
+        },
+        "Students" : [ {
+          "ID" : "STUD1000001",
+          "Name" : "Larry, Mitchell Reyes"
+        }, {
+          "ID" : "STUD1000002",
+          "Name" : "Saga,AlexanderPelin"
+        } ],
+        "Title" : "Dummy Subject"
+      }
+    }
+  },
+  "User" : {
+    "EdFsIZpYVyYSzDftUicr1qTSCsr2" : {
+      "Account_Type" : "Faculty",
+      "Email" : "lexansaga72@ATMS.com",
+      "ID" : "EdFsIZpYVyYSzDftUicr1qTSCsr2",
+      "Password" : "admin123456",
+      "Role" : "Administrator",
+      "UserID" : "PROF1000001"
+    },
+    "YDIBr89FxmTxn4RNfRiovH7o1V63" : {
+      "Account_Type" : "Faculty",
+      "Email" : "serranomitch@ATMS.com",
+      "ID" : "YDIBr89FxmTxn4RNfRiovH7o1V63",
+      "Password" : "serrano123456",
+      "Role" : "Administrator",
+      "UserID" : "PROF1000002"
+    },
+    "p57m9FSr6jXHwzme9AtZPK8OR0B3" : {
+      "Account_Type" : "Faculty",
+      "Email" : "iam@email.com",
+      "ID" : "p57m9FSr6jXHwzme9AtZPK8OR0B3",
+      "Password" : "admin123456",
+      "Role" : "Faculty",
+      "UserID" : "FACU1000003"
+    }
+  }
+}

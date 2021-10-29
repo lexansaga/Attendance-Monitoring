@@ -149,7 +149,7 @@ firebase.auth().onAuthStateChanged((user) => {
 
                 $('#d-profile').attr('src', profile);
                 $('#d-name').html(name[1] + ", " + name[0]);
-                $('#d-pos').html(Role);
+                $('#d-pos').html(Account_Type);
 
 
             });

@@ -9,8 +9,9 @@
     justify-content: flex-end;
     align-items: baseline;
 }
-h1{
-    margin-right: 60%;
+
+.section-name {
+    margin-top:22px;
 }
 
 .function div {
@@ -76,24 +77,26 @@ h1{
 
 .name tr td:nth-child(1) {
 
-   padding: 12px 22px;
-   min-width: 180px;
-   background-color: var(--primary-color);
-   color: var(--font-light-color);
-   border: none !important;
-   margin: 0 !important;
+    padding: 12px 22px;
+    min-width: 180px;
+    background-color: var(--primary-color);
+    color: var(--font-light-color);
+    border: none !important;
+    margin: 0 !important;
 }
-.name tr td:not(:nth-child(1)){
+
+.name tr td:not(:nth-child(1)) {
     padding: 10px 10px;
     cursor: pointer;
     text-align: center;
- }
- table thead td,table tfoot td
- {
-     
+}
+
+table thead td,
+table tfoot td {
+
     background-color: var(--red);
     color: var(--font-light-color);
- }
+}
 
 table tr td {
     border: 1px solid var(--secondary-color);
@@ -104,8 +107,7 @@ table tr td {
     padding-left: 20px;
 }
 
-button
-{
+button {
     width: 220px;
     padding: 18px;
     margin: 38px 12px 0 0;
@@ -116,24 +118,38 @@ button
     font-weight: 500;
     font-size: 14px;
 }
-.remarks:hover{
+
+.remarks:hover {
     cursor: pointer;
     background-color: #BEC4E0;
 }
-.remarks{
-   width: 100%;
-   padding: 5px;
-   margin: 10 0 0 0;
-   border: 1px solid var(--secondary-color);
-   background-color: #F8F8F8;
-   border-radius: 20px;
-   color: black;
-}
-.remarks i{
-    color: black;
-}
-input[type="date"]
+
+.option
 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.remarks {
+    width: 10%;
+    padding: 0px;
+    margin:0;
+    background-color: #F8F8F8;
+    color: var(--text-border);
+    font-size: 22px;
+}
+.report {
+    width: 10%;
+    padding: 0px;
+    margin:0;
+    background-color: #F8F8F8;
+    color: var(--text-border);
+    font-size: 22px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+input[type="date"] {
     font-size: 14px;
     border: none;
     outline: none;
@@ -141,11 +157,10 @@ input[type="date"]
     background-color: transparent;
     text-align: center;
     text-transform: uppercase;
-    
+
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator 
-{
+input[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
 }
 
@@ -160,9 +175,9 @@ input[type="date"]::-webkit-calendar-picker-indicator
     left: 0;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4)
-  }
-  
-  .modal-container {
+}
+
+.modal-container {
     position: relative;
     z-index: 101;
     margin: auto;
@@ -174,56 +189,112 @@ input[type="date"]::-webkit-calendar-picker-indicator
     -webkit-animation-duration: 0.4s;
     animation: modal-animation;
     animation-duration: 0.5s;
-  }
-  
-  @keyframes modal-animation {
+}
+
+@keyframes modal-animation {
     from {
         top: -300px;
         opacity: 0
     }
-  
+
     to {
         top: 50;
         opacity: 1
     }
-  }
-  /* MODAL END */
- .modal-body{
-     display: flex;
-     justify-content: center;
-     align-items: center;
-     flex-direction: column;
- }
- h3{
-     padding: 10px 10px;
- }
+}
 
- .student-info{
-     margin-top: 20px;
-     flex-direction: column;
-     display: flex;
-     width: 100%;
-     justify-content: flex-start;
- }
- .modal-body i:hover{
-     cursor: pointer;
- }
- .Student-info label{
-     font-size: 18px;
- }
- .modal textarea{
-     width: 95%;
-     margin-left: 5px;
-     margin-right: 5px;
-     margin-top: 15px;
-     height: 150px;
-     font-size: 15px;
-     resize: none;
-     padding: 5px 5px;
- }
- .modal-controls button{
-    width: 80px;
+/* MODAL END */
+.modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-body > span {
+    width: 100%;
+    background-color: #FE5277;
+    color: #ffff;
+    font-size: 14px;
+}
+
+h3 {
+    padding: 10px 10px;
+}
+
+.student-info {
+    margin-top: 20px;
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.modal-body i:hover {
+    cursor: pointer;
+}
+
+.Student-info label {
+    font-size: 18px;
+}
+
+.modal textarea {
+    width: 95%;
+    margin-left: 5px;
+    margin-right: 5px;
     margin-top: 15px;
+    height: 150px;
+    font-size: 15px;
+    resize: none;
+    padding: 14px;
+
+    outline: none;
+    border: 1px solid var(--text-border);
+}
+
+.modal-controls {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.modal-controls button {
+    width: 80px;
+    margin: 15px;
     height: 35px;
     padding: 0 0 0 0;
- }
+
+}
+
+
+@media (max-width:425px) {
+
+    .function
+    {
+        justify-content: center;
+    }
+    .function div
+    {
+        padding: 0 12px;
+    }
+    .legend {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .legend div {
+        padding: 12px 25px;
+        display: flex;
+    }
+
+    .name tr td:nth-child(1) {
+        min-width: 0;
+        width: 120px;
+    }
+
+    .modal-container {
+        width: 380px;
+    }
+}

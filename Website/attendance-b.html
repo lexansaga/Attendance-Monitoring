@@ -180,8 +180,9 @@
             </div>
             <main class="item_container">
                 <h3><span>Atten</span>dance</h3>
+                <h1 class="section-name" data-prof="" data-class="">BSIT701A</h1>
                 <div class="function">
-                    <H1>BSIT701A</H1>
+                  
                     <div id="form">
                         <i class='bx bxs-book-alt'></i>
                         <span>Form</span>
@@ -195,7 +196,7 @@
                         <span>Add</span>
                     </div>
                 </div>
-                <div class="legend" style="display: none;">
+                <div class="legend">
                     <div>
                         <i class='bx bxs-circle' style="color:#69E486"></i>
                         <span>Present</span>
@@ -221,38 +222,7 @@
                                 <td class='n'>Name</td>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga asdasdsdsd</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                            <tr>
-                                <td class='n'>1.Alexander Saga</td>
-                            </tr>
-                        </tbody>
+                        <tbody></tbody>
                         <tfoot>
                             <tr>
                                 <td class='n'>Name</td>
@@ -260,7 +230,7 @@
                         </tfoot>
                     </table>
                 </div>
-                <button>
+                <button id="btnSubmitAtt">
                     Submit
                 </button>
                 <br>
@@ -271,7 +241,7 @@
                     <div class="modal-container">
                        <div class="modal-body">
                         <i onclick="CloseModal()" title="Close"class="material-icons" style="position: absolute; right: 10; top: 10; color: #ffff;">close</i>
-                            <span style="width: 100%; background-color: #FE5277; color: #ffff;"> 
+                            <span> 
                                 <h3>Add/View Remarks</h3>
                             </span>
                            <div class="Student-info">
@@ -328,13 +298,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
-        $(document).ready(function () {
-            var table = $('#datatable').DataTable({
-                "paging": false,
-                "info": false
-            });
-
-        });
     </script>
 
 </body>
