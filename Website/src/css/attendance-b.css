@@ -78,7 +78,7 @@
 .name tr td:nth-child(1) {
 
     padding: 12px 22px;
-    min-width: 180px;
+    width: 180px;
     background-color: var(--primary-color);
     color: var(--font-light-color);
     border: none !important;
@@ -86,9 +86,10 @@
 }
 
 .name tr td:not(:nth-child(1)) {
-    padding: 10px 10px;
+    padding: 5px 10px;
     cursor: pointer;
     text-align: center;
+    font-size: 24px;
 }
 
 table thead td,
@@ -100,11 +101,6 @@ table tfoot td {
 
 table tr td {
     border: 1px solid var(--secondary-color);
-    height: 35px;
-    width: 10%;
-    padding: 1pt 0 1pt 0;
-    min-width: 120px;
-    padding-left: 20px;
 }
 
 button {
@@ -289,11 +285,13 @@ h3 {
         display: flex;
     }
 
+    
     .name tr td:nth-child(1) {
-        min-width: 0;
-        width: 120px;
+        width: 220px;
     }
-
+    .name tr td:not(:nth-child(1)) {
+      width: 1000px !important;
+    }
     .modal-container {
         width: 380px;
     }

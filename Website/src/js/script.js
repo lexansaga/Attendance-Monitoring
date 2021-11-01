@@ -14,17 +14,16 @@ firebase.analytics();
 
 
 
-function TimeStamp()
-{
+function TimeStamp() {
 
     var date = new Date();
     var DateNow = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
     var DayNameNow = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][date.getDay()];
     var TimeNow = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 
-    console.log( DayNameNow+'&&' +DateNow + '&&' + TimeNow);
-    return DayNameNow+'&&' +DateNow + '&&' + TimeNow ;
-   
+    console.log(DayNameNow + '&&' + DateNow + '&&' + TimeNow);
+    return DayNameNow + '&&' + DateNow + '&&' + TimeNow;
+
 }
 
 function sleep(time) {
@@ -36,53 +35,65 @@ function toStandardTime(militaryTime) {
     return `${(hours > 12) ? hours - 12 : "0"+hours}:${minutes}${seconds ? `:${seconds}` : ''} ${(hours >= 12) ? 'PM' : 'AM'}`;
 }
 
-function FormatDate(id,format)
-{
+function FormatDate(id, format) {
+    
+    id = id.includes(':') ? id.replaceAll(':','-') : id
+    
     var date = new Date(id);
     var day = date.getDate();
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
 
-    if(format.includes('DD-MM-YY'))
-    {
-        return day + '-' + month +'-' + year;
-    }
-    else if(format.includes('MM-DD-YY'))
-    {
-        return month + '-' + day +'-' + year;
-    }
-    else if(format.includes('YY-MM-DD'))
-    {
-        return year + '-' + month +'-' + day;
-    }
-    else if(format.includes('YY-DD-MM'))
-    {
-        return year + '-' + day +'-' + month;
-    }
-    else
-    {
+    day = (day < 10 ? "0" : "") + day
+    month = (month < 10 ? "0" : "") + month
+
+    if (format.includes('DD-MM-YY')) {
+        return day + '-' + month + '-' + year;
+    } else if (format.includes('MM-DD-YY')) {
+        return month + '-' + day + '-' + year;
+    } else if (format.includes('YY-MM-DD')) {
+        return year + '-' + month + '-' + day;
+    } else if (format.includes('YY-DD-MM')) {
+        return year + '-' + day + '-' + month;
+    } else {
         return date;
     }
 }
 
-function GetClockNow()
-{
-    var now    = new Date();
-    var hour   = now.getHours();
+function GetClockNow() {
+    var now = new Date();
+    var hour = now.getHours();
     var minute = now.getMinutes();
     var second = now.getSeconds();
     var ap = "AM";
-    if (hour   > 11) { ap = "PM";             }
-    if (hour   > 12) { hour = hour - 12;      }
-    if (hour   == 0) { hour = 12;             }
-    if (hour   < 10) { hour   = "0" + hour;   }
-    if (minute < 10) { minute = "0" + minute; }
-    if (second < 10) { second = "0" + second; }
+    if (hour > 11) {
+        ap = "PM";
+    }
+    if (hour > 12) {
+        hour = hour - 12;
+    }
+    if (hour == 0) {
+        hour = 12;
+    }
+    if (hour < 10) {
+        hour = "0" + hour;
+    }
+    if (minute < 10) {
+        minute = "0" + minute;
+    }
+    if (second < 10) {
+        second = "0" + second;
+    }
     var timeString = hour + ':' + minute + ':' + second + " " + ap;
     return timeString;
 }
+
+function GetDay(day) {
+    var DayNameNow = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+    return DayNameNow[day]
+}
 // Usage!
 //sleep(5000).then(() => {
-    // Do something after the sleep!
+// Do something after the sleep!
 
 //});

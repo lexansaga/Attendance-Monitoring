@@ -5,6 +5,7 @@ var day = date.getDate();
 
 var dateNow = month + ':' + day + ':' + year;
 
+var dayNow = date.getDay()
 
 var hour = date.getHours();
 var minute = date.getMinutes();
@@ -15,9 +16,37 @@ var timeNow = hour + ':' + minute + ':' + seconds;
 let thead = $('.name thead tr')
 let tbody = $('.name tbody tr')
 
+
+var attstatus = {
+    present: `
+    <div class="option">
+        <button title="Report" class="report" onclick="OpenModal(this)"><i class='bx bxs-user-x' ></i></button>
+        <i data-status='present' class='bx bxs-circle att_mark' style="color:#69E486;"></i>
+        <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
+    </div>`,
+    absent: `
+    <div class="option">
+        <button title="Report" class="report" onclick="OpenModal(this)"><i class='bx bxs-user-x' ></i></button>
+        <i  data-status='absent' class='bx bxs-circle att_mark' style="color:#FE5277;"></i>
+        <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
+    </div>`,
+    arrivelate: `
+    <div class="option">
+        <button title="Report" class="report" onclick="OpenModal(this)"><i class='bx bxs-user-x' ></i></button>
+        <i  data-status='arrivelate' class='bx bx-chevrons-left att_mark' style="color: #FEB331; "></i>
+        <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
+    </div>`,
+    leaveearly: `
+    <div class="option">
+        <button title="Report" class="report" onclick="OpenModal(this)"><i class='bx bxs-user-x' ></i></button>
+        <i data-status='leaveearly' class='bx bx-chevrons-right att_mark' style="color: #FEB331;"></i>
+        <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
+    </div>`
+}
+
+
+
 $(document).ready(function () {
-
-
 
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
@@ -30,6 +59,7 @@ $(document).ready(function () {
                 let Role = snap.child('Role').val();
                 let UserID = snap.child('UserID').val();
                 let Notification = snap.child('Notification').val();
+
 
                 console.log(snap.val());
                 //    $('.name tbody').html('');
@@ -64,22 +94,39 @@ $(document).ready(function () {
 
                                 $('.section-name').attr('data-prof', UserID);
                                 $('.section-name').attr('data-class', subject.child('ClassNbr').val());
+                                $('.section-name').attr('data-title', subject.child('Title').val());
 
                                 console.log(subject.child('Students').val());
+
                                 var studentCount = 0;
 
-                                let studentsUnsorted = [];
-                                subject.child('Students').forEach(students => {
+                                let SortedStudents = subject.child('Students').val().sort((a, b) => a.Name.localeCompare(b.Name));;
 
-                                    console.log(students.val());
+                                console.log(SortedStudents);
+
+                                SortedStudents.forEach(students => {
+
+                                    console.log(students);
 
                                     studentCount++;
                                     $('.name tbody').append(`<tr>
-                                        <td class="n" data-id="${students.child('ID').val()}">${students.child('Name').val()}</td>
+                                        <td class="n" data-id="${students.ID}">${students.Name}</td>
                                         </tr>`);
-
+                                    // This will append student name on Attendance on first column - Sorted by Surname
 
                                 });
+
+
+                                // subject.child('Students').forEach(students => {
+
+                                //     console.log(students);
+
+                                //     $('.name tbody').append(`<tr>
+                                //         <td class="n" data-id="${students.child('ID').val()}">${students.child('Name').val()}</td>
+                                //         </tr>`);
+
+                                // This will append student name on Attendance on first column - Unsorted by Surname
+                                // });
                             } else {
                                 //Not match schedule time
                                 console.log('Cant find schedule!')
@@ -87,12 +134,64 @@ $(document).ready(function () {
 
                         });
 
+                        let studID = [];
+                        $('.name tbody tr').each(function (index, item) {
+                            console.log($(this).find('.n').attr('data-id'));
+                            console.log(index);
+                            //Get list of names
+                            studID.push($(this).find('.n').attr('data-id'))
+
+                        });
+
+                        console.log(studID)
+                        let dateRowIndex = 0;
+                        firebase.database().ref(`Attendance/Summary/Class/${$(`.section-name`).attr('data-class')}/Dates/`).once('value', snap => {
+                            let rowCount = $('.name tbody tr').length;
+
+                            snap.forEach(dates => {
+
+                                console.log(dates.val())
+                                var table = $('tbody tr .n');
+                                var head = $('thead tr .n');
+                                var foot = $('tfoot tr .n');
+
+                                dates.child('Student').forEach(student => {
+
+
+                                    console.log(student.val())
+                                    let key = student.key;
+                                    let rowId = $('tbody tr .n').attr('data-id');
+
+                                    // $(`tbody tr .n[data-id="${key}"]`).after(`<td>${dates.child('Student').child(key).val()}</td>`)
+
+                                    console.log(dates.child('Student').child(key).val())
+                                    $(`tbody tr .n[data-id="${key}"]`).after(
+                                        `<td>${attstatus[dates.child('Student').child(key).val()] == null ? '--' : attstatus[dates.child('Student').child(key).val()]}</td>`
+                                    );
+                                    // This will add student attendance from firebase to table
+                                });
+
+                                head.after(`<td><input id="dt-attendance" type="date" value="${FormatDate(dates.child('Date').val(),'YY-MM-DD')}" /></td>`);
+                                foot.after(`<td><input id="dt-attendance" type="date" value="${FormatDate(dates.child('Date').val(),'YY-MM-DD')}" /></td>`);
+                                // This will add student attendance dates from firebase to table
+                                // $(`input[type="date"]`).attr('value',FormatDate(dates.child('Date').val(),'YY-MM-DD'));
+
+                                console.log(FormatDate(dates.child('Date').val(), 'YY-MM-DD'));
+                                dateRowIndex++;
+                            })
+
+
+
+                        });
+
+
+
                     } else {
                         // Profesor has no subject
 
                     }
 
-                    
+
                 });
                 // if(Account_Type.includes('Faculty'))
                 // {
@@ -107,51 +206,28 @@ $(document).ready(function () {
     })
 
 
+
+
 });
 
 
 
 $('#add').click(function () {
 
-
+    //This will add new column on attendance
     var table = $('tbody tr .n');
     var head = $('thead tr .n');
     var foot = $('tfoot tr .n');
 
-    table.after(`<td></td>`);
-    //   headfoot.after(`<td><input type="date"  value='${year + '-' + month + '-' + day}'/></td>`);
-    head.after(`<td><input id="dt-attendance" type="date" /></td>`);
+    table.after(`<td>--</td>`);
+    head.after(`<td><input id="dt-attendance" type="date" max="2021-10-31"/></td>`);
+
     foot.after(`<td><input type="date" disabled /></td>`);
 
 });
 
-$().click(function () {});
 
 
-
-
-var attstatus = {
-    Present: `<i  data-status='present' class='bx bxs-circle' style="color:#69E486;"></i>
-    <div class="option">
-        <button title="Report" class="report" onclick="OpenModal()"><i class='bx bxs-user-x' ></i></button>
-        <button title="Add Remarks" class="remarks" onclick="OpenModal()"><i class='bx bxs-notepad'></i></button>
-    </div>`,
-    Absent: `<i data-status='absent' class='bx bxs-circle' style="color:#FE5277;"></i>
-    <div class="option">
-        <button title="Report" class="report" onclick="OpenModal()"><i class='bx bxs-user-x' ></i></button>
-        <button title="Add Remarks" class="remarks" onclick="OpenModal()"><i class='bx bxs-notepad'></i></button>
-    </div>`,
-    ArriveLate: `<i data-status='arrivelate' class='bx bx-chevrons-left' style="color: #FEB331; "></i>
-    <div class="option">
-        <button title="Report" class="report" onclick="OpenModal()"><i class='bx bxs-user-x' ></i></button>
-        <button title="Add Remarks" class="remarks" onclick="OpenModal()"><i class='bx bxs-notepad'></i></button>
-    </div>`,
-    LeaveEarly: `<i data-status='leaveearly' class='bx bx-chevrons-right' style="color: #FEB331;"></i>
-    <div class="option">
-        <button title="Report" class="report" onclick="OpenModal()"><i class='bx bxs-user-x' ></i></button>
-        <button title="Add Remarks" class="remarks" onclick="OpenModal()"><i class='bx bxs-notepad'></i></button>
-    </div>`
-}
 
 $('table').on('click', 'tbody tr td:not(".n")', function () {
     //  alert($(this).html());
@@ -161,7 +237,7 @@ $('table').on('click', 'tbody tr td:not(".n")', function () {
 
     } else {
 
-        var value = $(this).children().attr('data-status');
+        var value = $(this).find('.att_mark').attr('data-status');
         // alert(value)
         if (value == null) {
             $(this).html(attstatus[Object.keys(attstatus)[0]]);
@@ -182,6 +258,7 @@ $('table').on('click', 'tbody tr td:not(".n")', function () {
 
 
 });
+
 
 $('#dt-attendance').bind("change paste keyup", function () {
     $('input[type=date]').val($(this).val());
@@ -207,7 +284,7 @@ $('#btnSubmitAtt').click(function () {
                 rowData.push(FormatDate(att_date, 'MM-DD-YY'));
 
             } else if (content.includes('data-status')) {
-                var att_status = $(`table tr:eq(${row}) td:eq(${col}) i`).attr('data-status');
+                var att_status = $(`table tr:eq(${row}) td:eq(${col}) .option .att_mark`).attr('data-status');
 
                 console.log('Status : ' + att_status);
 
@@ -230,107 +307,70 @@ $('#btnSubmitAtt').click(function () {
     console.log(AttendanceJSON(colData));
 
     AttendanceJSON(colData).forEach(attendance => {
+        //This will add data converted array to JSON on firebase
         var key = firebase.database().ref(`Attendance/Summary/Class/`).push().key;
-        firebase.database().ref(`Attendance/Summary/Class/`).update({
-            [`${key}`]: attendance
+        firebase.database().ref(`Attendance/Summary/Class/`).set({
+            [`${$('.section-name').attr('data-class')}`]: attendance
         });
     })
-    // var aData = [];
-
-    // var dates = [];
-    // var names = [];
-    // var status = []
-    // $('.name tr').each(function (index, item) {
-    //     let itemVal = $(item).text();
-
-    //     let status2 = []
-    //     //  console.log(content);
-    //     for (let a = 0; a < columnCount; a++) {
-
-    //         var content = $(`table tr:eq(${index}) td:eq(${a})`).html();
-
-
-    //         if (content.includes('dt-attendance')) {
-
-    //             var att_date = $(`table tr:eq(${index}) td:eq(${a}) input`).val();
-    //             console.log(FormatDate(att_date, 'MM-DD-YY'));
-    //             //   dates.push(FormatDate(att_date, 'MM-DD-YY'));
-
-    //             dates.push(att_date);
-
-    //         } else if (content.includes('data-status')) {
-    //             var att_status = $(`table tr:eq(${index}) td:eq(${a}) i`).attr('data-status');
-    //             //   attendances.push(att_status);
-
-    //             status2.push(att_status);     
-    //             //aData.push(att_status);
-    //             console.log('Status : '+att_status);
-    //         } else {
-
-    //             console.log(content);
-    //             //aData.push(content);
-    //             var id = $(`table tr:eq(${index}) td:eq(${a})`).attr('data-id')
-    //             if (id != null) {
-    //                 names.push(id)
-    //             }
-
-    //         }
-
-
-
-    //     }
-
-    //     status.push(status2)
-    //     //  attendances.push(data);
-
-    //     //data = {};
-
-    //     //  attendances[`${att_date[index]}}`] =  attstatus ;
-
-    // });
-
-    // aData.push({
-    //     dates,
-    //     status,
-    //     names
-    // })
-    // console.log(aData);
-
-
-
 });
 
 
 function AttendanceJSON(arr) {
-    let data = [];
 
+    //This method will convert the array into attendance object based on Firebase Model.
+
+    let data = [];
+    let classData = {};
+    classData.ClassNbr = $('.section-name').attr('data-class')
+    classData.Professor = $('.section-name').attr('data-prof')
+    classData.Title = $('.section-name').attr('data-title');
+
+    let Dates = {};
     for (var arrLength = 1; arrLength < arr.length; arrLength++) {
 
-        let tempData = {};
-        tempData.Date = arr[arrLength][0]
-        tempData.ClassNbr = $('.section-name').attr('data-class')
-        tempData.Day = dateNow
-        tempData.Professor = $('.section-name').attr('data-prof')
-        tempData.Time = GetClockNow()
-        tempData.TimeStamp = Date.now()
+        let attendance_dates = {};
+        attendance_dates.Date = arr[arrLength][0]
+        attendance_dates.Day = GetDay(dayNow)
+        attendance_dates.Time = GetClockNow()
+        attendance_dates.TimeStamp = Date.now()
 
         var Student = {}
         for (var names = 0; names < arr[0].length; names++) {
-            Student[arr[0][names]] = arr[arrLength][names + 1];
+            Student[arr[0][names]] = arr[arrLength][names + 1] == null ? '-' : arr[arrLength][names + 1];
         }
-        tempData.Student = Student
+        attendance_dates.Student = Student
+        Dates[`${arr[arrLength][0]}`] = attendance_dates;
 
-        data.push(tempData);
     }
-
+    classData.Dates = Dates;
+    data.push(classData);
     return data;
 
 }
 
-function OpenModal() {
+function OpenModal(event) {
+
+    let e = window.event
+    e.stopPropagation()
+    
+    let container = $(event).prev('i');
+    let remarks = $('#remarks-info');
     $('.modal:eq(0)').css('display', 'block');
+    console.log(container.attr('class'));
+    remarks.val(container.attr('data-remarks'))
+
+
+    $('.save').on('click', function () {
+
+        container.attr('data-remarks', remarks.val())
+        CloseModal()
+
+    })
+
 }
 
 function CloseModal() {
+    $('#remarks-info').val('');
     $('.modal:eq(0)').css('display', 'none');
 }
