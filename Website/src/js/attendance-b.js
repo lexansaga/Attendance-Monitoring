@@ -20,26 +20,26 @@ let tbody = $('.name tbody tr')
 var attstatus = {
     present: `
     <div class="option">
-        <button title="Report" class="report" onclick="OpenModal(this)"><i class='bx bxs-user-x' ></i></button>
-        <i data-status='present' class='bx bxs-circle att_mark' style="color:#69E486;"></i>
+        <button title="Report" class="report" onclick="ModalReportOpen(this)"><i class='bx bxs-error-circle'></i></button>
+        <i data-status='present' class='bx bxs-circle att_mark' data-remarks="" style="color:#69E486;"></i>
         <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
     </div>`,
     absent: `
     <div class="option">
-        <button title="Report" class="report" onclick="OpenModal(this)"><i class='bx bxs-user-x' ></i></button>
-        <i  data-status='absent' class='bx bxs-circle att_mark' style="color:#FE5277;"></i>
+        <button title="Report" class="report" onclick="ModalReportOpen(this)"><i class='bx bxs-error-circle'></i></button>
+        <i  data-status='absent' class='bx bxs-circle att_mark' data-remarks="" style="color:#FE5277;"></i>
         <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
     </div>`,
     arrivelate: `
     <div class="option">
-        <button title="Report" class="report" onclick="OpenModal(this)"><i class='bx bxs-user-x' ></i></button>
-        <i  data-status='arrivelate' class='bx bx-chevrons-left att_mark' style="color: #FEB331; "></i>
+        <button title="Report" class="report" onclick="ModalReportOpen(this)"><i class='bx bxs-error-circle'></i></button>
+        <i  data-status='arrivelate' class='bx bx-chevrons-left att_mark' data-remarks="" style="color: #FEB331; "></i>
         <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
     </div>`,
     leaveearly: `
     <div class="option">
-        <button title="Report" class="report" onclick="OpenModal(this)"><i class='bx bxs-user-x' ></i></button>
-        <i data-status='leaveearly' class='bx bx-chevrons-right att_mark' style="color: #FEB331;"></i>
+        <button title="Report" class="report" onclick="ModalReportOpen(this)"><i class='bx bxs-error-circle'></i></button>
+        <i data-status='leaveearly' class='bx bx-chevrons-right att_mark' data-remarks="" style="color: #FEB331;"></i>
         <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
     </div>`
 }
@@ -94,23 +94,24 @@ $(document).ready(function () {
 
                                 $('.section-name').attr('data-prof', UserID);
                                 $('.section-name').attr('data-class', subject.child('ClassNbr').val());
+                                $('.section-name').attr('data-location', subject.child('Location').val());
                                 $('.section-name').attr('data-title', subject.child('Title').val());
 
-                                console.log(subject.child('Students').val());
+                          //      console.log(subject.child('Students').val());
 
                                 var studentCount = 0;
 
                                 let SortedStudents = subject.child('Students').val().sort((a, b) => a.Name.localeCompare(b.Name));;
 
-                                console.log(SortedStudents);
+                          //      console.log(SortedStudents);
 
                                 SortedStudents.forEach(students => {
 
-                                    console.log(students);
+                           //         console.log(students);
 
                                     studentCount++;
                                     $('.name tbody').append(`<tr>
-                                        <td class="n" data-id="${students.ID}">${students.Name}</td>
+                                        <td class="n" data-id="${students.ID}" onclick="StudentInfo(this)">${students.Name}</td>
                                         </tr>`);
                                     // This will append student name on Attendance on first column - Sorted by Surname
 
@@ -150,7 +151,7 @@ $(document).ready(function () {
 
                             snap.forEach(dates => {
 
-                                console.log(dates.val())
+                        //        console.log(dates.val())
                                 var table = $('tbody tr .n');
                                 var head = $('thead tr .n');
                                 var foot = $('tfoot tr .n');
@@ -158,16 +159,27 @@ $(document).ready(function () {
                                 dates.child('Student').forEach(student => {
 
 
-                                    console.log(student.val())
+                                //    console.log(student.val())
                                     let key = student.key;
                                     let rowId = $('tbody tr .n').attr('data-id');
 
                                     // $(`tbody tr .n[data-id="${key}"]`).after(`<td>${dates.child('Student').child(key).val()}</td>`)
 
-                                    console.log(dates.child('Student').child(key).val())
-                                    $(`tbody tr .n[data-id="${key}"]`).after(
-                                        `<td>${attstatus[dates.child('Student').child(key).val()] == null ? '--' : attstatus[dates.child('Student').child(key).val()]}</td>`
-                                    );
+                                  //  console.log(dates.child('Student').child(key).val())
+                                    if (attstatus[dates.child('Student').child(key).child('Status').val()] == null) {
+                                        $(`tbody tr .n[data-id="${key}"]`).after(
+                                            `<td>--</td>`
+                                        );
+                                    } else {
+                                        // $(`tbody tr .n[data-id="${key}"]`).after(
+                                        //     `<td>${attstatus[dates.child('Student').child(key).child('Status').val()]}</td>`
+                                        // );
+
+                                        $(`tbody tr .n[data-id="${key}"]`).after(
+                                            `<td>${attstatus[dates.child('Student').child(key).child('Status').val()].replace('data-remarks=""',`data-remarks="${dates.child('Student').child(key).child('Remarks').val()}"`)}</td>`
+                                        );
+                                    }
+
                                     // This will add student attendance from firebase to table
                                 });
 
@@ -176,7 +188,7 @@ $(document).ready(function () {
                                 // This will add student attendance dates from firebase to table
                                 // $(`input[type="date"]`).attr('value',FormatDate(dates.child('Date').val(),'YY-MM-DD'));
 
-                                console.log(FormatDate(dates.child('Date').val(), 'YY-MM-DD'));
+                         //       console.log(FormatDate(dates.child('Date').val(), 'YY-MM-DD'));
                                 dateRowIndex++;
                             })
 
@@ -284,11 +296,14 @@ $('#btnSubmitAtt').click(function () {
                 rowData.push(FormatDate(att_date, 'MM-DD-YY'));
 
             } else if (content.includes('data-status')) {
+
                 var att_status = $(`table tr:eq(${row}) td:eq(${col}) .option .att_mark`).attr('data-status');
+                var remarks = $(`table tr:eq(${row}) td:eq(${col}) .option .att_mark`).attr('data-remarks');
 
                 console.log('Status : ' + att_status);
+                console.log('Remarks : ' + remarks);
 
-                rowData.push(att_status)
+                rowData.push((att_status == null ? '-' : att_status) + '$' + (remarks == null ? '-' : remarks))
             } else {
 
 
@@ -304,15 +319,20 @@ $('#btnSubmitAtt').click(function () {
         colData.push(rowData);
     }
 
+    console.log(colData);
     console.log(AttendanceJSON(colData));
 
     AttendanceJSON(colData).forEach(attendance => {
         //This will add data converted array to JSON on firebase
         var key = firebase.database().ref(`Attendance/Summary/Class/`).push().key;
-        firebase.database().ref(`Attendance/Summary/Class/`).set({
+        firebase.database().ref(`Attendance/Summary/Class/`).update({
             [`${$('.section-name').attr('data-class')}`]: attendance
         });
     })
+
+
+
+    alert('Attendance Save Sucessfully!')
 });
 
 
@@ -325,6 +345,7 @@ function AttendanceJSON(arr) {
     classData.ClassNbr = $('.section-name').attr('data-class')
     classData.Professor = $('.section-name').attr('data-prof')
     classData.Title = $('.section-name').attr('data-title');
+    classData.Location = $('.section-name').attr('data-Location');
 
     let Dates = {};
     for (var arrLength = 1; arrLength < arr.length; arrLength++) {
@@ -337,7 +358,15 @@ function AttendanceJSON(arr) {
 
         var Student = {}
         for (var names = 0; names < arr[0].length; names++) {
-            Student[arr[0][names]] = arr[arrLength][names + 1] == null ? '-' : arr[arrLength][names + 1];
+            // Student[arr[0][names]] = arr[arrLength][names + 1] == null ? '-' : arr[arrLength][names + 1];
+
+            let studentAttData = arr[arrLength][names + 1].split('$');
+            Student[arr[0][names]] = {
+                'ID': arr[0][names],
+                'Status': studentAttData[0], // Status
+                'Remarks': studentAttData[1] // Remarks
+            }
+
         }
         attendance_dates.Student = Student
         Dates[`${arr[arrLength][0]}`] = attendance_dates;
@@ -349,28 +378,96 @@ function AttendanceJSON(arr) {
 
 }
 
+function AttendanceIndividual(arr)
+{
+
+    let data = [];
+    let classData = {};
+    classData.ClassNbr = $('.section-name').attr('data-class')
+    classData.Professor = $('.section-name').attr('data-prof')
+    classData.Title = $('.section-name').attr('data-title');
+    classData.Location = $('.section-name').attr('data-Location');
+
+    let dates = {};
+    for (var arrLength = 1; arrLength < arr.length; arrLength++) {
+
+        let attendance_dates = {};
+        attendance_dates.Date = arr[arrLength][0]
+        attendance_dates.Day = GetDay(dayNow)
+        attendance_dates.Time = GetClockNow()
+        attendance_dates.TimeStamp = Date.now()
+
+        var Student = {}
+        for (var names = 0; names < arr[0].length; names++) {
+            // Student[arr[0][names]] = arr[arrLength][names + 1] == null ? '-' : arr[arrLength][names + 1];
+
+            let studentAttData = arr[arrLength][names + 1].split('$');
+            Student[arr[0][names]] = {
+                'ID': arr[0][names],
+                'Status': studentAttData[0], // Status
+                'Remarks': studentAttData[1] // Remarks
+            }
+
+        }
+        attendance_dates.Student = Student
+        Dates[`${arr[arrLength][0]}`] = attendance_dates;
+
+    }
+    classData.Dates = Dates;
+    data.push(classData);
+    return data;
+}
+
+var container = '' 
+var remarks = ''
+
 function OpenModal(event) {
 
     let e = window.event
-    e.stopPropagation()
-    
-    let container = $(event).prev('i');
-    let remarks = $('#remarks-info');
-    $('.modal:eq(0)').css('display', 'block');
+     container = $(event).parent().find('.att_mark');
+     remarks = $('#remarks-info');
+    $('.remarks-modal').css('display', 'block');
     console.log(container.attr('class'));
     remarks.val(container.attr('data-remarks'))
+    e.stopPropagation()
 
-
-    $('.save').on('click', function () {
-
-        container.attr('data-remarks', remarks.val())
-        CloseModal()
-
-    })
 
 }
 
-function CloseModal() {
+function CloseRemarksModal() {
     $('#remarks-info').val('');
-    $('.modal:eq(0)').css('display', 'none');
+    $('.remarks-modal').css('display', 'none');
+}
+
+$('.save').on('click', function (e2) {
+
+    e2.stopPropagation()
+    console.log(container.attr('data-status'))
+    container.attr('data-remarks', remarks.val())
+    CloseModal()
+
+})
+
+function ModalReportOpen(event)
+{
+    //alert('Report-Open');
+    let e = window.event
+    e.stopPropagation()
+    $('.report-modal').css('display', 'block');
+}
+
+
+$('.report-close, #report-cancel').on('click',function(e)
+{
+    $('.report-modal').css('display', 'none');
+})
+
+
+function StudentInfo(event)
+{
+ let id = $(event).attr('data-id');
+ console.log(id);
+
+ window.location.href = `StudentInformation.html?id=` + id
+
 }

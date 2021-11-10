@@ -11,7 +11,7 @@
 }
 
 .section-name {
-    margin-top:22px;
+    margin-top: 22px;
 }
 
 .function div {
@@ -58,10 +58,6 @@
 }
 
 
-
-
-
-
 .attendance-table {
     display: flex;
     flex-direction: row;
@@ -83,6 +79,7 @@
     color: var(--font-light-color);
     border: none !important;
     margin: 0 !important;
+    cursor: pointer;
 }
 
 .name tr td:not(:nth-child(1)) {
@@ -113,36 +110,40 @@ button {
     color: var(--font-light-color);
     font-weight: 500;
     font-size: 14px;
+    cursor: pointer;
 }
-
+button:hover
+{
+    filter: saturate(2);
+}
 .remarks:hover {
     cursor: pointer;
-    background-color: #BEC4E0;
 }
 
-.option
-{
+.option {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
 .remarks {
     width: 10%;
     padding: 0px;
-    margin:0;
+    margin: 0;
     background-color: #F8F8F8;
     color: var(--text-border);
     font-size: 22px;
 }
+
 .report {
     width: 10%;
     padding: 0px;
-    margin:0;
+    margin: 0;
     background-color: #F8F8F8;
     color: var(--text-border);
     font-size: 22px;
     opacity: 0;
-    pointer-events: none;
+    cursor: pointer;
 }
 
 input[type="date"] {
@@ -179,7 +180,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin: auto;
     top: 50px;
     background-color: white;
-    height: 350px;
     width: 600px;
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
@@ -207,7 +207,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     flex-direction: column;
 }
 
-.modal-body > span {
+.modal-body>span {
     width: 100%;
     background-color: #FE5277;
     color: #ffff;
@@ -218,24 +218,40 @@ h3 {
     padding: 10px 10px;
 }
 
-.student-info {
-    margin-top: 20px;
+.Student-info {
     flex-direction: column;
     display: flex;
-    width: 100%;
-    justify-content: flex-start;
+    width: 85%;
+    justify-content: center;
+    margin: 15px 0 10px 0;
+}
+
+.Student-info>div {
+    border-bottom: 1px solid var(--text-border);
+    padding: 18px 0 12px 0;
+}
+
+.Student-info label {
+    font-size: 16px;
+    color: var(--font-color-primary);
+}
+
+.Student-info label:nth-child(1) {
+    font-weight: 600;
+    margin: 0 22px 0 0;
+}
+
+.Student-info label:nth-child(2) {
+
 }
 
 .modal-body i:hover {
     cursor: pointer;
 }
 
-.Student-info label {
-    font-size: 18px;
-}
 
 .modal textarea {
-    width: 95%;
+    width: 85%;
     margin-left: 5px;
     margin-right: 5px;
     margin-top: 15px;
@@ -262,17 +278,16 @@ h3 {
 
 }
 
-
 @media (max-width:425px) {
 
-    .function
-    {
+    .function {
         justify-content: center;
     }
-    .function div
-    {
+
+    .function div {
         padding: 0 12px;
     }
+
     .legend {
         display: flex;
         flex-direction: row;
@@ -285,13 +300,15 @@ h3 {
         display: flex;
     }
 
-    
+
     .name tr td:nth-child(1) {
         width: 220px;
     }
+
     .name tr td:not(:nth-child(1)) {
-      width: 1000px !important;
+        width: 1000px !important;
     }
+
     .modal-container {
         width: 380px;
     }

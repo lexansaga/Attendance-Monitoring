@@ -245,32 +245,61 @@
                 <br>
 
                 <!-- MODAL -->
-                <div class="modal">
+                <div class="modal remarks-modal">
                     <div class="modal-container">
                         <div class="modal-body">
-                            <i onclick="CloseModal()" title="Close" class="material-icons"
+                            <i onclick="CloseRemarksModal()" title="Close" class="material-icons"
                                 style="position: absolute; right: 10; top: 10; color: #ffff;">close</i>
                             <span>
                                 <h3>Add/View Remarks</h3>
                             </span>
                             <div class="Student-info">
-                                <div style="width: 100%; margin-left: 15px;"><label>Student Name:</label>
+                                <div>
+                                    <label>Name</label>
                                     <label>Mitch A. Serrano</label>
                                 </div>
-                                <div style="width: 100%; margin-left: 15px; margin-top: 5px;">
-                                    <label>Student ID.:</label>
+                                <div>
+                                    <label>ID</label>
                                     <label>02000017275</label>
                                 </div>
                             </div>
                             <textarea id="remarks-info" placeholder="Enter Remarks"></textarea>
                             <div class="modal-controls">
                                 <button class="save">Save</button>
-                                <button onclick="CloseModal()">Cancel</button>
+                                <button onclick="CloseRemarksModal()">Cancel</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- MODAL END -->
+
+
+                     <!-- MODAL -->
+                     <div class="modal report-modal">
+                        <div class="modal-container">
+                            <div class="modal-body">
+                                <i title="Close" class="material-icons report-close"
+                                    style="position: absolute; right: 10; top: 10; color: #ffff;">close</i>
+                                <span>
+                                    <h3>Report this Student</h3>
+                                </span>
+                                <div class="Student-info">
+                                    <div>
+                                        <label>Mitch A. Serrano</label>
+                                    </div>
+                                    <div>
+                                        <label>02000017275</label>
+                                    </div>
+                                </div>
+                                <textarea id="report-info" placeholder="Enter Report"></textarea>
+                                <div class="modal-controls">
+                                    <button id="report-save">Report</button>
+                                    <button id="report-cancel">Cancel</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- MODAL END -->
 
             </main>
         </div>
