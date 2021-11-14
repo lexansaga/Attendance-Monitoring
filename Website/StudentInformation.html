@@ -171,65 +171,118 @@
             </div>
          </div>
          <main class="item_container">
-            <div class="StudentInf">
-               <img id="pfp" src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'">
-               <label id="studentName">--</label>
-               <button id="btnReport" onclick="showReportDiv()">Report</button>
-            </div>
-            <div class="Pop_Up_ReportOption" id="popup">
-               <textarea id="textarea_bx" cols="40" rows="5" style="resize: none;"
-                  placeholder="Describe the nature of your report here." maxlength="200"></textarea>
-               <button class="cancel_btn" onclick="hideReportDiv()">Cancel</button>
-               <button class="Submit_btn">Submit</button>
-            </div>
-            <hr>
-            <div class="info-grid">
-               <div class="grid-item">
-                  <h4>Student Number:</h4>
+            <h3><span>Student</span> Information</h3>
+
+            <div class="data-container">
+               <div class="profile">
+
+                     <img src="src/assets/avatar.png" alt="Profile" id="pfp" onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>          
+                  <button id="report">Report</button>
                </div>
-               <div class="grid-item id">--</div>
-               <div class="grid-item">
-                  <h4>Section:</h4>
+
+               <div class="con-table-info">
+                  <table id="info-table">
+                     <tbody>
+                        <tr>
+                           <td>
+                              Student ID : 
+                           </td>
+                           <td class="id">
+                              -- 
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              Student Name : 
+                           </td>
+                           <td class="name">
+                              -- 
+                           </td>
+                        </tr>
+                        </tr>
+                        <tr>
+                           <td>
+                              Address : 
+                           </td>
+                           <td class="address">
+                              --
+                           </td>
+                        </tr>
+                        <tr>
+                           <td >
+                              Contact Number : 
+                           </td>
+                           <td class="contact">
+                              --
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              Email : 
+                           </td>
+                           <td class="email">
+                              --
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
                </div>
-               <div class="grid-item email">--</div>
-               <div class="grid-item">
-                  <h4>Address:</h4>
+               <div class="selector">
+                  <button id="attendance"><a href="#con-table-status">Attendances</a></button>
+                  <button id="reports"><a href="#con-table-status">Report Status</a></button>
                </div>
-               <div class="grid-item address">--</div>
-               <div class="grid-item">
-                  <h4>Contact Number:</h4>
+
+               <div id="con-table-status">
+                  <h2 class="table-title">Attendances</h2>
+                  <table id="status-table">
+                     <thead>
+                        <tr>
+                           <td>Subject</td>
+                           <td>Date</td>
+                           <td>Time</td>
+                           <td>Status</td>
+                           <td>Remarks</td>
+                        </tr>
+                     </thead>
+                     <tbody></tbody>
+                     <tfoot>
+                        <tr>
+                           <td>Subject</td>
+                           <td>Date</td>
+                           <td>Time</td>
+                           <td>Status</td>
+                           <td>Remarks</td>
+                        </tr>
+                     </tfoot>
+                  </table>
                </div>
-               <div class="grid-item contact">--</div>
-               <div class="grid-item">
-                  <h4>Status:</h4>
-               </div>
-               <div class="grid-item" id="status">--</div>
-            </div>
 
 
-            <div class="text-labels">
-               <h3>Attendance Graph</h3>
             </div>
-            <div class="data-table">
-               <table id="datatable" style="width:100%">
-                  <thead>
-                     <tr>
-                        <th></th>
-                        <th>Subject</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                        <th>Remarks</th>
-                     </tr>
-                  </thead>
-               </table>
+           
+
+
+            <div class="modal report">
+               <div class="modal-container">
+                  <span class="close"><i class='bx bx-x'></i></span>
+                  <main>
+                     <h1>Create Report</h1>
+                     <p id="reported-name">--</p>
+                     <textarea id="report_details" placeholder="Enter Report Details"></textarea>
+                       <div class="buttons">
+                        <button class="btn-submit">Submit</button>
+                        <button class="btn-cancel">Cancel</button>
+                     </div>
+                  </main>
+               </div>
             </div>
-            <br>
-            <br>
          </main>
       </div>
    </div>
-
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+   integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -242,9 +295,7 @@
    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
-      integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
-      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ 
    <script src="src/js/script.js"></script>
    <script src="src/js/sidebar.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -253,7 +304,6 @@
       AOS.init();
    </script>
    <script src="src/js/studentinformation.js"></script>
-   <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 </body>
 
 </html>

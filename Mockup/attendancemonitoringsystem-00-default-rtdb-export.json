@@ -398,50 +398,73 @@
       },
       "Faculty": {
         "PROF1000001": {
-          "Attendance": [{
-            "Date": "2021-01-01",
-            "Location": "B3",
-            "Status": "Absent",
-            "Time": "10:10:10",
-            "Timestamp": 1634472615
-          }, {
-            "Date": "2021-01-02",
-            "Location": "B3",
-            "Status": "Present",
-            "Time": "13:10:10",
-            "Timestamp": 1634472615
-          }],
-          "ID": "PROF1000001"
-        }
-      },
-      "Student": {
-        "STUD1000001": {
+          "Name" : "Saga,AlexanderPelin",
+          "ID" : "PROF1000001",
           "Class": {
-            "SUB1000001": {
-              "ClassNbr": "SUB1000001",
-              "Title": "Dummy Subject",
-              "ID": "PROF1000001",
-              "01-01-2021": {
-                "Time": "01:18:37 AM",
-                "TimeStamp": 1635002826518,
-                "Status": "Absent",
-                "Remarks": ""
+            "Dates": {
+              "10-01-2021": {
+                "SUB1000001": {
+                  "ClassNbr": "SUB1000001",
+                  "Title": "Dummy Subject",
+                  "Schedule": "NA",
+                  "Remarks": "Saga Absent",
+                  "Status": "absent"
+                }
               }
             }
           },
           "Gate": {
-            "10-24-2021": {
-              "-Mmi9KQ7Y1N8ZcrXgRss": {
-                "Date": "10-24-2021",
-                "EnteredID": "STUD1000001",
-                "ID": "-Mmi9KQ7Y1N8ZcrXgRss",
-                "Location": "B1",
-                "Status": "IN",
-                "Time": "01:18:37 AM",
-                "TimeStamp": 1635009517743,
-                "isValid": true
+            "Dates":{
+              "10-24-2021": {
+                "-Mmi9KQ7Y1N8ZcrXgRss": {
+                  "Date": "10-24-2021",
+                  "EnteredID": "STUD1000001",
+                  "ID": "-Mmi9KQ7Y1N8ZcrXgRss",
+                  "Location": "B1",
+                  "Status": "IN",
+                  "Time": "01:18:37 AM",
+                  "TimeStamp": 1635009517743,
+                  "isValid": true
+                }
               }
             }
+           
+          }
+        }
+      },
+      "Student": {
+        "STUD1000001": {
+          "Name" : "Saga,AlexanderPelin",
+          "ID" : "STUD1000001",
+          "Class": {
+            "Dates": {
+              "10-01-2021": {
+                "SUB1000001": {
+                  "ClassNbr": "SUB1000001",
+                  "Title": "Dummy Subject",
+                  "Schedule": "NA",
+                  "Remarks": "Saga Absent",
+                  "Status": "absent"
+                }
+              }
+            }
+          },
+          "Gate": {
+            "Dates":{
+              "10-24-2021": {
+                "-Mmi9KQ7Y1N8ZcrXgRss": {
+                  "Date": "10-24-2021",
+                  "EnteredID": "STUD1000001",
+                  "ID": "-Mmi9KQ7Y1N8ZcrXgRss",
+                  "Location": "B1",
+                  "Status": "IN",
+                  "Time": "01:18:37 AM",
+                  "TimeStamp": 1635009517743,
+                  "isValid": true
+                }
+              }
+            }
+           
           }
         }
       }

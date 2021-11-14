@@ -273,7 +273,7 @@ tr.shown td.details-control {
     }
     .modal-container {
         height: 35%;
-        width: 40%;
+        width: 70%;
     }
     .chart_labels label{
         font-weight: bold;
@@ -327,6 +327,10 @@ tr.shown td.details-control {
     .modal-container {
         height: 25%;
         width: 80%;
+    }
+    .modal-container span
+    {
+        left: 88%;
     }
     .pie_parentdiv{
         margin-left: 8vw;

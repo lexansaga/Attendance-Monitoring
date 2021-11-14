@@ -782,9 +782,8 @@ $('#btnsave').click(function (event) {
                             },
                             Subject,
                             "Profile": url,
-                            "Permission":
-                            {
-                                "TapIn_First" : $('.cbx').is(":checked")
+                            "Permission": {
+                                "TapIn_First": $('.cbx').is(":checked")
                             }
                         });
 
@@ -804,7 +803,10 @@ $('#btnsave').click(function (event) {
                                         'Password': dPassword,
                                         'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
                                         'UserID': dId,
-                                        'Email': dEmail
+                                        'Email': dEmail,
+                                        "Permission": {
+                                            "TapIn_First": $('.cbx').is(":checked")
+                                        }
                                     });
                                 })
                                 .catch((error) => {
@@ -836,9 +838,8 @@ $('#btnsave').click(function (event) {
                     "Last": lastName.val()
                 },
                 Subject,
-                "Permission":
-                {
-                    "TapIn_First" : $('.cbx').is(":checked")
+                "Permission": {
+                    "TapIn_First": $('.cbx').is(":checked")
                 }
             });
 
@@ -1113,7 +1114,7 @@ $('#SearchPerson').on("select2:select", function (e) {
 
                 if (user.exists()) {
                     user.forEach((child) => {
-                        $('#Role').val(child.child('Role').val());
+                        $('#Role').val(child.child('Account_Type').val()).change();
                         console.log(child.child('Account_Type').val());
                     })
                 }
@@ -1137,6 +1138,7 @@ $('#SearchPerson').on("select2:select", function (e) {
             contact.val(snap.child('Contact').val());
             studentEmail.val(snap.child('Email').val());
             address.val(snap.child('Address').val());
+
             $(".cbx").prop("checked", snap.child('Permission').child('TapIn_First').val());
             //           console.log(snap.child("Subject").val());
             snap.child("Subject").forEach(subject => {
@@ -1147,7 +1149,7 @@ $('#SearchPerson').on("select2:select", function (e) {
                     //    console.log(subSnap.val());
 
                     if (subSnap.val() == null) {
-                        alert("We can't find any data!");
+                        alert(`We can't subject data of ${name[1]}, ${name[0]}!`);
                         return;
                     }
 

@@ -176,74 +176,81 @@
                 <div class="profile-picture" title="Profile">
                     <img src="src/assets/avatar.png" onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
                     <ul class="profile-menu">
-                        <li><a href="usermanagement.html?type=add">Add User</a></li>
-                        <li><a href="usermanagement.html?type=update">Edit User</a></li>
-                        <li><a href="usermanagement.html?type=delete">Delete User</a></li>
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="settings.html">Settings</a></li>
+                        <li><a href="#" onclick="Logout()">Logout</a></li>
                     </ul>
                 </div>
             </div>
             <main class="item_container">
                 <h3><span>Atten</span>dance</h3>
-                <h1 class="section-name" data-prof="" data-class="">BSIT701A</h1>
-                <div class="function">
-
-                    <div id="form">
-                        <i class='bx bxs-book-alt'></i>
-                        <span>Form</span>
-                    </div>
-                    <div id="export">
-                        <i class='bx bxl-microsoft'></i>
-                        <span>Export</span>
-                    </div>
-                    <div id="add">
-                        <i class='bx bxs-layer-plus'></i>
-                        <span>Add</span>
-                    </div>
+                <div class="tap-first">
+                    <img src="src/assets/tapin_icon.svg" />
+                    <h1>You need to tap-in first!</h1>
                 </div>
-                <div class="legend">
-                    <div>
-                        <i class='bx bxs-circle' style="color:#69E486"></i>
-                        <span>Present</span>
+                <div class="attendance-section">
+
+
+                    <h1 class="section-name" data-prof="" data-class="">--</h1>
+                    <div class="function">
+
+                        <div id="form">
+                            <i class='bx bxs-book-alt'></i>
+                            <span>Form</span>
+                        </div>
+                        <div id="export">
+                            <i class='bx bxl-microsoft'></i>
+                            <span>Export</span>
+                        </div>
+                        <div id="add">
+                            <i class='bx bxs-layer-plus'></i>
+                            <span>Add</span>
+                        </div>
                     </div>
-                    <div>
-                        <i class='bx bxs-circle' style="color:#FE5277"></i>
-                        <span>Absent</span>
+                    <div class="legend">
+                        <div>
+                            <i class='bx bxs-circle' style="color:#69E486"></i>
+                            <span>Present</span>
+                        </div>
+                        <div>
+                            <i class='bx bxs-circle' style="color:#FE5277"></i>
+                            <span>Absent</span>
+                        </div>
+                        <div>
+                            <i class='bx bx-chevrons-left' style="color: #FEB331;"></i>
+                            <span>Arrive Late</span>
+                        </div>
+                        <div>
+                            <i class='bx bx-chevrons-right' style="color: #FEB331;"></i>
+                            <span>Leave Early</span>
+                        </div>
                     </div>
-                    <div>
-                        <i class='bx bx-chevrons-left' style="color: #FEB331;"></i>
-                        <span>Arrive Late</span>
+
+                    <div class="attendance-table">
+                        <table class="name">
+                            <thead>
+                                <tr>
+                                    <td class='n'>Name</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                            <tfoot style="display: none;">
+                                <tr>
+                                    <td class='n'>Name</td>
+                                </tr>
+
+
+                            </tfoot>
+                        </table>
                     </div>
-                    <div>
-                        <i class='bx bx-chevrons-right' style="color: #FEB331;"></i>
-                        <span>Leave Early</span>
-                    </div>
+                    <button id="btnSubmitAtt">
+                        Submit
+                    </button>
+                    <br>
+                    <br>
                 </div>
-
-                <div class="attendance-table">
-                    <table class="name">
-                        <thead>
-                            <tr>
-                                <td class='n'>Name</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                        <tfoot style="display: none;">
-                            <tr>
-                                <td class='n'>Name</td>
-                            </tr>
-
-
-                        </tfoot>
-                    </table>
-                </div>
-                <button id="btnSubmitAtt">
-                    Submit
-                </button>
-                <br>
-                <br>
-
                 <!-- MODAL -->
                 <div class="modal remarks-modal">
                     <div class="modal-container">
@@ -274,32 +281,72 @@
                 <!-- MODAL END -->
 
 
-                     <!-- MODAL -->
-                     <div class="modal report-modal">
-                        <div class="modal-container">
-                            <div class="modal-body">
-                                <i title="Close" class="material-icons report-close"
-                                    style="position: absolute; right: 10; top: 10; color: #ffff;">close</i>
-                                <span>
-                                    <h3>Report this Student</h3>
-                                </span>
-                                <div class="Student-info">
-                                    <div>
-                                        <label>Mitch A. Serrano</label>
-                                    </div>
-                                    <div>
-                                        <label>02000017275</label>
-                                    </div>
+                <!-- MODAL Report -->
+                <div class="modal report-modal">
+                    <div class="modal-container">
+                        <div class="modal-body">
+                            <i title="Close" class="material-icons report-close"
+                                style="position: absolute; right: 10; top: 10; color: #ffff;">close</i>
+                            <span>
+                                <h3>Report this Student</h3>
+                            </span>
+                            <div class="Student-info">
+                                <div>
+                                    <label>Mitch A. Serrano</label>
                                 </div>
-                                <textarea id="report-info" placeholder="Enter Report"></textarea>
-                                <div class="modal-controls">
-                                    <button id="report-save">Report</button>
-                                    <button id="report-cancel">Cancel</button>
+                                <div>
+                                    <label>02000017275</label>
                                 </div>
+                            </div>
+                            <textarea id="report-info" placeholder="Enter Report"></textarea>
+                            <div class="modal-controls">
+                                <button id="report-save">Report</button>
+                                <button id="report-cancel">Cancel</button>
                             </div>
                         </div>
                     </div>
-                    <!-- MODAL END -->
+                </div>
+                <!-- MODAL END Report -->
+
+
+
+                <!-- MODAL Report -->
+                <div class="modal date-modal">
+                    <div class="modal-container">
+                        <div class="modal-body">
+                            <i title="Close" class="material-icons date-close"
+                                onclick="CloseDateModal()">close</i>
+                            <span>
+                                <h3>Manage Attendance</h3>
+                            </span>
+                            <div class="Student-info">
+                                <div>
+                                    <label id="text-Mdate">--</label>
+                                </div>
+                                <div style="border: none;">
+                                    <label>Mark all as</label>
+                                    <select id="set-status-col">
+                                        <option disabled selected>Select Status</option>
+                                        <option value="present">Present</option>
+                                        <option value="absent">Absent</option>
+                                        <option value="arrivelate">Arrive Late</option>
+                                        <option value="leaveearly">Leave Early</option>
+                                    </select>
+                                </div>
+                                <div style="border: none;">
+                                    <button id="remove-date" style="width: 100%; background-color: var(--red);">Remove
+                                        Attendance</button>
+                                </div>
+                            </div>
+                            <div class="modal-controls">
+                                <button id="date-save">Submit</button>
+                                <button onclick="CloseDateModal()" id="date-cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- MODAL END Report -->
+
 
             </main>
         </div>

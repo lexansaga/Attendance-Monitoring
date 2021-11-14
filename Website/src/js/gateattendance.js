@@ -154,6 +154,17 @@ document.getElementById("rfid_card").onchange = function () {
             Time: GetClockNow()
           });
 
+          firebase.database().ref(`Attendance/Summary/Faculty/${id}/Gate/${date}/${key}`).set({
+            ID: key,
+            EnteredID: id,
+            Location: location,
+            Status: status,
+            TimeStamp: timestamp,
+            isValid: IsValid,
+            "Date": date,
+            Time: GetClockNow()
+          });
+ 
 
           firebase
             .database()
@@ -216,6 +227,17 @@ document.getElementById("rfid_card").onchange = function () {
 
         var key = firebase.database().ref(`Attendance/Gate/${date}`).push().key;
         firebase.database().ref(`Attendance/Gate/${date}/${key}`).set({
+          ID: key,
+          EnteredID: id,
+          Location: location,
+          Status: status,
+          TimeStamp: timestamp,
+          isValid: IsValid,
+          "Date": date,
+          Time: GetClockNow()
+        });
+
+        firebase.database().ref(`Attendance/Summary/Student/${id}/Gate/${date}/${key}`).set({
           ID: key,
           EnteredID: id,
           Location: location,

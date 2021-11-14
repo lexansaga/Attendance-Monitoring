@@ -1,247 +1,276 @@
-@import url('root.css'); 
+@import url('root.css');
 /*Always include root css to access the root content and not to reinitialize code */
 
-
-
-.StudentInf{
-    display: flex;
-    align-items: center;
-}
-.StudentInf img{
-    width: 7vw;
-    border-top-left-radius: 50% 50%;
-    border-top-right-radius: 50% 50%;
-    border-bottom-right-radius: 50% 50%;
-    border-bottom-left-radius: 50% 50%;
-}
-.StudentInf label{
-    font-weight: bold;
-    font-size: 2vw;
-    color: #808080;
-    margin-left: 1vw;
+.data-container {
+  width: 92%;
+  margin-top: 45px;
 }
 
-.StudentInf button{
-    border: none;
-    padding: 0.5vw 1vw;
-    font-size: 1vw;
-    color: #fff;
-    background-color: #B2BBF7;
-    margin-left: 36%;
-    margin-bottom: 5vw;
-}
-.StudentInf button:active{
-    background-color: #8D9AF3;
-}
-hr{
-    margin-top: 1vw;
-    width: 91%;
-}
-.info-grid{
-    display: grid;
-    grid-template-columns: 13vw 10vw;
-    width: 30vw;
-    margin-top: 0.5vw;
-}
-.info-grid h4{
-    color: #515151;
-}
-.grid-item{
-   margin-bottom: 0.5vw;
+
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid black;
+  padding-bottom: 36px;
 }
 
-.text-labels{
-    margin-top: 2vw;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 1vw;
+.profile #pfp {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
 }
 
-.text-labels h3,i{
-    color: #707070;
+#pfp:hover {
+  transform: scale(1.2);
 }
-.text-labels i{
-    margin-left: 58vw;
+
+.profile #studentName {
+  margin-left: 28px;
 }
-.text-labels h3:hover,i:hover{
-    cursor: default;
+
+.profile button {
+  position: relative;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 14px 26px;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 3px;
 }
-.text-labels i:active{
-    color: #8D9AF3;
+
+#info-table {}
+
+#info-table td:nth-child(1) {
+  font-weight: 600;
 }
-.data-table{
-  width: fit-content;
+
+#info-table td {
+  padding: 18px 48px 16px 10px;
 }
-.data-table #datatable{
+
+#con-table-status {
+  margin-top: 38px;
+  overflow: auto;
+}
+
+
+#status-table {
+  padding: 15px;
+    border-bottom: 0 !important;
+}
+
+#status-table thead {
+
+  font-weight: 500 !important;
+  background-color: var(--secondary-color);
+  color: white;
+
+
+}
+table.dataTable thead th,
+table.dataTable thead td {
+    border-bottom: 0 !important;
+}
+#status-table td {
   text-align: center;
+  padding: 16px 0;
+  
+  min-width: 160px
 }
-#datatable tbody>tr:hover{
-  background-color: #D7D7D7;
+
+
+.table-title {
+  margin: 22px 0;
 }
-.Pop_Up_ReportOption{
-  position: absolute;
-  background-color: #fff;
-  width: 20vw;
-  height: 20vw;
-  margin-top: 2.6vw;
-  margin-left: 44vw;
-  box-shadow: 0 0 10px 5px #D7D7D7;
+.report-delete
+{
+  cursor: pointer;
+  font-size: 26px;
+  color: var(--font-color-primary);
+}
+.report-delete:hover
+{
+  color: var(--red);
+}
+.selector {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  margin-top: 12px;
+}
+
+.selector button {
+  width: 50%;
+  height: 45px;
+  background-color: var(--font-light-color);
+  outline: none;
+  border: 1px solid var(--primary-color);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.selector button a {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selector button:hover a {
+
+  background-color: var(--primary-color);
+  color: white;
+}
+
+
+
+.modal {
   display: none;
-}
-.Pop_Up_ReportOption textarea{
-  padding: 0.5vw 1vw;
-  font-size: 1vw;
-  margin-top: .5vw;
-  margin-left: .7vw;
-  width: 18.5vw;
-  height: 15vw;
-  background-color: #F8F8F8;
-}
-.Pop_Up_ReportOption .cancel_btn{
-  margin-top: 1.5vw;
-  margin-left: 5.5vw;
-  border-style: none;
-  width: 4vw;
-  height: 2vw;
-  background-color: red;
-  color: #fff;
-  margin-right: 1vw;
-}
-.Pop_Up_ReportOption .cancel_btn:active{
-  background-color: #FF9D9D;
-}
-.Pop_Up_ReportOption .Submit_btn{
-  border-style: none;
-  width: 4vw;
-  height: 2vw;
-  background-color: green;
-  color: #fff;
-}
-.Pop_Up_ReportOption .Submit_btn:active{
-  background-color: #00DB00;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4)
 }
 
-/*----------------------------------------------------Tablet View----------------------------------------------------*/
-@media (max-width: 768px){
-  .StudentInf img{
-    width: 10vw;
+.modal-container {
+  position: relative;
+  z-index: 101;
+  margin: auto;
+  top: 50px;
+  background-color: white;
+  height: 380px;
+  width: 600px;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation: modal-animation;
+  animation-duration: 0.5s;
+}
+
+/* Add Animation */
+@keyframes modal-animation {
+  from {
+    top: -300px;
+    opacity: 0
   }
-  .StudentInf label{
-    font-size: 3vw;
-  }
-  .StudentInf button{
-    width: 8.5vw;
-    margin-left: 25%;
-    font-size: 1.8vw;
-    height:4vw;
-  }
-  .Pop_Up_ReportOption{
-    width: 35vw;
-    height: 35vw;
-    margin-top: 5vw;
-  }
-  .Pop_Up_ReportOption textarea{
-    font-size: 2vw;
-    margin-top: 1vw;
-    margin-left: .8vw;
-    width: 33.5vw;
-    height: 26vw;
-  }
-  .Pop_Up_ReportOption .cancel_btn{
-    width: 7vw;
-    height: 4.5vw;
-    margin-left: 10vw;
-  }
-  .Pop_Up_ReportOption .Submit_btn{
-    width: 7vw;
-    height: 4.5vw;
-  }
-  .info-grid{
-    font-size: 2vw;
-    display: grid;
-    grid-template-columns: 20vw 25vw;
-    width: 40vw;
-    margin-top: 1vw;
-  }
-  .text-labels h3{
-    font-size: 2vw;
-    margin-top: 2vw;
-  }
-  .data-table{
-    margin-top: 2vw;
-    width: 90%;
-  }
-  .datatable th{
-    font-size: 2vw;
-  }
-  .datatable td{
-    font-size: 1.8vw;
+
+  to {
+    top: 50;
+    opacity: 1
   }
 }
 
-/*----------------------------------------------------Mobile View----------------------------------------------------*/
-@media (max-width: 425px){
-  hr{
-    margin-top: 2vw;
-    width: 110vw;
+.modal-container span {
+  position: relative;
+  left: 92%;
+  top: 15px;
+  cursor: pointer;
+}
+
+.modal-container span i {
+  font-size: 25px;
+}
+
+.modal main {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 30px;
+  height: 100%;
+}
+
+.modal-container main h1 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--font-color-primary);
+}
+
+
+.modal-container main textarea {
+  margin-top: 28px;
+  padding: 20px 15px;
+  height: 35%;
+  outline: none;
+  border: 1px solid var(--text-border);
+  resize: none;
+
+}
+
+.buttons {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  right: 0;
+  top: 25px;
+}
+
+.buttons button {
+  outline: none;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.buttons button:nth-child(1) {
+  background-color: var(--color-accent-1);
+  color: var(--font-light-color);
+  margin-right: 10px;
+
+}
+
+.buttons button:nth-child(2) {
+  background-color: var(--red);
+  color: var(--font-light-color);
+
+}
+
+.buttons button:nth-child(1):hover {
+  background-color: rgba(66, 89, 125, 0.9);
+
+
+}
+
+.buttons button:nth-child(2):hover {
+  background-color: rgba(254, 82, 119, 0.9);
+
+
+}
+
+
+#reported-name
+{
+  padding: 16px 0;
+  border-bottom: 1px solid var(--text-border);
+}
+
+
+@media screen and (max-width:425px) {
+  #info-table td {
+    padding: 18px 12px 2px 10px;
   }
-  .StudentInf img{
-    margin-top: 3vw;
-    width: 20vw;
+  .modal-container span
+  {
+    left: 88%;
   }
-  .StudentInf label{
-    font-size: 5vw;
-    margin-left: 2vw;
-    width: 100vw;
+  .modal-container 
+  {
+    width: 88%;
   }
-  .StudentInf button{
-    position: absolute;
-    margin-right: -10%;
-    right: 0;
-    font-size: 4vw;
-    width: fit-content;
-    height: 8vw;
-  }
-  .Pop_Up_ReportOption{
-    width: 60vw;
-    height: 55vw;
-    margin-top: 14vw;
-    margin-left: 35vw;
-  }
-  .Pop_Up_ReportOption textarea{
-    font-size: 4vw;
-    margin-top: 1vw;
-    margin-left: 2vw;
-    width: 56vw;
-    height: 43vw;
-  }
-  .Pop_Up_ReportOption .cancel_btn{
-    width: 15vw;
-    height: 6vw;
-    margin-left: 15vw;
-    margin-top: 2.5vw;
-  }
-  .Pop_Up_ReportOption .Submit_btn{
-    width: 15vw;
-    height: 6vw;
-  }
-  .info-grid{
-    font-size: 4vw;
-    display: grid;
-    grid-template-columns: 35vw 37vw;
-    width: 40vw;
-    margin-top: 1vw;
-  }
-  .text-labels h3{
-    font-size: 4vw;
-  }
-  .datatable th{
-    font-size: 4vw;
-  }
-  .datatable td{
-    font-size: 15px;
-  }
-  .data-table{
-    width: 110%;
+  .buttons
+  {
+    justify-content: center;
   }
 }

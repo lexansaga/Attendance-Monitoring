@@ -36,9 +36,9 @@ function toStandardTime(militaryTime) {
 }
 
 function FormatDate(id, format) {
-    
-    id = id.includes(':') ? id.replaceAll(':','-') : id
-    
+
+    id = id.includes(':') ? id.replaceAll(':', '-') : id
+
     var date = new Date(id);
     var day = date.getDate();
     var month = date.getMonth() + 1;
@@ -59,6 +59,7 @@ function FormatDate(id, format) {
         return date;
     }
 }
+
 
 function GetClockNow() {
     var now = new Date();
@@ -88,9 +89,43 @@ function GetClockNow() {
     return timeString;
 }
 
+
+
+function GetDateNow() {
+
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+
+    return month + '-' + day + '-' + year;
+}
+
+
 function GetDay(day) {
     var DayNameNow = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     return DayNameNow[day]
+}
+
+function GetMonth(month) {
+
+    var months = ["January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    return months[month - 1]
+}
+
+
+function FallBackNull(data) {
+    return data == null ? '--' : data
+}
+
+function ArrayHasDuplicate(array) {
+
+    const noDups = new Set(array);
+
+    return array.length !== noDups.size;
 }
 // Usage!
 //sleep(5000).then(() => {
