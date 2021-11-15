@@ -74,6 +74,8 @@ function format ( d ) {
 $(document).ready(function() {
     const mob = window.matchMedia( "(max-width: 425px)" );
     var table = $('#datatable').DataTable( {
+        "dom": 'Bfrtip',
+        "buttons":['excel','pdf'],
         "scrollX": mob.matches,
         "bLengthChange": false,
         "ajax": "src/json/attendancereport.json",

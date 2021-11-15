@@ -58,20 +58,6 @@
     border-bottom-right-radius: 50% 50%;
     border-bottom-left-radius: 50% 50%;
 }
-.Export{
-    display: flex;
-    flex-direction: column;
-    text-decoration: none;
-    color: var(--font-color-secondary);
-    text-align: center;
-
-    position: absolute;
-    right: 8%;
-    top: 420;
-}
-.Export i{
-    font-size: 30px;
-}
 
 td.details-control{
     background: url('/src/assets/plus.png') no-repeat center center;
@@ -330,10 +316,6 @@ tr.shown td.details-control {
         width: 50vw;
         height: 30vw;
     }
-    .Export{
-        right: 8%;
-        top: 390;
-    }
 }
 
 
@@ -403,10 +385,6 @@ tr.shown td.details-control {
     }
     #date-covered{
         font-size: 13px;
-    }
-    .Export{
-        right: 8%;
-        top: 550;
     }
 
 }
