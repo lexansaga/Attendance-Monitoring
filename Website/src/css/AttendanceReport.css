@@ -58,6 +58,10 @@
     border-bottom-right-radius: 50% 50%;
     border-bottom-left-radius: 50% 50%;
 }
+button{
+    width: 70px;
+    height: 30px;
+}
 
 td.details-control{
     background: url('/src/assets/plus.png') no-repeat center center;
