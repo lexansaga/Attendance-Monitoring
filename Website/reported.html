@@ -186,9 +186,9 @@
                         * Showing Data from 01/12/2021 - << Present Date>>‎<span><i class='bx bxs-calendar'></i> </span>
                     </p>
                 </a>
-                <a class="Export" href="#"><i class='bx bxs-file-export'></i> Export</a>
                 <a class="archive" href="archive.html"><i class='bx bxs-archive'></i> Archive</a>
                 <div class="list-attendance">
+                <label>Export to:</label>
                     <table id="datatable" class="hover row-border order-column">
                         <thead>
                             <tr>
@@ -366,14 +366,65 @@
     </script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+   
+   <!-- datatable -->
+   <script src="//code.jquery.com/jquery-3.5.1.js"></script>
+   <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+   <script src="//cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+   <script src="//cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+   <script src="//cdn.datatables.net/buttons/2.0.1/js/buttons.print.min.js"></script>
+
     <script>
         AOS.init();
 
         $(document).ready(function () {
             var table = $('#datatable').DataTable({
-
+               "dom": 'B<lf<t>ip>',
+                "buttons": [
+               {
+                  extend: 'excel',
+                  text: 'Excel',
+                  className: 'btn btn-default',
+                  exportOptions: {
+                  columns: [1,2,3],
+                   customize: function ( win ) {
+                    $(win.document.body)
+                        .css( 'font-size', '12pt' )
+ 
+                    $(win.document.body).find( 'table' )
+                        .addClass( 'compact' )
+                        .css( 'font-size', 'inherit' );
+                }
+                  }
+               },{
+                  extend: 'pdf',
+                  text: 'Pdf',
+                  className: 'btn btn-default',
+                  exportOptions: {
+                  columns: [1,2,3]}
+               },{
+                  extend: 'print',
+                  text: 'Print',
+                  className: 'btn btn-default',
+                  exportOptions: {
+                  columns: [1,2,3],
+                   customize: function ( win ) {
+                    $(win.document.body)
+                        .css( 'font-size', '12pt' )
+ 
+                    $(win.document.body).find( 'table' )
+                        .addClass( 'compact' )
+                        .css( 'font-size', 'inherit' );
+                }
+                  }
+               }],
                 "paging": true,
-                "info": true
+                "info": true,
+                "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]],
             });
 
         });
