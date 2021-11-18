@@ -25,23 +25,6 @@
   width: 90%;
 }
 
-.UserInfo > .Export{
-  display: flex;
-    flex-direction: column;
-    text-align: center;
-    position: absolute;
-    left: 90%;
-    top: 250;
-
-    text-decoration: none;
-    color: var(--font-color-secondary);
-    margin-top: 25px;
-}
-
-.Export i{
-  font-size: 30px;
-}
-
 .userImage {
   width: 120px;
 }
@@ -68,12 +51,21 @@ h2:hover {
   cursor: default;
 }
 
+#exportlbl{
+  font-size: 18px;
+  margin-top: 25px;
+}
 
 .table_Wrapper {
   position: absolute;
   width: 70%;
-  margin-top: 50px;
+  margin-top: 10px;
   display: block;
+}
+.table_Wrapper button{
+  width: 70px;
+  height: 30px;
+  margin-bottom: 20px;
 }
 
 .dataTable img {
@@ -190,20 +182,11 @@ thead td {
     margin-top: 20px;
     width: 90%;
   }
-  .UserInfo > .Export{
-      left: 85%;
-      top: 230;
-  }
-
  
 }
 
 /*----------------------------------------------------Mobile View----------------------------------------------------*/
 @media (max-width: 425px) {
-  .UserInfo > .Export{
-    right: 0;
-    top: 228;
-}
   .table_Wrapper {
     margin-top: 30px;
   }
