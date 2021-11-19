@@ -79,6 +79,8 @@ var dateto = $('#dateto');
 datefrom.change(function () {
     if (datefrom.val() != '') {
         dateto.prop('disabled', false);
+        dateto.attr('min',FormatDate(datefrom.val(),'YY-MM-DD'));
+      
     } else {
         dateto.prop('disabled', true);
     }
@@ -86,10 +88,7 @@ datefrom.change(function () {
 
 $('.btn-submit').click(function () {
 
-
-
-
-
+   
     var start;
     var end;
 
@@ -105,7 +104,8 @@ $('.btn-submit').click(function () {
 
 
 
-
+    table.DataTable().clear().draw();
+    
     // alert(datefrom.val()+'-'+dateto.val());
     var newend = end.setDate(end.getDate() + 1);
     var end = new Date(newend);
@@ -121,7 +121,7 @@ $('.btn-submit').click(function () {
 
         console.log(date)
 
-        table.DataTable().clear().draw();
+  
         firebase.database().ref(`Attendance/Gate/${date}`).on('value', snap => {
 
             //console.log(snap.val());
@@ -133,6 +133,7 @@ $('.btn-submit').click(function () {
 
 
                 Object.keys(entered).reverse();
+                
                 if (entered.child('EnteredID').val().includes('STUD')) {
 
                     firebase.database().ref(`Data/Student/Information/${entered.child('EnteredID').val()}`).once('value', data => {

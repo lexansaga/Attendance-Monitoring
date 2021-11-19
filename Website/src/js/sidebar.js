@@ -115,9 +115,9 @@ firebase.auth().onAuthStateChanged((user) => {
             // console.log(snap.val());
             // console.log('Account_Type:'+Account_Type);
             // console.log('ID:'+ID);
-             console.log('Role:'+Role);
+             console.log('Role:'+Account_Type);
             // console.log('UserID:'+User);
-            if (Role.includes('Administrator')) {
+            if (Account_Type.includes('Administrator')) {
                 // User is Admin 
                 sidebarlinks.eq(0).css('display', '') //Home
                 sidebarlinks.eq(1).css('display', '') //Schedule
@@ -127,7 +127,7 @@ firebase.auth().onAuthStateChanged((user) => {
                 sidebarlinks.eq(7).css('display', '') // Class
 
 
-            } else if (Role.includes('Faculty')) {
+            } else if (Account_Type.includes('Faculty')) {
                 // User is Faculty 
                 sidebarlinks.eq(0).css('display', '') //Home
                 sidebarlinks.eq(1).css('display', '') //Schedule

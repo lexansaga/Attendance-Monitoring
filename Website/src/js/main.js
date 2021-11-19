@@ -19,43 +19,12 @@ $(document).ready(function () {
         window.location = "../../entered.html"
     });
 
-    var list = [];
-
-    firebase.database().ref(`Data/Student/Information/`).on("value", snap => {
-        $('.d-items:nth-child(2) > h1').html(snap.numChildren()); // For Total Students
-        //    console.log(snap.val());
-    });
-
-    firebase.database().ref("Attendance/Student/2021-01-01").orderByChild('Attendance_Status').equalTo('Present').on("value", snap => {
-
-
-        $('.d-items:nth-child(3) > h1').html(snap.numChildren()); // For Count of Present Students
-        list.push({
-            "Present": snap.numChildren()
-        });
-    });
-
-    firebase.database().ref("Attendance/Student/2021-01-01").orderByChild('Attendance_Status').equalTo('Absent').on("value", snap => {
-
-
-        $('.d-items:nth-child(4) > h1').html(snap.numChildren()); // For Count of Absent Students
-    });
-
-    firebase.database().ref("Attendance/Student/2021-01-01").orderByChild('Attendance_Status').equalTo('Late').on("value", snap => {
-
-
-        $('.d-items:nth-child(5) > h1').html(snap.numChildren()); // For Count of Late Students
-    });
-
-
-
-    // console.log(list.Present);
 
 
 
 
 
-    firebase.database().ref(`Attendance/Gate/${date}`).orderByKey().limitToLast(5).on("value", snap => {
+    firebase.database().ref(`Attendance/Gate/${GetDateNow()}`).orderByKey().limitToLast(5).on("value", snap => {
         $('.prof_container > ul ').html(' ');
         snap.forEach(childSnapshot => {
             var type = "";
@@ -103,7 +72,7 @@ $(document).ready(function () {
         });
 
         if (snap == null) {
-            $('.prof_container > ul ').html('<p style="font-size:18px;text-align:center;background-color:transparent;font-weight:600;width:100%"> No one entered yet. </P>');
+            $('.prof_container > ul ').html('<p style="font-size:18px;text-align:center;background-color:transparent;font-weight:600;width:100%"> No one entered yet. </p>');
         }
     });
 
@@ -130,6 +99,40 @@ firebase.auth().onAuthStateChanged((user) => {
             let Role = snap.child('Role').val();
             let UserID = snap.child('UserID').val();
             let Notification = snap.child('Notification').val();
+
+            if (Account_Type.includes('Administrator')) {
+
+
+                StatusCounter(GetDateNow(), 'present', $(`#cnt_present`))
+
+                StatusCounter(GetDateNow(), 'absent', $(`#cnt_absent`))
+
+                StatusCounter(GetDateNow(), 'arrivelate', $(`#cnt_late`))
+
+                StudentCounter(0, Account_Type, $('#cnt_students'))
+            }
+            if (Account_Type.includes('Guidance')) {
+
+                StatusCounter(GetDateNow(), 'present', $(`#cnt_present`))
+
+                StatusCounter(GetDateNow(), 'absent', $(`#cnt_absent`))
+
+                StatusCounter(GetDateNow(), 'arrivelate', $(`#cnt_late`))
+
+                StudentCounter(0, Account_Type, $('#cnt_students'))
+
+
+            }
+            if (Account_Type.includes('Faculty')) {
+                //alert('Faculty')
+                FacultyStatusCounter(UserID, GetDateNow(), 'present', $(`#cnt_present`))
+                FacultyStatusCounter(UserID, GetDateNow(), 'absent', $(`#cnt_absent`))
+                FacultyStatusCounter(UserID, GetDateNow(), 'arrivelate', $(`#cnt_late`))
+
+
+                StudentCounter(UserID, Account_Type, $('#cnt_students'))
+            }
+
 
             firebase.database().ref('Data/Faculty/Information/' + UserID).on('value', uidsnap => {
                 //   console.log(uidsnap.val());
@@ -162,10 +165,75 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 
-function AutoUpdate() {
+function StatusCounter(date, status, object) {
+
+    firebase.database().ref('Attendance/Summary/Class/').on('value', classes => {
+        classes.forEach(aclass => {
+            let classKey = aclass.key;
+            firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).on('value', attendance => {
+                console.log(attendance.val())
+                firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).on('value', statusCount => {
+
+                    object.html(statusCount.numChildren())
+                    console.log(statusCount.val())
 
 
 
+                })
+
+            })
+        })
+
+        PieChart()
+    })
+}
+
+function FacultyStatusCounter(id, date, status, object) {
+
+    firebase.database().ref('Attendance/Summary/Class/').orderByChild('Professor').startAt(id).endAt(id).on('value', classes => {
+
+        classes.forEach(aclass => {
+            let classKey = aclass.key;
+            firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).on('value', attendance => {
+                console.log(attendance.val())
+                firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).on('value', statusCount => {
+
+                    object.html(statusCount.numChildren())
+                    console.log(statusCount.val())
+
+
+                })
+
+            })
+        })
+
+        PieChart()
+    })
+}
+
+function StudentCounter(id, account_type, object) {
+    if (account_type.includes('Faculty')) {
+        firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(id).endAt(id).on("value", snap => {
+            console.log(snap.val())
+            let studentCount = 0;
+
+            snap.forEach(subject => {
+                studentCount += subject.child('Students').numChildren();
+            })
+
+            object.html(studentCount)
+
+
+
+        });
+    } else {
+        firebase.database().ref(`Data/Student/Information/`).on("value", snap => {
+            console.log(snap.val())
+
+            object.html(snap.numChildren())
+
+        });
+    }
 }
 
 function sOnLoadMediaQuery() {
@@ -225,46 +293,56 @@ function ChartSizes() {
 
 function PieChart() {
     //   alert("Pie Chart Loaded");
-    var xValues = ["Absent", "Present", "Late"];
-    var yValues = [Math.floor(Math.random() * 100),
-        Math.floor(Math.random() * 100),
-        Math.floor(Math.random() * 100)
-    ];
-    var barColors = [
-        "#8A98F5",
-        "#617EAB",
-        "#C7DDFF"
-    ];
+    if ($('#cnt_present').html().includes('——') && $('#cnt_absent').html().includes('——') && $('#cnt_late').html().includes('——')) {
+        return setTimeout(PieChart, 1000);
+    } else {
+        let present = $('#cnt_present').html().includes('——') ? '0' : $('#cnt_present').html()
+        let absent = $('#cnt_present').html().includes('——') ? '0' : $('#cnt_absent').html()
+        let late = $('#cnt_present').html().includes('——') ? '0' : $('#cnt_late').html()
 
-    new Chart("pieChart", {
-        type: "pie",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            legend: {
-                position: 'bottom',
-                display: true,
-                font: {
-                    family: "'Karla', sans-serif"
-                },
-                labels: {
-                    usePointStyle: true
+        var xValues = ["Present", "Absent", "Late"];
+        var yValues = [
+            parseInt(present),
+            parseInt(absent),
+            parseInt(late)
+        ];
+        console.log(yValues)
+        var barColors = [
+            "#8A98F5",
+            "#617EAB",
+            "#C7DDFF"
+        ];
+
+        new Chart("pieChart", {
+            type: "pie",
+            data: {
+                labels: xValues,
+                datasets: [{
+                    backgroundColor: barColors,
+                    data: yValues
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                legend: {
+                    position: 'bottom',
+                    display: true,
+                    font: {
+                        family: "'Karla', sans-serif"
+                    },
+                    labels: {
+                        usePointStyle: true
+                    }
                 }
             }
-        }
-    });
+        });
+    }
 }
 
 function LineChart() {
     //   alert("Line Chart Loaded");
-    var xValues = ["Day 1", 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+    var xValues = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10"];
 
     new Chart("lineChart", {
         type: "line",
@@ -272,16 +350,16 @@ function LineChart() {
             labels: xValues,
             datasets: [{
                 label: 'Absent',
-                data: [Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000)
+                data: [Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115)
                 ],
                 borderWidth: 1,
                 borderColor: "#59BAF3",
@@ -289,16 +367,16 @@ function LineChart() {
                 fill: true
             }, {
                 label: 'Present',
-                data: [Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000)
+                data: [Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115)
                 ],
                 borderWidth: 1,
                 borderColor: "#68CF71",
@@ -306,16 +384,16 @@ function LineChart() {
                 fill: true
             }, {
                 label: 'Late',
-                data: [Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000)
+                data: [Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115),
+                    Math.floor(Math.random() * 115)
                 ],
                 borderWidth: 1,
                 borderColor: "#F2828A",

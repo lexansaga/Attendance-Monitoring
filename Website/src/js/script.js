@@ -61,7 +61,7 @@ function FormatDate(id, format) {
 }
 
 
-function GetClockNow() {
+function GetTimeNow() {
     var now = new Date();
     var hour = now.getHours();
     var minute = now.getMinutes();
@@ -118,7 +118,7 @@ function GetMonth(month) {
 
 
 function FallBackNull(data) {
-    return data == null ? '--' : data
+    return data == null || data == '' ? '--' : data
 }
 
 function ArrayHasDuplicate(array) {

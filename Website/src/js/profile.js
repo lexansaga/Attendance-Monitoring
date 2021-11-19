@@ -37,7 +37,7 @@ $(document).ready(function () {
 
                     $('#d-profile').attr('src', profile);
                     $('#d-name').html(name[1] + ", " + name[0]);
-                    $('#d-pos').html(Role);
+                    $('#d-pos').html(Account_Type);
 
 
 
@@ -47,7 +47,7 @@ $(document).ready(function () {
 
                     $('#datatable tbody').append('<tr>' +
                         '<td>Role</td>' +
-                        '<td>' + Role + '</td>' +
+                        '<td>' + Account_Type + '</td>' +
                         '</tr>');
 
                     $('#datatable tbody').append('<tr>' +

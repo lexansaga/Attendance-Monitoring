@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="src/css/reported.css" rel="stylesheet" />
+    <link href="src/css/archive.css" rel="stylesheet" />
     <link href="src/css/sidebar.css" rel="stylesheet" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -170,7 +170,7 @@
                     </ul>
                 </div>
                 <div class="profile-picture" title="Profile">
-                    <img src="https://picsum.photos/200" />
+                    <img src="src/assets/avatar.png" onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
                     <ul class="profile-menu">
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">Settings</a></li>
@@ -183,23 +183,25 @@
                 <!--Here goes the content / Remove the Preceeding and add yours-->
                 <a class="reported-dates" href="#">
                     <p>
-                        * Showing Data from 01/12/2021 - << Present Date>>‎<span><i class='bx bxs-calendar'></i> </span>
+                        * Showing Data from << <span class="datefrom-set">Present Date</span> >> - << <span class="dateto-set">Present Date</span> >>‎<span><i class='bx bxs-calendar'></i> </span>
                     </p>
                 </a>
                
-                <div class="list-attendance">
+                <div class="list-archive">
                     <table id="datatable" class="hover row-border order-column">
                         <thead>
                             <tr>
                                 <th></th>
                                 <th>Name</th>
-                                <th>Action Taken</th>
-                                <th>Summary</th>
-                                <th>Date</th>
+                                <th>Reason</th>
+                                <th>Report By</th>
+                                <th>Report Date</th>
+                                <th>Action</th>
+                                <th>Status</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
+                            <!-- <tr>
                                 <td><img src="src/assets/profile.jpg" /></td>
                                 <td>Alexander Saga</td>
                                 <td>
@@ -207,67 +209,40 @@
                                 </td>
                                 <td>Jeann B. Log</td>
                                 <td>23 March ,2019 08:03PM</td>
-                            </tr>         
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    This contains the reason why the student
-                                </td>
-                                <td>Jeann B. Log</td>
-                                <td>23 March ,2019 08:03PM</td>
-                            </tr>         
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    This contains the reason why the student
-                                </td>
-                                <td>Jeann B. Log</td>
-                                <td>23 March ,2019 08:03PM</td>
-                            </tr>         
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    This contains the reason why the student
-                                </td>
-                                <td>Jeann B. Log</td>
-                                <td>23 March ,2019 08:03PM</td>
-                            </tr>         
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    This contains the reason why the student
-                                </td>
-                                <td>Jeann B. Log</td>
-                                <td>23 March ,2019 08:03PM</td>
-                            </tr>         
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    This contains the reason why the student
-                                </td>
-                                <td>Jeann B. Log</td>
-                                <td>23 March ,2019 08:03PM</td>
-                            </tr>         
-                            <tr>
-                                <td><img src="src/assets/profile.jpg" /></td>
-                                <td>Alexander Saga</td>
-                                <td>
-                                    This contains the reason why the student
-                                </td>
-                                <td>Jeann B. Log</td>
-                                <td>23 March ,2019 08:03PM</td>
-                            </tr>                
-
+                            </tr>          -->
+                          
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <th></th>
+                                <th>Name</th>
+                                <th>Reason</th>
+                                <th>Report By</th>
+                                <th>Report Date</th>
+                                <th>Action</th>
+                                <th>Status</th>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
 
 
+                <div class="modal date">
+                    <div class="modal-container">
+                        <span class="close"><i class='bx bx-x'></i></span>
+                        <main>
+                            <h1>Select Date</h1>
+                            <p>Date From: </p>
+                            <input id="datefrom" type="date" title="Input Date" />
+                            <p>Date To: </p>
+                            <input id="dateto" type="date" title="Input Date" placeholder="Month / Date / Year" disabled/>
+                            <div class="buttons">
+                                <button class="btn-submit-date">Submit</button>
+                                <button class="btn-cancel">Cancel</button>
+                            </div>
+                        </main>
+                    </div>
+                </div>
             </main>
         </div>
     </div>
@@ -291,7 +266,7 @@
 
 
     <script src="src/js/script.js"></script>
-    <script src="src/js/reported.js"></script>
+    <script src="src/js/archive.js"></script>
     <script src="src/js/sidebar.js"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -302,14 +277,6 @@
     <script>
         AOS.init();
 
-        $(document).ready(function () {
-            var table = $('#datatable').DataTable({
-
-                "paging": true,
-                "info": true
-            });
-
-        });
     </script>
 </body>
 

@@ -27,7 +27,7 @@ function Login() {
                     firebase.database().ref('User/' + uid).on('value', snap => {
                         let Account_Type = snap.child('Account_Type').val();
 
-                        localStorage.setItem("ACC_TYPE", Account_Type);
+                      //  localStorage.setItem("ACC_TYPE", Account_Type);
                     });
                     // ...
                 } else {
