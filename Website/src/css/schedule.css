@@ -30,7 +30,8 @@
 }
 
 .UserInfo {
-  margin-left: 1vw;
+  margin-left: 150px;
+  margin-top:-120px;
 }
 
 .UserInfo h1 {
@@ -50,11 +51,21 @@ h2:hover {
   cursor: default;
 }
 
+#exportlbl{
+  font-size: 18px;
+  margin-top: 25px;
+}
+
 .table_Wrapper {
   position: absolute;
   width: 70%;
-  margin-top: 150px;
+  margin-top: 10px;
   display: block;
+}
+.table_Wrapper button{
+  width: 70px;
+  height: 30px;
+  margin-bottom: 20px;
 }
 
 .dataTable img {
@@ -160,22 +171,24 @@ thead td {
   .table_Wrapper {
     position: absolute;
     width: 90%;
-    margin-top: 150px;  
+    margin-top: 30px;  
+  }
+  .UserInfo{
+    margin-left: 115px;
+    margin-top: -100px;
   }
 
   .UserInformation_wrapper {
     margin-top: 20px;
     width: 90%;
   }
-
-
  
 }
 
 /*----------------------------------------------------Mobile View----------------------------------------------------*/
 @media (max-width: 425px) {
   .table_Wrapper {
-    margin-top: 110px;
+    margin-top: 30px;
   }
 
   .UserInformation_wrapper {
@@ -193,6 +206,7 @@ thead td {
 
   .UserInfo {
     margin-left: 90px;
+    margin-top: -7px;
   }
 
   .UserInfo h1 {

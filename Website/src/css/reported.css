@@ -119,6 +119,14 @@ td:nth-child(5) {}
     background-color: rgba(254, 82, 119, 0.8);
 }
 
+.list-attendance button{
+    width: 70px;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
 .modal {
     display: none;
     position: fixed;

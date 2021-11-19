@@ -74,8 +74,11 @@ function format ( d ) {
 $(document).ready(function() {
     const mob = window.matchMedia( "(max-width: 425px)" );
     var table = $('#datatable').DataTable( {
+        "dom": 'B<lf<t>ip>',
+        "buttons":['excel','pdf','print'],
         "scrollX": mob.matches,
-        "bLengthChange": false,
+        "lengthChange": true,
+        "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]],
         "ajax": "src/json/attendancereport.json",
         "columns": [
             {

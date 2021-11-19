@@ -14,7 +14,13 @@ $(document).ready(function () {
 
     LoadSearch('Professor');
 
-    tableUserSched.DataTable();
+    tableUserSched.DataTable({
+        "dom": 'B<lf<t>ip>',
+        "buttons":['excel','pdf','print'],
+        "paging": true,
+        "info": true,
+        "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]]
+    });
 });
 
 $('#look').on('select2:select', function (e) {
