@@ -170,11 +170,11 @@
                </ul>
             </div>
             <div class="profile-picture" title="Profile">
-               <img src="https://picsum.photos/200" />
+               <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
                <ul class="profile-menu">
-                  <li><a href="usermanagement.html?type=add">Add User</a></li>
-                  <li><a href="usermanagement.html?type=update">Edit User</a></li>
-                  <li><a href="usermanagement.html?type=delete">Delete User</a></li>
+                  <li><a href="profile.html">Profile</a></li>
+                  <li><a href="settings.html">Settings</a></li>
+                  <li><a href="#" onclick="Logout()">Logout</a></li>
                </ul>
             </div>
          </div>
@@ -183,8 +183,8 @@
             <!--Here goes the content / Remove the Preceeding and add yours-->
             <a class="reported-dates" href="#">
                <p>
-                  * Showing Data from 01/12/2021 - << Present Date>>‎<span><i class='bx bxs-calendar'></i> </span>
-               </p>
+                  * Showing Data from << <span class="datefrom-set">Present Date</span> >> - << <span class="dateto-set">Present Date</span> >>‎<span><i class='bx bxs-calendar'></i> </span>
+              </p>
             </a>
             <div class="list-attendance">
                <table id="datatable" class="hover row-border order-column">
