@@ -8,7 +8,13 @@ var status_table = $('#status-table')
 $(document).ready(function () {
 
 
-  status_table.DataTable();
+  status_table.DataTable({
+    "dom": 'B<lf<t>ip>',
+    "buttons":['excel','pdf','print'],
+    "paging": true,
+    "info": true,
+    "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]]
+  });
 
 
 
