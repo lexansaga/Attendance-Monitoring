@@ -44,6 +44,7 @@ $(document).ready(function () {
 
   GetAttendance()
 
+
 });
 
 //THIS CODE CHANGES THE COLOR OF THE STATUS PLACEHOLDER BASED ON ITS VALUE
@@ -143,9 +144,10 @@ function GetReports() {
   <thead>
   <tr>
      <td>Report By</td>
-     <td>Details</td>
+     <td>Reason</td>
      <td>Report Date & Time</td>
      <td>Status</td>
+     <td>Action Taken</td>
      <td>Cancel Report</td>
   </tr>
 </thead>
@@ -154,9 +156,10 @@ function GetReports() {
 <tfoot>
   <tr>
     <td>Report By</td>
-    <td>Details</td>
+    <td>Reason</td>
     <td>Report Date & Time</td>
     <td>Status</td>
+    <td>Action Taken</td>
     <td>Cancel Report</td>
   </tr>
 </tfoot>
@@ -164,57 +167,98 @@ function GetReports() {
 
   report_table.DataTable();
 
-  firebase.database().ref(`Data/Reported/Active/${id}`).once('value', active => {
-    active.forEach(activeReport => {
+  firebase.database().ref(`Data/Reported/Active/`).once('value', active => {
 
-      let details = activeReport.child('Details').val()
-      let id = activeReport.child('ID').val()
-      let reportedStudent = activeReport.child('ReportedStudent').val().split('$')
-      let reportBy = activeReport.child('ReportedBy').val().split('$')
-      let time = activeReport.child('Time').val()
-      let date = activeReport.child('Date').val()
+    active.forEach(dates => {
 
-      let dateName = date.split('-')
+      let date = dates.key;
+
+      firebase.database().ref(`Data/Reported/Active/${date}/${id}`).once('value', student => {
+
+        student.forEach(activeReport => {
+          let details = activeReport.child('Details').val()
+          let id = activeReport.child('ID').val()
+          let reportedStudent = activeReport.child('ReportedStudent').val().split('$')
+          let reportBy = activeReport.child('ReportedBy').val().split('$')
+          let time = activeReport.child('Time').val()
+          let date = activeReport.child('Date').val()
+      
+
+          let statustext = activeReport.child('Status').val()
+          let status = {
+            'Action Taken': `<span style="color:var(--green)">Action Taken</span>`,
+            'Archived': `<span style="color:var(--green)">Cancel - Move to Archive</span>`,
+            'Active': `<span style="color:var(--red)">Active</span>`,
+          }
+
+          let dateName = date.split('-')
 
 
-      report_table.DataTable().row.add([
-        reportBy[1],
-        `<span id="data" data-student="${reportedStudent[0]}" data-id="${id}">${details}</span>`,
-        `<span style="font-weight:600">${GetMonth(dateName[0])} ${dateName[1]} ${dateName[2]}</span>, ${time}`,
-        `<span style="color:var(--red)">Active</span>`,
-        `<span class="report-delete" onclick="CancelReport(this)">
+          report_table.DataTable().row.add([
+            reportBy[1],
+            `<span data-status="${statustext}" id="data" data-student="${reportedStudent[0]}" data-id="${id}" data-date="${date}">${details}</span>`,
+            `<span style="font-weight:600">${GetMonth(dateName[0])} ${dateName[1]} ${dateName[2]}</span>, ${time}`,
+            status[statustext],
+            '<span style="font-weight:600">No action yet.</span>',
+            `<span class="report-delete" onclick="CancelReport(this)">
         <i class='bx bxs-trash'></i>
         </span>`
-      ]).draw();
+          ]).draw();
+
+        })
+
+      })
 
 
     })
   })
 
-  firebase.database().ref(`Data/Reported/Archive/${id}`).once('value', active => {
-    active.forEach(activeReport => {
-      active.forEach(activeReport => {
 
-        let details = activeReport.child('Details').val()
-        let id = activeReport.child('ID').val()
-        let reportedStudent = activeReport.child('ReportedStudent').val().split('$')
-        let reportBy = activeReport.child('ReportedBy').val().split('$')
-        let time = activeReport.child('Time').val()
-        let date = activeReport.child('Date').val()
+  firebase.database().ref(`Data/Reported/Archive/`).once('value', active => {
+
+    active.forEach(dates => {
+
+      let date = dates.key;
+
+      firebase.database().ref(`Data/Reported/Archive/${date}/${id}/`).once('value', student => {
 
 
+        student.forEach(activeReport => {
+          console.log(activeReport.val())
 
-        report_table.DataTable().row.add([
-          reportBy[1],
-          details,
-          `${date}, ${time}`,
-          `<span color:"var(--green)">Resolve</span>`,
-          `<span color:"var(--font-primary-color)">
-          </span>`
-        ]).draw();
+          let details = activeReport.child('Details').val()
+          let id = activeReport.child('ID').val()
+          let reportedStudent = activeReport.child('ReportedStudent').val().split('$')
+          let reportBy = activeReport.child('ReportedBy').val().split('$')
+          let time = activeReport.child('Time').val()
+          let date = activeReport.child('Date').val()
+          let action = activeReport.child('Action').val()
+          let statustext = activeReport.child('Status').val()
+          let status = {
+            'Action Taken': `<span style="color:var(--green)">Action Taken</span>`,
+            'Archived': `<span style="color:var(--green)">Cancel - Move to Archive</span>`,
+            'Active': `<span style="color:var(--red)">Active</span>`,
+          }
 
+          let dateName = date.split('-')
+
+
+          report_table.DataTable().row.add([
+            reportBy[1],
+            `<span data-status="${statustext}" id="data" data-student="${reportedStudent[0]}" data-id="${id}" data-date="${date}">${details}</span>`,
+            `<span style="font-weight:600">${GetMonth(dateName[0])} ${dateName[1]} ${dateName[2]}</span>, ${time}`,
+            status[statustext],
+            `<span style="font-weight:600">${FallBackNull(action)}</span>`,
+            `<span class="report-delete" onclick="CancelReport(this)">
+        <i class='bx bxs-trash'></i>
+        </span>`
+          ]).draw();
+
+        })
 
       })
+
+
     })
   })
 }
@@ -264,20 +308,23 @@ $('.btn-submit').on('click', function (event) {
 
             let report_details = $('#report_details').val();
 
-            let key = firebase.database().ref(`Data/Reported/Active/${id}`).push().key
-            firebase.database().ref(`Data/Reported/Active/${id}/${key}`).set({
+            let key = firebase.database().ref(`Data/Reported/Active/${GetDateNow()}/${id}`).push().key
+            firebase.database().ref(`Data/Reported/Active/${GetDateNow()}/${id}/${key}`).set({
               ID: key,
               Details: report_details,
               ReportedBy: `${UserID}$${last}, ${first} ${middle}`,
               ReportedStudent: `${id}$${LastName}, ${FirstName} ${MiddleName}`,
-              Time: GetClockNow(),
-              Date: GetDateNow()
+              Time: GetTimeNow(),
+              Date: GetDateNow(),
+              Status : 'Active'
             })
 
           });
 
           alert('Student Reported Successfully!');
           $('.modal').css('display', 'none');
+
+       
         })
 
       });
@@ -285,9 +332,9 @@ $('.btn-submit').on('click', function (event) {
 
     }
 
+
+    GetReports()
   });
-
-
 })
 
 $('.btn-cancel, .modal').on('click', function (event) {
@@ -324,23 +371,35 @@ function CancelReport(event) {
   // alert('Click Delete!')
 
   let index = $(event).closest('td').parent()[0].sectionRowIndex;
+  
   let data = $(event).parent().parent().find('#data')
   let id = data.attr('data-id');
   let student = data.attr('data-student');
+  let date = data.attr('data-date');
+  let status = data.attr('data-status');
   console.log(`${id} ${student}`)
 
+
+  
+  if(status != 'Active')
+  {
+    alert('You can`t delete this \n This already taken action!');
+    return
+  }
   if (confirm('Are you sure you want to cancel this report? \n This cant be undone!')) {
 
-    firebase.database().ref(`Data/Reported/Active/${student}/${id}/`).remove()
+    firebase.database().ref(`Data/Reported/Active/${date}/${student}/${id}`).remove()
     alert('Report sucessfully removed! ')
 
 
-    status_table.DataTable().row(index).remove().draw();
+    GetReports()
 
   } else {
 
 
   }
+
+  $('#report_details').val('')
 
 
 

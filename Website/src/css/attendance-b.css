@@ -130,7 +130,19 @@ table tr td {
 #btnSubmitAtt:hover {
     filter: saturate(2);
 }
-
+#remove-date
+{
+    cursor: pointer;
+    width: 100%;
+    padding: 16px;
+    outline: 0;
+    border: 0;
+    background-color: var(--red);
+    color: white;
+}
+#remove-date:hover{
+    filter: saturate(2);
+}
 .remarks:hover {
     cursor: pointer;
 }

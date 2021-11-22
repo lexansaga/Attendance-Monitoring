@@ -480,7 +480,7 @@ function AttendanceJSON(arr) {
         let attendance_dates = {};
         attendance_dates.Date = arr[arrLength][0]
         attendance_dates.Day = GetDay(dayNow)
-        attendance_dates.Time = GetClockNow()
+        attendance_dates.Time = GetTimeNow()
         attendance_dates.TimeStamp = Date.now()
 
         var Student = {}

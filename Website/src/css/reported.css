@@ -29,15 +29,26 @@ main .archive i {
 main .archive:hover {
     color: var(--primary-color);
 }
-
-.list-attendance {
+main .info
+{
+    padding: 18px 8px;
+    border-bottom: 1px solid var(--text-border);
+    margin: 5px 0;
+}
+main .info > span
+{
+    font-weight: 600;
+}
+.list-reports {
     margin: 50px 50px 0 0;
+    overflow: auto;
 
 }
 
 #datatable {
     padding: 15px;
     border-bottom: 0 !important;
+    min-width: 1000px;
 }
 
 table.dataTable thead th,
@@ -74,7 +85,7 @@ td>img {
 
 td:nth-child(5) {}
 
-td:nth-child(5) button:nth-child(1) {
+.btn-take-action {
     border: none;
     outline: none;
     background-color: var(--orange);
@@ -87,7 +98,7 @@ td:nth-child(5) button:nth-child(1) {
 
 }
 
-td button:nth-child(2) {
+.btn-delete {
     border: none;
     outline: none;
     background-color: var(--red);
@@ -100,11 +111,11 @@ td button:nth-child(2) {
     cursor: pointer;
 }
 
-td:nth-child(5) button:nth-child(1):hover {
+.btn-take-action:hover {
     background-color: rgba(255, 141, 115, 0.8);
 }
 
-td:nth-child(5) button:nth-child(2):hover {
+.btn-delete:hover {
     background-color: rgba(254, 82, 119, 0.8);
 }
 
@@ -155,14 +166,14 @@ td:nth-child(5) button:nth-child(2):hover {
     }
 }
 
-.modal-container span {
+.modal-container > span {
     position: relative;
     left: 92%;
     top: 15px;
     cursor: pointer;
 }
 
-.modal-container span i {
+.modal-container > span i {
     font-size: 25px;
 }
 
@@ -201,7 +212,7 @@ td:nth-child(5) button:nth-child(2):hover {
 .modal-container main textarea {
     margin-top: 10px;
     padding: 20px 15px;
-    height: 60%;
+    height: 55%;
     outline: none;
     border: 1px solid var(--text-border);
     resize: none;
@@ -263,13 +274,13 @@ td:nth-child(5) button:nth-child(2):hover {
     padding: 8px 0;
 }
 
+.date .modal-container {
+    height: 320px;
+}
 .delete .modal-container {
     height: 130px;
 }
 
-.date .modal-container {
-    height: 320px;
-}
 
 @media only screen and (max-width:768px) {
 
@@ -277,7 +288,7 @@ td:nth-child(5) button:nth-child(2):hover {
         left: 85%;
     }
 
-    .list-attendance {
+    .list-reports {
         overflow: auto;
         margin: 50px 25px 0 0;
     }
@@ -301,7 +312,7 @@ td:nth-child(5) button:nth-child(2):hover {
         left: 80%;
     }
 
-    .modal-container span {
+    .modal-container > span {
 
         left: 88%;
 

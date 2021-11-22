@@ -10,7 +10,15 @@ $(document).ready(function () {
     $('#datatable').DataTable({
         "autoWidth": true,
         "paging": true,
-        "info": true
+        "info": true,
+        columnDefs: [ {
+            targets:4,
+            createdCell: function (td, cellData, rowData, row, col) {
+                if ( rowData[4].toLowerCase().includes('in')) {
+                    $(td).css('background-color', 'var(--green)');
+                }
+            }
+        } ]
     }).order([2, 'desc']);
 
 
@@ -18,58 +26,34 @@ $(document).ready(function () {
     console.log(date);
 
 
-    firebase.database().ref(`Attendance/Gate/${date}`).on('value', snap => {
-        table.DataTable().clear().draw()
-        console.log(snap.val());
-        snap.forEach(entered => {
-            console.log(entered.val());
+
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+    
+    
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/firebase.User
+            let uid = user.uid;
+            // console.log(uid);
+            firebase.database().ref('User/' + uid).on('value', snap => {
+                let Account_Type = snap.child('Account_Type').val();
+                let ID = snap.child('ID').val();
+                let Role = snap.child('Role').val();
+                let UserID = snap.child('UserID').val();
+                let Notification = snap.child('Notification').val();
+
+                table.DataTable().clear().draw()
+                Entered(Account_Type,GetDateNow(),'PROF1000001')
 
 
-            Object.keys(entered).reverse();
-            if (entered.child('EnteredID').val().includes('STUD')) {
 
-                firebase.database().ref(`Data/Student/Information/${entered.child('EnteredID').val()}`).once('value', data => {
-                    table.DataTable().row.add([
-                            `<img src="${data.child('Profile').val()}" onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
-                            entered.child('EnteredID').val(),
-                            `${data.child('Name').child('Last').val()}, ${data.child('Name').child('First').val()} ${data.child('Name').child('Middle').val()}`,
-                            `<span style="font-weight:600">${ entered.child('Date').val()}</span>` + ' ' + entered.child('Time').val(),
-                            `<td><span data-isValid="${entered.child('isValid').val()}">${entered.child('Status').val()}</span></td>`
-                        ])
-                        .draw();
-                });
-
-            } else {
-                firebase.database().ref(`Data/Faculty/Information/${entered.child('EnteredID').val()}`).once('value', data => {
-                    table.DataTable().row.add([
-                            `<img src="${data.child('Profile').val()}" onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
-                            entered.child('EnteredID').val(),
-                            `${data.child('Name').child('Last').val()}, ${data.child('Name').child('First').val()} ${data.child('Name').child('Middle').val()}`,
-                            `<span style="font-weight:600">${ entered.child('Date').val()}</span>` + ' ' + entered.child('Time').val(),
-                            `<td><span class="" data-isValid="${entered.child('isValid').val()}">${entered.child('Status').val()}</span></td>`
-                        ])
-                        .draw();
-                });
-            }
-
-            // if(entered.child('isValid').val().toString().includes('true'))
-            // {
-            //     $('span[data-isValid="true"]').parent().css(
-            //         {
-            //             "background-color":"var(--green)"
-            //         });
-            // }
-            // else
-            // {
-            //     $('span[data-isValid="true"]').parent().css(
-            //         {
-            //             "background-color":"var(--green)"
-            //         });
-            // }
-
-        });
-    })
-
+            });
+        }
+        else
+        {
+            //Sign out
+        }
+    });
 
 });
 
@@ -79,15 +63,14 @@ var dateto = $('#dateto');
 datefrom.change(function () {
     if (datefrom.val() != '') {
         dateto.prop('disabled', false);
+        dateto.attr('min', FormatDate(datefrom.val(), 'YY-MM-DD'));
+
     } else {
         dateto.prop('disabled', true);
     }
 });
 
 $('.btn-submit').click(function () {
-
-
-
 
 
     var start;
@@ -103,8 +86,11 @@ $('.btn-submit').click(function () {
         end = new Date(FormatDate(dateto.val(), "MM-DD-YY"));
     }
 
+    $('.datefrom-set').html(`${GetMonth(start.getMonth() + 1)} - ${start.getDate()} - ${start.getFullYear()} `)
+    $('.dateto-set').text(`${GetMonth(end.getMonth() + 1)} - ${end.getDate()} - ${end.getFullYear()} `)
 
 
+    table.DataTable().clear().draw();
 
     // alert(datefrom.val()+'-'+dateto.val());
     var newend = end.setDate(end.getDate() + 1);
@@ -121,15 +107,109 @@ $('.btn-submit').click(function () {
 
         console.log(date)
 
-        table.DataTable().clear().draw();
+
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+        
+        
+                // User is signed in, see docs for a list of available properties
+                // https://firebase.google.com/docs/reference/js/firebase.User
+                let uid = user.uid;
+                // console.log(uid);
+                firebase.database().ref('User/' + uid).on('value', snap => {
+                    let Account_Type = snap.child('Account_Type').val();
+                    let ID = snap.child('ID').val();
+                    let Role = snap.child('Role').val();
+                    let UserID = snap.child('UserID').val();
+                    let Notification = snap.child('Notification').val();
+    
+                    Entered(Account_Type,date,'PROF1000001')
+    
+    
+    
+                });
+            }
+            else
+            {
+                //Sign out
+            }
+        });
+
+
+
+        var newDate = start.setDate(start.getDate() + 1);
+        start = new Date(newDate);
+    }
+    $('.modal').css('display', 'none');
+
+});
+
+function Entered(account_type, date, id) {
+
+    if (account_type.includes('Faculty')) {
+
+        firebase.database().ref('Data/Subject/').orderByChild('Professor').startAt(id).endAt(id).once('value', subjects => {
+            let arrstudent = []
+            subjects.forEach(subject => {
+                // Get all the subjects of the professor
+            //    console.log(subject.val())
+                subject.child('Students').forEach(student => {
+                 //   console.log(student.child('ID').val())
+                    arrstudent.push(student.child('ID').val())
+
+                    //Append student ID of the professor Student on the arrstudent array
+                })
+
+
+            })
+
+           // console.log(arrstudent)
+            firebase.database().ref(`Attendance/Gate/${date}`).orderByKey().on('value', attendance => {
+                attendance.forEach(student => {             
+                       //Get Attendance for todays date
+                    Object.keys(student).reverse();
+                    let enteredID = student.child('EnteredID').val();
+                    let status = student.child('Status').val()
+                    let date = student.child('Date').val()
+                    let time = student.child('Time').val()
+                    let isValid = student.child('isValid').val()
+
+                    if (arrstudent.includes(enteredID)) {
+                        //Check if the entered ID has on professor student by comparing arrstudent on enteredID
+                        firebase.database().ref(`Data/Student/Information/${enteredID}`).on('value', enter => {
+                            let last = enter.child('Name').child('Last').val()
+                            let first = enter.child('Name').child('First').val()
+                            let middle = enter.child('Name').child('Middle').val()
+
+                            let profile = enter.child('Profile').val()
+
+                            let colorStatus = status.toLowerCase().includes('in') ? 'var(--green)' : `var(--red)`
+                           
+                            table.DataTable().row.add([
+                                `<img src="${profile}" onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
+                                enteredID,
+                                `${last}, ${first} ${middle}`,
+                                `<span style="font-weight:600">${ date}</span>` + ' ' + time,
+                                `<td><span data-isValid="${isValid}">${status}</span></td>`
+                            ])
+                            .draw();
+                            
+                          
+                        })
+                    }
+
+
+                })
+            })
+
+        })
+
+
+    } else {
         firebase.database().ref(`Attendance/Gate/${date}`).on('value', snap => {
-
-            //console.log(snap.val());
-
-
-            //console.log(snap.val());
+            console.log(snap.val());
             snap.forEach(entered => {
-                //  console.log(entered.val());
+                console.log(entered.val());
 
 
                 Object.keys(entered).reverse();
@@ -161,17 +241,9 @@ $('.btn-submit').click(function () {
 
             });
         })
-
-
-
-        var newDate = start.setDate(start.getDate() + 1);
-        start = new Date(newDate);
     }
-    $('.modal').css('display', 'none');
 
-});
-
-
+}
 
 $(window).click(function (e) {
     // if (e.target.className.includes('modal')) {

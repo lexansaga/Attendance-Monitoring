@@ -151,7 +151,7 @@ document.getElementById("rfid_card").onchange = function () {
             TimeStamp: timestamp,
             isValid: IsValid,
             "Date": date,
-            Time: GetClockNow()
+            Time: GetTimeNow()
           });
 
           firebase.database().ref(`Attendance/Summary/Faculty/${id}/Gate/${date}/${key}`).set({
@@ -162,7 +162,7 @@ document.getElementById("rfid_card").onchange = function () {
             TimeStamp: timestamp,
             isValid: IsValid,
             "Date": date,
-            Time: GetClockNow()
+            Time: GetTimeNow()
           });
  
 
@@ -234,7 +234,7 @@ document.getElementById("rfid_card").onchange = function () {
           TimeStamp: timestamp,
           isValid: IsValid,
           "Date": date,
-          Time: GetClockNow()
+          Time: GetTimeNow()
         });
 
         firebase.database().ref(`Attendance/Summary/Student/${id}/Gate/${date}/${key}`).set({
@@ -245,7 +245,7 @@ document.getElementById("rfid_card").onchange = function () {
           TimeStamp: timestamp,
           isValid: IsValid,
           "Date": date,
-          Time: GetClockNow()
+          Time: GetTimeNow()
         });
 
         firebase

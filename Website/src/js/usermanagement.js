@@ -259,13 +259,13 @@ var reset = function () {
 }
 
 
-var loadid = function (USER) {
+var loadid = function (user) {
     //This function will read the count from the path then return the value + 1 to get the ID
-    firebase.database().ref('Data/' + USER + '/Information').once('value', snap => {
+    firebase.database().ref('Data/' + user + '/Information').once('value', snap => {
         var count = (snap.numChildren() + 1).toString();
         console.log(count);
 
-        ID.val((USER).toUpperCase().substring(0, 4) + '1' + ('000000' + count).substring(count.length))
+        ID.val((user).toUpperCase().substring(0, 4) + '1' + ('000000' + count).substring(count.length))
     });
 }
 
@@ -636,57 +636,57 @@ $('#btnsave').click(function (event) {
 
         var file = document.getElementById("file");
         file = file.files[0];
-        if (file != null) {
-            // Start - If image has no value or null, Insert Image
-            var storageRef = firebase.storage().ref('Profile/Student/' + ID.val());
-            storageRef.put(file).then((snapshot) => {
-                storageRef.getDownloadURL()
-                    .then((url) => {
-                        // Insert url into an <img> tag to "download"
-                        firebase.database().ref(`Data/Student/Information/${ID.val()}`).update({
-                            "Address": address.val(),
-                            "Contact": contact.val(),
-                            "Card_ID": cardID.val(),
-                            "ID": ID.val(),
-                            "Email": studentEmail.val(),
-                            "Name": {
-                                "First": firstName.val(),
-                                "Middle": middleName.val(),
-                                "Last": lastName.val()
-                            },
-                            Subject,
-                            "Profile": url
-                        });
-                        alert('Student Save Successfully');
-                        reset();
-                        loadid('Student');
-                    })
-                    .catch((error) => {
-
-                        console.log('Error ' + error)
+        // if (file != null) {
+        // Start - If image has no value or null, Insert Image
+        var storageRef = firebase.storage().ref('Profile/Student/' + ID.val());
+        storageRef.put(file).then((snapshot) => {
+            storageRef.getDownloadURL()
+                .then((url) => {
+                    // Insert url into an <img> tag to "download"
+                    firebase.database().ref(`Data/Student/Information/${ID.val()}`).update({
+                        "Address": address.val(),
+                        "Contact": contact.val(),
+                        "Card_ID": cardID.val(),
+                        "ID": ID.val(),
+                        "Email": studentEmail.val(),
+                        "Name": {
+                            "First": firstName.val(),
+                            "Middle": middleName.val(),
+                            "Last": lastName.val()
+                        },
+                        Subject,
+                        "Profile": url
                     });
-            });
-            // End - If image has no value or null, Insert Image
-        } else {
-            // Start - If image has no value ,Decline insert Image
-            firebase.database().ref(`Data/Student/Information/${ID.val()}`).update({
-                "Address": address.val(),
-                "Contact": contact.val(),
-                "Card_ID": cardID.val(),
-                "ID": ID.val(),
-                "Email": studentEmail.val(),
-                "Name": {
-                    "First": firstName.val(),
-                    "Middle": middleName.val(),
-                    "Last": lastName.val()
-                },
-                Subject
-            });
-            alert('Student Save Successfully');
-            reset();
-            loadid('Student');
-            // End - If image has no value ,Decline insert Image
-        }
+                    alert('Student Save Successfully');
+                    reset();
+                    loadid('Student');
+                })
+                .catch((error) => {
+
+                    console.log('Error ' + error)
+                });
+        });
+        // End - If image has no value or null, Insert Image
+        // } else {
+        //     // Start - If image has no value ,Decline insert Image
+        //     firebase.database().ref(`Data/Student/Information/${ID.val()}`).update({
+        //         "Address": address.val(),
+        //         "Contact": contact.val(),
+        //         "Card_ID": cardID.val(),
+        //         "ID": ID.val(),
+        //         "Email": studentEmail.val(),
+        //         "Name": {
+        //             "First": firstName.val(),
+        //             "Middle": middleName.val(),
+        //             "Last": lastName.val()
+        //         },
+        //         Subject
+        //     });
+        //     alert('Student Save Successfully');
+        //     reset();
+        //     loadid('Student');
+        //     // End - If image has no value ,Decline insert Image
+        // }
 
 
 
@@ -764,114 +764,137 @@ $('#btnsave').click(function (event) {
         var file = document.getElementById("file");
         file = file.files[0];
 
-        if (file != null) {
-            // Start - If image has  value, Insert Image
-            var storageRef = firebase.storage().ref('Profile/Faculty/' + ID.val());
-            storageRef.put(file).then((snapshot) => {
-                storageRef.getDownloadURL()
-                    .then((url) => {
-                        firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).update({
-                            "Address": address.val(),
-                            "Contact": contact.val(),
-                            "ID": ID.val(),
-                            "Card_ID": cardID.val(),
-                            "Name": {
-                                "First": firstName.val(),
-                                "Middle": middleName.val(),
-                                "Last": lastName.val()
-                            },
-                            Subject,
-                            "Profile": url,
-                            "Permission": {
-                                "TapIn_First": $('.cbx').is(":checked")
-                            }
-                        });
-
-                        var dEmail = email.val(),
-                            dPassword = password.val(),
-                            dId = ID.val();
-
-
-                        if (email.val() != null && password.val() != null) {
-                            firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
-                                .then((userCredential) => {
-                                    var uid = userCredential.user.uid;
-
-                                    firebase.database().ref('User/' + uid).update({
-                                        'Account_Type': e,
-                                        'ID': uid,
-                                        'Password': dPassword,
-                                        'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
-                                        'UserID': dId,
-                                        'Email': dEmail,
-                                        "Permission": {
-                                            "TapIn_First": $('.cbx').is(":checked")
-                                        }
-                                    });
-                                })
-                                .catch((error) => {
-                                    console.log('Error ' + error)
-                                });
+        // if (file != null) {
+        // Start - If image has  value, Insert Image
+        var storageRef = firebase.storage().ref('Profile/Faculty/' + ID.val());
+        storageRef.put(file).then((snapshot) => {
+            storageRef.getDownloadURL()
+                .then((url) => {
+                    firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).update({
+                        "Address": address.val(),
+                        "Contact": contact.val(),
+                        "ID": ID.val(),
+                        "Card_ID": cardID.val(),
+                        "Name": {
+                            "First": firstName.val(),
+                            "Middle": middleName.val(),
+                            "Last": lastName.val()
+                        },
+                        Subject,
+                        "Profile": url,
+                        "Permission": {
+                            "TapIn_First": $('.cbx').is(":checked")
                         }
-                        alert('Faculty Save Successfully');
-                        reset();
-                        loadid('Faculty');
-                    })
-                    .catch((error) => {
-                        console.log('Error ' + error)
-
                     });
-            });
 
-            // End - If image has  value, Insert Image
-        } else {
-
-            // Start - If image has no value or , Declined insert Image
-            firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).update({
-                "Address": address.val(),
-                "Contact": contact.val(),
-                "ID": ID.val(),
-                "Card_ID": cardID.val(),
-                "Name": {
-                    "First": firstName.val(),
-                    "Middle": middleName.val(),
-                    "Last": lastName.val()
-                },
-                Subject,
-                "Permission": {
-                    "TapIn_First": $('.cbx').is(":checked")
-                }
-            });
-
-            var dEmail = email.val(),
-                dPassword = password.val(),
-                dId = ID.val();
+                    var dEmail = email.val(),
+                        dPassword = password.val(),
+                        dId = ID.val();
 
 
-            if (email.val() != null && password.val() != null) {
-                firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
-                    .then((userCredential) => {
-                        var uid = userCredential.user.uid;
+                    if (email.val() != '' && password.val() != '') {
+                        let tapIn =  $('.cbx').is(":checked")
+                        alert('Saving Account')
+                        firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+                            .then((userCredential) => {
+                                var uid = userCredential.user.uid;
 
-                        firebase.database().ref('User/' + uid).update({
-                            'Account_Type': e,
-                            'ID': uid,
-                            'Password': dPassword,
-                            'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
-                            'UserID': dId,
-                            'Email': dEmail
-                        });
-                    })
-                    .catch((error) => {
-                        console.log('Error ' + error)
-                    });
-            }
-            alert('Faculty Save Successfully');
-            reset();
-            loadid('Faculty');
+                                firebase.database().ref('User/' + uid).update({
+                                    'Account_Type': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                    'ID': uid,
+                                    'Password': dPassword,
+                                    'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                    'UserID': dId,
+                                    'Email': dEmail,
+                                    "Permission": {
+                                        "TapIn_First": tapIn
+                                    }
+                                });
+                            })
+                            .catch((error) => {
+                                console.log('Error ' + error)
+                                alert(error)
+                            });
+                    } else {
+                        // User Already Exist and needed to be updated
+                       let tapIn =  $('.cbx').is(":checked")
+                        firebase.database().ref('User/').orderByChild('UserID').startAt(dId).endAt(dId).once('value', users => {
+                            users.forEach(user => {
+                                let uid = user.child('ID').val();
+                                alert(tapIn)
+                                firebase.database().ref(`User/${uid}`).update({
+                                    'Account_Type': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                    'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                    "Permission": {
+                                        "TapIn_First": tapIn
+                                    }
+                                });
+                            })
+                        })
 
-            // End - If image has no value or , Declined insert Image
-        }
+                    }
+                    alert('Faculty Save Successfully');
+                    reset();
+                    loadid('Faculty');
+                })
+                .catch((error) => {
+                    console.log('Error ' + error)
+
+                });
+        });
+
+        // End - If image has  value, Insert Image
+        // } else {
+
+        //     // Start - If image has no value or , Declined insert Image
+        //     firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).update({
+        //         "Address": address.val(),
+        //         "Contact": contact.val(),
+        //         "ID": ID.val(),
+        //         "Card_ID": cardID.val(),
+        //         "Name": {
+        //             "First": firstName.val(),
+        //             "Middle": middleName.val(),
+        //             "Last": lastName.val()
+        //         },
+        //         Subject,
+        //         "Permission": {
+        //             "TapIn_First": $('.cbx').is(":checked")
+        //         }
+        //     });
+
+        //     var dEmail = email.val(),
+        //         dPassword = password.val(),
+        //         dId = ID.val();
+
+
+        //     if (email.val() != null && password.val() != null) {
+        //         firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+        //             .then((userCredential) => {
+        //                 var uid = userCredential.user.uid;
+
+        //                 firebase.database().ref('User/' + uid).update({
+        //                     'Account_Type': e,
+        //                     'ID': uid,
+        //                     'Password': dPassword,
+        //                     'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+        //                     'UserID': dId,
+        //                     'Email': dEmail,
+        //                     "Permission": {
+        //                         "TapIn_First": $('.cbx').is(":checked")
+        //                     }
+        //                 });
+        //             })
+        //             .catch((error) => {
+        //                 console.log('Error ' + error)
+        //             });
+        //     }
+        //     alert('Faculty Save Successfully');
+        //     reset();
+        //     loadid('Faculty');
+
+        //     // End - If image has no value or , Declined insert Image
+        // }
 
     } else if (e == 'Gate') {
 
@@ -1216,7 +1239,8 @@ $('#SearchPerson').on("select2:select", function (e) {
 
 
 function LoadSearch(UserType) {
-    searchperson.html(' ');
+
+    searchperson.html('');
     searchperson.append(`<option disabled selected> Select ${UserType} </option>`);
 
     firebase.database().ref('Data/' + UserType + '/Information/').on('value', snap => {

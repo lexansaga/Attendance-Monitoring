@@ -19,93 +19,10 @@ $(document).ready(function () {
         window.location = "../../entered.html"
     });
 
-    var list = [];
-
-    firebase.database().ref(`Data/Student/Information/`).on("value", snap => {
-        $('.d-items:nth-child(2) > h1').html(snap.numChildren()); // For Total Students
-        //    console.log(snap.val());
-    });
-
-    firebase.database().ref("Attendance/Student/2021-01-01").orderByChild('Attendance_Status').equalTo('Present').on("value", snap => {
-
-
-        $('.d-items:nth-child(3) > h1').html(snap.numChildren()); // For Count of Present Students
-        list.push({
-            "Present": snap.numChildren()
-        });
-    });
-
-    firebase.database().ref("Attendance/Student/2021-01-01").orderByChild('Attendance_Status').equalTo('Absent').on("value", snap => {
-
-
-        $('.d-items:nth-child(4) > h1').html(snap.numChildren()); // For Count of Absent Students
-    });
-
-    firebase.database().ref("Attendance/Student/2021-01-01").orderByChild('Attendance_Status').equalTo('Late').on("value", snap => {
-
-
-        $('.d-items:nth-child(5) > h1').html(snap.numChildren()); // For Count of Late Students
-    });
-
-
-
-    // console.log(list.Present);
 
 
 
 
-
-    firebase.database().ref(`Attendance/Gate/${date}`).orderByKey().limitToLast(5).on("value", snap => {
-        $('.prof_container > ul ').html(' ');
-        snap.forEach(childSnapshot => {
-            var type = "";
-            // console.log(childSnapshot.child("EnteredID").val());
-            let dataPath = "";
-            if (childSnapshot.child("EnteredID").val().includes('STUD')) {
-                dataPath = "Data/Student/Information";
-                type = "Student";
-            } else {
-                dataPath = "Data/Faculty/Information";
-                type = "Faculty";
-            }
-
-            Object.keys(childSnapshot).reverse();
-            firebase.database().ref(dataPath + "/" + childSnapshot.child("EnteredID").val()).on("value", profilesnap => {
-                console.log(profilesnap.val())
-
-                //          console.log(dataPath + "/" + childSnapshot.child("EnteredID").val());
-                if (profilesnap.val() != null) {
-                    let name = [];
-                    profilesnap.child("Name").forEach(names => {
-                        //   console.log(names.val());
-                        name.push(names.val());
-                    });
-                    //    alert(name);
-                    // let profName = profilesnap.child("Name").val().split('&&')
-                    let image = profilesnap.child("Profile").val().toString().includes('firebasestorage') ?
-                        profilesnap.child("Profile").val().toString() : 'src/assets/avatar.png'
-
-                    //       console.log(image);
-                    $('.prof_container > ul ').prepend(
-                        " <li>" +
-                        "<a id=\"prof_link\" href=\"#\">" +
-                        "<img id=\"ic_prof\" src=\"" + image + "\" onerror=\"this.onerror=null; this.src='src/assets/avatar.png'\" />" +
-                        "<h2>" + name[1] + "," + name[0] + " " + name[2].toString().substr(0, 1).toUpperCase() + "." +
-                        "</h2>" +
-                        "   <h3>" + type + "</h3>" +
-                        "  </a>" +
-                        "  </li>"
-                    ).css("opacity", "0").animate({
-                        opacity: '1'
-                    });
-                }
-            });
-        });
-
-        if (snap == null) {
-            $('.prof_container > ul ').html('<p style="font-size:18px;text-align:center;background-color:transparent;font-weight:600;width:100%"> No one entered yet. </P>');
-        }
-    });
 
 
     $('.d-item-main').click(function () {
@@ -130,6 +47,96 @@ firebase.auth().onAuthStateChanged((user) => {
             let Role = snap.child('Role').val();
             let UserID = snap.child('UserID').val();
             let Notification = snap.child('Notification').val();
+
+            let present = $('#cnt_present')
+            let absent = $('#cnt_absent')
+            let late = $('#cnt_late')
+
+            if (Account_Type.includes('Administrator')) {
+
+
+
+                StatusCounter(GetDateNow(), 'present', present)
+                StatusCounter(GetDateNow(), 'absent', absent)
+                StatusCounter(GetDateNow(), 'arrivelate', late)
+
+
+                StudentCounter(0, Account_Type, $('#cnt_students'))
+
+                Entered(Account_Type, UserID)
+
+
+                let data = {
+                    xValues: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10"],
+                    Absent: [Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115)
+                    ],
+                    Present: [Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115)
+                    ],
+                    Late: [Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115),
+                        Math.floor(Math.random() * 115)
+                    ]
+                }
+
+                LineChart(data)
+            }
+            if (Account_Type.includes('Guidance')) {
+
+                StatusCounter(GetDateNow(), 'present', present)
+                StatusCounter(GetDateNow(), 'absent', absent)
+                StatusCounter(GetDateNow(), 'arrivelate', late)
+
+                StudentCounter(0, Account_Type, $('#cnt_students'))
+
+                Entered(Account_Type, UserID)
+
+            }
+            if (Account_Type.includes('Faculty')) {
+                //alert('Faculty')
+
+
+                present.html('0')
+                absent.html('0')
+                late.html('0')
+
+                FacultyStatusCounter(UserID, GetDateNow(), 'present', present)
+                FacultyStatusCounter(UserID, GetDateNow(), 'absent', absent)
+                FacultyStatusCounter(UserID, GetDateNow(), 'arrivelate', late)
+
+
+                StudentCounter(UserID, Account_Type, $('#cnt_students'))
+
+                Entered(Account_Type, 'PROF1000001')
+
+                let data = {}
+                LineChart(data)
+            }
+
 
             firebase.database().ref('Data/Faculty/Information/' + UserID).on('value', uidsnap => {
                 //   console.log(uidsnap.val());
@@ -162,10 +169,76 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 
-function AutoUpdate() {
+function StatusCounter(date, status, object) {
+
+    firebase.database().ref('Attendance/Summary/Class/').on('value', classes => {
+        classes.forEach(aclass => {
+            let classKey = aclass.key;
+            firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).on('value', attendance => {
+                console.log(attendance.val())
+                firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).on('value', statusCount => {
+
+                    object.html(statusCount.numChildren())
+                    console.log(statusCount.val())
 
 
 
+
+                })
+
+            })
+        })
+
+        PieChart()
+    })
+}
+
+function FacultyStatusCounter(id, date, status, object) {
+
+    firebase.database().ref('Attendance/Summary/Class/').orderByChild('Professor').startAt(id).endAt(id).on('value', classes => {
+
+        classes.forEach(aclass => {
+            let classKey = aclass.key;
+            firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).on('value', attendance => {
+                console.log(attendance.val())
+                firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).on('value', statusCount => {
+
+                    object.html(statusCount.numChildren())
+                    console.log(statusCount.val())
+
+
+                })
+
+            })
+        })
+
+        PieChart()
+    })
+}
+
+function StudentCounter(id, account_type, object) {
+    if (account_type.includes('Faculty')) {
+        firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(id).endAt(id).on("value", snap => {
+            console.log(snap.val())
+            let studentCount = 0;
+
+            snap.forEach(subject => {
+                studentCount += subject.child('Students').numChildren();
+            })
+
+            object.html(studentCount)
+
+
+
+        });
+    } else {
+        firebase.database().ref(`Data/Student/Information/`).on("value", snap => {
+            console.log(snap.val())
+
+            object.html(snap.numChildren())
+
+        });
+    }
 }
 
 function sOnLoadMediaQuery() {
@@ -187,6 +260,127 @@ function sOnLoadMediaQuery() {
         ChartSizes();
         //  DashBoardResponsive();
 
+    }
+
+}
+
+function Entered(account_type, id) {
+
+    if (account_type.includes('Faculty')) {
+        //Check if the user type is Faculty
+        firebase.database().ref('Data/Subject/').orderByChild('Professor').startAt(id).endAt(id).once('value', subjects => {
+            let arrstudent = []
+            subjects.forEach(subject => {
+                // Get all the subjects of the professor
+                console.log(subject.val())
+                subject.child('Students').forEach(student => {
+                    console.log(student.child('ID').val())
+                    arrstudent.push(student.child('ID').val())
+
+                    //Append student ID of the professor Student on the arrstudent array
+                })
+
+
+            })
+
+            console.log(arrstudent)
+            firebase.database().ref(`Attendance/Gate/${GetDateNow()}`).orderByKey().limitToLast(5).on('value', attendance => {
+             
+                $('.prof_container > ul ').html(' ');
+
+                attendance.forEach(student => {
+
+                    
+                       //Get Attendance for todays date
+                    Object.keys(student).reverse();
+                    let enteredID = student.child('EnteredID').val();
+                    let status = student.child('Status').val()
+                    if (arrstudent.includes(enteredID)) {
+                        //Check if the entered ID has on professor student by comparing arrstudent on enteredID
+                        firebase.database().ref(`Data/Student/Information/${enteredID}`).on('value', enter => {
+                            let last = enter.child('Name').child('Last').val()
+                            let first = enter.child('Name').child('First').val()
+                            let middle = enter.child('Name').child('Middle').val()
+
+                            let profile = enter.child('Profile').val()
+
+                            let colorStatus = status.toLowerCase().includes('in') ? 'var(--green)' : `var(--red)`
+                           
+                                $('.prof_container > ul ').prepend(
+                                    `
+                                          <li>
+                                          <a id="prof_link" href="#"><img id="ic_prof" src="${profile}" onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
+                                          <h2>${last}, ${first} ${middle}</h2>
+                                          <h3 style="color:${colorStatus}">Student</h3>  
+                                          </a>  
+                                          </li>
+                                          `
+                                ).css("opacity", "0").animate({
+                                    opacity: '1'
+                                });
+                            
+                          
+                        })
+                    }
+
+
+                })
+            })
+
+        })
+
+    } else {
+        firebase.database().ref(`Attendance/Gate/${GetDateNow()}`).orderByKey().limitToLast(5).on("value", snap => {
+            $('.prof_container > ul ').html(' ');
+            snap.forEach(childSnapshot => {
+                var type = "";
+                // console.log(childSnapshot.child("EnteredID").val());
+                let dataPath = "";
+                if (childSnapshot.child("EnteredID").val().includes('STUD')) {
+                    dataPath = "Data/Student/Information";
+                    type = "Student";
+                } else {
+                    dataPath = "Data/Faculty/Information";
+                    type = "Faculty";
+                }
+
+                Object.keys(childSnapshot).reverse();
+                let status = childSnapshot.child('Status').val()
+                firebase.database().ref(dataPath + "/" + childSnapshot.child("EnteredID").val()).on("value", profilesnap => {
+                    console.log(profilesnap.val())
+                    if (profilesnap.val() != null) {
+
+                        //       console.log(image);
+                        let last = profilesnap.child('Name').child('Last').val()
+                        let first = profilesnap.child('Name').child('First').val()
+                        let middle = profilesnap.child('Name').child('Middle').val()
+
+                        let profile = profilesnap.child('Profile').val()
+
+                        let colorStatus = status.toLowerCase().includes('in') ? 'var(--green)' : `var(--red)`
+                           
+                               
+                        $('.prof_container > ul ').prepend(
+                            `
+                                  <li>
+                                  <a id="prof_link" href="#"><img id="ic_prof" src="${profile}" onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
+                                  <h2>${last}, ${first} ${middle}</h2>
+                                  <h3 style="color:${colorStatus}">Student</h3>  
+                                  </a>  
+                                  </li>
+                                  `
+                        ).css("opacity", "0").animate({
+                            opacity: '1'
+                        });
+                    
+                    }
+                });
+            });
+
+            if (snap == null) {
+                $('.prof_container > ul ').html('<p style="font-size:18px;text-align:center;background-color:transparent;font-weight:600;width:100%"> No one entered yet. </p>');
+            }
+        });
     }
 
 }
@@ -225,119 +419,114 @@ function ChartSizes() {
 
 function PieChart() {
     //   alert("Pie Chart Loaded");
-    var xValues = ["Absent", "Present", "Late"];
-    var yValues = [Math.floor(Math.random() * 100),
-        Math.floor(Math.random() * 100),
-        Math.floor(Math.random() * 100)
-    ];
-    var barColors = [
-        "#8A98F5",
-        "#617EAB",
-        "#C7DDFF"
-    ];
+    let present = $('#cnt_present').html()
+    let absent = $('#cnt_absent').html()
+    let late = $('#cnt_late').html()
 
-    new Chart("pieChart", {
-        type: "pie",
-        data: {
-            labels: xValues,
-            datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-            }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            legend: {
-                position: 'bottom',
-                display: true,
-                font: {
-                    family: "'Karla', sans-serif"
+
+    if (present.includes('——') && absent.includes('——') && late.includes('——')) {
+        return setTimeout(PieChart, 1000);
+    } else {
+        if ((present == '0' || present == '——') && (absent == '0' || absent == '——') && (late == '0' || late == '——')) {
+            $('.pie-container').html('<h3 style="margin: 22px 0 0 0;text-align:center;"> No data available </h3>')
+        } else {
+
+            $('.pie-container').html(`<canvas id="pieChart"></canvas>`)
+
+            var xValues = ["Present", "Absent", "Late"];
+            var yValues = [
+                parseInt(present),
+                parseInt(absent),
+                parseInt(late)
+            ];
+            console.log(yValues)
+            var barColors = [
+                "#8A98F5",
+                "#617EAB",
+                "#C7DDFF"
+            ];
+
+            new Chart("pieChart", {
+                type: "pie",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
                 },
-                labels: {
-                    usePointStyle: true
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                        display: true,
+                        font: {
+                            family: "'Karla', sans-serif"
+                        },
+                        labels: {
+                            usePointStyle: true
+                        }
+                    }
                 }
-            }
+            });
         }
-    });
+
+    }
 }
 
-function LineChart() {
+function LineChart(data) {
     //   alert("Line Chart Loaded");
-    var xValues = ["Day 1", 200, 300, 400, 500, 600, 700, 800, 900, 1000];
+    //var xValues = ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10"];
+    if (!$.isEmptyObject(data)) {
+        $('.line_container').html(`<canvas id="lineChart"></canvas>`)
 
-    new Chart("lineChart", {
-        type: "line",
-        data: {
-            labels: xValues,
-            datasets: [{
-                label: 'Absent',
-                data: [Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000)
-                ],
-                borderWidth: 1,
-                borderColor: "#59BAF3",
-                backgroundColor: 'rgba(89, 186, 243,0.2)',
-                fill: true
-            }, {
-                label: 'Present',
-                data: [Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000)
-                ],
-                borderWidth: 1,
-                borderColor: "#68CF71",
-                backgroundColor: "rgba(104, 207, 113,0.2)",
-                fill: true
-            }, {
-                label: 'Late',
-                data: [Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000),
-                    Math.floor(Math.random() * 8000)
-                ],
-                borderWidth: 1,
-                borderColor: "#F2828A",
-                backgroundColor: "rgba(242, 130, 138,0.2)",
-                fill: true
-            }],
-            borderWidth: 1
-        },
-        options: {
-            maintainAspectRatio: false,
-            responsive: true,
-            legend: {
-                position: 'bottom',
-                display: true,
-                font: {
-                    family: "'Karla', sans-serif"
-                },
-                labels: {
-                    usePointStyle: true
+        new Chart("lineChart", {
+            type: "line",
+            data: {
+                labels: data.xValues,
+                datasets: [{
+                    label: 'Absent',
+                    data: data.Absent,
+                    borderWidth: 1,
+                    borderColor: "#59BAF3",
+                    backgroundColor: 'rgba(89, 186, 243,0.2)',
+                    fill: true
+                }, {
+                    label: 'Present',
+                    data: data.Present,
+                    borderWidth: 1,
+                    borderColor: "#68CF71",
+                    backgroundColor: "rgba(104, 207, 113,0.2)",
+                    fill: true
+                }, {
+                    label: 'Late',
+                    data: data.Late,
+                    borderWidth: 1,
+                    borderColor: "#F2828A",
+                    backgroundColor: "rgba(242, 130, 138,0.2)",
+                    fill: true
+                }],
+                borderWidth: 1
+            },
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                legend: {
+                    position: 'bottom',
+                    display: true,
+                    font: {
+                        family: "'Karla', sans-serif"
+                    },
+                    labels: {
+                        usePointStyle: true
+                    }
                 }
-            }
 
-        }
-    });
+            }
+        });
+    } else {
+        $('.line_container').html('<h3 style="margin: 22px 0 0 0;text-align:center;"> No data available </h3>')
+    }
+
 }
