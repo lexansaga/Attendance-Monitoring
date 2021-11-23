@@ -2,8 +2,29 @@ var table = $('#datatable')
 $(document).ready(function () {
 
     table.DataTable({
-        "paging": true,
-        "info": true
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [ 0, ':visible' ]
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [ 1, 2, 3, 4, 5, 6 ]
+                }
+            },
+            'colvis'
+        ],
+        lengthMenu: [[10, 20, 30, -1], [10, 20, 30, "All"]]
     });
 
 
@@ -66,9 +87,14 @@ $(document).ready(function () {
 
 
 
-
 $(".reported-dates").on('click', function () {
     $('.date').css('display', 'block');
+})
+$(".close").on('click', function () {
+    $('.date').css('display', 'none');
+})
+$(".btn-cancel").on('click', function () {
+    $('.date').css('display', 'none');
 })
 
 var datefrom = $('#datefrom');

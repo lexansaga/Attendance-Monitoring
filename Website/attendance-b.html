@@ -8,8 +8,8 @@
     <link href="src/css/sidebar.css" rel="stylesheet" />
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <title>Dashboard</title>
 </head>
 
@@ -227,7 +227,7 @@
                     </div>
 
                     <div class="attendance-table">
-                        <table class="name">
+                        <table class="name" id="myTable">
                             <thead>
                                 <tr>
                                     <td class='n'>Name</td>
@@ -238,10 +238,8 @@
                             </tbody>
                             <tfoot style="display: none;">
                                 <tr>
-                                    <td class='n'>Name</td>
+                                    <td class='n noExl'>Name</td>
                                 </tr>
-
-
                             </tfoot>
                         </table>
                     </div>
@@ -370,7 +368,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
     </script>
 
 
@@ -384,6 +381,9 @@
     <script>
         AOS.init();
     </script>
+
+    <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.2/dist/jquery.table2excel.min.js">
+</script>
 
 </body>
 

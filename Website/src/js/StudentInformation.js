@@ -8,7 +8,11 @@ var status_table = $('#status-table')
 $(document).ready(function () {
 
 
-  status_table.DataTable();
+  status_table.DataTable({
+    "dom": 'Bfrtip',
+    "buttons":['excel','pdf','print'],
+    "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]]
+  });
 
 
 
