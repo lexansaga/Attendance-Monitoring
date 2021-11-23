@@ -115,7 +115,7 @@ firebase.auth().onAuthStateChanged((user) => {
             // console.log(snap.val());
             // console.log('Account_Type:'+Account_Type);
             // console.log('ID:'+ID);
-             console.log('Role:'+Account_Type);
+             console.log('Account Type:'+Account_Type);
             // console.log('UserID:'+User);
             if (Account_Type.includes('Administrator')) {
                 // User is Admin 
