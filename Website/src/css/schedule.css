@@ -62,7 +62,8 @@ h2:hover {
 
 .table_Wrapper {
   position: absolute;
-  width: 70%;
+  width: 100%;
+  overflow-y: auto;
   margin-top: 10px;
   display: block;
 }

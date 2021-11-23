@@ -14,14 +14,8 @@ $(document).ready(function () {
 
 
     tableUserSched.DataTable({
-        "dom": 'B<lf<t>ip>',
-        "buttons": ['excel', 'pdf', 'print'],
-        "paging": true,
-        "info": true,
-        "lengthMenu": [
-            [10, 20, 30, -1],
-            [10, 20, 30, "All"]
-        ]
+        "dom": 'B<f<t>ip>',
+        "buttons": ['excel', 'pdf', 'print']
     });
 
 
