@@ -6,6 +6,11 @@ main .reported-dates {
     margin-top: 25px;
 }
 
+.list-attendance{
+    overflow-y: auto;
+    width: 100%;
+}
+
 main .reported-dates r {
     color: var(--primary-color);
 }
@@ -117,14 +122,6 @@ td:nth-child(5) {}
 
 .btn-delete:hover {
     background-color: rgba(254, 82, 119, 0.8);
-}
-
-.list-attendance button{
-    width: 70px;
-    height: 30px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    margin-right: 5px;
 }
 
 .modal {

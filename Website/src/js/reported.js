@@ -2,8 +2,27 @@ var table = $('#datatable')
 $(document).ready(function () {
 
     table.DataTable({
-        "paging": true,
-        "info": true
+        dom: 'Bfrtip',
+        buttons: [
+            {
+                extend: 'excel',
+                exportOptions: {
+                    columns: [1,2,3,4]
+                }
+            },
+            {
+                extend: 'pdf',
+                exportOptions: {
+                    columns: [1,2,3,4]
+                }
+            },
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [ 1, 2, 3, 4]
+                }
+            }
+        ]
     });
 
 
