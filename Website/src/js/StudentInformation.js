@@ -83,13 +83,14 @@ function GetAttendance() {
 
   attendance_table.DataTable();
 
-  firebase.database().ref(`Attendance/Summary/Student/${id}`).on('value', snap => {
-
+  firebase.database().ref(`Attendance/Summary/Student/${id}/`).on('value', snap => {
+    console.log(snap.val())
     snap.child(`Class`).forEach(Class => {
       let classNbr = Class.child('ClassNbr').val()
       let title = Class.child('Title').val()
       let schedule = Class.child('Schedule').val()
       let dates = Class.child('Dates')
+      console.log(Class.val())
       dates.forEach(date => {
         let remarks = date.child('Remarks').val() == null || date.child('Remarks').val() == '' ? 'No Remarks' : date.child('Remarks').val()
         let status = {
@@ -98,6 +99,7 @@ function GetAttendance() {
           'arrivelate': `<span style="color:var(--yellow)">Arrive Late</span>`,
           'leaveearly': `<span style="color:var(--yellow)">Leave Early</span>`
         }
+     
         let dateEnter = FormatDate(date.key, 'MM-DD-YY').split('-')
         let schedules = schedule.split('-')
         status_table.DataTable().row.add([`<span style="font-weight:600">${title}</span>`, `${GetMonth(dateEnter[0])} ${dateEnter[1]}, ${dateEnter[2]}`, `${toStandardTime(schedules[0])} - ${toStandardTime(schedules[1])}`,

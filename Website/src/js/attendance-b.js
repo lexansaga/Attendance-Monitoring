@@ -434,21 +434,33 @@ $('#btnSubmitAtt').click(function () {
         return;
     }
 
-    // console.log(AttendanceJSON(colData));
+    console.log(AttendanceJSON(colData));
 
-    // console.log(StudentAttendanceIndividual(colData))
+    console.log(StudentAttendanceIndividual(colData))
 
     AttendanceJSON(colData).forEach(attendance => {
         //This will add data Class Attendance converted array to JSON on firebase
         var key = firebase.database().ref(`Attendance/Summary/Class/`).push().key;
-        firebase.database().ref(`Attendance/Summary/Class/`).update({
-            [`${$('.section-name').attr('data-class')}`]: attendance
-        });
+        firebase.database().ref(`Attendance/Summary/Class/${ [`${$('.section-name').attr('data-class')}`]}`).update(
+           attendance
+        );
     })
 
     StudentAttendanceIndividual(colData).forEach(attendance => {
         //This will add data Student Attendance converted array to JSON on firebase
-        firebase.database().ref(`Attendance/Summary/Student/`).update(attendance);
+    //    firebase.database().ref(`Attendance/Summary/Student/`).update(attendance);
+
+    for (const [key, value] of Object.entries(attendance)) {
+    //   firebase.database().ref(`Attendance/Summary/Student/${key}/Class/${value.Class.key}`).update(attendance);
+
+      //  console.log(key.Class)
+
+        for(const [ cKey ,cValue] of Object.entries(value.Class))
+        {
+            console.log(cKey)
+            firebase.database().ref(`Attendance/Summary/Student/${key}/Class/${cKey}`).update(cValue);
+        }
+      }
     })
 
 

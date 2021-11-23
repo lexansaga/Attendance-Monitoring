@@ -263,7 +263,7 @@ tr.shown td.details-control {
   border-bottom: 0 !important;
   }
   
-  th {
+  thead {
     font-weight: 500 !important;
     background-color: var(--secondary-color);
     color: white;
