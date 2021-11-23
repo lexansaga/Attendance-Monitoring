@@ -131,7 +131,7 @@ firebase.auth().onAuthStateChanged((user) => {
 
                 StudentCounter(UserID, Account_Type, $('#cnt_students'))
 
-                Entered(Account_Type, 'PROF1000001')
+                Entered(Account_Type, UserID)
 
                 let data = {}
                 LineChart(data)
@@ -285,13 +285,13 @@ function Entered(account_type, id) {
 
             console.log(arrstudent)
             firebase.database().ref(`Attendance/Gate/${GetDateNow()}`).orderByKey().limitToLast(5).on('value', attendance => {
-             
+
                 $('.prof_container > ul ').html(' ');
 
                 attendance.forEach(student => {
 
-                    
-                       //Get Attendance for todays date
+
+                    //Get Attendance for todays date
                     Object.keys(student).reverse();
                     let enteredID = student.child('EnteredID').val();
                     let status = student.child('Status').val()
@@ -305,9 +305,9 @@ function Entered(account_type, id) {
                             let profile = enter.child('Profile').val()
 
                             let colorStatus = status.toLowerCase().includes('in') ? 'var(--green)' : `var(--red)`
-                           
-                                $('.prof_container > ul ').prepend(
-                                    `
+
+                            $('.prof_container > ul ').prepend(
+                                `
                                           <li>
                                           <a id="prof_link" href="#"><img id="ic_prof" src="${profile}" onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
                                           <h2>${last}, ${first} ${middle}</h2>
@@ -315,11 +315,11 @@ function Entered(account_type, id) {
                                           </a>  
                                           </li>
                                           `
-                                ).css("opacity", "0").animate({
-                                    opacity: '1'
-                                });
-                            
-                          
+                            ).css("opacity", "0").animate({
+                                opacity: '1'
+                            });
+
+
                         })
                     }
 
@@ -358,8 +358,8 @@ function Entered(account_type, id) {
                         let profile = profilesnap.child('Profile').val()
 
                         let colorStatus = status.toLowerCase().includes('in') ? 'var(--green)' : `var(--red)`
-                           
-                               
+
+
                         $('.prof_container > ul ').prepend(
                             `
                                   <li>
@@ -372,7 +372,7 @@ function Entered(account_type, id) {
                         ).css("opacity", "0").animate({
                             opacity: '1'
                         });
-                    
+
                     }
                 });
             });
@@ -528,5 +528,18 @@ function LineChart(data) {
     } else {
         $('.line_container').html('<h3 style="margin: 22px 0 0 0;text-align:center;"> No data available </h3>')
     }
+}
 
+function LineChartData(dayframe) {
+    if (dayframe.includes('daily')) {
+
+    } else if (dayframe.includes('weekly')) {
+
+    } else if (dayframe.includes('monthly')) {
+
+    } else if (dayframe.includes('quarterly')) {
+
+    } else if (dayframe.includes('yearly')) {
+
+    }
 }

@@ -160,6 +160,7 @@
                   </li>
                </ul>
             </div>
+           
             <div class="profile-picture" title="Profile">
                <img src="src/assets/avatar.png" onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
                <ul class="profile-menu">
@@ -179,6 +180,21 @@
             <label for="switch" class="toggle"></label>
             </div>
           </div>
+
+
+          <div class="settings report">
+            <p>Report</p>
+            <select id="report_time">
+               <option value="Select time frame" disabled selected>Select Time Frame</option>
+               <option value="Daily">Daily</option>
+               <option value="Weekly">Weekly</option>
+               <option value="Monthly">Monthly</option>
+               <option value="Quarterly">Quarterly</option>
+               <option value="Yearly">Yearly</option>
+            </select>
+          </div>
+         
+          <button id="save">Save</button>
          </main>
       </div>
    </div>
@@ -201,6 +217,7 @@
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <script src="src/js/script.js"></script>
    <script src="src/js/sidebar.js"></script>
+   <script src="src/js/settings.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
    <script>

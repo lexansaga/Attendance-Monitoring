@@ -12,16 +12,66 @@ $(document).ready(function () {
         margin: '10px 10px 0 0',
     });
 
-    LoadSearch('Professor');
 
     tableUserSched.DataTable({
         "dom": 'B<lf<t>ip>',
-        "buttons":['excel','pdf','print'],
+        "buttons": ['excel', 'pdf', 'print'],
         "paging": true,
         "info": true,
-        "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]]
+        "lengthMenu": [
+            [10, 20, 30, -1],
+            [10, 20, 30, "All"]
+        ]
     });
+
+
+
+
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+
+
+            // User is signed in, see docs for a list of available properties
+            // https://firebase.google.com/docs/reference/js/firebase.User
+            let uid = user.uid;
+            // console.log(uid);
+            firebase.database().ref('User/' + uid).on('value', snap => {
+                let Account_Type = snap.child('Account_Type').val();
+                let ID = snap.child('ID').val();
+                let Role = snap.child('Role').val();
+                let UserID = snap.child('UserID').val();
+                let Notification = snap.child('Notification').val();
+
+                if (Account_Type.includes('Administrator')) {
+                    LoadSearch('Faculty');
+                    $('.type').css({
+                        'display': 'block'
+                    })
+                }
+                if (Account_Type.includes('Guidance')) {
+                    LoadSearch('Faculty');
+                    $('.type').css({
+                        'display': 'block'
+                    })
+                }
+                if (Account_Type.includes('Faculty')) {
+                    LoadSearchFaculty(Account_Type, 'PROF1000001');
+                    $('.type').css({
+                        'display': 'none'
+                    })
+
+                }
+            })
+        } else {
+
+        }
+    });
+
+
+
 });
+
+
 
 $('#look').on('select2:select', function (e) {
     // what you would like to happen
@@ -79,8 +129,6 @@ $('#look').on('select2:select', function (e) {
 
                                         });
 
-
-
                                 });
                         }
                     });
@@ -94,27 +142,26 @@ $('#look').on('select2:select', function (e) {
                 if (prof.val() == $('#look').val()) {
                     console.log(prof.ref.parent.key);
 
-                    firebase.database().ref(`Data/Subject/${prof.ref.parent.key}`).once('value',subjects =>
-                    {
+                    firebase.database().ref(`Data/Subject/${prof.ref.parent.key}`).once('value', subjects => {
                         console.log(subjects.val());
                         firebase
-                        .database()
-                        .ref(
-                            `Data/Faculty/Information/${subjects
+                            .database()
+                            .ref(
+                                `Data/Faculty/Information/${subjects
                             .child('Professor')
                             .val()}`
-                        )
-                        .once('value', (professor) => {
-                            // Get Professor Data
-                            console.log(
-                                `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
-                            );
-                            tableUserSched.DataTable().row.add([subjects.child('Title').val(), subjects.child('Schedule').child('Day').val(), subjects.child('Schedule').child('Time').val(), subjects.child('Location').val(),
+                            )
+                            .once('value', (professor) => {
+                                // Get Professor Data
+                                console.log(
                                     `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
-                                ])
-                                .draw();
+                                );
+                                tableUserSched.DataTable().row.add([subjects.child('Title').val(), subjects.child('Schedule').child('Day').val(), subjects.child('Schedule').child('Time').val(), subjects.child('Location').val(),
+                                        `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
+                                    ])
+                                    .draw();
 
-                        });
+                            });
                     })
                 }
             })
@@ -137,6 +184,7 @@ $('#searchbx').focusin(function () {
         })
         .animate();
 });
+
 $('#searchbx').focusout(function () {
     $('.search-result')
         .css({
@@ -150,6 +198,7 @@ function LoadSearch(UserType) {
     $('#look').append(
         `<option disabled selected> Select ${UserType} </option>`
     );
+
     firebase
         .database()
         .ref('Data/' + UserType + '/Information/')
@@ -169,6 +218,33 @@ function LoadSearch(UserType) {
                 );
             });
         });
+
+
+}
+
+function LoadSearchFaculty(UserType, id) {
+
+    $('#userType').val('Student')
+    $('#look').append(
+        `<option disabled selected> Select Student </option>`
+    );
+    if (UserType.includes('Faculty')) {
+        firebase.database().ref('Data/Subject/').orderByChild('Professor').startAt(id).endAt(id).on('value', subjects => {
+            console.log(subjects.val())
+            subjects.forEach(subject => {
+                subject.child('Students').forEach(student => {
+                    let id = student.child('ID').val();
+                    let name = student.child('Name').val()
+
+                    $('#look').append(
+                        `<option value='${id}'><span style="color:#ccc">(${id})${name}</span>
+                                 </option>`
+                    );
+
+                })
+            })
+        })
+    }
 }
 
 function LoadUser(UserType, Id) {
@@ -190,4 +266,3 @@ function LoadUser(UserType, Id) {
             $('#userImage').attr('src', snap.child('Profile').val());
         });
 }
-

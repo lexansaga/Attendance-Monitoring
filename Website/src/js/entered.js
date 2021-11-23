@@ -43,7 +43,7 @@ $(document).ready(function () {
                 let Notification = snap.child('Notification').val();
 
                 table.DataTable().clear().draw()
-                Entered(Account_Type,GetDateNow(),'PROF1000001')
+                Entered(Account_Type,GetDateNow(),UserID)
 
 
 
@@ -123,7 +123,7 @@ $('.btn-submit').click(function () {
                     let UserID = snap.child('UserID').val();
                     let Notification = snap.child('Notification').val();
     
-                    Entered(Account_Type,date,'PROF1000001')
+                    Entered(Account_Type,date,UserID)
     
     
     

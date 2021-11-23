@@ -13,7 +13,11 @@
   flex-direction: column;
   margin-top: 18px;
 }
-.SearchControl_wrapper > p 
+.SearchControl_wrapper > div 
+{
+  margin: 12px 0;
+}
+.SearchControl_wrapper p 
 {
   margin: 12px 0;
 }
@@ -154,7 +158,10 @@ thead td {
 
 }
 
-
+.type
+{
+  display: none;
+}
 
 
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
