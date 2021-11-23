@@ -52,12 +52,11 @@
 #datatable tbody>tr:hover{
     background-color: #D7D7D7;
   }
-#datatable img{
-    width: 4vw;
-    border-top-left-radius: 50% 50%;
-    border-top-right-radius: 50% 50%;
-    border-bottom-right-radius: 50% 50%;
-    border-bottom-left-radius: 50% 50%;
+#datatable td img 
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 button{
     width: 70px;
@@ -321,9 +320,6 @@ tr.shown td.details-control {
     .data-table td{
         font-size: 15px;
     }
-    #datatable img{
-        width: 8vw;
-    }
     .charts .LChart_cont{
         width: 50vw;
         height: 30vw;
@@ -370,9 +366,7 @@ tr.shown td.details-control {
         margin-top: 3vw;
         width: 100%;    
     }
-    #datatable img{
-        width: 15vw;
-    }
+
     .data-table td{
         font-size: 15px;
     }
