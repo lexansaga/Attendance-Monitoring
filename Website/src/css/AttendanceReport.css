@@ -33,8 +33,7 @@
 }
 .data-table{
     margin-top: 2vw;
-    width: 90%;
-    overflow: auto;
+    width: 95%;
 }
 .data-table > label{
     color: #868686;
@@ -43,8 +42,7 @@
 }
 .data-table #datatable{
     text-align: center;
-    width: 70vw;
-    margin-top: 20px;
+    width: 100%;
 }
 #datatable tr:hover{
     cursor: default;
@@ -302,7 +300,8 @@ tr.shown td.details-control {
     }
     .data-table{
         margin-top: 5vw;
-        width: 96%;
+        width: 95%;
+        overflow-y: auto;
     }
     .data-table label{
         font-size: 15px; 
@@ -372,6 +371,8 @@ tr.shown td.details-control {
         margin-left: 2vw;   
     }
     .data-table{
+        width: 95%;
+        height: max-content;
         margin-top: 10vw;
         margin-left: 0vw;
     }

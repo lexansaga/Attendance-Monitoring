@@ -61,7 +61,7 @@ var table = $('#datatable');
 
 $(document).ready(async function () {
     table.DataTable({
-        dom: 'Bfrtip',
+        dom: 'B<f<t>ip>',
         buttons: [{ extend: 'excel',exportOptions:{columns: [ 1, 2, 3, 4, 5]}},{extend: 'pdf'},
             {
                 extend: 'print',
