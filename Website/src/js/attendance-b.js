@@ -678,3 +678,13 @@ $('.modal').on('click', function (event) {
         $('.modal').css('display', 'none');
     }
 })
+
+//CONVERT HTML TABLE TO EXCEL
+
+ $('#export').on('click', function (event) {
+    $("#myTable").table2excel({
+        exclude:".noExl",
+        filename: "MyAttendance.xls",
+        exclude_img:false
+    });
+})

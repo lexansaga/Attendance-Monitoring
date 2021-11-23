@@ -9,6 +9,7 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <title>Dashboard</title>
 </head>
 
@@ -226,7 +227,7 @@
                     </div>
 
                     <div class="attendance-table">
-                        <table class="name">
+                        <table class="name" id="myTable">
                             <thead>
                                 <tr>
                                     <td class='n'>Name</td>
@@ -237,10 +238,8 @@
                             </tbody>
                             <tfoot style="display: none;">
                                 <tr>
-                                    <td class='n'>Name</td>
+                                    <td class='n noExl'>Name</td>
                                 </tr>
-
-
                             </tfoot>
                         </table>
                     </div>
@@ -382,6 +381,9 @@
     <script>
         AOS.init();
     </script>
+
+    <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.2/dist/jquery.table2excel.min.js">
+</script>
 
 </body>
 
