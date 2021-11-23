@@ -61,8 +61,15 @@ var table = $('#datatable');
 
 $(document).ready(async function () {
     table.DataTable({
-        "paging": true,
-        "info": true
+        dom: 'Bfrtip',
+        buttons: [{ extend: 'excel',exportOptions:{columns: [ 1, 2, 3, 4, 5]}},{extend: 'pdf'},
+            {
+                extend: 'print',
+                exportOptions: {
+                    columns: [ 1, 2, 3, 4, 5]
+                }
+            }
+        ]
     });
     LoadTable()
 });
