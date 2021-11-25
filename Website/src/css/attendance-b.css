@@ -153,6 +153,11 @@ table tr td {
     justify-content: space-between;
 }
 
+.option h6{
+    font-weight: normal;
+    font-size: 15px;
+}
+
 .remarks {
     width: 10%;
     padding: 0px;
