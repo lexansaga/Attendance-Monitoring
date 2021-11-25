@@ -334,7 +334,7 @@ $('#add').click(function () {
     var head = $('thead tr .n');
     var foot = $('tfoot tr .n');
 
-    table.after(`<td>--</td>`);
+    table.after(`<td class="excl">--</td>`);
     head.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="2021-10-31"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
     foot.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="2021-10-31"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
 
@@ -767,19 +767,18 @@ $('.modal').on('click', function (event) {
 $('#export').on('click', function (event) {
     $("#myTable").table2excel({
         filename: "MyAttendance",
-        exclude_img:true,
         fileext:"xlsx",
-        preserveColors:true
+        preserveColors:false
     });
 })
 
 $('#form').on('click', function (event) {
     $("#myTable").table2excel({
-        filename: "AttedanceForm",
+        filename: "AttendanceForm",
         fileext:"xlsx",
         exclude_img:false,
         exclude_links: false,
         exclude_inputs: false,
-        columns : [0]
+        exclude:".excl"
     });
 })
