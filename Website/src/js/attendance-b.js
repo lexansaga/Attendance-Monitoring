@@ -765,16 +765,19 @@ $('.modal').on('click', function (event) {
 //CONVERT HTML TABLE TO EXCEL
 
 $('#export').on('click', function (event) {
+ var ClassName = document.getElementById("classname").innerHTML;
+
     $("#myTable").table2excel({
-        filename: "MyAttendance",
+        filename: ClassName +" -Attendance",
         fileext:"xlsx",
         preserveColors:false
     });
 })
 
 $('#form').on('click', function (event) {
+var ClassName = document.getElementById("classname").innerHTML;
     $("#myTable").table2excel({
-        filename: "AttendanceForm",
+        filename: ClassName + " -AttendanceForm",
         fileext:"xlsx",
         exclude_img:false,
         exclude_links: false,
