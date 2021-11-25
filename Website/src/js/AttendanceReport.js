@@ -231,8 +231,6 @@ var StudentData = function () {
 
             })
 
-
-
         }, 1000)
     });
 

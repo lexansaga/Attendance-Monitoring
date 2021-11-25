@@ -84,7 +84,7 @@ $(document).ready(function () {
 
                             snap.forEach(data => {
 
-                                console.log(data.child('Status').val());
+                                // console.log(data.child('Status').val());
 
                                 let status = data.child('Status').val();
                                 let location = data.child('Location').val();
@@ -176,7 +176,7 @@ $(document).ready(function () {
 
                                         firebase.database().ref(`Attendance/Gate/${FormatDate(dateNow,'MM-DD-YY')}/`).orderByChild('EnteredID').startAt(students.ID).endAt(students.ID).limitToLast(1).on('value', statusOnGate => {
                                             //Realtime check student if already entered on gate
-                                        
+
                                             statusOnGate.forEach(gateInfo => {
                                                 let status = gateInfo.child('Status').val();
                                                 let id = gateInfo.child('EnteredID').val();
@@ -186,26 +186,23 @@ $(document).ready(function () {
                                                     // Student already entered
                                                     console.log(statusOnGate.val())
 
-                                                    if(status.toLowerCase().includes('in'))
-                                                    {
+                                                    if (status.toLowerCase().includes('in')) {
                                                         $(`.n[data-id='${id}']`).css({
                                                             'color': 'var(--green)'
                                                         })
-    
-                                                    }
-                                                   else
-                                                    {
+
+                                                    } else {
                                                         $(`.n[data-id='${id}']`).css({
                                                             'color': 'var(--font-light-color)'
                                                         })
-    
+
                                                     }
                                                 } else {
 
-                                                  
-                                                  
+
+
                                                     // Student not yet entered
-                                                 
+
                                                 }
                                             });
                                         })
@@ -438,32 +435,45 @@ $('#btnSubmitAtt').click(function () {
 
     console.log(StudentAttendanceIndividual(colData))
 
+    console.log(AttendanceCounter(colData))
+    AttendanceCounter(colData)
+
     AttendanceJSON(colData).forEach(attendance => {
         //This will add data Class Attendance converted array to JSON on firebase
         var key = firebase.database().ref(`Attendance/Summary/Class/`).push().key;
         firebase.database().ref(`Attendance/Summary/Class/${ [`${$('.section-name').attr('data-class')}`]}`).update(
-           attendance
+            attendance
         );
     })
 
     StudentAttendanceIndividual(colData).forEach(attendance => {
         //This will add data Student Attendance converted array to JSON on firebase
-    //    firebase.database().ref(`Attendance/Summary/Student/`).update(attendance);
+        //    firebase.database().ref(`Attendance/Summary/Student/`).update(attendance);
 
-    for (const [key, value] of Object.entries(attendance)) {
-    //   firebase.database().ref(`Attendance/Summary/Student/${key}/Class/${value.Class.key}`).update(attendance);
+        for (const [key, value] of Object.entries(attendance)) {
+            //   firebase.database().ref(`Attendance/Summary/Student/${key}/Class/${value.Class.key}`).update(attendance);
 
-      //  console.log(key.Class)
+            //  console.log(key.Class)
 
-        for(const [ cKey ,cValue] of Object.entries(value.Class))
-        {
-            console.log(cKey)
-            firebase.database().ref(`Attendance/Summary/Student/${key}/Class/${cKey}`).update(cValue);
+            for (const [cKey, cValue] of Object.entries(value.Class)) {
+                // console.log(cKey)
+                firebase.database().ref(`Attendance/Summary/Student/${key}/Class/${cKey}`).update(cValue);
+            }
         }
-      }
     })
 
+    AttendanceCounter(colData).forEach(attendance => {
+        for (const [key, value] of Object.entries(attendance)) {
+            console.log(key)
+            console.log(value)
+            for (const [cKey, cValue] of Object.entries(value)) {
+                console.log(cKey)
+                console.log(cValue.Date)
 
+                firebase.database().ref(`Attendance/Report/Statistics/Class/${cKey}/`).update(cValue.Dates)
+            }
+        }
+    })
     //This will add data Faculty Attendance  on firebase
     firebase.database().ref(`Attendance/Summary/Faculty/`).update(FacultyAttendance());
 
@@ -538,7 +548,7 @@ function StudentAttendanceIndividual(arr) {
         for (let dates = 1; dates < arr.length; dates++) {
             let status = arr[dates][name + 1]
 
-            console.log(status);
+            // console.log(status);
             if (status == null) {
                 status = ['-', '-']
             } else {
@@ -559,6 +569,67 @@ function StudentAttendanceIndividual(arr) {
     data.push(p_info);
     return data;
 }
+
+function AttendanceCounter(arr) {
+    let data = []
+    let Dates = {}
+
+
+    for (let dates = 1; dates < arr.length; dates++) {
+        var cPresent = 0;
+        var cAbsent = 0;
+        var cArriveLate = 0;
+        var cLeaveEarly = 0;
+        for (let names = 0; names < arr[0].length; names++) {
+            let status = arr[dates][names + 1]
+            if (status == null) {
+                status = ['0', '0']
+            } else {
+                status = arr[dates][names + 1].split('$');
+            }
+
+            if (status.includes('present')) {
+                cPresent++
+            }
+
+            if (status.includes('absent')) {
+                cAbsent++
+            }
+
+            if (status.includes('arrivelate')) {
+                cArriveLate++
+            }
+
+            if (status.includes('leaveearly')) {
+                cLeaveEarly++
+            }
+
+
+            Dates[`${arr[dates][0]}`] = {
+                Date: `${arr[dates][0]}`,
+                Present: cPresent,
+                Absent: cAbsent,
+                ArriveLate: cArriveLate,
+                LeaveEarly: cLeaveEarly
+            }
+        }
+    }
+    data.push({
+        Class: {
+            [`${$('.section-name').attr('data-class')}`]: {
+                Dates: {
+                    Dates
+                }
+            }
+
+        }
+    })
+    return data
+
+}
+
+
+
 
 function FacultyAttendance() {
 
@@ -693,10 +764,10 @@ $('.modal').on('click', function (event) {
 
 //CONVERT HTML TABLE TO EXCEL
 
- $('#export').on('click', function (event) {
+$('#export').on('click', function (event) {
     $("#myTable").table2excel({
-        exclude:".noExl",
+        exclude: ".noExl",
         filename: "MyAttendance.xls",
-        exclude_img:false
+        exclude_img: false
     });
 })
