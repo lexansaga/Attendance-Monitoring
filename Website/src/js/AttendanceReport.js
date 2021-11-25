@@ -101,6 +101,8 @@ $(document).ready(async function () {
             // User logout
         }
     })
+
+    GetReport('weekly')
 });
 
 
@@ -482,6 +484,17 @@ function GetReport(timeframe) {
 
         start = new Date(FormatDate(``, "MM-DD-YY"));
         end = new Date(FormatDate(GetDateNow(), "MM-DD-YY"));
+
+        firebase.database().ref(`Report/Statistics/Class/`).on('value' , Classes =>
+        {
+            Classes.forEach(Class=>
+                {
+                   firebase.database().ref(`Report/Statistics/Class/${Class.key}`).on(`value`,dates =>
+                   {
+
+                   })
+                })
+        })
     }
     if (timeframe.toLowerCase().includes('monthly')) {
 
