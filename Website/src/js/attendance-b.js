@@ -21,25 +21,25 @@ var attstatus = {
     present: `
     <div class="option">
         <button title="Report" class="report" onclick="ModalReportOpen(this)"><i class='bx bxs-error-circle'></i></button>
-        <i data-status='present' class='bx bxs-circle att_mark' data-remarks="" style="color:#69E486;"><h6>Present</h6></i>
+        <i data-status='present' class='bx bxs-circle att_mark excl' data-remarks="" style="color:#69E486;"><h6>Present</h6></i>
         <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
     </div>`,
     absent: `
     <div class="option">
         <button title="Report" class="report" onclick="ModalReportOpen(this)"><i class='bx bxs-error-circle'></i></button>
-        <i  data-status='absent' class='bx bxs-circle att_mark' data-remarks="" style="color:#FE5277;"><h6>Absent</h6></i>
+        <i  data-status='absent' class='bx bxs-circle att_mark excl' data-remarks="" style="color:#FE5277;"><h6>Absent</h6></i>
         <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
     </div>`,
     arrivelate: `
     <div class="option">
         <button title="Report" class="report" onclick="ModalReportOpen(this)"><i class='bx bxs-error-circle'></i></button>
-        <i  data-status='arrivelate' class='bx bx-chevrons-left att_mark' data-remarks="" style="color: #FEB331; "><h6>Late</h6></i>
+        <i  data-status='arrivelate' class='bx bx-chevrons-left att_mark excl' data-remarks="" style="color: #FEB331; "><h6>Late</h6></i>
         <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
     </div>`,
     leaveearly: `
     <div class="option">
         <button title="Report" class="report" onclick="ModalReportOpen(this)"><i class='bx bxs-error-circle'></i></button>
-        <i data-status='leaveearly' class='bx bx-chevrons-right att_mark' data-remarks="" style="color: #FEB331;"><h6>Left Early</h6></i>
+        <i data-status='leaveearly' class='bx bx-chevrons-right att_mark excl' data-remarks="" style="color: #FEB331;"><h6>Left Early</h6></i>
         <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
     </div>`
 }
