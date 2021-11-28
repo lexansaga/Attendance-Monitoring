@@ -193,7 +193,10 @@
 
                     <h1 class="section-name" id="classname" data-prof="" data-class="">--</h1>
                     <div class="function">
-
+                        <div id="subject">
+                            <i class='bx bxs-category' ></i>
+                            <span>Select Subject</span>
+                        </div>
                         <div id="form">
                             <i class='bx bxs-book-alt'></i>
                             <span>Form</span>
@@ -346,6 +349,31 @@
                 <!-- MODAL END Report -->
 
 
+
+                <div class="modal subject-modal">
+                    <div class="modal-container">
+                        <div class="modal-body">
+                            <i title="Close" class="material-icons date-close"
+                                onclick="CloseDateModal()">close</i>
+                            <span>
+                                <h3>Select Subject</h3>
+                            </span>
+                            <div class="Student-info">
+                                <div>
+                                    <label id="text-subject">--</label>
+                                </div>
+                                <div style="border: none;">  <label>Reselect Subject</label>
+                                    <select id="set-subject-col">
+                                        <option disabled selected>Select Subject</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-controls">
+                                <button id="subject-save">Submit</button>
+                                <button onclick="CloseSubjectModal()" id="subject-cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
             </main>
         </div>
     </div>

@@ -96,13 +96,15 @@ $(document).ready(async function () {
                 let Notification = snap.child('Notification').val();
 
                 LoadTable(Account_Type, UserID)
+
+                GetReport('weekly')
             })
         } else {
             // User logout
         }
     })
 
-    GetReport('weekly')
+   
 });
 
 
@@ -489,9 +491,10 @@ function GetReport(timeframe) {
         {
             Classes.forEach(Class=>
                 {
+                    console.log(Class.key)
                    firebase.database().ref(`Report/Statistics/Class/${Class.key}`).on(`value`,dates =>
                    {
-
+                        console.log(dates.val())
                    })
                 })
         })

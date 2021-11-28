@@ -137,6 +137,11 @@ firebase.auth().onAuthStateChanged((user) => {
                 LineChart(data)
             }
 
+            if(Account_Type.includes('Gate'))
+            {
+                window.location.href = '../../gatetapin.html'
+            }
+
 
             firebase.database().ref('Data/Faculty/Information/' + UserID).on('value', uidsnap => {
                 //   console.log(uidsnap.val());

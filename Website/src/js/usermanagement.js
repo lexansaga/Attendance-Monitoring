@@ -30,6 +30,9 @@ var subjectselection = $('#Select_Section');
 var tableModal = $('#modal-table');
 var tableSubject = $('#SubjectSection-table');
 
+var gatestatus = $('#Status')
+var gatelocation = $('#Location')
+
 //End -- Initializaion of Objects
 
 //Start -- Onload Function
@@ -236,6 +239,9 @@ var reset = function () {
 
     cardID.val('');
 
+    gatelocation.val('')
+    gatestatus.val('default')
+
     $('#output').attr('src', 'src/assets/avatar.png');
     $('#file').val('');
 
@@ -332,6 +338,13 @@ function VerifyType() {
             'display': 'none'
         });
 
+        gatestatus.css({
+            'display': 'none'
+        });
+
+        gatelocation.css({
+            'display': 'none'
+        });
 
         LoadSearch(e);
 
@@ -414,7 +427,13 @@ function VerifyType() {
             'display': 'block'
         });
 
+        gatestatus.css({
+            'display': 'none'
+        });
 
+        gatelocation.css({
+            'display': 'none'
+        });
 
 
 
@@ -505,7 +524,13 @@ function VerifyType() {
         role.css({
             'display': 'none'
         });
+        gatestatus.css({
+            'display': 'block'
+        });
 
+        gatelocation.css({
+            'display': 'block'
+        });
 
 
         //  alert('Student Selected');
@@ -586,6 +611,15 @@ function VerifyType() {
         role.css({
             'display': 'none'
         });
+
+        gatestatus.css({
+            'display': 'none'
+        });
+
+        gatelocation.css({
+            'display': 'none'
+        });
+
 
     }
 }
@@ -793,7 +827,7 @@ $('#btnsave').click(function (event) {
 
 
                     if (email.val() != '' && password.val() != '') {
-                        let tapIn =  $('.cbx').is(":checked")
+                        let tapIn = $('.cbx').is(":checked")
                         alert('Saving Account')
                         firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
                             .then((userCredential) => {
@@ -817,7 +851,7 @@ $('#btnsave').click(function (event) {
                             });
                     } else {
                         // User Already Exist and needed to be updated
-                       let tapIn =  $('.cbx').is(":checked")
+                        let tapIn = $('.cbx').is(":checked")
                         firebase.database().ref('User/').orderByChild('UserID').startAt(dId).endAt(dId).once('value', users => {
                             users.forEach(user => {
                                 let uid = user.child('ID').val();
@@ -904,7 +938,7 @@ $('#btnsave').click(function (event) {
 
         //Start -- Check fields if no values
         if (email.val() == '' || password.val() == '' ||
-            ID.val() == '') {
+            ID.val() == '' || gatelocation.val() == '') {
 
             alert('Fill up necessary information!');
             // Start -- This will check for each empty input and mark red
@@ -954,82 +988,93 @@ $('#btnsave').click(function (event) {
         var file = document.getElementById("file");
         file = file.files[0];
 
-        if (file != null) { // Start - If image has  value  ,  Insert Image
-            var storageRef = firebase.storage().ref('Profile/Gate/' + $('#ID').val());
-            storageRef.put(file).then((snapshot) => {
-                storageRef.getDownloadURL()
-                    .then((url) => {
-                        firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
-                            "ID": $('#ID').val()
-                        });
-
-                        var dEmail = email.val(),
-                            dPassword = password.val(),
-                            dId = ID.val();
+        // if (file != null) { // Start - If image has  value  ,  Insert Image
+        var storageRef = firebase.storage().ref('Profile/Gate/' + $('#ID').val());
+        storageRef.put(file).then((snapshot) => {
+            storageRef.getDownloadURL()
+                .then((url) => {
 
 
-                        if (email.val() != null && password.val() != null) {
-                            firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
-                                .then((userCredential) => {
-                                    var uid = userCredential.user.uid;
+                    var dEmail = email.val(),
+                        dPassword = password.val(),
+                        dId = ID.val(),
+                        dStatus = gatestatus.val(),
+                        dLocation = gatelocation.val();
 
-                                    firebase.database().ref('User/' + uid).update({
-                                        'Account_Type': e,
-                                        'ID': uid,
-                                        'Password': dPassword,
-                                        'Role': e,
-                                        'UserID': dId,
-                                        'Email': dEmail
-                                    });
-                                })
-                                .catch((error) => {
-                                    console.log('Error ' + error)
+              
+
+                    if (email.val() != null && password.val() != null) {
+                        firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+                            .then((userCredential) => {
+                                var uid = userCredential.user.uid;
+                                alert(uid)
+                                firebase.database().ref('User/' + uid).update({
+                                    'Account_Type': e,
+                                    'ID': uid,
+                                    'Password': dPassword,
+                                    'Role': e,
+                                    'Status': dStatus,
+                                    'Location': dLocation,
+                                    'UserID': dId,
+                                    'Email': dEmail
                                 });
-                        }
-                        alert('Gate Save Successfully');
-                        reset();
-                        loadid('Gate');
-                    })
-                    .catch((error) => {
-                        console.log('Error ' + error)
-                    });
-            });
-            // End - If image has  value  ,  Insert Image
-        } else {
-            // Start - If image has no  value  , Declined insert Image
-            firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
-                "ID": $('#ID').val()
-            });
 
-            var dEmail = email.val(),
-                dPassword = password.val(),
-                dId = ID.val();
+                                firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
+                                    "ID": $('#ID').val(),
+                                    'Status': dStatus,
+                                    'Location': dLocation,
+                                });
+                            })
+                            .catch((error) => {
+                                console.log('Error ' + error)
+                            });
+                    }
+                    alert('Gate Save Successfully');
+                    reset();
+                    loadid('Gate');
+                })
+                .catch((error) => {
+                    console.log('Error ' + error)
+                });
+        });
 
 
-            if (email.val() != null && password.val() != null) {
-                firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
-                    .then((userCredential) => {
-                        var uid = userCredential.user.uid;
+        // End - If image has  value  ,  Insert Image
+        // } else {
+        //     // Start - If image has no  value  , Declined insert Image
+        //     firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
+        //         "ID": $('#ID').val()
+        //     });
 
-                        firebase.database().ref('User/' + uid).update({
-                            'Account_Type': e,
-                            'ID': uid,
-                            'Password': dPassword,
-                            'Role': e,
-                            'UserID': dId,
-                            'Email': dEmail
-                        });
-                    })
-                    .catch((error) => {
-                        console.log('Error ' + error)
-                    });
-            }
-            alert('Gate Save Successfully');
-            reset();
-            loadid('Gate');
+        //     var dEmail = email.val(),
+        //         dPassword = password.val(),
+        //         dId = ID.val();
 
-            // End - If image has no  value  , Declined insert Image
-        }
+
+        //     if (email.val() != null && password.val() != null) {
+        //         firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+        //             .then((userCredential) => {
+        //                 var uid = userCredential.user.uid;
+
+        //                 firebase.database().ref('User/' + uid).update({
+        //                     'Account_Type': e,
+        //                     'ID': uid,
+        //                     'Password': dPassword,
+        //                     'Role': e,
+        //                     'UserID': dId,
+        //                     'Email': dEmail
+        //                 });
+        //             })
+        //             .catch((error) => {
+        //                 console.log('Error ' + error)
+        //             });
+        //     }
+
+        // alert('Gate Save Successfully');
+        // reset();
+        // loadid('Gate');
+        //     // End - If image has no  value  , Declined insert Image
+        // }
 
     } else {
 

@@ -9,8 +9,7 @@ $(document).ready(function () {
             let uid = user.uid;
 
             firebase.database().ref('User/' + uid).on('value', snap => {
-                if(snap != null)
-                {
+                if (snap != null) {
                     $('#datatable tbody').html(' ');
                 }
                 let Account_Type = snap.child('Account_Type').val();
@@ -27,6 +26,8 @@ $(document).ready(function () {
                     let address = uidsnap.child('Address').val();
                     let department = uidsnap.child('Department').val();
                     let contact = uidsnap.child('Contact').val();
+
+                    let permission = uidsnap.child('Permission')
                     //    console.log('Profile:'+profile);
                     //    console.log('Name:'+name);
                     //    console.log("Debug:");
@@ -46,7 +47,7 @@ $(document).ready(function () {
                     $('.profile-information p').html(UserID);
 
                     $('#datatable tbody').append('<tr>' +
-                        '<td>Role</td>' +
+                        '<td>Account Type</td>' +
                         '<td>' + Account_Type + '</td>' +
                         '</tr>');
 
@@ -58,11 +59,6 @@ $(document).ready(function () {
                         '</tr>');
 
 
-                    $('#datatable tbody').append('<tr>' +
-                        '<td>Account Type</td>' +
-                        '<td>' + Account_Type + '</td>' +
-                        '</tr>');
-
 
                     $('#datatable tbody').append('<tr>' +
                         '<td>Address</td>' +
@@ -73,6 +69,17 @@ $(document).ready(function () {
                         '<td>Contact Number</td>' +
                         '<td>' + contact + '</td>' +
                         '</tr>');
+
+
+                    permission.forEach(perm => {
+                        console.log(perm.val())
+                        let tapin  = perm.key.includes('TapIn_First') ? 'Tap in first' : 'Tap in first'
+                        let isCheck = perm.val() == true ? 'checked' : ''
+                        $('.permission').append(` <label class="container">${tapin}
+                            <input type="checkbox" ${isCheck} disabled>
+                            <span class="checkmark"></span>
+                         </label>`)
+                    })
 
                 });
             });

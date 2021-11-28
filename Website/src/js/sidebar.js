@@ -161,7 +161,7 @@ firebase.auth().onAuthStateChanged((user) => {
     } else {
         // User is signed out
         // ...
-
+        window.location.href = 'index.html';
     }
 });
 

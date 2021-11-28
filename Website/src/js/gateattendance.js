@@ -1,6 +1,7 @@
 var slideIndex = 0;
 showSlides();
 
+
 function showSlides() {
   var i;
   var slides = document.getElementsByClassName("mySlides");
@@ -34,7 +35,34 @@ setInterval(time, 1000);
 
 $(document).ready(function () {
   $('[data-toggle="tooltip"]').tooltip();
+
+  
+firebase.auth().onAuthStateChanged((user) => {
+  if (user) {
+
+
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      let uid = user.uid;
+      // console.log(uid);
+      firebase.database().ref('User/' + uid).on('value', snap => {
+          let Account_Type = snap.child('Account_Type').val();
+          let ID = snap.child('ID').val();
+          let Role = snap.child('Role').val();
+          let UserID = snap.child('UserID').val();
+          let Notification = snap.child('Notification').val();
+          let Location = snap.child('Location').val();
+          let Status = snap.child('Status').val().toUpperCase();
+
+          $('#LogInName').html(`${Location} ${Status}`)
+      });
+    }
+    else
+    {
+      window.location.href = 'index.html';
+    }
 });
+})
 
 function ShowSettings() {
   document.getElementById("logout").style.display = "block";
@@ -312,3 +340,15 @@ document.getElementById("rfid_card").onchange = function () {
     $('.modal').css('display', 'none');
   }, 3000); // <-- timeout in milliseconds
 };
+
+
+
+$('#logout').on('click',function()
+{
+  firebase.auth().signOut().then(() => {
+    window.location.href = 'index.html';
+}).catch((error) => {
+    // An error happened.
+    console.log(error.errorCode + '' + error.errorMessage);
+});
+})

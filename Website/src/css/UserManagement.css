@@ -98,7 +98,15 @@ textarea:not(:placeholder-shown),
     margin-bottom: 10px;
     outline: none;
 }
-
+#Status {
+    height: 45px;
+    width: 98.4%;
+    padding: 0px 10px;
+    border: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    outline: none;
+}
 #Email {
     width: 100%;
 }

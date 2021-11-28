@@ -15,15 +15,21 @@ var submit = $('#submits');
 $(document).ready(function () {
 
     professors.select2({
+        placeholder: "Select Subject" ,
         containerCssClass: "show-hide",
         margin: '10px 10px 15px 0'
     });
 
     searchSubject.select2({
+        placeholder: "Select Subject" ,
         containerCssClass: "show-hide",
         margin: '10px 10px 15px 0'
     });
-
+    day.select2({
+        placeholder: "Select days" ,
+        containerCssClass: "show-hide",
+        margin: '10px 10px 15px 0'
+    });
 
     var url = new URL(window.location.href);
     let subjectType = url.searchParams.get('type');
@@ -51,12 +57,9 @@ $(document).ready(function () {
         submit.html('Delete');
 
     }
-});
-
-$(window).on('load', function () {
 
 
-
+    
     firebase.database().ref('Data/Faculty/Information').on('value', snap => {
         snap.forEach(childSnap => {
             var profID = childSnap.child('ID').val();
@@ -64,7 +67,8 @@ $(window).on('load', function () {
             childSnap.child('Name').forEach(names => {
                 name.push(names.val());
             })
-            professors.append(`<option value="${profID}"> ${name[1]+', '+name[0]+' '+name[2]} (${profID})  </option>`);
+            
+            professors.append(`<option value="${profID}"> <span style="color:#ccc">(${profID})</span>   ${name[1]+', '+name[0]+' '+name[2]}</option>`);
 
         });
     });
@@ -94,7 +98,7 @@ $('#submits').click(function () {
                 Location: sublocation.val(),
                 Professor: professors.val(),
                 Schedule: {
-                    Day: day.val(),
+                    Day: day.val().toString(),
                     Time: start.val() + '-' + end.val()
                 },
                 Title: subname.val()
@@ -133,13 +137,15 @@ var reset = function () {
     description.val("");
     start.val("");
     end.val("");
-    day.val("Select Day");
-    professors.val("Select Professor");
+    day.val(['']).trigger('change');
+    professors.val('default').trigger('change');
 
 }
 
-var loadid = function () {
+ function loadid () {
+    console.log('ID Loaded')
     firebase.database().ref('Data/Subject/').on('value', snap => {
+        console.log(snap.numChildren())
         var count = (snap.numChildren() + 1).toString();
         id.val('SUB' + '1' + ('000000' + count).substring(count.length));
     });
@@ -164,7 +170,7 @@ $('#search_subject').on("select2:select", function (e) {
             start.val(sched[0]);
             end.val(sched[1]);
 
-            day.val(snap.child('Schedule').child('Day').val());
+            day.val(snap.child('Schedule').child('Day').val().split(',')).change();
 
             professors.val(snap.child('Professor').val()).trigger('change');
         } else {

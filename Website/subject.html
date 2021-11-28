@@ -189,14 +189,13 @@
                 </select>
             </div>
 
-            <input id="sub_id" type="text" placeholder="Subject ID" disabled />
+            <input id="sub_id" type="text" placeholder="Subject ID"/>
             <input id="sub_name" type="text" placeholder="Subject Name" />
             <input id="sub_description" type="text" placeholder="Subject Description" />
             <input id="sub_location" type="text" placeholder="Subject Location" />
             <input id="sub_start" type="time" placeholder="Subject Start Time" />
             <input id="sub_end" type="time" placeholder="Subject End Time" />
-            <select id="sub_days" name="state">
-               <option value="" disabled selected>Select Day</option>
+            <select id="sub_days" multiple="multiple">
                <option value="Sunday">Sunday</option>
                <option value="Monday">Monday</option>
                <option value="Tuesday">Tuesday</option>
@@ -206,7 +205,7 @@
                <option value="Saturday">Saturday</option>
             </select>
             <select id="professors">
-               <option value="" disabled selected>Select Professor</option>
+               <option value="default" disabled selected> Select Professor </option>
             </select>
             <div class="function">
                <button id="submits">

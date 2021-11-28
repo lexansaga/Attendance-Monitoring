@@ -325,6 +325,91 @@ $(document).ready(function () {
 
 });
 
+function SetSelectedAttendance(SubjectID) {
+    firebase.database().ref('Data/Subjects/').orderByChild('ClassNbr').startAt(SubjectID).endAt(SubjectID).once('value', subjects => {
+        subjects.forEach(subject => {
+            console.log(subject.child('ClassNbr').val());
+            console.log(subject.child('Title').val());
+            console.log('Time Match');
+
+            $('.section-name').html(subject.child('Title').val());
+            $('.section-name').attr('data-prof', UserID);
+            $('.section-name').attr('data-class', subject.child('ClassNbr').val());
+            $('.section-name').attr('data-location', subject.child('Location').val());
+            $('.section-name').attr('data-title', subject.child('Title').val());
+            $('.section-name').attr('data-schedule', subject.child('Schedule').child('Time').val());
+
+            //      console.log(subject.child('Students').val());
+
+            var studentCount = 0;
+
+            let SortedStudents = subject.child('Students').val().sort((a, b) => a.Name.localeCompare(b.Name));;
+
+            //      console.log(SortedStudents);
+
+            SortedStudents.forEach(students => {
+
+                //         console.log(students);
+
+                studentCount++;
+
+                $('.name tbody').append(`<tr>
+                                        <td class="n" data-id="${students.ID}" onclick="StudentInfo(this)">${students.Name}</td>
+                                        </tr>`);
+
+                firebase.database().ref(`Attendance/Gate/${FormatDate(dateNow,'MM-DD-YY')}/`).orderByChild('EnteredID').startAt(students.ID).endAt(students.ID).limitToLast(1).on('value', statusOnGate => {
+                    //Realtime check student if already entered on gate
+
+                    statusOnGate.forEach(gateInfo => {
+                        let status = gateInfo.child('Status').val();
+                        let id = gateInfo.child('EnteredID').val();
+
+
+                        if (statusOnGate != null) {
+                            // Student already entered
+                            console.log(statusOnGate.val())
+
+                            if (status.toLowerCase().includes('in')) {
+                                $(`.n[data-id='${id}']`).css({
+                                    'color': 'var(--green)'
+                                })
+
+                            } else {
+                                $(`.n[data-id='${id}']`).css({
+                                    'color': 'var(--font-light-color)'
+                                })
+
+                            }
+                        } else {
+
+
+
+                            // Student not yet entered
+
+                        }
+                    });
+                })
+
+
+
+                // This will append student name on Attendance on first column - Sorted by Surname
+
+            });
+
+
+            // subject.child('Students').forEach(students => {
+
+            //     console.log(students);
+
+            //     $('.name tbody').append(`<tr>
+            //         <td class="n" data-id="${students.child('ID').val()}">${students.child('Name').val()}</td>
+            //         </tr>`);
+
+            // This will append student name on Attendance on first column - Unsorted by Surname
+            // });
+        })
+    })
+}
 
 
 $('#add').click(function () {
@@ -674,6 +759,32 @@ function CloseRemarksModal() {
     $('.remarks-modal').css('display', 'none');
 }
 
+
+function CloseSubjectModal() {
+    $('#remarks-info').val('');
+    $('.subject-modal').css('display', 'none');
+}
+$('#subject').on(`click`, function () {
+    let Class = $('#classname');
+    $('.subject-modal').css('display', 'block');
+    $('#text-subject').html(Class.attr('data-title'))
+
+    let professor = Class.attr(`data-prof`)
+
+    firebase.database().ref('Data/Subject/').orderByChild('Professor').startAt(professor).endAt(professor).once('value', snap => {
+        snap.forEach(subject => {
+            $('#set-subject-col').append(`<option value="${subject.child('ClassNbr').val()}"> (${subject.child('ClassNbr').val()}) ${subject.child('Description').val()}</option>`)
+        })
+    })
+})
+
+$(`#subject-save`).on('click', function () {
+    SetSelectedAttendance($('#set-subject-col').val())
+    CloseSubjectModal()
+})
+
+
+
 $('.save').on('click', function (e2) {
 
     e2.stopPropagation()
@@ -765,23 +876,23 @@ $('.modal').on('click', function (event) {
 //CONVERT HTML TABLE TO EXCEL
 
 $('#export').on('click', function (event) {
- var ClassName = document.getElementById("classname").innerHTML;
+    var ClassName = document.getElementById("classname").innerHTML;
 
     $("#myTable").table2excel({
-        filename: ClassName +" -Attendance",
-        fileext:"xlsx",
-        preserveColors:false
+        filename: ClassName + " -Attendance",
+        fileext: "xlsx",
+        preserveColors: false
     });
 })
 
 $('#form').on('click', function (event) {
-var ClassName = document.getElementById("classname").innerHTML;
+    var ClassName = document.getElementById("classname").innerHTML;
     $("#myTable").table2excel({
         filename: ClassName + " -AttendanceForm",
-        fileext:"xlsx",
-        exclude_img:false,
+        fileext: "xlsx",
+        exclude_img: false,
         exclude_links: false,
         exclude_inputs: false,
-        exclude:".excl"
+        exclude: ".excl"
     });
 })
