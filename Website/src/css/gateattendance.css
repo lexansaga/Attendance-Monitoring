@@ -27,6 +27,10 @@ img {
   display: inline-block;
   transition: background-color 0.6s ease;
 }
+.inf a{
+  text-decoration: none;
+  color: black;
+}
 
 .active {
   background-color: #FFF200;

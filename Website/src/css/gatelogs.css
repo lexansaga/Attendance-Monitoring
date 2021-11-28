@@ -29,3 +29,7 @@ body{
     height: 630px;
     margin-top: 20px;
 }
+a{
+    text-decoration: none;
+    color: black;
+}
