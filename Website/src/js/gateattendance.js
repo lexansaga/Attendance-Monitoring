@@ -98,7 +98,7 @@ function HideInput() {
 }
 
 $(document).ready(function () {
-  //$('.modal:eq(0)').css('display', 'block');
+  //$('.modal:eq(1)').css('display', 'block');
   document.getElementById("rfid_card").focus();
 });
 
