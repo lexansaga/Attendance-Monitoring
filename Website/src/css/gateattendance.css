@@ -44,7 +44,7 @@ img {
 
 .settings{
   right: 15;
-  top: 185;
+  top: 215;
   position:absolute;
   display: flex;
   flex-direction: row;
@@ -81,6 +81,12 @@ img {
   width: 200px;
   border: 1px solid black;
   box-shadow: 10px 10px 20px black;
+}
+
+#logs:hover{
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
 }
 
 #LogInName{
