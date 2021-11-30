@@ -49,8 +49,8 @@ select_student.on('select2:select', function (e) {
                               .val()}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
                          snap.child('ID').val(),
                          snap.child('Name').child('Last').val() +
-                         ',' +
-                         snap.child('Name').child('First').val() +
+                         ', ' +
+                         snap.child('Name').child('First').val() + ` ` +
                          snap.child('Name').child('Middle').val(),
                          `<button onclick="Delete(this)"><i class='bx bxs-trash'></i></button>`,
                     ])

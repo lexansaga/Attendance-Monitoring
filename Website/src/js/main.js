@@ -537,7 +537,10 @@ function LineChart(data) {
 
 function LineChartData(dayframe) {
     if (dayframe.includes('daily')) {
+        // firebase.database().ref(`Attendance/Report/Statistics/Class/${}`).on(`value`, days =>
+        // {
 
+        // })
     } else if (dayframe.includes('weekly')) {
 
     } else if (dayframe.includes('monthly')) {
