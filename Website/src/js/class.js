@@ -193,70 +193,76 @@ $('#submits').click(function () {
           return;
      }
 
- 
+
 
      let class_set = [];
-     $('#datatable tbody tr').each(function () {
-          //  alert($(this).find('td').eq(1).text() + " " + $(this).find('td').eq(2).text());
+     // $('#datatable tbody tr').each(function () {
+     //      //  alert($(this).find('td').eq(1).text() + " " + $(this).find('td').eq(2).text());
+
+     //      // This will get data from table and save on class set array on dictionary form
+     //      class_set.push({
+     //           ID: $(this).find('td').eq(1).text(),
+     //           Name: $(this).find('td').eq(2).text(),
+     //      });
+
+     $('#datatable').DataTable().rows().every(function () {
+          var row = this.data()
+          var id = row[1]
+          var name = row[2]
+
           class_set.push({
-               ID: $(this).find('td').eq(1).text(),
-               Name: $(this).find('td').eq(2).text(),
+               ID: id,
+               Name: name,
           });
-
-          // alert($(this)
-          //      .find('td')
-          //      .eq(1)
-          //      .text());
-          firebase
-               .database()
-               .ref(`Data/Student/Information/${$(this)
-                         .find('td')
-                         .eq(1)
-                         .text()}/Subject/`)
-               .once('value', (subjects) => {
-
-                    //  console.log(subjects.val());
-                    let subject = [];
-                    subjects.forEach((childSubject) => {
-                         console.log('Subjects' + childSubject.val());
-                         subject.push(childSubject.val());
-                    });
-                    subject.push(select_class.val());
-
-
-                    let newSubject = [...new Set(subject)]; //This will remove duplicates
-                    firebase.database().ref(`Data/Student/Information/${$(this)
-                        .find('td')
-                        .eq(1)
-                        .text()}/Subject/`).set(newSubject);
-               });
-     });
-
-
-     // tobedeleted.forEach(deleted => {
-     //      console.log(deleted);
-     //        firebase.database().ref(`Data/Student/Information/${deleted}/Subject/`).once('value', snap => {
-     //                  console.log(snap.val());
-  
-     //                  snap.forEach(ids =>
-     //                       {
-     //                            console.log(ids.key+':'+ids.val());
-     //                            if(ids.val() == select_class.val())
-     //                            {
-     //                                 console.log("ID Equal True" + ids.key);
-     //                               firebase.database().ref(`Data/Student/Information/${deleted}/Subject/${ids.key}`).remove()
-     //                            }
-     //                       });
-     //        });
-     //   })
-  
-
-  //   console.log(class_set);
+ 
+     // alert($(this)
+     //      .find('td')
+     //      .eq(1)
+     //      .text());
      firebase
           .database()
-          .ref('Data/Subject/' + select_class.val() + '/Students/')
-          .set(class_set);
+          .ref(`Data/Student/Information/${id}/Subject/`)
+          .once('value', (subjects) => {
 
-     class_set.length = 0;
-     alert('Class created successfully');
+               //  console.log(subjects.val());
+               let subject = [];
+               subjects.forEach((childSubject) => {
+                    console.log('Subjects' + childSubject.val());
+                    subject.push(childSubject.val());
+               });
+               subject.push(select_class.val());
+
+
+               let newSubject = [...new Set(subject)]; //This will remove duplicates
+               firebase.database().ref(`Data/Student/Information/${id}/Subject/`).set(newSubject);
+          });
+});
+
+
+// tobedeleted.forEach(deleted => {
+//      console.log(deleted);
+//        firebase.database().ref(`Data/Student/Information/${deleted}/Subject/`).once('value', snap => {
+//                  console.log(snap.val());
+
+//                  snap.forEach(ids =>
+//                       {
+//                            console.log(ids.key+':'+ids.val());
+//                            if(ids.val() == select_class.val())
+//                            {
+//                                 console.log("ID Equal True" + ids.key);
+//                               firebase.database().ref(`Data/Student/Information/${deleted}/Subject/${ids.key}`).remove()
+//                            }
+//                       });
+//        });
+//   })
+
+
+//   console.log(class_set);
+firebase
+     .database()
+     .ref('Data/Subject/' + select_class.val() + '/Students/')
+     .set(class_set);
+
+class_set.length = 0;
+alert('Class created successfully');
 });

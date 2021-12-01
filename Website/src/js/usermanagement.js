@@ -87,19 +87,25 @@ $(document).ready(function () {
 
 
     tableModal.DataTable({
+        'createdRow': function( row, data, dataIndex ) {
+            $(row).attr('data-id',  dataIndex);
+        },
         "aaSorting": [],
         'searching': false,
         paging: false,
         order: [
-            [1, 'desc']
+            [0, 'asc']
         ],
 
         "bDestroy": true
     });
     tableSubject.DataTable({
+        'createdRow': function( row, data, dataIndex ) {
+            $(row).attr('data-id',dataIndex);
+        },
         "aaSorting": [],
         order: [
-            [1, 'desc']
+            [0, 'asc']
         ],
         "bDestroy": true
     });
@@ -117,42 +123,45 @@ subjectselection.on('select2:select', function (e) {
         $(`#modal-table tbody tr > td:contains(${data})`).length == 0) {
         firebase.database().ref('Data/Subject/' + data).on('value', snap => {
 
-            // console.log(snap.child('Schedule').val());
-            let schedule = []
-            snap.child('Schedule').forEach(schedules => {
-                schedule.push(schedules.val());
-            });
-            //             $('#modal-table tbody').append(`
-            //       <tr>
-            //       <td>${snap.child('ClassNbr').val()}</td>
-            //       <td>${snap.child('Title').val()}</td>
-            //       <td>${snap.child('Description').val()}</td>
-            //       <td>${schedule[0]}</td>
-            //       <td>${schedule[1]}</td>
-            //       <td>${snap.child('Professor').val()}</td>
-            //       <td><i class="material-icons delete-row">delete_forever</i></td>
-            //    </tr>
-            //    `);
-            tableModal.DataTable().row.add(
-                [
-                    snap.child('ClassNbr').val(),
-                    snap.child('Title').val(),
-                    snap.child('Description').val(),
-                    schedule[0],
-                    schedule[1],
-                    snap.child('Professor').val(),
-                    `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
-                ]).draw();
-            tableSubject.DataTable().row.add(
-                [
-                    snap.child('ClassNbr').val(),
-                    snap.child('Title').val(),
-                    snap.child('Description').val(),
-                    schedule[0],
-                    schedule[1],
-                    snap.child('Professor').val(),
-                    `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
-                ]).draw();
+            if (snap.val() != null) {
+                // console.log(snap.child('Schedule').val());
+                let schedule = []
+                snap.child('Schedule').forEach(schedules => {
+                    schedule.push(schedules.val());
+                });
+                //             $('#modal-table tbody').append(`
+                //       <tr>
+                //       <td>${snap.child('ClassNbr').val()}</td>
+                //       <td>${snap.child('Title').val()}</td>
+                //       <td>${snap.child('Description').val()}</td>
+                //       <td>${schedule[0]}</td>
+                //       <td>${schedule[1]}</td>
+                //       <td>${snap.child('Professor').val()}</td>
+                //       <td><i class="material-icons delete-row">delete_forever</i></td>
+                //    </tr>
+                //    `);
+                tableModal.DataTable().row.add(
+                    [
+                        snap.child('ClassNbr').val(),
+                        snap.child('Title').val(),
+                        snap.child('Description').val(),
+                        schedule[0],
+                        schedule[1],
+                        snap.child('Professor').val(),
+                        `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+                    ]).draw();
+                tableSubject.DataTable().row.add(
+                    [
+                        snap.child('ClassNbr').val(),
+                        snap.child('Title').val(),
+                        snap.child('Description').val(),
+                        schedule[0],
+                        schedule[1],
+                        snap.child('Professor').val(),
+                        `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+                    ]).draw();
+            }
+
         });
     }
 
@@ -178,9 +187,19 @@ $('.ModalCancel').click(function () {
 //End -- Modal table Function
 
 function DeleteRow(e) {
-    let index = $(e).closest('td').parent()[0].sectionRowIndex;
-    tableModal.DataTable().row(index).remove().draw();
-    tableSubject.DataTable().row(index).remove().draw();
+
+    let index = $(e).closest('tr').attr('data-id');
+  //  alert(index)
+    let subjectRow = $(`#SubjectSection-table tbody tr[data-id="${index}"]`)
+    let modalRow = $(`#modal-table tbody tr[data-id="${index}"]`)
+    // alert(index)
+    // tableModal.DataTable().row(index).remove().draw();
+    // tableSubject.DataTable().row(index).remove().draw();
+
+    // tableModal.DataTable().fnDeleteRow(index)
+    tableSubject.DataTable().row(subjectRow).remove().draw()
+    tableModal.DataTable().row(modalRow).remove().draw()
+
 }
 
 $(window).click(function (e) {
@@ -1001,7 +1020,7 @@ $('#btnsave').click(function (event) {
                         dStatus = gatestatus.val(),
                         dLocation = gatelocation.val();
 
-              
+
 
                     if (email.val() != null && password.val() != null) {
                         firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
@@ -1090,12 +1109,12 @@ $('#SearchPerson').on("select2:select", function (e) {
     // OnSelect on SearchPerson for Edit and Delete
     //Start -- Initializaion of Objects 
 
+    tableSubject.DataTable().row().clear().draw()  
+    tableModal.DataTable().row().clear().draw()  
     let uid = $(this).val();
 
     let Path = '';
     if (uid.includes('STUD')) {
-        $('#modal-table tbody, #SubjectSection-table tbody').html(' ')
-
         Path = "Data/Student/Information/" + uid;
         firebase.database().ref(Path).once('value', snap => {
             let name = [];
@@ -1122,58 +1141,72 @@ $('#SearchPerson').on("select2:select", function (e) {
             console.log(snap.child("Subject").val());
             snap.child("Subject").forEach(subject => {
 
-                //   alert(subject.val());
-                firebase.database().ref("Data/Subject/" + subject.val()).once('value', subSnap => {
-                    console.log("Subjects");
-                    //  console.log(subSnap.val());
+                if (subject.val() != null) {
+                    firebase.database().ref("Data/Subject/" + subject.val()).once('value', subSnap => {
+                        console.log("Subjects");
+
+                        if (subSnap.val() != null) {
+
+                            let profID = subSnap.child('Professor').val();
+                            firebase.database().ref(`Data/Faculty/Information/${profID}/`).once('value', professor => {
+                                let last = professor.child('Name').child('Last').val()
+                                let first = professor.child('Name').child('First').val()
+                                let middle = professor.child('Name').child('Middle').val()
 
 
-                    let schedule = []
-                    subSnap.child('Schedule').forEach(schedules => {
-                        schedule.push(schedules.val());
-                    });
+                                let schedule = []
+                                subSnap.child('Schedule').forEach(schedules => {
+                                    schedule.push(schedules.val());
+                                });
 
-                    tableModal.DataTable().row.add(
-                        [
-                            subSnap.child('ClassNbr').val(),
-                            subSnap.child('Title').val(),
-                            subSnap.child('Description').val(),
-                            schedule[0],
-                            schedule[1],
-                            subSnap.child('Professor').val(),
-                            `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
-                        ]).draw();
-                    tableSubject.DataTable().row.add(
-                        [
-                            subSnap.child('ClassNbr').val(),
-                            subSnap.child('Title').val(),
-                            subSnap.child('Description').val(),
-                            schedule[0],
-                            schedule[1],
-                            subSnap.child('Professor').val(),
-                            `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
-                        ]).draw();
+                                tableModal.DataTable().row.add(
+                                    [
+                                        subSnap.child('ClassNbr').val(),
+                                        subSnap.child('Title').val(),
+                                        subSnap.child('Description').val(),
+                                        schedule[0],
+                                        schedule[1],
+                                        `${last}, ${first} ${middle}`,
+                                        `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+                                    ]).draw();
+                                tableSubject.DataTable().row.add(
+                                    [
+                                        subSnap.child('ClassNbr').val(),
+                                        subSnap.child('Title').val(),
+                                        subSnap.child('Description').val(),
+                                        schedule[0],
+                                        schedule[1],
+                                        `${last}, ${first} ${middle}`,
+                                        `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+                                    ]).draw();
+                            })
+                        }
 
 
-                    //     $('#modal-table tbody, #SubjectSection-table tbody').append(`
-                    //     <tr>
-                    //     <td>${subSnap.child('ClassNbr').val()}</td>
-                    //     <td>${subSnap.child('Title').val()}</td>
-                    //     <td>${subSnap.child('Description').val()}</td>
-                    //     <td>${schedule[0]}</td>
-                    //     <td>${schedule[1]}</td>
-                    //     <td>${subSnap.child('Professor').val()}</td>
-                    //     <td><i class="material-icons delete-row">delete_forever</i></td>
-                    //  </tr>
-                    //  `);
 
-                })
+
+
+
+                        //     $('#modal-table tbody, #SubjectSection-table tbody').append(`
+                        //     <tr>
+                        //     <td>${subSnap.child('ClassNbr').val()}</td>
+                        //     <td>${subSnap.child('Title').val()}</td>
+                        //     <td>${subSnap.child('Description').val()}</td>
+                        //     <td>${schedule[0]}</td>
+                        //     <td>${schedule[1]}</td>
+                        //     <td>${subSnap.child('Professor').val()}</td>
+                        //     <td><i class="material-icons delete-row">delete_forever</i></td>
+                        //  </tr>
+                        //  `);
+
+                    })
+                }
+
             });
 
         });
 
     } else if (uid.includes('FAC') || uid.includes('PROF')) {
-        $('#modal-table tbody, #SubjectSection-table tbody').html(' ')
         tableModal.DataTable().clear().draw();
         tableSubject.DataTable().clear().draw();
         Path = "Data/Faculty/Information/" + uid;
