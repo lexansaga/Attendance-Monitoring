@@ -125,6 +125,7 @@ $(document).ready(function () {
                             subjects.forEach(subject => {
 
 
+                                $('.section-name').attr('data-prof', UserID);
 
                                 // let time1 = Date.parse('01/01/2000 '+'09:30:0');
                                 // let time2 = Date.parse('01/01/2000 '+'09:30:1');
@@ -135,11 +136,16 @@ $(document).ready(function () {
                                 let startSched = Date.parse('01/01/2000 ' + sched[0]);
                                 let endSched = Date.parse('01/01/2000 ' + sched[1]);
 
-                                var timeNow = Date.parse('01/01/2000 ' + '13:01:00');
+                                
+                                var today = new Date();
+                                var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                                var timeNow = Date.parse('01/01/2000 ' + time);
                                 //  This will check the current time and compare on the schedule on databases
                                 // Need to change the time for actual demo
 
-                                var dayNow = "Monday"
+                                var dayNow = GetDay()
+
+                                
                                 //var timeNow = Date.parse('01/01/2000 '+time);
                                 console.log(day.includes(dayNow))
                                 console.log(timeNow);
@@ -150,7 +156,6 @@ $(document).ready(function () {
                                     console.log(subject.child('Title').val());
                                     console.log('Time Match');
                                     $('.section-name').html(subject.child('Title').val());
-                                    $('.section-name').attr('data-prof', UserID);
                                     $('.section-name').attr('data-class', subject.child('ClassNbr').val());
                                     $('.section-name').attr('data-location', subject.child('Location').val());
                                     $('.section-name').attr('data-title', subject.child('Title').val());
@@ -242,7 +247,7 @@ $(document).ready(function () {
                                     // });
                                 } else {
                                     //Not match schedule time
-                                    console.log('Cant find schedule!')
+                                    alert('Cant find any schedule today!')
                                 }
 
                             });
@@ -959,6 +964,8 @@ $('#subject').on(`click`, function () {
     let professor = Class.attr(`data-prof`)
 
     firebase.database().ref('Data/Subject/').orderByChild('Professor').startAt(professor).endAt(professor).once('value', snap => {
+
+        console.log(snap.val())
         snap.forEach(subject => {
             $('#set-subject-col').append(`<option value="${subject.child('ClassNbr').val()}"> (${subject.child('ClassNbr').val()}) ${subject.child('Description').val()}</option>`)
         })
