@@ -2,57 +2,63 @@ var tabview = window.matchMedia("(max-width: 768px)");
 var mobview = window.matchMedia("(max-width: 425px)");
 
 //-----------------------------------------------LINE CHART-----------------------------------------------//
-const CHART = document.getElementById('line_chart');
-var BarColors = ['#9674CF', '#18BBCB', '#9674CF', '#18BBCB', '#9674CF', '#18BBCB', '#9674CF', '#18BBCB', '#9674CF', '#18BBCB', '#9674CF', '#18BBCB']
+function LineChart(data) {
+    const CHART = document.getElementById('line_chart');
 
-let barChart = new Chart(CHART, {
-    type: 'bar',
-    data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
-        datasets: [{
-            backgroundColor: BarColors,
-            data: [25, 30, 50, 10, 240, 550, 120, 10]
-        }]
-    },
-    options: {
-        responsive: true,
-        legend: {
-            display: false
+    var BarColors = ['#9674CF', '#18BBCB', '#9674CF', '#18BBCB', '#9674CF', '#18BBCB', '#9674CF', '#18BBCB', '#9674CF', '#18BBCB', '#9674CF', '#18BBCB']
+
+    let barChart = new Chart(CHART, {
+        type: 'bar',
+        data: {
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            datasets: [{
+                backgroundColor: BarColors,
+                data: [25, 30, 50, 10, 240, 550, 120, 10]
+            }]
         },
-        maintainAspectRatio: true
-    }
-})
+        options: {
+            responsive: true,
+            legend: {
+                display: false
+            },
+            maintainAspectRatio: true
+        }
+    })
+}
+
 
 //-----------------------------------------------PIE CHART-----------------------------------------------//
-google.charts.load('current', {
-    'packages': ['corechart']
-});
-google.charts.setOnLoadCallback(drawChart);
+function PieChart(data) {
+    google.charts.load('current', {
+        'packages': ['corechart']
+    });
+    google.charts.setOnLoadCallback(drawChart);
 
-function drawChart() {
+    function drawChart() {
 
-    var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['Present', 20],
-        ['Absent', 12],
-        ['Late', 2]
-    ]);
+        var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Present', 20],
+            ['Absent', 12],
+            ['Late', 2]
+        ]);
 
-    var options = {
-        backgroundColor: 'transparent',
-        legend: {
-            position: 'right'
-        },
-        chartArea: {
-            top: 10,
-            width: '100%',
-            height: '100%'
-        }
-    };
+        var options = {
+            backgroundColor: 'transparent',
+            legend: {
+                position: 'right'
+            },
+            chartArea: {
+                top: 10,
+                width: '100%',
+                height: '100%'
+            }
+        };
 
-    var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
+        var chart = new google.visualization.PieChart(document.getElementById('pie_chart'));
 
-    chart.draw(data, options);
+        chart.draw(data, options);
+    }
 }
 
 
@@ -60,8 +66,12 @@ var table = $('#datatable');
 //-----------------------------------------------Data Table-----------------------------------------------//
 
 $(document).ready(async function () {
+    LineChart({})
+    PieChart({})
     table.DataTable({
-        "order": [[ 1, "asc" ]],
+        "order": [
+            [1, "asc"]
+        ],
         dom: 'B<f<t>ip>',
         buttons: [{
                 extend: 'excel',
@@ -97,14 +107,14 @@ $(document).ready(async function () {
 
                 LoadTable(Account_Type, UserID)
 
-                GetReport('weekly')
+                GetReport(`weekly`)
             })
         } else {
             // User logout
         }
     })
 
-   
+
 });
 
 
@@ -244,153 +254,93 @@ function LoadTable(account_type, id) {
     if (account_type.includes('Faculty')) {
         firebase.database().ref('Data/Subject/').orderByChild('Professor').startAt(id).endAt(id).on('value', professors => {
             // This will get current professor subjects
-            console.log(professors.val())
-            professors.forEach(professor => {
-                professor.child('Students').forEach(student => {
-                    // This will get current professor students
-                    let id = student.child('ID').val()
-                    let name = student.child('Name').val()
+            if (professors.val() != null) {
+                console.log(professors.val())
+                professors.forEach(professor => {
+                    professor.child('Students').forEach(student => {
+                        if (student.val() != null) {
+                            // This will get current professor students
+                            let id = student.child('ID').val()
+                            let name = student.child('Name').val()
 
-                    firebase.database().ref(`Data/Student/Information/${id}/`).on('value', s => {
+                            firebase.database().ref(`Data/Student/Information/${id}/`).on('value', s => {
 
-                        let id = s.child('ID').val()
-                        let last = s.child('Name').child('Last').val()
-                        let middle = s.child('Name').child('Middle').val()
-                        let first = s.child('Name').child('First').val()
-                        let cardId = s.child('Card_ID').val()
-                        let contact = s.child('Contact').val()
-                        let email = s.child('Email').val()
-                        let profile = s.child('Profile').val()
-                        let address = s.child('Address').val()
+                                if (s.val() != null) {
+                                    let id = s.child('ID').val()
+                                    let last = s.child('Name').child('Last').val()
+                                    let middle = s.child('Name').child('Middle').val()
+                                    let first = s.child('Name').child('First').val()
+                                    let cardId = s.child('Card_ID').val()
+                                    let contact = s.child('Contact').val()
+                                    let email = s.child('Email').val()
+                                    let profile = s.child('Profile').val()
+                                    let address = s.child('Address').val()
 
 
 
-                        var present = []
-                        var absent = []
-                        var late = []
+                                    var present = []
+                                    var absent = []
+                                    var late = []
 
-                        firebase.database().ref(`Attendance/Summary/Student/${id}/`).on('value', reports => {
+                                    firebase.database().ref(`Attendance/Summary/Student/${id}/`).on('value', reports => {
 
-                            reports.child('Class').forEach(report => {
-                                //    console.log(report.val())
+                                        if (reports.val() != null) {
+                                            reports.child('Class').forEach(report => {
+                                                //    console.log(report.val())
 
-                                let classnbr = report.child('ClassNbr').val()
-                                let schedule = report.child('Schedule').val()
-                                let date = report.child('Date').val()
+                                                let classnbr = report.child('ClassNbr').val()
+                                                let schedule = report.child('Schedule').val()
+                                                let date = report.child('Date').val()
 
-                                report.child('Dates').forEach(dates => {
+                                                report.child('Dates').forEach(dates => {
 
-                                    let status = dates.child('Status').val()
-                                    let remarks = dates.child('Remarks').val()
+                                                    let status = dates.child('Status').val()
+                                                    let remarks = dates.child('Remarks').val()
 
-                                    //   console.log(status)
-                                    if (status.includes('present')) {
-                                        present.push(`${dates.key}$${remarks}`)
-                                    }
-                                    if (status.includes('absent')) {
-                                        absent.push(`${dates.key}$${remarks}`)
-                                    }
-                                    if (status.includes('late')) {
-                                        late.push(`${dates.key}$${remarks}`)
-                                    }
-                                })
+                                                    //   console.log(status)
+                                                    if (status.includes('present')) {
+                                                        present.push(`${dates.key}$${remarks}`)
+                                                    }
+                                                    if (status.includes('absent')) {
+                                                        absent.push(`${dates.key}$${remarks}`)
+                                                    }
+                                                    if (status.includes('late')) {
+                                                        late.push(`${dates.key}$${remarks}`)
+                                                    }
+                                                })
+
+                                            })
+
+                                            table.DataTable().row.add(
+                                                [
+                                                    ` <a href="StudentInformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
+                                                    id,
+                                                    `${last}, ${first} ${middle}`,
+                                                    present.length,
+                                                    absent.length,
+                                                    late.length
+                                                ]).draw()
+                                        }
+
+
+                                        // console.log(`${ id,
+                                        //             `${last}, ${first} ${middle}`,
+                                        //             present.length,
+                                        //             absent.length,
+                                        //             late.length}`)
+                                    })
+                                }
 
                             })
+                        }
 
-                            table.DataTable().row.add(
-                                [
-                                    ` <a href="StudentInformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
-                                    id,
-                                    `${last}, ${first} ${middle}`,
-                                    present.length,
-                                    absent.length,
-                                    late.length
-                                ]).draw()
-
-                            // console.log(`${ id,
-                            //             `${last}, ${first} ${middle}`,
-                            //             present.length,
-                            //             absent.length,
-                            //             late.length}`)
-                        })
                     })
                 })
-            })
+            }
+
 
 
         })
-        // firebase.database().ref('Data/Student/Information/').on('value', async students => {
-
-        //     for (student in students.val()) {
-
-        //         firebase.database().ref(`Data/Student/Information/${student}/`).on('value', s => {
-
-        //             let id = s.child('ID').val()
-        //             let last = s.child('Name').child('Last').val()
-        //             let middle = s.child('Name').child('Middle').val()
-        //             let first = s.child('Name').child('First').val()
-        //             let cardId = s.child('Card_ID').val()
-        //             let contact = s.child('Contact').val()
-        //             let email = s.child('Email').val()
-        //             let profile = s.child('Profile').val()
-        //             let address = s.child('Address').val()
-
-
-
-        //             var present = []
-        //             var absent = []
-        //             var late = []
-
-        //             firebase.database().ref(`Attendance/Summary/Student/${id}/`).on('value', reports => {
-
-        //                 reports.child('Class').forEach(report => {
-        //                     //    console.log(report.val())
-
-        //                     let classnbr = report.child('ClassNbr').val()
-        //                     let schedule = report.child('Schedule').val()
-        //                     let date = report.child('Date').val()
-
-        //                     report.child('Dates').forEach(dates => {
-
-        //                         let status = dates.child('Status').val()
-        //                         let remarks = dates.child('Remarks').val()
-
-        //                         //   console.log(status)
-        //                         if (status.includes('present')) {
-        //                             present.push(`${dates.key}$${remarks}`)
-        //                         }
-        //                         if (status.includes('absent')) {
-        //                             absent.push(`${dates.key}$${remarks}`)
-        //                         }
-        //                         if (status.includes('late')) {
-        //                             late.push(`${dates.key}$${remarks}`)
-        //                         }
-        //                     })
-
-        //                 })
-
-        //                 table.DataTable().row.add(
-        //                     [
-        //                         ` <a href="StudentInformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
-        //                         id,
-        //                         `${last}, ${first} ${middle}`,
-        //                         present.length,
-        //                         absent.length,
-        //                         late.length
-        //                     ]).draw()
-
-        //                 // console.log(`${ id,
-        //                 //             `${last}, ${first} ${middle}`,
-        //                 //             present.length,
-        //                 //             absent.length,
-        //                 //             late.length}`)
-        //             })
-
-        //         })
-        //     }
-
-
-
 
 
 
@@ -399,70 +349,75 @@ function LoadTable(account_type, id) {
         // })
     } else {
         firebase.database().ref('Data/Student/Information/').on('value', students => {
+            if (students.val() != null) {
+                for (student in students.val()) {
 
-            for (student in students.val()) {
+                    firebase.database().ref(`Data/Student/Information/${student}/`).on('value', s => {
 
-                firebase.database().ref(`Data/Student/Information/${student}/`).on('value', s => {
-
-                    let id = s.child('ID').val()
-                    let last = s.child('Name').child('Last').val()
-                    let middle = s.child('Name').child('Middle').val()
-                    let first = s.child('Name').child('First').val()
-                    let cardId = s.child('Card_ID').val()
-                    let contact = s.child('Contact').val()
-                    let email = s.child('Email').val()
-                    let profile = s.child('Profile').val()
-                    let address = s.child('Address').val()
-
+                        if (s.val() != null) {
+                            let id = s.child('ID').val()
+                            let last = s.child('Name').child('Last').val()
+                            let middle = s.child('Name').child('Middle').val()
+                            let first = s.child('Name').child('First').val()
+                            let cardId = s.child('Card_ID').val()
+                            let contact = s.child('Contact').val()
+                            let email = s.child('Email').val()
+                            let profile = s.child('Profile').val()
+                            let address = s.child('Address').val()
 
 
-                    var present = []
-                    var absent = []
-                    var late = []
 
-                    firebase.database().ref(`Attendance/Summary/Student/${id}/`).on('value', reports => {
+                            var present = []
+                            var absent = []
+                            var late = []
 
-                        reports.child('Class').forEach(report => {
-                            //    console.log(report.val())
+                            firebase.database().ref(`Attendance/Summary/Student/${id}/`).on('value', reports => {
 
-                            let classnbr = report.child('ClassNbr').val()
-                            let schedule = report.child('Schedule').val()
-                            let date = report.child('Date').val()
+                                if (reports.val() != null) {
+                                    reports.child('Class').forEach(report => {
+                                        //    console.log(report.val())
 
-                            report.child('Dates').forEach(dates => {
+                                        let classnbr = report.child('ClassNbr').val()
+                                        let schedule = report.child('Schedule').val()
+                                        let date = report.child('Date').val()
 
-                                let status = dates.child('Status').val()
-                                let remarks = dates.child('Remarks').val()
+                                        report.child('Dates').forEach(dates => {
 
-                                //   console.log(status)
-                                if (status.includes('present')) {
-                                    present.push(`${dates.key}$${remarks}`)
-                                }
-                                if (status.includes('absent')) {
-                                    absent.push(`${dates.key}$${remarks}`)
-                                }
-                                if (status.includes('late')) {
-                                    late.push(`${dates.key}$${remarks}`)
+                                            let status = dates.child('Status').val()
+                                            let remarks = dates.child('Remarks').val()
+
+                                            //   console.log(status)
+                                            if (status.includes('present')) {
+                                                present.push(`${dates.key}$${remarks}`)
+                                            }
+                                            if (status.includes('absent')) {
+                                                absent.push(`${dates.key}$${remarks}`)
+                                            }
+                                            if (status.includes('late')) {
+                                                late.push(`${dates.key}$${remarks}`)
+                                            }
+                                        })
+
+                                    })
+
+                                    table.DataTable().row.add(
+                                        [
+                                            ` <a href="StudentInformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
+                                            id,
+                                            `${last}, ${first} ${middle}`,
+                                            present.length,
+                                            absent.length,
+                                            late.length
+                                        ]).draw()
                                 }
                             })
-
-                        })
-
-                        table.DataTable().row.add(
-                            [
-                                ` <a href="StudentInformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
-                                id,
-                                `${last}, ${first} ${middle}`,
-                                present.length,
-                                absent.length,
-                                late.length
-                            ]).draw()
+                        }
 
 
                     })
-
-                })
+                }
             }
+
         })
     }
 
@@ -487,16 +442,13 @@ function GetReport(timeframe) {
         start = new Date(FormatDate(``, "MM-DD-YY"));
         end = new Date(FormatDate(GetDateNow(), "MM-DD-YY"));
 
-        firebase.database().ref(`Report/Statistics/Class/`).on('value' , Classes =>
-        {
-            Classes.forEach(Class=>
-                {
-                    console.log(Class.key)
-                   firebase.database().ref(`Report/Statistics/Class/${Class.key}`).on(`value`,dates =>
-                   {
-                        console.log(dates.val())
-                   })
+        firebase.database().ref(`Attendance/Report/Statistics/Class/`).on('value', Classes => {
+            Classes.forEach(Class => {
+                console.log(Class.key)
+                firebase.database().ref(`Attendance/Report/Statistics/Class/${Class.key}`).on(`value`, dates => {
+                    console.log(dates.val())
                 })
+            })
         })
     }
     if (timeframe.toLowerCase().includes('monthly')) {

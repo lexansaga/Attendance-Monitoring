@@ -967,7 +967,7 @@ $('#subject').on(`click`, function () {
 
         console.log(snap.val())
         snap.forEach(subject => {
-            $('#set-subject-col').append(`<option value="${subject.child('ClassNbr').val()}"> (${subject.child('ClassNbr').val()}) ${subject.child('Description').val()}</option>`)
+            $('#set-subject-col').append(`<option value="${subject.child('ClassNbr').val()}"> (${subject.child('ClassNbr').val()}) ${subject.child('Title').val()}</option>`)
         })
     })
 })
