@@ -26,6 +26,7 @@ $(document).ready(function () {
         margin: '10px 10px 15px 0'
     });
     day.select2({
+        maximumSelectionLength: 2,
         placeholder: "Select days" ,
         containerCssClass: "show-hide",
         margin: '10px 10px 15px 0'
