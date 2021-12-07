@@ -1,0 +1,129 @@
+@import url('root.css'); 
+/*Always include root css to access the root content and not to reinitialize code */
+
+.item_container label{
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.InputWrapper{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2vw;
+    width: 90%;
+    justify-content: space-around;
+}
+
+.InputWrapper input{
+    border: none;
+    height: 35px;
+    padding: 0px 15px;
+    margin-bottom: 10px;
+}
+
+#ClassNum{
+    width: 100%;
+}
+#CourseDesc{
+    width: 100%;
+}
+
+#Day{
+    width: 100%;
+    margin-bottom: 50px !important;
+}
+
+#Section{
+    width: 100%;
+}
+.sectionWrapper{
+    width: 100%;
+    margin-bottom: 8px;
+}
+
+input[type=time]{
+    text-align: center;
+    width: 48%;
+    margin-top: 10px;
+}
+.arrow{
+    margin-top: 15px;
+}
+
+#Building{
+    border: none;
+    width: 20%;
+    height: 35px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+#room{
+    margin-top: 5px;
+    width: 80%;
+}
+.btnControl{
+    margin-top: 1vw;
+    margin-right: 110px;
+    display: flex;
+    justify-content: flex-end;
+}
+.btnControl button{
+    border: none;
+    width: 85px;
+    height: 40px;
+    color: white;
+    background-color: #B2BBF7;
+    margin-left: 10px;
+}
+
+.btnControl button:hover{
+    background-color: #7E8DF1;
+}
+.btnControl button:active{
+    background-color: #5164EC;
+}
+.table_Wrapper{
+    width: 90%;
+    margin-top: 5vw;
+}
+
+/*----------------------------------------------------Tablet View----------------------------------------------------*/
+@media (max-width: 768px){
+
+    .InputWrapper{
+        margin-top: 3vw;
+    }
+    .btnControl{
+        margin-right: 55px;
+    }
+}
+
+/*----------------------------------------------------Mobile View----------------------------------------------------*/
+@media (max-width: 425px){
+    .InputWrapper{
+        margin-top: 8vw;
+    }
+    .btnControl{
+        margin-right: 4px;
+    }
+    .btnControl button{
+        width: 75px;
+        height: 35px;
+        margin-left: 10px;
+    }
+    input[type=time]{
+        width: 40%;
+        margin-top: 10px;
+        background-color: #fff;
+    }
+    #Building{
+        width: 40%;
+        background-color: #fff;
+    }
+    #room{
+        margin-top: 5px;
+        width: 60%;
+    }
+}

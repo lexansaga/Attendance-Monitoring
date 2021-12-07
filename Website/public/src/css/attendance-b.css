@@ -1,0 +1,409 @@
+@import url(root.css);
+
+
+.function {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 35px 105px 0 0;
+    justify-content: flex-end;
+    align-items: baseline;
+}
+
+.section-name {
+    margin-top: 22px;
+}
+
+.function div {
+    cursor: pointer;
+    padding: 0 20px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: row;
+}
+
+.function div i {
+    color: var(--font-color-primary);
+    font-size: 20px;
+}
+
+.function div span {
+    margin-left: 10px;
+}
+
+.function div:hover i,
+.function div:hover span {
+    color: var(--primary-color);
+}
+
+.legend {
+    display: flex;
+    flex-direction: row;
+
+}
+
+.legend div {
+    padding: 0 25px;
+    display: flex;
+
+}
+
+.legend div i {
+    color: var(--font-color-primary);
+    font-size: 20px;
+}
+
+.legend div span {
+    margin-left: 10px;
+}
+
+
+.attendance-table {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+    width: 95%;
+    margin-top: 38px;
+}
+
+.name {
+    table-layout: fixed;
+
+}
+
+
+.name tr td:nth-child(1) {
+
+    padding: 12px 22px;
+    min-width: 180px;
+    background-color: var(--primary-color);
+    color: var(--font-light-color);
+    border: none !important;
+    margin: 0 !important;
+    cursor: pointer;
+
+
+}
+
+.name tr td:not(:nth-child(1)) {
+    padding: 5px 10px;
+    cursor: pointer;
+    text-align: center;
+    font-size: 24px;
+}
+
+table thead td,
+table tfoot td {
+    background-color: var(--red);
+    color: var(--font-light-color);
+}
+
+table thead tr:nth-child(1) td {}
+
+table tr td {
+    border: 1px solid var(--secondary-color);
+
+}
+
+.date-header {
+    display: flex;
+}
+
+.date-header>i {
+    margin-left: 5px;
+}
+
+#btnSubmitAtt {
+    width: 220px;
+    padding: 18px;
+    margin: 38px 12px 0 0;
+    border: none;
+    outline: none;
+    background-color: var(--orange);
+    color: var(--font-light-color);
+    font-weight: 500;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+#btnSubmitAtt:hover {
+    filter: saturate(2);
+}
+#remove-date
+{
+    cursor: pointer;
+    width: 100%;
+    padding: 16px;
+    outline: 0;
+    border: 0;
+    background-color: var(--red);
+    color: white;
+}
+#remove-date:hover{
+    filter: saturate(2);
+}
+.remarks:hover {
+    cursor: pointer;
+}
+
+.option {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.option h6{
+    font-weight: normal;
+    font-size: 15px;
+}
+
+.remarks {
+    width: 10%;
+    padding: 0px;
+    margin: 0;
+    background-color: #F8F8F8;
+    color: var(--text-border);
+    font-size: 22px;
+    border: none;
+    outline: none;
+}
+
+.report {
+    width: 10%;
+    padding: 0px;
+    margin: 0;
+    background-color: #F8F8F8;
+    color: var(--text-border);
+    font-size: 22px;
+    opacity: 0;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    pointer-events: none;
+}
+
+input[type="date"] {
+    font-size: 14px;
+    border: none;
+    outline: none;
+    color: white;
+    background-color: transparent;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    margin-left: -5px;
+}
+
+/* MODAL DESIGN */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4)
+}
+
+.modal-container {
+    position: relative;
+    z-index: 101;
+    margin: auto;
+    top: 50px;
+    background-color: white;
+    width: 600px;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation: modal-animation;
+    animation-duration: 0.5s;
+}
+
+@keyframes modal-animation {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 50;
+        opacity: 1
+    }
+}
+
+/* MODAL END */
+.modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.modal-body>i {
+    position: absolute;
+    right: 10;
+    top: 10;
+    color: #ffff;
+}
+
+.modal-body>span {
+    width: 100%;
+    background-color: white;
+    color: var(--font-color-primary);
+    font-size: 14px;
+}
+
+span>h3 {
+    padding: 20px 40px;
+}
+
+.Student-info {
+    flex-direction: column;
+    display: flex;
+    width: 85%;
+    justify-content: center;
+    margin: 15px 0 10px 0;
+}
+
+.Student-info>div {
+    border-bottom: 1px solid var(--text-border);
+    padding: 18px 0 12px 0;
+}
+
+.Student-info label {
+    font-size: 16px;
+    color: var(--font-color-primary);
+}
+
+.Student-info label:nth-child(1) {
+    font-weight: 600;
+    margin: 0 22px 0 0;
+}
+
+.Student-info select {
+    padding: 14px;
+    margin-top: 18px;
+    border: 1px solid --text-border;
+    outline: none;
+    width: 100%;
+}
+
+.modal-body i:hover {
+    cursor: pointer;
+}
+
+
+.modal textarea {
+    width: 85%;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 15px;
+    height: 150px;
+    font-size: 15px;
+    resize: none;
+    padding: 14px;
+
+    outline: none;
+    border: 1px solid var(--text-border);
+}
+
+.modal-controls {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    width: 90%;
+}
+
+.modal-controls button {
+    width: 80px;
+    margin: 10px;
+    height: 35px;
+    padding: 0;
+    outline: none;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    color: white;
+
+}
+
+.modal-controls button:nth-child(1) {
+    background-color: var(--color-accent-1);
+
+}
+
+.modal-controls button:nth-child(2) {
+    background-color: var(--red);
+}
+
+.tap-first {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.tap-first img {
+    height: 220px;
+}
+
+.tap-first h1 {
+    text-align: center;
+    margin: 22px;
+}
+
+
+
+@media screen and (max-width:768px) {
+
+    .modal-container {
+        width: 90%;
+    }
+}
+
+@media (max-width:425px) {
+
+    .function {
+        justify-content: center;
+    }
+
+    .function div {
+        padding: 0 12px;
+    }
+
+    .legend {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .legend div {
+        padding: 12px 25px;
+        display: flex;
+    }
+
+
+    .name tr td:nth-child(1) {
+        min-width: 120px;
+    }
+
+    .section-name {
+        font-size: 26px;
+        text-align: center;
+    }
+    span>h3
+    {
+        padding: 20px 30px;
+    }
+    .modal-controls {
+        justify-content: center;
+    }
+}

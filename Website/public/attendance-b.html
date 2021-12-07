@@ -1,0 +1,418 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="src/css/attendance-b.css" rel="stylesheet" />
+    <link href="src/css/sidebar.css" rel="stylesheet" />
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <div class="main_container">
+        <div class="s-navbar" data-aos="fade-right">
+            <div class="logo-name">
+                <a href="main.html">
+                    <H3>
+                        ATTENDANCE<BR>MONITORING</H1>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li class="vert-line">
+                    <a href="main.html">
+                        <i class='bx bxs-home'></i>
+                        <span class="link_name">Home</span>
+                    </a>
+                </li>
+                <li class="vert-line">
+                    <a href="schedule.html">
+                        <i class='bx bx-calendar'></i>
+                        <span class="link_name">Schedule</span>
+                    </a>
+                </li>
+
+                <li class="vert-line">
+                    <a href="attendance-b.html">
+                        <i class='bx bxs-report'></i>
+                        <span class="link_name">Attendance</span>
+                    </a>
+                </li>
+                <li class="vert-line">
+                    <a href="attendancereport.html">
+                        <i class='bx bxs-report'></i>
+                        <span class="link_name">Attendance Report</span>
+                    </a>
+                </li>
+                <li class="vert-line">
+                    <a href="reported.html">
+                        <i class='bx bxs-report'></i>
+                        <span class="link_name">Reported</span>
+                    </a>
+                </li>
+                <li class="vert-line">
+                    <a href="#">
+                        <i class='bx bxs-report'></i>
+                        <span class="link_name">Subject</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="subject.html?type=add">Add Subject</a></li>
+                        <li><a href="subject.html?type=update">Edit Subject</a></li>
+                        <li><a href="subject.html?type=delete">Delete Subject</a></li>
+                    </ul>
+                </li>
+                <li class="vert-line">
+                    <a href="class.html">
+                        <i class='bx bxs-report'></i>
+                        <span class="link_name">Class</span>
+                    </a>
+                </li>
+                <li class="vert-line">
+                    <a href="#">
+                        <i class='bx bxs-user-account'></i>
+                        <span class="link_name">User Management</span>
+                    </a>
+                    <ul class="sub-menu">
+                        <li><a href="usermanagement.html?type=add">Add User</a></li>
+                        <li><a href="usermanagement.html?type=update">Edit User</a></li>
+                        <li><a href="usermanagement.html?type=delete">Delete User</a></li>
+                    </ul>
+                </li>
+                <li class="vert-line">
+                    <a href="manageschedule.html">
+                        <i class='bx bxs-report'></i>
+                        <span class="link_name">Subjects</span>
+                    </a>
+                </li>
+                <div class="bottom-image">
+                    <img src="src/assets/icon.png" />
+                    <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
+                </div>
+            </ul>
+        </div>
+        <div class="main_content">
+            <div class="header">
+                <div id="btn_menu">
+                    <i class='bx bx-menu-alt-left'></i>
+                </div>
+                <div class="search-bar">
+                    <input id="input-search" type="text" placeholder="Look for..." />
+                    <i class='bx bx-search'></i>
+                    <ul class="search-menu">
+                        <li>
+                            <a href="#">
+                                <img src="src/assets/avatar.png"
+                                    onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
+                                <h1>
+                                    Title
+                                </h1>
+                                <h3>
+                                    Description
+                                </h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="view-notif">
+                                Powered By ATMS
+                            </a>
+                        </li>
+                    </ul>
+
+
+
+                </div>
+
+                <div class="notification " title="Notification">
+                    <i class='bx bxs-bell'></i>
+                    <ul class="notif-menu">
+                        <li>
+                            <a href="#">
+                                <img src="src/assets/avatar.png"
+                                    onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
+                                <h1>
+                                    Title
+                                </h1>
+                                <h3>
+                                    Description
+                                </h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="src/assets/avatar.png"
+                                    onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
+                                <h1>
+                                    Title
+                                </h1>
+                                <h3>
+                                    Description
+                                </h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="src/assets/avatar.png"
+                                    onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
+                                <h1>
+                                    Title
+                                </h1>
+                                <h3>
+                                    Description
+                                </h3>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="view-notif">
+                                View all notification
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="profile-picture" title="Profile">
+                    <img src="src/assets/avatar.png" onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
+                    <ul class="profile-menu">
+                        <li><a href="profile.html">Profile</a></li>
+                        <li><a href="settings.html">Settings</a></li>
+                        <li><a href="#" onclick="Logout()">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+            <main class="item_container">
+                <h3><span>Atten</span>dance</h3>
+                <div class="tap-first">
+                    <img src="src/assets/tapin_icon.svg" />
+                    <h1>You need to tap-in first!</h1>
+                </div>
+                <div class="attendance-section">
+
+
+                    <h1 class="section-name" id="classname" data-prof="" data-class="">--</h1>
+                    <div class="function">
+                        <div id="subject">
+                            <i class='bx bxs-category' ></i>
+                            <span>Select Subject</span>
+                        </div>
+                        <div id="form">
+                            <i class='bx bxs-book-alt'></i>
+                            <span>Form</span>
+                        </div>
+                        <div id="export">
+                            <i class='bx bxl-microsoft'></i>
+                            <span>Export</span>
+                        </div>
+                        <div id="add">
+                            <i class='bx bxs-layer-plus'></i>
+                            <span>Add</span>
+                        </div>
+                    </div>
+                    <div class="legend">
+                        <div>
+                            <i class='bx bxs-circle' style="color:#69E486"></i>
+                            <span>Present</span>
+                        </div>
+                        <div>
+                            <i class='bx bxs-circle' style="color:#FE5277"></i>
+                            <span>Absent</span>
+                        </div>
+                        <div>
+                            <i class='bx bx-chevrons-left' style="color: #FEB331;"></i>
+                            <span>Arrive Late</span>
+                        </div>
+                        <div>
+                            <i class='bx bx-chevrons-right' style="color: #FEB331;"></i>
+                            <span>Leave Early</span>
+                        </div>
+                    </div>
+
+                    <div class="attendance-table">
+                        <table class="name" id="myTable">
+                            <thead>
+                                <tr>
+                                    <td class='n'>Name</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                            <tfoot style="display: none;">
+                                <tr>
+                                    <td class='n'>Name</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <button id="btnSubmitAtt">
+                        Submit
+                    </button>
+                    <br>
+                    <br>
+                </div>
+                <!-- MODAL -->
+                <div class="modal remarks-modal">
+                    <div class="modal-container">
+                        <div class="modal-body">
+                            <i onclick="CloseRemarksModal()" title="Close" class="material-icons"
+                                style="position: absolute; right: 10; top: 10; color: #ffff;">close</i>
+                            <span>
+                                <h3>Add/View Remarks</h3>
+                            </span>
+                            <div class="Student-info">
+                                <div>
+                                    <label>Name</label>
+                                    <label>Mitch A. Serrano</label>
+                                </div>
+                                <div>
+                                    <label>ID</label>
+                                    <label>02000017275</label>
+                                </div>
+                            </div>
+                            <textarea id="remarks-info" placeholder="Enter Remarks"></textarea>
+                            <div class="modal-controls">
+                                <button class="save">Save</button>
+                                <button onclick="CloseRemarksModal()">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- MODAL END -->
+
+
+                <!-- MODAL Report -->
+                <div class="modal report-modal">
+                    <div class="modal-container">
+                        <div class="modal-body">
+                            <i title="Close" class="material-icons report-close"
+                                style="position: absolute; right: 10; top: 10; color: #ffff;">close</i>
+                            <span>
+                                <h3>Report this Student</h3>
+                            </span>
+                            <div class="Student-info">
+                                <div>
+                                    <label>Mitch A. Serrano</label>
+                                </div>
+                                <div>
+                                    <label>02000017275</label>
+                                </div>
+                            </div>
+                            <textarea id="report-info" placeholder="Enter Report"></textarea>
+                            <div class="modal-controls">
+                                <button id="report-save">Report</button>
+                                <button id="report-cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- MODAL END Report -->
+
+
+
+                <!-- MODAL Report -->
+                <div class="modal date-modal">
+                    <div class="modal-container">
+                        <div class="modal-body">
+                            <i title="Close" class="material-icons date-close"
+                                onclick="CloseDateModal()">close</i>
+                            <span>
+                                <h3>Manage Attendance</h3>
+                            </span>
+                            <div class="Student-info">
+                                <div>
+                                    <label id="text-Mdate">--</label>
+                                </div>
+                                <div style="border: none;">
+                                    <label>Mark all as</label>
+                                    <select id="set-status-col">
+                                        <option disabled selected>Select Status</option>
+                                        <option value="present">Present</option>
+                                        <option value="absent">Absent</option>
+                                        <option value="arrivelate">Arrive Late</option>
+                                        <option value="leaveearly">Leave Early</option>
+                                    </select>
+                                </div>
+                                <div style="border: none;">
+                                    <button id="remove-date">Remove
+                                        Attendance</button>
+                                </div>
+                            </div>
+                            <div class="modal-controls">
+                                <button id="date-save">Submit</button>
+                                <button onclick="CloseDateModal()" id="date-cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- MODAL END Report -->
+
+
+
+                <div class="modal subject-modal">
+                    <div class="modal-container">
+                        <div class="modal-body">
+                            <i title="Close" class="material-icons date-close"
+                                onclick="CloseDateModal()">close</i>
+                            <span>
+                                <h3>Select Subject</h3>
+                            </span>
+                            <div class="Student-info">
+                                <div>
+                                    <label id="text-subject">--</label>
+                                </div>
+                                <div style="border: none;">  <label>Reselect Subject</label>
+                                    <select id="set-subject-col">
+                                        <option disabled selected>Select Subject</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="modal-controls">
+                                <button id="subject-save">Submit</button>
+                                <button onclick="CloseSubjectModal()" id="subject-cancel">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+    <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+        integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    </script>
+
+
+
+    <script src="src/js/script.js"></script>
+    <script src="src/js/sidebar.js"></script>
+    <script src="src/js/attendance-b.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.2/dist/jquery.table2excel.min.js">
+</script>
+
+</body>
+
+</html>

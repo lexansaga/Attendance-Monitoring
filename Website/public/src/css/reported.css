@@ -1,0 +1,328 @@
+@import url('root.css');
+
+main .reported-dates {
+    text-decoration: none;
+    color: var(--font-color-secondary);
+    margin-top: 25px;
+}
+
+.list-attendance{
+    overflow-y: auto;
+    width: 100%;
+}
+
+main .reported-dates r {
+    color: var(--primary-color);
+}
+
+main .archive {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    position: absolute;
+    left: 95%;
+
+    text-decoration: none;
+    color: var(--font-color-secondary);
+    margin-top: 25px;
+}
+
+main .archive i {
+    font-size: 30px;
+}
+
+main .archive:hover {
+    color: var(--primary-color);
+}
+main .info
+{
+    padding: 18px 8px;
+    border-bottom: 1px solid var(--text-border);
+    margin: 5px 0;
+}
+main .info > span
+{
+    font-weight: 600;
+}
+.list-reports {
+    margin: 50px 50px 0 0;
+    overflow: auto;
+
+}
+
+#datatable {
+    padding: 15px;
+    border-bottom: 0 !important;
+    min-width: 1000px;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+    border-bottom: 0 !important;
+}
+
+tr {
+    margin: 10px 0 0 0;
+}
+
+th {
+    font-weight: 500 !important;
+    background-color: var(--secondary-color);
+    color: white;
+
+}
+
+td:nth-child(1) {
+    width: 80px;
+
+}
+
+td {
+    text-align: center;
+}
+
+td>img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+
+td:nth-child(5) {}
+
+.btn-take-action {
+    border: none;
+    outline: none;
+    background-color: var(--orange);
+    border-radius: 50px;
+    color: white;
+    padding: 10px;
+    margin-right: 10px;
+    width: 120px;
+    cursor: pointer;
+
+}
+
+.btn-delete {
+    border: none;
+    outline: none;
+    background-color: var(--red);
+    border-radius: 50px;
+    color: white;
+    padding: 10px;
+    margin-right: 10px;
+    margin-top: 6px;
+    width: 120px;
+    cursor: pointer;
+}
+
+.btn-take-action:hover {
+    background-color: rgba(255, 141, 115, 0.8);
+}
+
+.btn-delete:hover {
+    background-color: rgba(254, 82, 119, 0.8);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4)
+}
+
+.modal-container {
+    position: relative;
+    z-index: 101;
+    margin: auto;
+    top: 50px;
+    background-color: white;
+    height: 480px;
+    width: 600px;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation: modal-animation;
+    animation-duration: 0.5s;
+}
+
+/* Add Animation */
+@keyframes modal-animation {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 50;
+        opacity: 1
+    }
+}
+
+.modal-container > span {
+    position: relative;
+    left: 92%;
+    top: 15px;
+    cursor: pointer;
+}
+
+.modal-container > span i {
+    font-size: 25px;
+}
+
+.modal main {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 30px;
+    height: 100%;
+}
+
+.modal-container main h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--font-color-primary);
+}
+
+.modal-container main select {
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    scroll-behavior: smooth;
+    background-color: var(--font-light-color);
+    border-bottom: 1px solid var(--text-border);
+}
+
+.modal-container main select option {
+    outline: none;
+    border: none;
+}
+
+.modal-container main select option:hover {
+    background-color: aqua;
+}
+
+.modal-container main textarea {
+    margin-top: 10px;
+    padding: 20px 15px;
+    height: 55%;
+    outline: none;
+    border: 1px solid var(--text-border);
+    resize: none;
+
+}
+
+.buttons {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    right: 0;
+    top: 15px;
+}
+
+.buttons button {
+    outline: none;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.buttons button:nth-child(1) {
+    background-color: var(--color-accent-1);
+    color: var(--font-light-color);
+    margin-right: 10px;
+
+}
+
+.buttons button:nth-child(2) {
+    background-color: var(--red);
+    color: var(--font-light-color);
+
+}
+
+.buttons button:nth-child(1):hover {
+    background-color: rgba(66, 89, 125, 0.9);
+
+
+}
+
+.buttons button:nth-child(2):hover {
+    background-color: rgba(254, 82, 119, 0.9);
+
+
+}
+
+.date .modal-container main p {
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.date .modal-container main input[type="date"] {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--text-border);
+    text-transform: uppercase;
+    padding: 8px 0;
+}
+
+.date .modal-container {
+    height: 320px;
+}
+.delete .modal-container {
+    height: 130px;
+}
+
+
+@media only screen and (max-width:768px) {
+
+    main .archive {
+        left: 85%;
+    }
+
+    .list-reports {
+        overflow: auto;
+        margin: 50px 25px 0 0;
+    }
+
+    .modal-container {
+
+        width: 80%;
+    }
+
+    .buttons {}
+}
+
+@media only screen and (max-width:425px) {
+
+    main .reported-dates {
+        margin-top: 35px;
+    }
+
+    main .archive {
+        top: 30px;
+        left: 80%;
+    }
+
+    .modal-container > span {
+
+        left: 88%;
+
+    }
+
+    .buttons {
+
+        justify-content: center;
+
+    }
+
+    .delete .modal-container {
+        height: 165px;
+    }
+
+}

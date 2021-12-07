@@ -1,0 +1,361 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="src/css/usermanagement.css" rel="stylesheet" />
+   <link href="src/css/sidebar.css" rel="stylesheet" />
+   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+   <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
+
+   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+   <title>Student Information - ATMS</title>
+</head>
+
+<body>
+
+   <div class="main_container">
+      <div class="s-navbar" data-aos="fade-right">
+         <div class="logo-name">
+            <a href="main.html">
+               <H3>
+                  ATTENDANCE<BR>MONITORING</H1>
+            </a>
+         </div>
+         <ul class="nav-links">
+            <li class="vert-line">
+               <a href="main.html">
+                  <i class='bx bxs-home'></i>
+                  <span class="link_name">Home</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="schedule.html">
+                  <i class='bx bx-calendar'></i>
+                  <span class="link_name">Schedule</span>
+               </a>
+            </li>
+
+            <li class="vert-line">
+               <a href="attendance-b.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Attendance</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="attendancereport.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Attendance Report</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="reported.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Reported</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="#">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Subject</span>
+               </a>
+               <ul class="sub-menu">
+                  <li><a href="subject.html?type=add">Add Subject</a></li>
+                  <li><a href="subject.html?type=update">Edit Subject</a></li>
+                  <li><a href="subject.html?type=delete">Delete Subject</a></li>
+               </ul>
+            </li>
+            <li class="vert-line">
+               <a href="class.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Class</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="#">
+                  <i class='bx bxs-user-account'></i>
+                  <span class="link_name">User Management</span>
+               </a>
+               <ul class="sub-menu">
+                  <li><a href="usermanagement.html?type=add">Add User</a></li>
+                  <li><a href="usermanagement.html?type=update">Edit User</a></li>
+                  <li><a href="usermanagement.html?type=delete">Delete User</a></li>
+               </ul>
+            </li>
+            <li class="vert-line">
+               <a href="manageschedule.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Subjects</span>
+               </a>
+            </li>
+            <div class="bottom-image">
+               <img src="src/assets/icon.png" />
+               <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
+            </div>
+         </ul>
+      </div>
+      <div class="main_content">
+         <div class="header">
+            <div id="btn_menu">
+               <i class='bx bx-menu-alt-left'></i>
+            </div>
+            <div class="search-bar">
+               <input id="input-search" type="text" placeholder="Look for..." />
+               <i class='bx bx-search'></i>
+               <ul class="search-menu">
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="view-notif">
+                        Powered By ATMS
+                     </a>
+                  </li>
+               </ul>
+
+
+
+            </div>
+
+            <div class="notification " title="Notification">
+               <i class='bx bxs-bell'></i>
+               <ul class="notif-menu">
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="view-notif">
+                        View all notification
+                     </a>
+                  </li>
+               </ul>
+            </div>
+            <div class="profile-picture" title="Profile">
+               <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+               <ul class="profile-menu">
+                  <li><a href="profile.html">Profile</a></li>
+                  <li><a href="settings.html">Settings</a></li>
+                  <li><a href="index.html">Logout</a></li>
+               </ul>
+            </div>
+         </div>
+         <main class="item_container">
+            <h3>Manage User</h3>
+            <div class="imageArea">
+               <img id="output" src="src/assets/avatar.png"
+                  onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
+               <input type="file" accept="image/*" onchange="loadFile(event)" name="image" id="file"
+                  style="display: none;">
+               <label class="SelectPicture" for="file" id="selectPicture">Select a picture</label>
+            </div>
+
+            <div class="inputArea">
+               <select id="UserType" onchange="VerifyType()">
+                  <option value="" disabled selected>Select User Type</option>
+                  <option value="student">Student</option>
+                  <option value="faculty">Faculty</option>
+                  <option value="faculty">Gate</option>
+               </select>
+
+               <div class="containerSearchPerson">
+                  <select id="SearchPerson">
+                     <option value="default" disabled selected>Select Person</option>
+                  </select>
+
+               </div>
+
+
+               <select id="Role">
+                  <option value="" disabled selected>Select Role (Default : Faculty)</option>
+                  <option value="Administrator">Administrator</option>
+                  <option value="Guidance">Guidance</option>
+                  <option value="Faculty">Faculty</option>
+               </select>
+
+               <input type="text" placeholder="" id="ID" disabled>
+
+               <input type="text" placeholder="Card ID" id="Card_ID" />
+
+               <input id="LName" type="text" placeholder="Last Name">
+               <input id="FName" type="text" placeholder="First Name">
+               <input id="MName" type="text" placeholder="Middle Name">
+
+               <input type="text" placeholder="Contact Number" id="ContactNumber">
+               <input type="text" placeholder="Email" id="Email">
+               <textarea placeholder="Address" style="resize: none" id="Address"></textarea>
+               <button class="setSubjectSection" id="setSubject">Set User Subject and Section</button>
+            
+
+               <select id="Status">
+                  <option value="default" disabled selected>Select Gate Status</option>
+                  <option value="In">Tap In</option>
+                  <option value="Out">Tap Out</option>
+               </select>
+               <input type="text" placeholder="Location" id="Location">
+            </div>
+            <div class="UserSectionnSubject" id="Maintable">
+               <table id="SubjectSection-table">
+                  <thead>
+                     <tr>
+                        <th>ClassNbr</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Professor</th>
+                        <th></th>
+                     </tr>
+                  </thead>
+                  <tbody id="table-body"></tbody>
+               </table>
+               <br>
+               <br>
+            </div>
+
+            <div class="UserSetup" id="UserSetup">
+               <h4>Setup User</h4>
+               <input type="text" placeholder="Email" id="UserEmail">
+               <input type="password" placeholder="Password" id="password">
+            </div>
+
+            <div class="CustomCheckboxes" id="cbx">
+               <h5>---Permissions---</h5>
+               <label class="container">Require Tap-in First before taking class attendance.
+                  <input class="cbx" type="checkbox">
+                  <span class="checkmark"></span>
+               </label>
+               <label class="container" style="display: none;">Enable Add, Edit, and Delete Student.
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+               </label>
+               <label class="container" style="display: none;">Administrator Privilege
+                  <input type="checkbox">
+                  <span class="checkmark"></span>
+               </label>
+            </div>
+
+            <div class="actionButton" id="mainBTN">
+               <button id="btnsave">Save</button>
+               <button id="btndelete" hidden>Delete</button>
+               <br>
+               <br>
+            </div>
+
+
+            <div class="modal">
+               <div class="modal-container">
+                  <label>Add Section and Subject</label>
+                  <span class="close"><i class='bx bx-x'></i></span>
+                  <div class="mainContent">
+                     <select id="Select_Section" style="width: 90%;">
+                        <option value="" disabled selected>Select class number</option>
+                     </select>
+                     <br>
+                     <div class="tableContainer">
+                        <table id="modal-table">
+                           <thead>
+                              <tr>
+                                 <th>ClassNbr</th>
+                                 <th>Title</th>
+                                 <th>Description</th>
+                                 <th>Day</th>
+                                 <th>Time</th>
+                                 <th>Professor</th>
+                                 <th></th>
+                              </tr>
+                           </thead>
+                           <tbody id="table-body">
+                           </tbody>
+                        </table>
+                     </div>
+                     <div class="modalButtonControl">
+                        <button class="ModalAdd" hidden>Add</button>
+                        <button class="ModalSubmit">Submit</button>
+                        <button class="ModalCancel">Cancel</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+         </main>
+      </div>
+   </div>
+
+   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+   <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+
+   <!-- Add Firebase products that you want to use -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+      integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+   <script src="src/js/firebase.js"></script>
+   <script src="src/js/script.js"></script>
+   <script src="src/js/sidebar.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+   <script>
+      AOS.init();
+   </script>
+
+   <script src="src/js/usermanagement.js"></script>
+   <!-- Select2 CSS -->
+   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+   <!-- Select2 JS -->
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+   <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+</body>
+
+</html>
