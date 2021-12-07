@@ -1031,7 +1031,7 @@ function StudentInfo(event) {
     let id = $(event).attr('data-id');
     console.log(id);
 
-    window.location.href = `StudentInformation.html?id=` + id
+    window.location.href = `studentinformation.html?id=` + id
 
 }
 
