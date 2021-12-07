@@ -1,0 +1,391 @@
+@import url('root.css'); 
+/*Always include root css to access the root content and not to reinitialize code */
+
+#date-covered{
+    font-size: 15px;
+}
+.data_config{
+    margin-top: 0.5vw;
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+}
+.data_config > i{
+    color: #515151;
+    margin-left: 1vw;
+    margin-top: -0.2vw;
+}
+.data_config > i:hover{
+    cursor:pointer;
+}
+.data_config > i:active{
+    color: #8694F2;
+}
+
+.charts{
+    margin-top: 1vw;
+    display: flex;
+    flex-direction: row;
+}
+
+.charts #line_chart{
+    margin-top: 1vw;
+}
+.data-table{
+    margin-top: 2vw;
+    width: 95%;
+}
+.data-table > label{
+    color: #868686;
+    font-size: 1vw;
+    font-weight: bold;
+}
+.data-table #datatable{
+    text-align: center;
+    width: 100%;
+}
+#datatable tr:hover{
+    cursor: default;
+}
+#datatable tbody>tr:hover{
+    background-color: #D7D7D7;
+  }
+#datatable td img 
+{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+#exportlbl{
+    font-weight: normal;
+    color: black;
+}
+
+td.details-control{
+    background: url('/src/assets/plus.png') no-repeat center center;
+    background-size: 20px;
+    cursor: pointer;
+}
+tr.shown td.details-control {
+    background: url('/src/assets/minus.png') no-repeat center center;
+    background-size: 20px;
+}
+.charts .LChart_cont{
+    width: 30vw;
+}
+
+.pie_parentdiv{
+    width: 40%;
+    height: 90%;
+    margin-top: 1vw;
+    margin-left: 2vw;
+    overflow: hidden;
+}
+.chart_labels{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1vw;
+    width: 100%;    
+}
+.chart_labels label{
+    font-weight: bold;
+}
+#pielbl{
+    margin-left: 40%;
+}
+#pie_chart{
+    width: 100%;
+    height: 100%;
+}
+
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4)
+}
+
+.modal-container {
+    position: relative;
+    z-index: 101;
+    margin: auto;
+    top: 50px;
+    background-color: white;
+    height: 480px;
+    width: 600px;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation: modal-animation;
+    animation-duration: 0.5s;
+}
+
+/* Add Animation */
+@keyframes modal-animation {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 50;
+        opacity: 1
+    }
+}
+
+.modal-container span {
+    position: relative;
+    left: 92%;
+    top: 15px;
+    cursor: pointer;
+}
+
+.modal-container span i {
+    font-size: 25px;
+}
+
+.modal main {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 30px;
+    height: 100%;
+}
+
+.modal-container main h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--font-color-primary);
+}
+
+.modal-container main select {
+    border: none;
+    outline: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    scroll-behavior: smooth;
+    background-color: var(--font-light-color);
+    border-bottom: 1px solid var(--text-border);
+}
+
+.modal-container main select option {
+    outline: none;
+    border: none;
+}
+
+.modal-container main select option:hover {
+    background-color: aqua;
+}
+
+.modal-container main textarea {
+    margin-top: 10px;
+    padding: 20px 15px;
+    height: 60%;
+    outline: none;
+    border: 1px solid var(--text-border);
+    resize: none;
+
+}
+
+.buttons {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    right: 0;
+    top: 15px;
+}
+
+.buttons button {
+    outline: none;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.buttons button:nth-child(1) {
+    background-color: var(--color-accent-1);
+    color: var(--font-light-color);
+    margin-right: 10px;
+
+}
+
+.buttons button:nth-child(2) {
+    background-color: var(--red);
+    color: var(--font-light-color);
+
+}
+
+.buttons button:nth-child(1):hover {
+    background-color: rgba(66, 89, 125, 0.9);
+
+
+}
+
+.buttons button:nth-child(2):hover {
+    background-color: rgba(254, 82, 119, 0.9);
+
+
+}
+
+.date .modal-container main p {
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.date .modal-container main input[type="date"] {
+    border: none;
+    outline: none;
+    border-bottom: 1px solid var(--text-border);
+    text-transform: uppercase;
+    padding: 8px 0;
+}
+
+.delete .modal-container {
+    height: 130px;
+}
+
+.date .modal-container {
+    height: 320px;
+}
+
+#datatable {
+    padding: 15px;
+    border-bottom: 0 !important;
+  }
+  table.dataTable thead th, table.dataTable thead td
+  {
+  border-bottom: 0 !important;
+  }
+  
+  thead {
+    font-weight: 500 !important;
+    background-color: var(--secondary-color);
+    color: white;
+  
+  }
+/*----------------------------------------------------Tablet View----------------------------------------------------*/
+@media (max-width: 768px){
+    .modalMenu{
+        margin-top: 10px;
+    }
+    .modal-container {
+        height: 35%;
+        width: 70%;
+    }
+    .chart_labels label{
+        font-weight: bold;
+        margin-right: 20%;
+    }
+    #pielbl{
+        margin-left: 25%;
+    }
+    h4{
+        font-size: large;
+    }
+    #date-covered{
+        font-size: 13px;
+    }
+    .data_config i{
+        padding-left: 0.5vw;
+        font-size:18px;
+    }
+    .charts{
+        margin-top: 3vw;
+    }
+    .data-table{
+        margin-top: 5vw;
+        width: 95%;
+        overflow-y: auto;
+    }
+    .data-table label{
+        font-size: 15px; 
+        margin-left: 10px;   
+    }
+    .data-table th{
+        font-size: 15px;
+    }  
+    .data-table td{
+        font-size: 15px;
+    }
+    .charts .LChart_cont{
+        width: 50vw;
+        height: 30vw;
+    }
+}
+
+
+/*----------------------------------------------------Mobile View----------------------------------------------------*/
+@media (max-width: 425px){
+    .modalMenu{
+        margin-top: 10px;
+    }
+    .modal-container {
+        height: 25%;
+        width: 80%;
+    }
+    .modal-container span
+    {
+        left: 88%;
+    }
+    .pie_parentdiv{
+        margin-left: 8vw;
+        margin-top: 15vw;
+        width: 100%;
+        height: 60%;
+    }
+    .charts{
+        margin-top: 1vw;
+        display: flex;
+        flex-direction: column;
+        height: max-content;
+    }
+    #pielbl{
+        position: absolute;
+        margin-top: 50%;
+        margin-left: 0%;
+    }
+    .chart_labels label{
+        font-weight: bold;
+        margin-right: 0%;
+    }
+    .chart_labels{
+        flex-direction: column;
+        margin-top: 3vw;
+        width: 100%;    
+    }
+
+    .data-table td{
+        font-size: 15px;
+    }
+    .data-table th{
+        font-size: 3.5vw;
+    }  
+    .data-table label{
+        font-size: 4vw; 
+        margin-left: 2vw;   
+    }
+    .data-table{
+        width: 95%;
+        height: max-content;
+        margin-top: 10vw;
+        margin-left: 0vw;
+    }
+    .charts .LChart_cont{
+        width: 85vw;
+        height: 40vw;
+    }
+    .data_config i{
+        padding-left: 0.5vw;
+        font-size:5vw;
+    }
+    #date-covered{
+        font-size: 13px;
+    }
+
+}

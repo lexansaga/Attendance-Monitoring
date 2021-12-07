@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@300;400;700&display=swap');
+
+:root {
+	--background-color: #F8F8F8;
+	--primary-color: #5E6AB3;
+	--secondary-color: #B2BBF7;
+	--color-accent-1: #42597D;
+	--color-accent-2: #C2DAFF;
+	--color-accent-3: #E1EDFF;
+	--font-color-primary: #696969;
+	--font-color-secondary: #484848;
+	--font-light-color: white;
+
+	--green: #69E486;
+	--red: #FE5277;
+	--yellow: #FEB331;
+	--orange: #FF8D73;
+
+	--text-border: #B2B2B2;
+
+	--shadow: 0 2px 4px 0 rgb(0 0 0 / 21%);
+	/* This root block contains static data */
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Karla', sans-serif;
+	transition: .2s ease-in-out;
+	-webkit-tap-highlight-color: transparent;
+	/*border: 1px solid black;*/
+}
+
+body {
+	background: var(--background-color);
+	padding: 0;
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	position: absolute;
+}
+
+.item_container>h3 {
+	color: var(--font-color-secondary);
+}
+
+.item_container>h3>span {
+	border-bottom: 2px solid var(--primary-color);
+}
+
+@media only screen and (max-width:425px) {
+	.item_container>h3 {
+		margin-top: 15px;
+	}
+
+}
+
+/* Custome Scrollbar */
+/* width */
+::-webkit-scrollbar {
+	width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: var(--primary-color);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: rgba(94, 106, 179, 0.9);
+}

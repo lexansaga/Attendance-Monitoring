@@ -1,0 +1,567 @@
+@import url('root.css');
+
+.attendance-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.attendance-container>h1 {
+    color: var(--font-color-primary);
+    font-size: 25px;
+    margin: 30px 0;
+    font-weight: 600;
+}
+
+.attendance-collection {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+}
+
+.attendance-item {
+
+    border-radius: 10px;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 21%);
+    width: 250px;
+    height: 230px;
+    padding: 30px 0px 70px 0px;
+    margin: 15px;
+    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 2fr 0.6fr 1.6fr 1fr;
+    gap: 0px 0px;
+    grid-template-areas:
+        "Image Image"
+        "Name Name"
+        "Status Status"
+        "Remarks Remarks";
+}
+
+#attendance-profile {
+    height: 100px;
+    width: 100px;
+    margin: auto;
+    object-fit: cover;
+    border-radius: 50%;
+    grid-area: Image;
+}
+
+.attendance-item>p {
+    grid-area: Name;
+    margin: 20px auto;
+    font-size: 20px;
+    color: var(--font-color-primary);
+    font-weight: 500;
+}
+
+.attendance-item>div {
+    display: flex;
+    flex-direction: row;
+    grid-area: Status;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+
+
+#present:active {
+    background-color: var(--green);
+    color: white;
+}
+
+#present:active span {
+    color: white;
+}
+
+#present {
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    color: var(--font-color-primary);
+    background-color: var(--background-color);
+    border-radius: 50%;
+    padding: 20px;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 20px;
+}
+
+#present:hover {}
+
+#present:active {
+    background-color: var(--green);
+    color: white;
+}
+
+#present:active span {
+    color: white;
+}
+
+#absent {
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    color: var(--font-color-primary);
+    background-color: var(--background-color);
+    border-radius: 50%;
+    padding: 20px;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 20px;
+}
+
+#absent:active {
+    background-color: var(--red);
+    color: white;
+}
+
+#absent:active span {
+    color: white;
+}
+
+
+#late {
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    color: var(--font-color-primary);
+    background-color: var(--background-color);
+    border-radius: 50%;
+    padding: 20px;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    line-height: 20px;
+}
+
+#late:active {
+    background-color: var(--yellow);
+    color: white;
+}
+
+#late:active span {
+    color: white;
+}
+
+.attendance-item>#remarks {
+    outline: none;
+    border: none;
+    resize: none;
+    margin: 0px 50px;
+    overflow: hidden;
+    height: 60px !important;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom: 1px solid var(--font-color-primary);
+    grid-area: Remarks;
+
+}
+
+
+.attendance-object-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.attendance-object {
+
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 0.8fr;
+    gap: 0px 10px;
+    grid-template-areas:
+        "section subject attendance-button";
+
+}
+
+.dropdown-section {
+    grid-area: section;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background-color: white;
+    cursor: pointer;
+}
+
+.dropdown-section:hover .dropdown-section-content {
+    display: flex !important;
+}
+
+.dropdown-section>p {
+    padding: 15px;
+
+}
+
+.dropdown-section>span {
+    position: relative;
+    right: 0;
+    margin: auto 10px;
+
+}
+
+.dropdown-section>.dropdown-section-content {
+
+    display: none !important;
+    position: absolute;
+    flex-direction: column;
+    background-color: white;
+    padding: 15px 0px 0 0;
+    top: 35px;
+    width: 100%;
+    z-index: 1;
+}
+
+.dropdown-section>.dropdown-section-content>a {
+    text-decoration: none;
+    color: var(--font-color-primary);
+    font-size: 18px;
+    line-height: 20px;
+    padding: 15px 0 15px 15px;
+    border-bottom: #f5f5f5 solid 1px;
+}
+
+.dropdown-section>.dropdown-section-content>a:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 500;
+}
+
+
+
+
+.dropdown-subject {
+    grid-area: subject;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    background-color: white;
+    cursor: pointer;
+}
+
+.dropdown-subject:hover .dropdown-subject-content {
+    display: flex !important;
+}
+
+.dropdown-subject>p {
+    padding: 15px;
+    justify-content: space-between;
+
+}
+
+.dropdown-subject>span {
+    position: relative;
+    right: 0;
+    margin: auto 10px;
+
+}
+
+.dropdown-subject>.dropdown-subject-content {
+
+    display: none !important;
+    position: absolute;
+    flex-direction: column;
+    background-color: white;
+    padding: 15px 0px 0 0;
+    top: 35px;
+    width: 100%;
+    z-index: 1;
+}
+
+.dropdown-subject>.dropdown-subject-content>a {
+    text-decoration: none;
+    color: var(--font-color-primary);
+    font-size: 18px;
+    line-height: 20px;
+    padding: 15px 0 15px 15px;
+    border-bottom: #f5f5f5 solid 1px;
+}
+
+.dropdown-subject>.dropdown-subject-content>a:hover {
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 500;
+}
+
+.take-attendance {
+    grid-area: attendance-button;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    outline: none;
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 400;
+    width: 100%;
+    font-size: 13px;
+
+}
+
+.take-attendance:hover {
+    box-shadow: var(--shadow);
+}
+
+.attendance-layout {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    margin-right: 50px;
+    width: 50px;
+    right: 50px;
+    height: 50px;
+}
+
+#attendance-grid {
+    cursor: pointer;
+    position: relative;
+    border: none;
+    outline: none;
+    background-color: var(--secondary-color);
+    color: white;
+    font-weight: 400;
+    padding: 0 12px;
+    height: 100%;
+    font-size: 13px;
+}
+
+#attendance-grid:hover {
+    box-shadow: var(--shadow);
+}
+
+#attendance-grid>i {
+    font-size: 25px;
+}
+
+#attendance-list {
+    cursor: pointer;
+    position: relative;
+    border: none;
+    outline: none;
+    background-color: white;
+    color: var(--font-color-primary);
+    font-weight: 400;
+    padding: 0 12px;
+    height: 100%;
+    font-size: 13px;
+}
+
+#attendance-list:hover {
+    box-shadow: var(--shadow);
+}
+
+#attendance-list>i {
+    font-size: 25px;
+
+}
+
+
+.attendance-null {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin: 10vw 0 0 0;
+}
+
+.attendance-null>img {}
+
+.attendance-null>h1 {
+    text-align: center;
+    color: var(--font-color-primary);
+    margin: 3vw 0 0 0;
+    font-size: 22px;
+}
+
+.list-attendance {
+    margin: 50px 50px 0 0;
+}
+#datatable {
+    padding: 15px;
+    border-bottom: 0 !important;
+}
+table.dataTable thead th, table.dataTable thead td
+{
+border-bottom: 0 !important;
+}
+
+th {
+    font-weight: 500 !important;
+    background-color: var(--secondary-color);
+    color: white;
+
+}
+tr {
+    margin: 10px 0 0 0;
+}
+
+
+
+td:nth-child(1) {
+    width: 80px;
+
+}
+
+td {
+    background-color: white !important;
+}
+
+td>img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+td:nth-child(3) {
+    background-color: #666;
+}
+
+td>input {
+    outline: none;
+    border: none;
+    width: 80%;
+    padding: 12px 0;
+    border-bottom: 1px solid #666;
+
+}
+
+#attendance-status {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+[type="radio"]:checked,
+[type="radio"]:not(:checked) {
+    position: absolute;
+    left: -9999px;
+}
+
+[type="radio"]:checked+label,
+[type="radio"]:not(:checked)+label {
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    line-height: 20px;
+    display: inline-block;
+    color: #666;
+}
+
+[type="radio"]:checked+label:before,
+[type="radio"]:not(:checked)+label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #ddd;
+    border-radius: 100%;
+    background: #fff;
+}
+
+[type="radio"]:checked+label:after,
+[type="radio"]:not(:checked)+label:after {
+    content: '';
+    width: 12px;
+    height: 12px;
+    background: var(--primary-color);
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    border-radius: 100%;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+[type="radio"]:not(:checked)+label:after {
+    opacity: 0;
+    -webkit-transform: scale(0);
+    transform: scale(0);
+}
+
+[type="radio"]:checked+label:after {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+@media only screen and (max-width: 992px) {
+
+    /* For small screen desktop devices */
+    .attendance-layout {
+
+        top: 180px;
+    }
+
+    .attendance-container {
+        margin: 100px 0 0 0;
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+    /* For tablet devices */
+
+    /*
+    .attendance-object {
+
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        gap: 10px 0px;
+        grid-template-areas:
+            "section"
+            "subject"
+            "attendance-button";
+
+    }
+    */
+
+    .attendance-item {
+        width: 250px;
+        height: 240px;
+        margin: 10px;
+    }
+
+}
+
+@media only screen and (max-width: 425px) {
+    /* For mobile devices */
+
+
+    #attendance-grid {
+        height: 80%;
+        width: 80%;
+        padding: 0 8px;
+    }
+
+    #attendance-list {
+        height: 80%;
+        width: 80%;
+        padding: 0 8px;
+    }
+
+    .attendance-collection {
+        justify-content: center;
+    }
+
+    .attendance-item {
+        width: 280px;
+        height: 250px;
+        margin: 10px;
+    }
+
+    .attendance-layout {
+
+        top: 200px;
+        right: 0px;
+    }
+}

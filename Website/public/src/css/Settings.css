@@ -1,0 +1,113 @@
+@import url('root.css');
+/*Always include root css to access the root content and not to reinitialize code */
+
+.slider_container {
+    display: flex;
+    align-items: center;
+    margin-top: 45px;
+    background-color: #fff;
+    width: 92%;
+    padding: 20px 25px;
+    justify-content: space-between;
+}
+
+.slider_container .toggle {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 25px;
+    background-color: #F8F8F8;
+    border-radius: 30px;
+    border: 1px solid #ccc;
+    box-shadow: inset 0px 5px 3px 1px #E4E4E4;
+}
+
+/* After slide changes */
+.slider_container .toggle:after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #FEB331;
+    top: 1px;
+    left: 1px;
+    transition: all 0.5s;
+}
+
+/* Checkbox checked effect */
+.slider_container .checkbox:checked+.toggle::after {
+    left: 24px;
+    background-color: #F8F8F8;
+}
+
+/* Checkbox checked toggle label bg color */
+.slider_container .checkbox:checked+.toggle {
+    background-color: #51DB51;
+    box-shadow: inset 0px 0px 0px 0px #DADADA;
+}
+
+/* Checkbox vanished */
+.slider_container .checkbox {
+    display: none;
+}
+
+
+.settings {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    justify-content: space-between;
+    padding: 20px 25px;
+    width: 92%;
+    margin: 12px 0 0 0;
+}
+
+.settings p {
+    display: flex;
+    align-items: center;
+}
+
+.report select {
+    outline: none;
+    border: 1px solid var(--text-border);
+    padding: 5px 20px;
+}
+
+#save {
+    cursor: pointer;
+    padding: 16px 25px;
+    width: 220px;
+    outline: none;
+    border: none;
+    background-color: var(--secondary-color);
+    color: white;
+    margin: 68px 0 0 0
+}
+
+#save:hover {
+
+    filter: saturate(1.5);
+}
+
+@media screen and (max-width:768px) {
+    .slider_container {
+        width: 82%;
+    }
+
+    .settings {
+        width: 82%;
+    }
+}
+
+@media screen and (max-width:425px) {
+
+    .report select {
+        padding: 5px 16px;
+        width: 120px;
+    }
+
+    #save {
+        width: 95%;
+    }
+}

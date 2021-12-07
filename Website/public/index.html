@@ -1,0 +1,83 @@
+<html>
+
+<head>
+   <title>Attendance Monitoring System</title>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="src/css/style.css" rel="stylesheet" />
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+      rel="stylesheet">
+   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+</head>
+
+<body class="body_bg">
+   <div class="logo">
+      <p>ATTENDANCE<br>MONITORING</p>
+   </div>
+   <div class="center_card">
+      <div class="card" data-aos="zoom-in" data-aos-duration="500">
+         <div class="flow-x">
+            <div class="l_design x_half">
+               <div class="flow-y">
+                  <img src="src/assets/icon.png" class="icon" />
+                  <h2 data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine"><span>Wel</span>come
+                  </h2>
+                  <p data-aos="fade-right" data-aos-offset="300" data-aos-easing="ease-in-sine">
+                     Check your student attendance at ease with our attendance monitoring system.
+                  </p>
+               </div>
+            </div>
+            <div class="r_forms x_half">
+               <form class="flow-y">
+                  <p>ATTENDANCE<br>MONITORING</p>
+                  <h3 data-aos="fade-right">S<span>igni</span>n</h3>
+                  <div class="input_group">
+                     <input id="username" type="text" placeholder="Username" name="text" />
+                     <hr>
+                  </div>
+                  <div class="input_group">
+                     <input id="password" type="password" placeholder="Password" name="text" />
+                     <hr>
+                  </div>
+                  <span class="login-status">Wrong Password</span>
+                  <button type="button" onclick="Login()">Signin</button>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+
+
+   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+   <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+
+   <!-- Add Firebase products that you want to use -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+      integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+   <script type="text/javascript" src="src/js/script.js"></script>
+   <script type="text/javascript" src="src/js/index.js"></script>
+
+   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+   <script>
+      AOS.init();
+   </script>
+
+
+</body>
+
+</html>

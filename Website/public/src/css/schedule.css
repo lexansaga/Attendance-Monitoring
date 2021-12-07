@@ -1,0 +1,230 @@
+@import url('root.css');
+/*Always include root css to access the root content and not to reinitialize code */
+
+
+.item_container label {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.SearchControl_wrapper
+{
+  display: flex;
+  flex-direction: column;
+  margin-top: 18px;
+}
+.SearchControl_wrapper > div 
+{
+  margin: 12px 0;
+}
+.SearchControl_wrapper p 
+{
+  margin: 12px 0;
+}
+.UserInformation_wrapper {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  margin-top: 1.5vw;
+  width: 90%;
+}
+
+.userImage {
+  width: 120px;
+}
+
+.UserInfo {
+  margin-left: 150px;
+  margin-top:-120px;
+}
+
+.UserInfo h1 {
+  color: #7E8DF1;
+  margin:10px 0 10px 0;
+
+}
+
+.UserInfo h2
+ {
+  color: gray;
+  font-weight: 500;
+}
+
+.UserInfo h1:hover,
+h2:hover {
+  cursor: default;
+}
+
+#exportlbl{
+  font-size: 18px;
+  margin-top: 25px;
+}
+
+.table_Wrapper {
+  position: absolute;
+  width: 72%;
+  margin-top: 10px;
+  display: block;
+}
+.table_Wrapper button{
+  width: 70px;
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+.dataTable img {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.dataTable {
+  text-align: center;
+}
+
+.search-result {
+  display: none;
+  position: absolute;
+  list-style-type: none;
+  background-color: white;
+  width: 30vw;
+  /* top: 10.8vw; */
+  margin-top: 45px;
+  min-width: 300px;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 21%);
+  z-index: 1;
+  transition: .2s;
+}
+.search-result>li {
+  padding: 15px 0 15px 15px;
+  border-bottom: #f5f5f5 solid 1px;
+}
+
+.search-result>li:hover {
+  background-color: var(--secondary-color);
+}
+
+.search-result>li:hover a {
+  color: white;
+}
+
+.search-result>li>a {
+  color: var(--font-color-primary);
+  display: grid;
+  text-decoration: none;
+  grid-template-columns: 0.2fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    'search_icon search_title'
+    'search_icon search_description';
+}
+
+.search-result>li>a>img {
+  width: 40px;
+  border-radius: 50px;
+  grid-area: search_icon;
+  margin: auto 0;
+}
+
+.search-result>li>a>h1 {
+  font-size: 15px;
+  grid-area: search_title;
+  font-weight: 600;
+}
+
+.search-result>li>a>h3 {
+  grid-area: search_description;
+  font-size: 12px;
+  font-weight: 400;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 30px 0 0;
+  overflow: hidden;
+}
+
+#userSchedule {
+  padding: 15px;
+  border-bottom: 0 !important;
+}
+
+table.dataTable thead th,
+table.dataTable thead td {
+  border-bottom: 0 !important;
+}
+
+thead td {
+  font-weight: 500 !important;
+  background-color: var(--secondary-color);
+  color: white;
+
+}
+
+.type
+{
+  display: none;
+}
+
+
+/*----------------------------------------------------Tablet View----------------------------------------------------*/
+@media (max-width: 768px) {
+
+  .search-result
+  {
+    width: 88%
+  }
+  .userImage {
+    width: 100px;
+  }
+
+  .table_Wrapper {
+    position: absolute;
+    width: 90%;
+    margin-top: 30px;  
+  }
+  .UserInfo{
+    margin-left: 115px;
+    margin-top: -100px;
+  }
+
+  .UserInformation_wrapper {
+    margin-top: 20px;
+    width: 90%;
+  }
+ 
+}
+
+/*----------------------------------------------------Mobile View----------------------------------------------------*/
+@media (max-width: 425px) {
+  .table_Wrapper {
+    width: 90%;
+    margin-top: 30px;
+    overflow-y: auto;
+  }
+
+  .UserInformation_wrapper {
+    margin-top: 5vw;
+  }
+
+  .userImage {
+    width: 80px;
+    position: absolute;
+  }
+
+  .UserInfo h2 {
+    font-size: 20px;
+  }
+
+  .UserInfo {
+    margin-left: 90px;
+    margin-top: -7px;
+  }
+
+  .UserInfo h1 {
+    font-size: 22px;
+    color: #7E8DF1;
+    margin-top: 0px;
+    margin-bottom: 2px;
+  }
+
+ 
+
+}

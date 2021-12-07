@@ -1,0 +1,661 @@
+@import url('root.css');
+/*Always include root css to access the root content and not to reinitialize code */
+
+#lblPlaceholder {
+    font-size: 20px;
+    font-weight: bold;
+    color: #515151;
+}
+
+#output {
+    width: 8vw;
+    height: 8vw;
+}
+
+.imageArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    height: 25%;
+    margin-top: 1vw;
+}
+
+.imageArea input {
+    margin-left: 5vw;
+}
+
+.imageArea img {
+    margin-bottom: .5vw;
+    margin-left: 0vw;
+}
+
+.imageArea .SelectPicture:hover,
+img:hover {
+    cursor: pointer;
+}
+
+.inputArea {
+    margin-top: 1vw;
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    flex-wrap: wrap;
+}
+
+.inputArea input {
+    height: 45px;
+    margin-bottom: 10px;
+    width: 100%;
+    margin-right: 1.5%;
+    background-color: #fff;
+    padding: 0px 10px;
+    font-size: 16px;
+    outline: none;
+    border: solid 1.5px var(--color-accent-3)
+}
+
+.inputArea input:not(:placeholder-shown),
+textarea:not(:placeholder-shown),
+#UserSetup input:not(:placeholder-shown) {
+    background-color: var(--color-accent-3) !important;
+}
+
+.inputArea input:focus,
+.inputArea textarea:focus,
+.UserSetup input:focus {
+    box-shadow: 0 0 1pt 1pt var(--color-accent-3);
+    outline-width: 0px;
+}
+
+.inputArea textarea {
+    width: 98.4%;
+    height: 10vw;
+    padding: 10px 10px;
+    font-size: 16px;
+    outline: none;
+
+    border: solid 1.5px #D3D3D3
+}
+
+#UserType {
+    height: 45px;
+    width: 98.4%;
+    padding: 0px 10px;
+    border: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    outline: none;
+}
+
+#Role {
+    height: 45px;
+    width: 98.4%;
+    padding: 0px 10px;
+    border: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    outline: none;
+}
+#Status {
+    height: 45px;
+    width: 98.4%;
+    padding: 0px 10px;
+    border: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    outline: none;
+}
+#Email {
+    width: 100%;
+}
+
+#ID {
+    width: 100%;
+}
+
+.imageArea .SelectPicture {
+    text-decoration: underline;
+    font-size: 16px;
+    font-weight: lighter;
+}
+
+.UserSectionnSubject {
+    display: block;
+    width: 88.5%;
+    margin-top: 18px;
+}
+
+.setSubjectSection {
+    margin-top: .5vw;
+    text-decoration: underline;
+    font-size: 15px;
+    width: 98.4%;
+    height: 45px;
+    border: none;
+    background-color: #fff;
+}
+
+.setSubjectSection:active {
+    background-color: #D1D7FA;
+}
+
+.setSubjectSection:hover {
+    cursor: pointer;
+}
+
+#SubjectSection-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#SubjectSection-table,
+td {
+    font-size: 15px;
+    padding: 8px;
+}
+
+#SubjectSection-table tr:hover {
+    background-color: #D1D7FA;
+}
+
+#SubjectSection-table thead {}
+
+#SubjectSection-table th {
+    background-color: var(--secondary-color);
+    color: #ffff;
+    font-size: 17px;
+    height: 45px;
+
+    font-weight: 300;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+td button
+{
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+td button:hover
+{
+   color: var(--red);
+}
+#SubjectSection-table tbody {
+    background-color: #fff;
+}
+
+#SubjectSection-table,
+th:hover {
+    cursor: default;
+}
+
+.UserSetup {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    flex-wrap: wrap;
+    align-items: center;
+    display: block;
+    margin-top: 1vw;
+}
+
+.UserSetup input {
+    font-size: 15px;
+    margin-top: 1vw;
+    width: 100%;
+    margin-right: 1vw;
+    border: none;
+    padding: 0px 10px;
+    height: 45px;
+    outline: none;
+}
+
+.CustomCheckboxes h5 {
+    margin-bottom: 1vw;
+    margin-left: 50%;
+    font-size: 15px;
+}
+
+.CustomCheckboxes {
+    margin-top: 1.5vw;
+    display: flex;
+    width: 80%;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.CustomCheckboxes .container {
+    font-weight: normal;
+    margin-right: 2vw;
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 15px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.CustomCheckboxes .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.CustomCheckboxes .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.CustomCheckboxes .container:hover input~.checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.CustomCheckboxes .container input:checked~.checkmark {
+    background-color: var(--secondary-color);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.CustomCheckboxes .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+
+/* Show the checkmark when checked */
+.CustomCheckboxes .container input:checked~.checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.CustomCheckboxes .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.actionButton button {
+    margin-right: 10px;
+    margin-top: 20px;
+    width: 90px;
+    height: 40px;
+    border: none;
+    background-color: #B2BBF7;
+    color: #fff;
+}
+
+.actionButton button:hover {
+    background-color: #97A3F4;
+}
+
+.actionButton button:active {
+    background-color: #6D7DEF;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4)
+}
+
+.modal-container {
+    position: relative;
+    z-index: 101;
+    margin: auto;
+    top: 50px;
+    background-color: white;
+    height: 550px;
+    width: 600px;
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation: modal-animation;
+    animation-duration: 0.5s;
+}
+
+/* Add Animation */
+@keyframes modal-animation {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 50;
+        opacity: 1
+    }
+}
+
+.modal-container .close {
+    position: absolute;
+    right: 0;
+}
+
+.modal-container .close i {
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 25px;
+}
+
+.modal-container label {
+    position: absolute;
+    left: 0;
+    margin-top: 15px;
+    margin-left: 30px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.modal-container .mainContent {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    margin-top: 55px;
+}
+
+#Select_Section {
+    width: 100%;
+    height: 30px;
+    padding: 0 10px;
+    border: 1px solid var(--font-color-primary);
+}
+
+.tableContainer {
+    margin-top: 50px;
+    position: absolute;
+    display: block;
+    width: 90%;
+    height: 75%;
+    overflow-y: auto;
+}
+
+
+.modalButtonControl {
+    margin-left: 55px;
+    margin-top: 65%;
+    width: 100%;
+    display: flex;
+}
+
+.modalButtonControl button {
+    color: #fff;
+    border-radius: 25px;
+    border: none;
+    width: 80px;
+    height: 32px;
+}
+
+.modalButtonControl .ModalAdd {
+    background-color: #F6886F;
+}
+
+.modalButtonControl .ModalAdd:hover {
+    background-color: #FE89A4;
+}
+
+.modalButtonControl .ModalAdd:active {
+    background-color: #F6886F;
+}
+
+.modalButtonControl .ModalSubmit {
+    margin-left: 50%;
+    margin-right: .5vw;
+    background-color: #42597D;
+}
+
+.modalButtonControl .ModalSubmit:hover {
+    background-color: #6B87B1;
+}
+
+.modalButtonControl .ModalSubmit:active {
+    background-color: #476187;
+}
+
+.modalButtonControl .ModalCancel {
+    background-color: #FE5277;
+}
+
+.modalButtonControl .ModalCancel:hover {
+    background-color: #FE6D8E;
+}
+
+.containerSearchPerson
+{
+    width: 100%;
+    display: none;
+    margin-bottom: 10px;
+}
+
+
+#SubjectSection-table,#modal-table{
+    
+    border-bottom: 0 !important;
+}
+table.dataTable thead th, table.dataTable thead td
+{
+border-bottom: 0 !important;
+
+}
+tr td:nth-child(1)
+{
+    font-weight: 600;
+}
+
+table.dataTable td {
+    padding: 20px 10px 20px 0 !important;
+    background-color: var(--background-color) !important;
+  }
+th {
+    font-weight: 500 !important;
+    background-color: var(--secondary-color);
+    color: white;
+
+}
+
+
+/*----------------------------------------------------Tablet View----------------------------------------------------*/
+@media (max-width: 768px) {
+    #output {
+        width: 90px;
+        height: 90px;
+    }
+
+    .inputArea {
+        margin-top: 2vw;
+    }
+
+    .inputArea input {
+        margin-bottom: 10px;
+        height: 45px;
+    }
+
+    #id {}
+
+    #UserType {
+        height: 45px;
+        border: none;
+        font-size: 16px;
+        width: 100%;
+    }
+
+    #ContactNumber {
+        height: 45px;
+    }
+
+    .inputArea textarea {
+        margin-top: .8vw;
+        margin-bottom: .8vw;
+        width: 99%;
+        height: 15vw;
+        padding: 10px 10px;
+        font-size: 16px;
+    }
+
+    .setSubjectSection {
+        font-size: 15px;
+        margin-bottom: .8vw;
+        width: 99%;
+        height: 45px;
+    }
+
+    .actionButton {
+        left: 55%;
+    }
+
+    .UserSetup input {
+        width: 100%;
+        font-size: 15px;
+        height: 45px;
+    }
+
+
+    .modal-container label {
+        margin-top: 2vw;
+        margin-left: 3vw;
+    }
+
+    .modal-container .mainContent {
+        margin-left: 4vw;
+        width: 90%;
+        margin-top: 6vw;
+    }
+
+    .tableContainer {
+        margin-top: 5vw;
+        height: 320px;
+    }
+
+    .modalButtonControl .ModalSubmit {
+        margin-left: 36vw;
+        margin-right: 1vw;
+    }
+}
+
+/*----------------------------------------------------Mobile View----------------------------------------------------*/
+@media (max-width: 425px) {
+    #SubjectSection-table {
+        white-space: nowrap;
+        display: block;
+        overflow-x: auto;
+        width: 100%;
+    }
+
+    .imageArea {
+        margin-top: 3vw;
+        width: 100%;
+    }
+
+    .inputArea {
+        margin-top: 3vw;
+    }
+
+    .inputArea input {
+        margin-bottom: 2vw;
+        height: 45px;
+    }
+
+    #UserType {
+        background-color: white;
+        height: 45px;
+        border: none;
+        font-size: 16px;
+    }
+
+    #ContactNumber {
+        height: 45px;
+    }
+
+    .inputArea textarea {
+        height: 25vw;
+    }
+
+    .setSubjectSection {
+        height: 45px;
+        margin-bottom: 1vw;
+    }
+
+    .actionButton {
+        left: 42%;
+    }
+
+    .UserSetup input {
+        font-size: 15px;
+        margin-top: 3vw;
+        width: 100%;
+        border: none;
+        padding: 0px 10px;
+        height: 45px;
+    }
+
+    .UserSetup h5 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 80px;
+    }
+
+    .modal-container {
+        height: 500px;
+        width: 330px;
+    }
+
+    .modal-container label {
+        margin-top: 4vw;
+        margin-left: 3vw;
+    }
+
+    .modal-container .mainContent {
+        margin-left: 3vw;
+        width: 92%;
+        margin-top: 15vw;
+    }
+
+    .tableContainer {
+        margin-top: 11vw;
+        height: 320px;
+    }
+
+    .modalButtonControl {
+        margin-left: 0;
+        margin-top: 330px;
+    }
+
+    .modalButtonControl .ModalSubmit {
+        margin-left: 50px;
+        margin-right: 1vw;
+    }
+
+    .modal-container .close {
+        position: absolute;
+        left: 90%;
+    }
+}
