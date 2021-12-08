@@ -114,11 +114,11 @@ $(document).ready(function () {
 
 
             if (Account_Type.includes('Administrator')) {
-                window.location.replace("main.html");
+               // window.location.replace("main.html");
             } else if (Account_Type.includes('Faculty')) {
-                window.location.replace("main.html");
+                //window.location.replace("main.html");
             } else if (Account_Type.includes('Guidance')) {
-                window.location.replace("main.html");
+                //window.location.replace("main.html");
             } else { // Else
                 //window.location.replace("index.html");
             }
