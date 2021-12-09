@@ -409,24 +409,26 @@
 .s-navbar .bottom-image {
 	background-color: #B2BBF7;
 	align-items: center;
-	height: fit-content;
-	width: fit-content;
+	height: 190px;
+	width: 70%;
 	border-radius: 10px;
 	padding: 0vw 1vw 2vw 1vw;
 	box-shadow: 0.5px 1px 8px 3px #D9D9D9;
 	position: fixed;
-	bottom: 6%;
-	left: 10px;
+	bottom: 3%;
+	left: 23px;
+	display: flex;
+	flex-direction: column;
 }
 
 .s-navbar .bottom-image img {
-	width: 150px;
-	display: flex;
-	padding: 30px
+	width: 60%;
+	margin-top: 20px;
 }
 
 .s-navbar .bottom-image h3 {
-	padding-left: 1vw;
+	margin-left: -85px;
+	margin-top: 20px;
 	color: #FFFF;
 	font-size: 15px
 }
@@ -483,8 +485,6 @@
 }
 
 
-
-
 @media (max-width: 768px) {
     /* Property of Side Bar - Tablet Mode*/
 	.s-navbar {
@@ -504,7 +504,7 @@
 		margin-top: 6vh !important;
 	}
 	.bottom-image {
-		left: 20px !important;
+		left: 30px !important;
 	}
 	.search-bar {
 
@@ -593,7 +593,7 @@
 	}
 
 	.bottom-image {
-		left: 30px !important;
+		left: 33px !important;
 	}
 	.profile-picture {
 		padding: 1vw 8vw 1vw 0.5vw !important;
