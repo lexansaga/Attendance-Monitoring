@@ -1,6 +1,35 @@
 var tabview = window.matchMedia("(max-width: 768px)");
 var mobview = window.matchMedia("(max-width: 425px)");
 
+function ComboChart(data)
+{
+    google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+
+      function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+        var data = google.visualization.arrayToDataTable([
+          ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
+          ['2004/05',  165,      938,         522,             998,           450,      614.6],
+          ['2005/06',  135,      1120,        599,             1268,          288,      682],
+          ['2006/07',  157,      1167,        587,             807,           397,      623],
+          ['2007/08',  139,      1110,        615,             968,           215,      609.4],
+          ['2008/09',  136,      691,         629,             1026,          366,      569.6]
+        ]);
+
+        var options = {
+          title : 'Monthly Coffee Production by Country',
+          vAxis: {title: 'Status Count'},
+          hAxis: {title: 'Status'},
+          seriesType: 'bars',
+          series: {5: {type: 'line'}}
+        };
+
+        var chart = new google.visualization.ComboChart($('#line_chart'));
+        chart.draw(data, options);
+      }
+}
+
 //-----------------------------------------------LINE CHART-----------------------------------------------//
 function LineChart(data) {
     const CHART = document.getElementById('line_chart');
@@ -10,10 +39,10 @@ function LineChart(data) {
     let barChart = new Chart(CHART, {
         type: 'bar',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'],
+            labels: data.xValues,
             datasets: [{
                 backgroundColor: BarColors,
-                data: [25, 30, 50, 10, 240, 550, 120, 10]
+                data: data.yValues
             }]
         },
         options: {
@@ -32,15 +61,18 @@ function PieChart(data) {
     google.charts.load('current', {
         'packages': ['corechart']
     });
-    google.charts.setOnLoadCallback(drawChart);
+    google.charts.setOnLoadCallback(function () {
+        drawChart(data)
+    });
 
-    function drawChart() {
+    function drawChart(datas) {
 
         var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            ['Present', 20],
-            ['Absent', 12],
-            ['Late', 2]
+            ['Task', 'Overall Report'],
+            ['Present', datas.Present],
+            ['Absent', datas.Absent],
+            ['Arrive Late', datas.ArriveLate],
+            ['Leave Early', datas.LeaveEarly]
         ]);
 
         var options = {
@@ -108,17 +140,17 @@ $(document).ready(async function () {
 
                 if (Account_Type.includes('Administrator')) {
                     // window.location.replace("main.html");
-                 } else if (Account_Type.includes('Faculty')) {
-                     //window.location.replace("main.html");
-                 } else if (Account_Type.includes('Guidance')) {
+                } else if (Account_Type.includes('Faculty')) {
+                    //window.location.replace("main.html");
+                } else if (Account_Type.includes('Guidance')) {
                     // window.location.replace("main.html");
-                 } else { // Else
-                     window.location.replace("index.html");
-                 }
+                } else { // Else
+                    window.location.replace("index.html");
+                }
 
                 LoadTable(Account_Type, UserID)
 
-                GetReport(`weekly`)
+                GetReport(`monthly`)
             })
         } else {
             // User logout
@@ -449,17 +481,23 @@ function GetReport(timeframe) {
 
     if (timeframe.toLowerCase().includes('weekly')) {
 
-        start = new Date(FormatDate(`01-01-2021`, "MM-DD-YY"));
-        end = new Date(FormatDate(`03-01-2021`, "MM-DD-YY"));
 
-        var data = {}
-        var xValue = []
-        var yValue = []
+
+        let data = {}
+        let xValue = []
+        let yValue = []
 
 
         firebase.database().ref(`Attendance/Report/Statistics/Class/`).on('value', Classes => {
+
+
+
             Classes.forEach(Class => {
                 console.log(Class.key)
+
+
+                start = new Date(FormatDate(`01-01-2021`, "MM-DD-YY"));
+                end = new Date(FormatDate(`02-01-2021`, "MM-DD-YY"));
 
                 while (start < end) {
 
@@ -470,10 +508,10 @@ function GetReport(timeframe) {
                     let date = mm + '-' + dd + '-' + yy;
 
                     console.log(date)
-                    firebase.database().ref(`Attendance/Report/Statistics/Class/${Class.key}/Dates/${date}/`).on(`value`, dates => {
+                    firebase.database().ref(`Attendance/Report/Statistics/Class/${Class.key}/Dates/${FormatDate(date,`MM-DD-YY`)}/`).on(`value`, dates => {
 
                         if (dates.val() != null) {
-                            console.log(dates.val())
+
                             let present = dates.child(`Present`).val()
                             let absent = dates.child(`Absent`).val()
                             let late = dates.child(`Late`).val()
@@ -486,21 +524,20 @@ function GetReport(timeframe) {
                             console.log(dates.child('Present').val())
 
                         }
-
-
                     })
-                    
-                    data.xValue = xValue;
-                    data.yValue = yValue;
+
+                    var refDate = firebase.database().ref(`Attendance/Report/Statistics/Class/${Class.key}/Dates/${date}/`);
+                    console.log(refDate.toString())
+
+                    data.xValues = xValue;
+                    data.yValues = yValue;
                     console.log(data)
-                
-    
+
+                    //  LineChart(data)
+
                     var newDate = start.setDate(start.getDate() + 1);
                     start = new Date(newDate);
                 }
-
-            
-
 
             })
         })
@@ -514,9 +551,110 @@ function GetReport(timeframe) {
     }
     if (timeframe.toLowerCase().includes('monthly')) {
 
+        let data = {}
+        let xValue = []
+        let yValue = []
+
+        let present = 0;
+        let absent = 0
+        let arrivelate = 0
+        let leaveEarly = 0
+
+
+        let monthly = {}
+
+      
 
         start = new Date(FormatDate(`${1}-01-${year}`, "MM-DD-YY"));
         end = new Date(FormatDate(`${month}-01-${year}`, "MM-DD-YY"));
+
+        firebase.database().ref(`Attendance/Report/Statistics/Class/`).on('value', Classes => {
+
+            let dPresent = 0;
+            let dAbsent = 0;
+            let dArriveLate = 0;
+            let dLeavEarly = 0;
+
+            Classes.forEach(Class => {
+                console.log(Class.key)
+
+                Class.child(`Dates`).forEach(dates => {
+
+                    
+                    if (dates.val() != null) {
+                        console.log(dates.val())
+
+                        let countPresent = dates.child('Present').val()
+                        let countAbsent = dates.child('Absent').val()
+                        let countArriveLate = dates.child('ArriveLate').val()
+                        let countLeaveEarly =dates.child('LeaveEarly').val()
+
+                        let monthDate = dates.child('Date').val()
+
+                       
+
+                        if(monthDate != null)
+                        {
+                           let monthString = GetMonth(monthDate.toString().substring(0,2))
+                            console.log(monthString)
+
+                     
+                            if(monthString.includes(`January`))
+                            {
+                                dPresent += parseInt(countPresent)
+                                dAbsent += parseInt(countAbsent)
+                                dArriveLate += parseInt(countArriveLate)
+                                dLeavEarly += parseInt(countLeaveEarly)
+                                monthly['p'+monthString] +=  dPresent
+                                monthly['a'+monthString] += dAbsent
+                                monthly['al'+monthString] +=  dArriveLate
+                                monthly['le'+monthString] += dLeavEarly
+                            }
+                            if(monthString.includes(`February`))
+                            {
+                                dPresent += parseInt(countPresent)
+                                dAbsent += parseInt(countAbsent)
+                                dArriveLate += parseInt(countArriveLate)
+                                dLeavEarly += parseInt(countLeaveEarly)
+
+                                monthly['p'+monthString] += dPresent
+                                monthly['a'+monthString] += dAbsent
+                                monthly['al'+monthString] +=  dArriveLate
+                                monthly['le'+monthString] += dLeavEarly
+                            }
+                          
+                        
+                        }
+
+                        present += parseInt(countPresent)
+                        absent += parseInt(countAbsent)
+                        arrivelate += parseInt(countArriveLate)
+                        leaveEarly += parseInt(countLeaveEarly)
+
+                       
+
+                    
+                   
+                
+                    }
+
+                    var ref = firebase.database().ref(`Attendance/Report/Statistics/Class/${Class.key}/Dates/`).orderByKey().startAt(`01`);
+                    console.log(ref.toString())
+                })
+
+                data.Present = present;
+                data.Absent = absent;
+                data.ArriveLate = arrivelate;
+                data.LeaveEarly = leaveEarly;
+
+                PieChart(data)
+
+                console.log(monthly)
+                console.log(data.Absent)
+            })
+        })
+
+
     }
     if (timeframe.toLowerCase().includes('quarterly')) {
 
