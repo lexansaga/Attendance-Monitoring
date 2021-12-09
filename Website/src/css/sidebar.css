@@ -415,7 +415,7 @@
 	padding: 0vw 1vw 2vw 1vw;
 	box-shadow: 0.5px 1px 8px 3px #D9D9D9;
 	position: fixed;
-	bottom: 6%;
+	bottom: 3%;
 	left: 10px;
 }
 
@@ -481,8 +481,6 @@
 .s-navbar .nav-links li:hover .sub-menu {
 	display: block;
 }
-
-
 
 
 @media (max-width: 768px) {
@@ -593,7 +591,7 @@
 	}
 
 	.bottom-image {
-		left: 30px !important;
+		left: 20px !important;
 	}
 	.profile-picture {
 		padding: 1vw 8vw 1vw 0.5vw !important;

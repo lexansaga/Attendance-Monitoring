@@ -211,6 +211,7 @@ body {
     border: var(--font-color-secondary) solid 1px;
     background-color: white;
     color: var(--font-light-secondary);
+    cursor: pointer;
 }
 
 /* ------------------------------------------------------------Login Page End -------------------------------------------------------*/
