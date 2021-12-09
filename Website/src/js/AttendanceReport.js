@@ -76,14 +76,14 @@ $(document).ready(async function () {
                 let UserID = snap.child('UserID').val();
                 let Notification = snap.child('Notification').val();
                 let Permission_Tapin = snap.child('Permission').child('TapIn_First').val()
-    
-    
+
+
                 if (Account_Type.includes('Administrator')) {
-                   // window.location.replace("main.html");
+                    // window.location.replace("main.html");
                 } else if (Account_Type.includes('Faculty')) {
                     //window.location.replace("main.html");
                 } else if (Account_Type.includes('Guidance')) {
-                   // window.location.replace("main.html");
+                    // window.location.replace("main.html");
                 } else { // Else
                     window.location.replace("index.html");
                 }
@@ -339,7 +339,7 @@ function LoadTable(account_type, id) {
 
                                             table.DataTable().row.add(
                                                 [
-                                                    ` <a href="StudentInformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
+                                                    ` <a href="studentinformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
                                                     id,
                                                     `${last}, ${first} ${middle}`,
                                                     present.length,
@@ -428,7 +428,7 @@ function LoadTable(account_type, id) {
 
                                     table.DataTable().row.add(
                                         [
-                                            ` <a href="StudentInformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
+                                            ` <a href="studentinformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
                                             id,
                                             `${last}, ${first} ${middle}`,
                                             present.length,
@@ -464,18 +464,68 @@ function GetReport(timeframe) {
 
     if (timeframe.toLowerCase().includes('weekly')) {
 
+        start = new Date(FormatDate(`01-01-2021`, "MM-DD-YY"));
+        end = new Date(FormatDate(`03-01-2021`, "MM-DD-YY"));
 
-        start = new Date(FormatDate(``, "MM-DD-YY"));
-        end = new Date(FormatDate(GetDateNow(), "MM-DD-YY"));
+        var data = {}
+        var xValue = []
+        var yValue = []
+
 
         firebase.database().ref(`Attendance/Report/Statistics/Class/`).on('value', Classes => {
             Classes.forEach(Class => {
                 console.log(Class.key)
-                firebase.database().ref(`Attendance/Report/Statistics/Class/${Class.key}`).on(`value`, dates => {
-                    console.log(dates.val())
-                })
+
+                while (start < end) {
+
+                    let mm = start.getMonth() + 1;
+                    let yy = start.getFullYear();
+                    let dd = start.getDate();
+
+                    let date = mm + '-' + dd + '-' + yy;
+
+                    console.log(date)
+                    firebase.database().ref(`Attendance/Report/Statistics/Class/${Class.key}/Dates/${date}/`).on(`value`, dates => {
+
+                        if (dates.val() != null) {
+                            console.log(dates.val())
+                            let present = dates.child(`Present`).val()
+                            let absent = dates.child(`Absent`).val()
+                            let late = dates.child(`Late`).val()
+
+                            console.log(dates.key + ':' + present)
+                            xValue.push(present)
+                            yValue.push(dates.key)
+
+
+                            console.log(dates.child('Present').val())
+
+                        }
+
+
+                    })
+                    
+                    data.xValue = xValue;
+                    data.yValue = yValue;
+                    console.log(data)
+                
+    
+                    var newDate = start.setDate(start.getDate() + 1);
+                    start = new Date(newDate);
+                }
+
+            
+
+
             })
         })
+
+
+
+
+
+
+
     }
     if (timeframe.toLowerCase().includes('monthly')) {
 
@@ -488,7 +538,7 @@ function GetReport(timeframe) {
         start = new Date(FormatDate(`${1}-01-${year}`, "MM-DD-YY"));
         end = new Date(FormatDate(`${12}-01-${year}`, "MM-DD-YY"));
     }
-    if (timeframe.toLowerCase().includes('yearly')) {
+    if (timeframe.toLowerCase().includes('annually')) {
 
         start = new Date(FormatDate(`${1}-01-${year}`, "MM-DD-YY"));
         end = new Date(FormatDate(`${12}-01-${year}`, "MM-DD-YY"));

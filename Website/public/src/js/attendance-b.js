@@ -960,14 +960,25 @@ var remarks = ''
 
 function OpenModal(event) {
 
+    alert('Hello World')
+    
     let e = window.event
     container = $(event).parent().find('.att_mark');
     remarks = $('#remarks-info');
     $('.remarks-modal').css('display', 'block');
+
     console.log(container.attr('class'));
     remarks.val(container.attr('data-remarks'))
-    e.stopPropagation()
 
+    let person = event.parent().parent().parent().find('.n');
+    let name = person.html()
+    let id = person.attr('data-id')
+
+
+    $(`.remarks-name`).html(name)
+    $(`.remarks-id`).html(id)
+
+    e.stopPropagation()
 
 }
 
@@ -981,6 +992,8 @@ function CloseSubjectModal() {
     $('#remarks-info').val('');
     $('.subject-modal').css('display', 'none');
 }
+
+
 $('#subject').on(`click`, function () {
     let Class = $('#classname');
     $('#set-subject-col').html('')

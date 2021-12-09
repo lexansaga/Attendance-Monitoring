@@ -339,7 +339,7 @@ function LoadTable(account_type, id) {
 
                                             table.DataTable().row.add(
                                                 [
-                                                    ` <a href="StudentInformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
+                                                    ` <a href="studentinformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
                                                     id,
                                                     `${last}, ${first} ${middle}`,
                                                     present.length,
@@ -428,7 +428,7 @@ function LoadTable(account_type, id) {
 
                                     table.DataTable().row.add(
                                         [
-                                            ` <a href="StudentInformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
+                                            ` <a href="studentinformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
                                             id,
                                             `${last}, ${first} ${middle}`,
                                             present.length,

@@ -41,7 +41,8 @@ var attstatus = {
         <button title="Report" class="report" onclick="ModalReportOpen(this)"><i class='bx bxs-error-circle'></i></button>
         <i data-status='leaveearly' class='bx bx-chevrons-right att_mark excl' data-remarks="" style="color: #FEB331;"><h6>Left Early</h6></i>
         <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
-    </div>`
+    </div>`,
+    invalid: `<td>--</td>`
 }
 
 
@@ -58,8 +59,8 @@ $(document).ready(function () {
                 let UserID = snap.child('UserID').val();
                 let Notification = snap.child('Notification').val();
                 let Permission_Tapin = snap.child('Permission').child('TapIn_First').val()
-    
-    
+
+
                 if (Account_Type.includes('Administrator')) {
                     window.location.replace("main.html");
                 } else if (Account_Type.includes('Faculty')) {
@@ -162,7 +163,7 @@ $(document).ready(function () {
                                 let startSched = Date.parse('01/01/2000 ' + sched[0]);
                                 let endSched = Date.parse('01/01/2000 ' + sched[1]);
 
-                                
+
                                 var today = new Date();
                                 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
                                 var timeNow = Date.parse('01/01/2000 ' + time);
@@ -171,7 +172,7 @@ $(document).ready(function () {
 
                                 var dayNow = GetDay()
 
-                                
+
                                 //var timeNow = Date.parse('01/01/2000 '+time);
                                 console.log(day.includes(dayNow))
                                 console.log(timeNow);
@@ -273,7 +274,8 @@ $(document).ready(function () {
                                     // });
                                 } else {
                                     //Not match schedule time
-                                    alert('Cant find any schedule today!')
+                                    //   alert('Cant find any schedule today!')
+                                    $('.section-name').html('No Schedule for today!')
                                 }
 
                             });
@@ -621,14 +623,21 @@ function SetSelectedAttendance(SubjectID) {
 
 $('#add').click(function () {
 
-    //This will add new column on attendance
-    var table = $('tbody tr .n');
-    var head = $('thead tr .n');
-    var foot = $('tfoot tr .n');
+    if (!$(`.section-name`).html().includes(`No Schedule for today!`)) {
+        //This will add new column on attendance
+        var table = $('tbody tr .n');
+        var head = $('thead tr .n');
+        var foot = $('tfoot tr .n');
 
-    table.after(`<td class="excl">--</td>`);
-    head.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="2021-10-31"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
-    foot.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="2021-10-31"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
+        table.after(`<td class="excl">${attstatus.present}</td>`);
+        head.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="2021-10-31"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
+        foot.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="2021-10-31"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
+
+    }
+    else
+    {
+        alert(`Select subject first!`)
+    }
 
 });
 
@@ -656,7 +665,7 @@ $('table').on('click', 'tbody tr td:not(".n")', function () {
         } else if (value == 'leaveearly') {
             $(this).html(attstatus[Object.keys(attstatus)[0]]);
         } else {
-
+            $(this).html(attstatus[Object.keys(attstatus)[4]]);
         }
 
         console.log(value);
@@ -773,8 +782,6 @@ $('#btnSubmitAtt').click(function () {
     })
     //This will add data Faculty Attendance  on firebase
     firebase.database().ref(`Attendance/Summary/Faculty/`).update(FacultyAttendance());
-
-
 
     alert('Attendance Save Sucessfully!')
 });
@@ -960,14 +967,24 @@ var remarks = ''
 
 function OpenModal(event) {
 
+
     let e = window.event
     container = $(event).parent().find('.att_mark');
     remarks = $('#remarks-info');
     $('.remarks-modal').css('display', 'block');
+
     console.log(container.attr('class'));
     remarks.val(container.attr('data-remarks'))
-    e.stopPropagation()
 
+    let person = $(event).parent().parent().parent().find('.n');
+    let name = person.html()
+    let id = person.attr('data-id')
+
+
+    $(`.remarks-name`).html(name)
+    $(`.remarks-id`).html(id)
+
+    e.stopPropagation()
 
 }
 
