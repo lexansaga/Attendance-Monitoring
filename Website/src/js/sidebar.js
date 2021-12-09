@@ -37,18 +37,18 @@ $(document).ready(function () {
        // alert("Back button clicked");
     }
 
-    $('#input-search').focusin(function () {
-        $('.search-menu').css({
-            "opacity": "1",
-            "display": "block"
-        }).animate();
-    });
-    $('#input-search').focusout(function () {
-        $('.search-menu').css({
-            "opacity": "0",
-            "display": "none"
-        }).animate();
-    });
+   // $('#input-search').focusin(function () {
+   //     $('.search-menu').css({
+    //        "opacity": "1",
+    //        "display": "block"
+   //     }).animate();
+  //  });
+  //  $('#input-search').focusout(function () {
+    //    $('.search-menu').css({
+   //         "opacity": "0",
+    //        "display": "none"
+    //    }).animate();
+   // });
 
 
     /*

@@ -1,5 +1,11 @@
 @import url('root.css');
 
+.bxs-bell{
+	opacity: 0;
+}
+.bx-search{
+	opacity: 0;
+}
 
 .main_container {
 	display: flex;
@@ -59,6 +65,7 @@
 }
 
 .header .search-bar input {
+	display: none;
 	border: none;
     outline: none;
     background-color: #F8F8F8;
@@ -157,6 +164,7 @@
 	width: fit-content;
 	height: fit-content;
 	cursor: pointer;
+	display: none;
 }
 
 .notif-active {
