@@ -49,8 +49,8 @@ $(document).ready(function () {
                 let UserID = snap.child('UserID').val();
                 let Notification = snap.child('Notification').val();
                 let Permission_Tapin = snap.child('Permission').child('TapIn_First').val()
-    
-    
+
+
                 if (Account_Type.includes('Administrator')) {
                     //window.location.replace("main.html");
                 } else if (Account_Type.includes('Faculty')) {
@@ -111,8 +111,8 @@ $(document).ready(function () {
 
 
     tableModal.DataTable({
-        'createdRow': function( row, data, dataIndex ) {
-            $(row).attr('data-id',  dataIndex);
+        'createdRow': function (row, data, dataIndex) {
+            $(row).attr('data-id', dataIndex);
         },
         "aaSorting": [],
         'searching': false,
@@ -124,8 +124,8 @@ $(document).ready(function () {
         "bDestroy": true
     });
     tableSubject.DataTable({
-        'createdRow': function( row, data, dataIndex ) {
-            $(row).attr('data-id',dataIndex);
+        'createdRow': function (row, data, dataIndex) {
+            $(row).attr('data-id', dataIndex);
         },
         "aaSorting": [],
         order: [
@@ -210,10 +210,12 @@ $('.ModalCancel').click(function () {
 });
 //End -- Modal table Function
 
+var tobedeleted = []
+
 function DeleteRow(e) {
 
     let index = $(e).closest('tr').attr('data-id');
-  //  alert(index)
+    //  alert(index)
     let subjectRow = $(`#SubjectSection-table tbody tr[data-id="${index}"]`)
     let modalRow = $(`#modal-table tbody tr[data-id="${index}"]`)
     // alert(index)
@@ -800,8 +802,8 @@ $('#btnsave').click(function (event) {
 
         if (email.val() != '' && password.val() != '') {
             //End -- Check fields if no values
-            alert(email.val());
-            alert(password.val());
+            // alert(email.val());
+            // alert(password.val());
 
             //Start - Check email Validation
             const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -870,6 +872,7 @@ $('#btnsave').click(function (event) {
 
 
                     if (email.val() != '' && password.val() != '') {
+                        // This will add new Faculty
                         let tapIn = $('.cbx').is(":checked")
                         alert('Saving Account')
                         firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
@@ -898,7 +901,7 @@ $('#btnsave').click(function (event) {
                         firebase.database().ref('User/').orderByChild('UserID').startAt(dId).endAt(dId).once('value', users => {
                             users.forEach(user => {
                                 let uid = user.child('ID').val();
-                                alert(tapIn)
+                                // alert(tapIn)
                                 firebase.database().ref(`User/${uid}`).update({
                                     'Account_Type': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
                                     'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
@@ -908,7 +911,6 @@ $('#btnsave').click(function (event) {
                                 });
                             })
                         })
-
                     }
                     alert('Faculty Save Successfully');
                     reset();
@@ -1133,12 +1135,13 @@ $('#SearchPerson').on("select2:select", function (e) {
     // OnSelect on SearchPerson for Edit and Delete
     //Start -- Initializaion of Objects 
 
-    tableSubject.DataTable().row().clear().draw()  
-    tableModal.DataTable().row().clear().draw()  
+    tableSubject.DataTable().row().clear().draw()
+    tableModal.DataTable().row().clear().draw()
     let uid = $(this).val();
 
     let Path = '';
     if (uid.includes('STUD')) {
+
         Path = "Data/Student/Information/" + uid;
         firebase.database().ref(Path).once('value', snap => {
             let name = [];
@@ -1255,7 +1258,8 @@ $('#SearchPerson').on("select2:select", function (e) {
                 name.push(names.val());
             });
 
-            ID.val(snap.child('ID').val());
+            let profID = snap.child('ID').val();
+            ID.val(profID);
             cardID.val(snap.child('Card_ID').val());
             lastName.val(name[1]);
             firstName.val(name[0]);
@@ -1266,61 +1270,111 @@ $('#SearchPerson').on("select2:select", function (e) {
 
             $(".cbx").prop("checked", snap.child('Permission').child('TapIn_First').val());
             //           console.log(snap.child("Subject").val());
-            snap.child("Subject").forEach(subject => {
-                console.log("Subject");
-                console.log(subject.val());
-                firebase.database().ref("Data/Subject/" + subject.val()).once('value', subSnap => {
 
-                    //    console.log(subSnap.val());
+            firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(profID).endAt(profID).once(`value`, subjects => {
+                if (subjects.val() != null) {
+                    console.log(subjects.val())
 
-                    if (subSnap.val() == null) {
-                        alert(`We can't subject data of ${name[1]}, ${name[0]}!`);
-                        return;
-                    }
+                    subjects.forEach(subject => {
+                        let classNbr = subject.child('ClassNbr').val()
+                        let description = subject.child('Description').val()
+                        let location = subject.child('Location').val()
+                        let title = subject.child('Title').val()
+                        let professor = subject.child('Professor').val()
+                        let schedDay = subject.child('Schedule').child(`Day`).val()
+                        let schedTime = subject.child('Schedule').child(`Time`).val()
 
-                    let schedule = []
-                    subSnap.child('Schedule').forEach(schedules => {
-                        schedule.push(schedules.val());
-                    });
+                        firebase.database().ref(`Data/Faculty/Information/${professor}/`).on('value', professor => {
+                            if (professor.val() != null) {
 
-                    //     $('#modal-table tbody, #SubjectSection-table tbody').append(`
-                    //     <tr>
-                    //     <td>${subSnap.child('ClassNbr').val()}</td>
-                    //     <td>${subSnap.child('Title').val()}</td>
-                    //     <td>${subSnap.child('Description').val()}</td>
-                    //     <td>${schedule[0]}</td>
-                    //     <td>${schedule[1]}</td>
-                    //     <td>${subSnap.child('Professor').val()}</td>
-                    //     <td><i class="material-icons delete-row">delete_forever</i></td>
-                    //  </tr>
-                    //  `);
+                                let first = professor.child('Name').child(`First`).val()
+                                let last = professor.child('Name').child(`Last`).val()
+                                let middle = professor.child('Name').child(`Middle`).val()
+
+                                tableModal.DataTable().row.add(
+                                    [
+                                        classNbr,
+                                        title,
+                                        description,
+                                        schedDay,
+                                        schedTime,
+                                        `${last}, ${first} ${middle}`,
+                                        `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+                                    ]).draw();
+                                tableSubject.DataTable().row.add(
+                                    [
+                                        classNbr,
+                                        title,
+                                        description,
+                                        schedDay,
+                                        schedTime,
+                                        `${last}, ${first} ${middle}`,
+                                        `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+                                    ]).draw();
+                            }
+                        })
+
+                    })
+
+                } else {
+                    alert(`We can't any subjects on this professor!`)
+                }
+            })
+            // snap.child("Subject").forEach(subject => {
+            //     console.log("Subject");
+            //     console.log(subject.val());
+            //     firebase.database().ref("Data/Subject/" + subject.val()).once('value', subSnap => {
+
+            //         //    console.log(subSnap.val());
+
+            //         if (subSnap.val() == null) {
+            //             alert(`We can't subject data of ${name[1]}, ${name[0]}!`);
+            //             return;
+            //         }
+
+            //         let schedule = []
+            //         subSnap.child('Schedule').forEach(schedules => {
+            //             schedule.push(schedules.val());
+            //         });
+
+            //         //     $('#modal-table tbody, #SubjectSection-table tbody').append(`
+            //         //     <tr>
+            //         //     <td>${subSnap.child('ClassNbr').val()}</td>
+            //         //     <td>${subSnap.child('Title').val()}</td>
+            //         //     <td>${subSnap.child('Description').val()}</td>
+            //         //     <td>${schedule[0]}</td>
+            //         //     <td>${schedule[1]}</td>
+            //         //     <td>${subSnap.child('Professor').val()}</td>
+            //         //     <td><i class="material-icons delete-row">delete_forever</i></td>
+            //         //  </tr>
+            //         //  `);
 
 
-                    tableModal.DataTable().row.add(
-                        [
-                            subSnap.child('ClassNbr').val(),
-                            subSnap.child('Title').val(),
-                            subSnap.child('Description').val(),
-                            schedule[0],
-                            schedule[1],
-                            subSnap.child('Professor').val(),
-                            `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
-                        ]).draw();
-                    tableSubject.DataTable().row.add(
-                        [
-                            subSnap.child('ClassNbr').val(),
-                            subSnap.child('Title').val(),
-                            subSnap.child('Description').val(),
-                            schedule[0],
-                            schedule[1],
-                            subSnap.child('Professor').val(),
-                            `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
-                        ]).draw();
+            //         tableModal.DataTable().row.add(
+            //             [
+            //                 subSnap.child('ClassNbr').val(),
+            //                 subSnap.child('Title').val(),
+            //                 subSnap.child('Description').val(),
+            //                 schedule[0],
+            //                 schedule[1],
+            //                 subSnap.child('Professor').val(),
+            //                 `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+            //             ]).draw();
+            //         tableSubject.DataTable().row.add(
+            //             [
+            //                 subSnap.child('ClassNbr').val(),
+            //                 subSnap.child('Title').val(),
+            //                 subSnap.child('Description').val(),
+            //                 schedule[0],
+            //                 schedule[1],
+            //                 subSnap.child('Professor').val(),
+            //                 `<button onclick="DeleteRow(this)"><i class="material-icons delete-row">delete_forever</i></button>`
+            //             ]).draw();
 
 
 
-                })
-            });
+            //     })
+            // });
 
         });
     } else {
@@ -1342,18 +1396,29 @@ $('#SearchPerson').on("select2:select", function (e) {
 
 function LoadSearch(UserType) {
 
-    searchperson.html('');
-    searchperson.append(`<option disabled selected> Select ${UserType} </option>`);
+    searchperson.html(' ');
+    searchperson.append(`<option value="default" disabled selected> Select ${UserType} </option>`);
 
     firebase.database().ref('Data/' + UserType + '/Information/').on('value', snap => {
 
-        snap.forEach(childSnap => {
+        console.log(snap.val())
+        if (snap.val() != null) {
+            snap.forEach(childSnap => {
 
-            var name = [];
-            childSnap.child('Name').forEach(names => {
-                name.push(names.val());
-            })
-            searchperson.append(`<option value='${childSnap.child('ID').val()}'> ${`<span style="color:#cccccc">(${childSnap.child('ID').val()}) </span>`+name[1] +','+ name[0] +' ' +name[2]} </option>`);
-        });
+                let id = childSnap.child('ID').val();
+                let first = childSnap.child('Name').child(`First`).val()
+                let last = childSnap.child('Name').child(`Last`).val()
+                let middle = childSnap.child('Name').child(`Middle`).val()
+
+                if (id != null) {
+                 
+                  
+
+                    searchperson.append(`<option value='${id}'> ${`<span style="color:#cccccc">(${id}) </span>`+last +','+ first +' ' +middle} </option>`);
+
+                }
+            });
+        }
+
     });
 }

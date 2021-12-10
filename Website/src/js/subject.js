@@ -132,6 +132,25 @@ $('#submits').click(function () {
                 Title: subname.val()
 
             });
+
+            firebase.database().ref(`Data/Faculty/Information/${professors.val()}/Subject/`).on(`value`,subjects =>
+            {
+
+                // This will append subject from professor
+                let arrsubject = []
+                subjects.forEach(subject =>
+                    {
+                        arrsubject.push(subject.val())
+                    })
+
+                    arrsubject.push(id.val())
+
+                    let newArrSubject = [...new Set(arrsubject)];
+
+                    console.log(newArrSubject)
+
+                    firebase.database().ref(`Data/Faculty/Information/${professors.val()}/Subject/`).set(newArrSubject);
+            })
             reset();
             loadid();
             alert('Subject Data Inserted Successfully!');

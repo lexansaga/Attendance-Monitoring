@@ -87,81 +87,154 @@ $('#look').on('select2:select', function (e) {
 
     if ($(`#userType`).val().includes('Student')) {
 
-        firebase
-            .database()
-            .ref(`Data/Subject/`)
-            .once('value', (scheduleSnap) => { // Get All the Subjects
-                scheduleSnap.forEach((schedule) => { //Loop on all Schedule
-                    schedule.child('Students').forEach((childSchedule) => { //Redirect on Student child
-                        // console.log('IDS : '+childSchedule.child('ID').val());
-                        if (childSchedule.child('ID').val() ==
-                            $('#look').val()) {
-                            // Check if the child of Students are equal to dropdown val
-                            console.log('Parent : ' + childSchedule.ref.parent.parent.key);
+        let studentID = $(`#look`).val()
+        console.log(studentID)
+        firebase.database().ref(`Data/Student/Information/${studentID}/`).once('value', student => {
+            if (student.val() != null) {
+                let subjects = student.child(`Subject`)
 
-                            firebase
-                                .database()
-                                .ref(
-                                    `Data/Subject/${childSchedule.ref.parent.parent.key}/`
-                                ) // Get of Parent of this child
-                                .once('value', (subjects) => {
+                subjects.forEach(subject => {
+                    if (subject.val().includes('SUB')) {
+                        let subjectID = subject.val()
 
-                                    console.log(subjects.val());
-                                    firebase
-                                        .database()
-                                        .ref(
-                                            `Data/Faculty/Information/${subjects
-                                            .child('Professor')
-                                            .val()}`
-                                        )
-                                        .once('value', (professor) => {
-                                            // Get Professor Data
-                                            console.log(
-                                                `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
-                                            );
-                                            tableUserSched.DataTable().row.add([subjects.child('Title').val(), subjects.child('Schedule').child('Day').val(), subjects.child('Schedule').child('Time').val(), subjects.child('Location').val(),
-                                                    `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
-                                                ])
-                                                .draw();
+                        firebase.database().ref(`Data/Subject/${subjectID}/`).once('value', subjectInfo => {
+                            if (subjectInfo.val() != null) {
 
-                                        });
+                                let classNbr = subjectInfo.child(`ClassNbr`).val()
+                                let description = subjectInfo.child(`Description`).val()
+                                let location = subjectInfo.child(`Location`).val()
+                                let professor = subjectInfo.child(`Professor`).val()
+                                let title = subjectInfo.child(`Title`).val()
 
-                                });
-                        }
-                    });
+                                let schedDay = subjectInfo.child('Schedule').child('Day').val()
+                                let schedTime = subjectInfo.child('Schedule').child('Time').val()
+
+                                firebase.database().ref(`Data/Faculty/Information/${professor}/`).on('value', professor => {
+                                    if (professor.val() != null) {
+
+                                        let first = professor.child('Name').child(`First`).val()
+                                        let last = professor.child('Name').child(`Last`).val()
+                                        let middle = professor.child('Name').child(`Middle`).val()
+
+                                        tableUserSched.DataTable().row.add([title, schedDay, schedTime, location,
+                                                `${last}, ${first} ${middle} `
+                                            ])
+                                            .draw();
+                                    }
+                                })
+                            }
+                        })
+                    }
                 });
-            });
+            }
+        })
+        // firebase
+        //     .database()
+        //     .ref(`Data/Subject/`)
+        //     .once('value', (scheduleSnap) => { // Get All the Subjects
+        //         scheduleSnap.forEach((schedule) => { //Loop on all Schedule
+        //             schedule.child('Students').forEach((childSchedule) => { //Redirect on Student child
+        //                 // console.log('IDS : '+childSchedule.child('ID').val());
+        //                 if (childSchedule.child('ID').val() ==
+        //                     $('#look').val()) {
+        //                     // Check if the child of Students are equal to dropdown val
+        //                     console.log('Parent : ' + childSchedule.ref.parent.parent.key);
+
+        //                     firebase
+        //                         .database()
+        //                         .ref(
+        //                             `Data/Subject/${childSchedule.ref.parent.parent.key}/`
+        //                         ) // Get of Parent of this child
+        //                         .once('value', (subjects) => {
+
+        //                             console.log(subjects.val());
+        //                             firebase
+        //                                 .database()
+        //                                 .ref(
+        //                                     `Data/Faculty/Information/${subjects
+        //                                     .child('Professor')
+        //                                     .val()}`
+        //                                 )
+        //                                 .once('value', (professor) => {
+        //                                     // Get Professor Data
+        //                                     console.log(
+        //                                         `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
+        //                                     );
+        //                                     tableUserSched.DataTable().row.add([subjects.child('Title').val(), subjects.child('Schedule').child('Day').val(), subjects.child('Schedule').child('Time').val(), subjects.child('Location').val(),
+        //                                             `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
+        //                                         ])
+        //                                         .draw();
+
+        //                                 });
+
+        //                         });
+        //                 }
+        //             });
+        //         });
+        //     });
     } else {
-        firebase.database().ref(`Data/Subject`).once('value', snap => {
-            snap.forEach(professor => {
+        let profID = $(`#look`).val()
+        firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(profID).endAt(profID).once('value', subjects => {
+            if (subjects.val() != null) {
+                console.log(subjects.val())
 
-                let prof = professor.child('Professor');
-                if (prof.val() == $('#look').val()) {
-                    console.log(prof.ref.parent.key);
+                subjects.forEach(subject =>
+                    {
+                        let classNbr = subject.child('ClassNbr').val()
+                        let description = subject.child('Description').val()
+                        let location = subject.child('Location').val()
+                        let title = subject.child('Title').val()
+                        let professor = subject.child('Professor').val()
+                        let schedDay = subject.child('Schedule').child(`Day`).val()
+                        let schedTime = subject.child('Schedule').child(`Time`).val()
 
-                    firebase.database().ref(`Data/Subject/${prof.ref.parent.key}`).once('value', subjects => {
-                        console.log(subjects.val());
-                        firebase
-                            .database()
-                            .ref(
-                                `Data/Faculty/Information/${subjects
-                            .child('Professor')
-                            .val()}`
-                            )
-                            .once('value', (professor) => {
-                                // Get Professor Data
-                                console.log(
-                                    `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
-                                );
-                                tableUserSched.DataTable().row.add([subjects.child('Title').val(), subjects.child('Schedule').child('Day').val(), subjects.child('Schedule').child('Time').val(), subjects.child('Location').val(),
-                                        `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
+
+                        
+                        firebase.database().ref(`Data/Faculty/Information/${professor}/`).on('value', professor => {
+                            if (professor.val() != null) {
+
+                                let first = professor.child('Name').child(`First`).val()
+                                let last = professor.child('Name').child(`Last`).val()
+                                let middle = professor.child('Name').child(`Middle`).val()
+
+                                tableUserSched.DataTable().row.add([title, schedDay, schedTime, location,
+                                        `${last}, ${first} ${middle} `
                                     ])
                                     .draw();
+                            }
+                        })
 
-                            });
                     })
-                }
-            })
+            }
+            // snap.forEach(professor => {
+
+            //     let prof = professor.child('Professor');
+            //     if (prof.val() == $('#look').val()) {
+            //         console.log(prof.ref.parent.key);
+
+            //         firebase.database().ref(`Data/Subject/${prof.ref.parent.key}`).once('value', subjects => {
+            //             console.log(subjects.val());
+            //             firebase
+            //                 .database()
+            //                 .ref(
+            //                     `Data/Faculty/Information/${subjects
+            //                 .child('Professor')
+            //                 .val()}`
+            //                 )
+            //                 .once('value', (professor) => {
+            //                     // Get Professor Data
+            //                     console.log(
+            //                         `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
+            //                     );
+            //                     tableUserSched.DataTable().row.add([subjects.child('Title').val(), subjects.child('Schedule').child('Day').val(), subjects.child('Schedule').child('Time').val(), subjects.child('Location').val(),
+            //                             `${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()} `
+            //                         ])
+            //                         .draw();
+
+            //                 });
+            //         })
+            //     }
+            // })
         });
     }
 

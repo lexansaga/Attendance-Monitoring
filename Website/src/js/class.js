@@ -221,8 +221,6 @@ $('#submits').click(function () {
           return;
      }
 
-
-
      let class_set = [];
      // $('#datatable tbody tr').each(function () {
      //      //  alert($(this).find('td').eq(1).text() + " " + $(this).find('td').eq(2).text());
@@ -242,7 +240,6 @@ $('#submits').click(function () {
                ID: id,
                Name: name,
           });
- 
      // alert($(this)
      //      .find('td')
      //      .eq(1)
