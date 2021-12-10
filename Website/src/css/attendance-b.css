@@ -1,5 +1,13 @@
 @import url(root.css);
 
+.sticky-col{
+    position: sticky;
+    min-width: 200px;
+}
+.name-col{
+    z-index: 2;
+    left: 0px;
+}
 
 .function {
     display: flex;
@@ -68,14 +76,14 @@
 
 .name {
     table-layout: fixed;
-
+    overflow: auto;
+    white-space: wrap;
 }
 
 
 .name tr td:nth-child(1) {
 
     padding: 12px 22px;
-    min-width: 180px;
     background-color: var(--primary-color);
     color: var(--font-light-color);
     border: none !important;
@@ -390,9 +398,12 @@ span>h3 {
         display: flex;
     }
 
-
     .name tr td:nth-child(1) {
         min-width: 120px;
+    }
+
+    .name tr td:not(:nth-child(1)) {
+        max-width: 125px;
     }
 
     .section-name {

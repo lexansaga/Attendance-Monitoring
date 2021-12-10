@@ -197,7 +197,7 @@ $(document).ready(function () {
                                             // </tr>`);
 
                                             $('.name tbody').append(`<tr>
-                                            <td class="n" data-id="${students.ID}" onclick="StudentInfo(this)">${students.Name}</td>
+                                            <td class="n sticky-col name-col" data-id="${students.ID}" onclick="StudentInfo(this)">${students.Name}</td>
                                             </tr>`);
 
                                             firebase.database().ref(`Attendance/Gate/${FormatDate(dateNow,'MM-DD-YY')}/`).orderByChild('EnteredID').startAt(students.ID).endAt(students.ID).limitToLast(1).on('value', statusOnGate => {
@@ -441,7 +441,7 @@ function SetSelectedAttendance(SubjectID) {
                                 studentCount++;
 
                                 $('.name tbody').append(`<tr>
-                                                        <td class="n" data-id="${students.ID}" onclick="StudentInfo(this)">${students.Name}</td>
+                                                        <td class="n sticky-col name-col" data-id="${students.ID}" onclick="StudentInfo(this)">${students.Name}</td>
                                                         </tr>`);
 
                                 firebase.database().ref(`Attendance/Gate/${FormatDate(dateNow,'MM-DD-YY')}/`).orderByChild('EnteredID').startAt(students.ID).endAt(students.ID).limitToLast(1).on('value', statusOnGate => {
