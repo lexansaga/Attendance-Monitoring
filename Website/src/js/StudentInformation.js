@@ -7,6 +7,11 @@ console.log(id);
 var status_table = $('#status-table')
 $(document).ready(function () {
 
+  if(id == null)
+  {
+    window.location.replace('main.html')
+  }
+
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         let uid = user.uid;
@@ -293,11 +298,15 @@ function GetReports() {
 
 $('#report').on('click', function () {
 
-  $('#reported-name').text($('.name').html())
 
-  $('.report').css({
-    'display': 'block'
-  })
+
+    $('#reported-name').text($('.name').html())
+
+    $('.report').css({
+      'display': 'block'
+    })
+  
+
 })
 $('.btn-submit').on('click', function (event) {
 

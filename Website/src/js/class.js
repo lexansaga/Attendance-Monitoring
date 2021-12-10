@@ -6,6 +6,9 @@ var tbody = $('#datatable tbody');
 var datatable = $('#datatable');
 
 $(document).ready(function () {
+
+
+     
      firebase.auth().onAuthStateChanged((user) => {
           if (user) {
               let uid = user.uid;
@@ -261,6 +264,8 @@ $('#submits').click(function () {
                let newSubject = [...new Set(subject)]; //This will remove duplicates
                firebase.database().ref(`Data/Student/Information/${id}/Subject/`).set(newSubject);
           });
+
+
 });
 
 
@@ -290,4 +295,6 @@ firebase
 
 class_set.length = 0;
 alert('Class created successfully');
+
+$('#datatable').DataTable().clear().draw()
 });

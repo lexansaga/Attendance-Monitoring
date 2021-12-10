@@ -54,11 +54,9 @@ firebase.auth().onAuthStateChanged((user) => {
 
             if (Account_Type.includes('Administrator')) {
 
-
-
-                StatusCounter(GetDateNow(), 'present', present)
-                StatusCounter(GetDateNow(), 'absent', absent)
-                StatusCounter(GetDateNow(), 'arrivelate', late)
+                StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'present', present)
+                StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'absent', absent)
+                StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'arrivelate', late)
 
 
                 StudentCounter(0, Account_Type, $('#cnt_students'))
@@ -107,9 +105,9 @@ firebase.auth().onAuthStateChanged((user) => {
             }
             if (Account_Type.includes('Guidance')) {
 
-                StatusCounter(GetDateNow(), 'present', present)
-                StatusCounter(GetDateNow(), 'absent', absent)
-                StatusCounter(GetDateNow(), 'arrivelate', late)
+                StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'present', present)
+                StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'absent', absent)
+                StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'arrivelate', late)
 
                 StudentCounter(0, Account_Type, $('#cnt_students'))
 
@@ -119,14 +117,13 @@ firebase.auth().onAuthStateChanged((user) => {
             if (Account_Type.includes('Faculty')) {
                 //alert('Faculty')
 
-
                 present.html('0')
                 absent.html('0')
                 late.html('0')
 
-                FacultyStatusCounter(UserID, GetDateNow(), 'present', present)
-                FacultyStatusCounter(UserID, GetDateNow(), 'absent', absent)
-                FacultyStatusCounter(UserID, GetDateNow(), 'arrivelate', late)
+                FacultyStatusCounter(UserID, FormatDate(GetDateNow(), 'MM-DD-YY'), 'present', present)
+                FacultyStatusCounter(UserID, FormatDate(GetDateNow(), 'MM-DD-YY'), 'absent', absent)
+                FacultyStatusCounter(UserID, FormatDate(GetDateNow(), 'MM-DD-YY'), 'arrivelate', late)
 
 
                 StudentCounter(UserID, Account_Type, $('#cnt_students'))
@@ -137,8 +134,7 @@ firebase.auth().onAuthStateChanged((user) => {
                 LineChart(data)
             }
 
-            if(Account_Type.includes('Gate'))
-            {
+            if (Account_Type.includes('Gate')) {
                 window.location.href = '../../gatetapin.html'
             }
 
@@ -176,63 +172,96 @@ firebase.auth().onAuthStateChanged((user) => {
 
 function StatusCounter(date, status, object) {
 
+    var statusCountInit = 0
     firebase.database().ref('Attendance/Summary/Class/').on('value', classes => {
-        classes.forEach(aclass => {
-            let classKey = aclass.key;
-            firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).on('value', attendance => {
-                console.log(attendance.val())
-                firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).on('value', statusCount => {
+        if (classes.val() != null) {
+            classes.forEach(aclass => {
+                let classKey = aclass.key;
+                firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).on('value', attendance => {
+                    if (attendance.val() != null) {
+                        //  console.log(attendance.val())
+                        firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).on('value', statusCount => {
 
-                    object.html(statusCount.numChildren())
-                    console.log(statusCount.val())
-
-
-
+                            if (statusCount.val() != null) {
+                                //    console.log(statusCount.val())
+                                statusCountInit += statusCount.numChildren()
+                                object.html(statusCountInit)
+                            }
+                        })
+                    }
 
                 })
-
             })
-        })
 
-        PieChart()
+
+        }
+
     })
+
+    PieChart()
 }
 
 function FacultyStatusCounter(id, date, status, object) {
 
+    var statusCountInit = 0;
+    
     firebase.database().ref('Attendance/Summary/Class/').orderByChild('Professor').startAt(id).endAt(id).on('value', classes => {
 
-        classes.forEach(aclass => {
-            let classKey = aclass.key;
-            firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).on('value', attendance => {
-                console.log(attendance.val())
-                firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).on('value', statusCount => {
+        if (classes.val() != null) {
+            classes.forEach(aclass => {
+                let classKey = aclass.key;
+                console.log(classKey)
+                firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).on('value', attendance => {
+                
+                    if (attendance.val() != null) {
 
-                    object.html(statusCount.numChildren())
-                    console.log(statusCount.val())
+                        firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).on('value', statusCount => {
 
+                            if (statusCount.val() != null) {
+                                statusCountInit += statusCount.numChildren()
+                                object.html(statusCountInit)
+                                // console.log(statusCount.val())
+                                // console.log()
+                                PieChart()
+                            }
+
+
+                        })
+
+                    }
 
                 })
-
             })
-        })
 
-        PieChart()
+        }
+
     })
+
+
 }
 
 function StudentCounter(id, account_type, object) {
     if (account_type.includes('Faculty')) {
+        let studentArr = []
+        let studentCount = 0
         firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(id).endAt(id).on("value", snap => {
-            console.log(snap.val())
-            let studentCount = 0;
+            if (snap.val() != null) {
+                console.log(snap.val())
+                let studentCount = 0;
 
-            snap.forEach(subject => {
-                studentCount += subject.child('Students').numChildren();
-            })
+                snap.forEach(subject => {
+                    //  studentCount += subject.child('Students').numChildren();
 
-            object.html(studentCount)
+                    let students = subject.child('Students')
+                    students.forEach(student => {
+                        studentArr.push(student.child('ID').val())
+                    })
 
+                })
+                var arr = [...new Set(studentArr)] //This will remove duplicates
+                console.log(arr)
+                object.html(arr.length)
+            }
 
 
         });
@@ -277,9 +306,9 @@ function Entered(account_type, id) {
             let arrstudent = []
             subjects.forEach(subject => {
                 // Get all the subjects of the professor
-                console.log(subject.val())
+                //      console.log(subject.val())
                 subject.child('Students').forEach(student => {
-                    console.log(student.child('ID').val())
+                    //          console.log(student.child('ID').val())
                     arrstudent.push(student.child('ID').val())
 
                     //Append student ID of the professor Student on the arrstudent array
@@ -289,7 +318,7 @@ function Entered(account_type, id) {
             })
 
             console.log(arrstudent)
-            firebase.database().ref(`Attendance/Gate/${GetDateNow()}`).orderByKey().limitToLast(5).on('value', attendance => {
+            firebase.database().ref(`Attendance/Gate/${FormatDate(GetDateNow(),'MM-DD-YY')}`).orderByKey().limitToLast(5).on('value', attendance => {
 
                 $('.prof_container > ul ').html(' ');
 
@@ -335,7 +364,7 @@ function Entered(account_type, id) {
         })
 
     } else {
-        firebase.database().ref(`Attendance/Gate/${GetDateNow()}`).orderByKey().limitToLast(5).on("value", snap => {
+        firebase.database().ref(`Attendance/Gate/${FormatDate(GetDateNow(),'MM-DD-YY')}`).orderByKey().limitToLast(5).on("value", snap => {
             $('.prof_container > ul ').html(' ');
             snap.forEach(childSnapshot => {
                 var type = "";

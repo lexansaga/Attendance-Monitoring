@@ -14,6 +14,7 @@ var submit = $('#submits');
 
 $(document).ready(function () {
 
+
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             let uid = user.uid;
@@ -27,7 +28,7 @@ $(document).ready(function () {
 
 
                 if (Account_Type.includes('Administrator')) {
-                   //window.location.replace("main.html");
+                    //window.location.replace("main.html");
                 } else if (Account_Type.includes('Faculty')) {
                     window.location.replace("main.html");
                 } else if (Account_Type.includes('Guidance')) {
@@ -41,19 +42,19 @@ $(document).ready(function () {
 
 
     professors.select2({
-        placeholder: "Select Subject" ,
+        placeholder: "Select Subject",
         containerCssClass: "show-hide",
         margin: '10px 10px 15px 0'
     });
 
     searchSubject.select2({
-        placeholder: "Select Subject" ,
+        placeholder: "Select Subject",
         containerCssClass: "show-hide",
         margin: '10px 10px 15px 0'
     });
     day.select2({
         maximumSelectionLength: 2,
-        placeholder: "Select days" ,
+        placeholder: "Select days",
         containerCssClass: "show-hide",
         margin: '10px 10px 15px 0'
     });
@@ -86,7 +87,7 @@ $(document).ready(function () {
     }
 
 
-    
+
     firebase.database().ref('Data/Faculty/Information').on('value', snap => {
         snap.forEach(childSnap => {
             var profID = childSnap.child('ID').val();
@@ -94,7 +95,7 @@ $(document).ready(function () {
             childSnap.child('Name').forEach(names => {
                 name.push(names.val());
             })
-            
+
             professors.append(`<option value="${profID}"> <span style="color:#ccc">(${profID})</span>   ${name[1]+', '+name[0]+' '+name[2]}</option>`);
 
         });
@@ -119,7 +120,7 @@ $('#submits').click(function () {
             description.val() != null && start.val() != null &&
             end.val() != null && day.val() != null &&
             sublocation.val() != null && professors.val() != null) {
-            firebase.database().ref('Data/Subject/' + id.val()).set({
+            firebase.database().ref('Data/Subject/' + id.val()).update({
                 ClassNbr: id.val(),
                 Description: description.val(),
                 Location: sublocation.val(),
@@ -169,12 +170,30 @@ var reset = function () {
 
 }
 
- function loadid () {
-    console.log('ID Loaded')
-    firebase.database().ref('Data/Subject/').on('value', snap => {
-        console.log(snap.numChildren())
-        var count = (snap.numChildren() + 1).toString();
-        id.val('SUB' + '1' + ('000000' + count).substring(count.length));
+function loadid() {
+    // console.log('ID Loaded')
+    // firebase.database().ref('Data/Subject/').on('value', snap => {
+    //     console.log(snap.numChildren())
+    //     var count = (snap.numChildren() + 1).toString();
+    //     id.val('SUB' + '1' + ('000000' + count).substring(count.length));
+    // });
+
+
+    firebase.database().ref('Data/Subject/').limitToLast(1).on('value', snap => {
+        if (snap.val() != null) {
+            snap.forEach(counter => {
+                console.log(snap.val())
+                var count = counter.child(`ClassNbr`).val();
+                var sCount = count.toString().slice(4, count.length).replaceAll('0', '');
+                id.val('SUB' + '1' + ('000000' + (parseInt(sCount) + 1)).substring(sCount.length))
+
+            })
+
+        }
+        else{
+            id.val(`SUB1000001`)
+        }
+
     });
 }
 
@@ -183,7 +202,7 @@ $('#search_subject').on("select2:select", function (e) {
 
 
     let uid = $(this).val();
-    alert(uid);
+  //  alert(uid);
     firebase.database().ref('Data/Subject/' + uid).on('value', snap => {
         id.val(snap.child('ClassNbr').val());
         subname.val(snap.child('Title').val());

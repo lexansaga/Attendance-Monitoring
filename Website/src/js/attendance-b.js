@@ -613,13 +613,21 @@ $('#add').click(function () {
         var head = $('thead tr .n');
         var foot = $('tfoot tr .n');
 
-        table.after(`<td class="excl">${attstatus.present}</td>`);
-        head.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="2021-10-31"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
-        foot.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="2021-10-31"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
+        let date = new Date(GetDateNow())
+        date.setDate(date.getDate() + 30)
+        let month = date.getMonth() + 1;
+        let day = date.getDate()
+        let year = date.getFullYear()
 
-    }
-    else
-    {
+        let maxDate = FormatDate(`${month}-${day}-${year}`, `MM-DD-YY`)
+
+        alert(maxDate)
+
+        table.after(`<td class="excl">${attstatus.present}</td>`);
+        head.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="${FormatDate(maxDate,'YY-MM-DD')}"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
+        foot.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="${FormatDate(maxDate,'YY-MM-DD')}"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
+
+    } else {
         alert(`Select subject first!`)
     }
 
@@ -1097,23 +1105,31 @@ $('.modal').on('click', function (event) {
 //CONVERT HTML TABLE TO EXCEL
 
 $('#export').on('click', function (event) {
-    var ClassName = document.getElementById("classname").innerHTML;
+    if (!$(`.section-name`).html().includes(`No Schedule for today!`)) {
+        var ClassName = document.getElementById("classname").innerHTML;
 
-    $("#myTable").table2excel({
-        filename: ClassName + " -Attendance",
-        fileext: "xlsx",
-        preserveColors: false
-    });
+        $("#myTable").table2excel({
+            filename: ClassName + " -Attendance",
+            fileext: "xlsx",
+            preserveColors: false
+        });
+    } else {
+        alert(`Select subject first!`)
+    }
 })
 
 $('#form').on('click', function (event) {
-    var ClassName = document.getElementById("classname").innerHTML;
-    $("#myTable").table2excel({
-        filename: ClassName + " -AttendanceForm",
-        fileext: "xlsx",
-        exclude_img: false,
-        exclude_links: false,
-        exclude_inputs: false,
-        exclude: ".excl"
-    });
+    if (!$(`.section-name`).html().includes(`No Schedule for today!`)) {
+        var ClassName = document.getElementById("classname").innerHTML;
+        $("#myTable").table2excel({
+            filename: ClassName + " -AttendanceForm",
+            fileext: "xlsx",
+            exclude_img: false,
+            exclude_links: false,
+            exclude_inputs: false,
+            exclude: ".excl"
+        });
+    } else {
+        alert(`Select subject first!`)
+    }
 })

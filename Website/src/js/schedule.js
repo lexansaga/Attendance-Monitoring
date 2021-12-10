@@ -50,13 +50,12 @@ $(document).ready(function () {
                     })
                 }
                 if (Account_Type.includes('Faculty')) {
-                    LoadSearchFaculty(Account_Type, 'PROF1000001');
+                    LoadSearchFaculty(Account_Type, UserID);
                     $('.type').css({
                         'display': 'none'
                     })
 
-                }
-                else{
+                } else {
                     //window.location.replace("index.html");
                 }
             })
@@ -228,19 +227,24 @@ function LoadSearchFaculty(UserType, id) {
     );
     if (UserType.includes('Faculty')) {
         firebase.database().ref('Data/Subject/').orderByChild('Professor').startAt(id).endAt(id).on('value', subjects => {
-            console.log(subjects.val())
-            subjects.forEach(subject => {
-                subject.child('Students').forEach(student => {
-                    let id = student.child('ID').val();
-                    let name = student.child('Name').val()
+            if (subjects.val() != null) {
+                console.log(subjects.val())
+                subjects.forEach(subject => {
+                    console.log(subject.val())
+                    subject.child('Students').forEach(student => {
+                        let id = student.child('ID').val();
+                        let name = student.child('Name').val()
 
-                    $('#look').append(
-                        `<option value='${id}'><span style="color:#ccc">(${id})${name}</span>
-                                 </option>`
-                    );
-
+                        if ($(`#look option[value="${id}"]`).length == 0) {
+                            $('#look').append(
+                                `<option value='${id}'><span style="color:#ccc">(${id})${name}</span>
+                                         </option>`
+                            );
+                        }
+                    })
                 })
-            })
+            }
+
         })
     }
 }
