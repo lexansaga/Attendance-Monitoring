@@ -1,0 +1,295 @@
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link href="src/css/facultyinformation.css" rel="stylesheet" />
+   <link href="src/css/sidebar.css" rel="stylesheet" />
+   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+   <link href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
+
+   <link href="//cdn.datatables.net/buttons/2.0.1/css/buttons.dataTables.min.css" rel="stylesheet">
+   <title>Student Information - ATMS</title>
+</head>
+
+<body>
+
+   <div class="main_container">
+      <div class="s-navbar" data-aos="fade-right">
+         <div class="logo-name">
+            <a href="main.html">
+               <H3>
+                  ATTENDANCE<BR>MONITORING</H1>
+            </a>
+         </div>
+         <ul class="nav-links">
+            <li class="vert-line">
+               <a href="main.html">
+                  <i class='bx bxs-home'></i>
+                  <span class="link_name">Home</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="schedule.html">
+                  <i class='bx bx-calendar'></i>
+                  <span class="link_name">Schedule</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="attendance-b.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Attendance</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="attendancereport.html">
+                  <i class='bx bxs-bar-chart-alt-2'></i>
+                  <span class="link_name">Attendance Report</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="reported.html">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Reported</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="#">
+                  <i class='bx bxs-report'></i>
+                  <span class="link_name">Subject</span>
+               </a>
+               <ul class="sub-menu">
+                  <li><a href="subject.html?type=add">Add Subject</a></li>
+                  <li><a href="subject.html?type=update">Edit Subject</a></li>
+                  <li><a href="subject.html?type=delete">Delete Subject</a></li>
+               </ul>
+            </li>
+            <li class="vert-line">
+               <a href="class.html">
+                  <i class='bx bxs-group' ></i> 
+                  <span class="link_name">Class</span>
+               </a>
+            </li>
+            <li class="vert-line">
+               <a href="#">
+                  <i class='bx bxs-user-account'></i>
+                  <span class="link_name">User Management</span>
+               </a>
+               <ul class="sub-menu">
+                  <li><a href="usermanagement.html?type=add">Add User</a></li>
+                  <li><a href="usermanagement.html?type=update">Edit User</a></li>
+                  <li><a href="usermanagement.html?type=delete">Delete User</a></li>
+               </ul>
+            </li>
+            <div class="bottom-image">
+               <img src="src/assets/icon.png" />
+               <h3>ATTENDANCE<br>MONITORING<br>SYSTEM</h3>
+            </div>
+         </ul>
+      </div>
+      <div class="main_content">
+         <div class="header">
+            <div id="btn_menu">
+               <i class='bx bx-menu-alt-left'></i>
+            </div>
+            <div class="search-bar">
+               <input id="input-search" type="text" placeholder="Look for..." />
+               <i class='bx bx-search'></i>
+               <ul class="search-menu">
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="view-notif">
+                        Powered By ATMS
+                     </a>
+                  </li>
+               </ul>
+
+
+
+            </div>
+
+            <div class="notification " title="Notification">
+               <i class='bx bxs-bell'></i>
+               <ul class="notif-menu">
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#">
+                        <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+                        <h1>
+                           Title
+                        </h1>
+                        <h3>
+                           Description
+                        </h3>
+                     </a>
+                  </li>
+                  <li>
+                     <a href="#" class="view-notif">
+                        View all notification
+                     </a>
+                  </li>
+               </ul>
+            </div>
+            <div class="profile-picture" title="Profile">
+               <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
+               <ul class="profile-menu">
+                  <li><a href="profile.html">Profile</a></li>
+                  <li><a href="settings.html">Settings</a></li>
+                  <li><a href="index.html">Logout</a></li>
+                </ul>
+            </div>
+         </div>
+         <main class="item_container">
+            <h3><span>Faculty</span> Information</h3>
+
+            <div class="data-container">
+               <div class="profile">
+
+                     <img src="src/assets/avatar.png" alt="Profile" id="pfp" onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>          
+               </div>
+
+               <div class="con-table-info">
+                  <table id="info-table">
+                     <tbody>
+                        <tr>
+                           <td>
+                              Faculty ID : 
+                           </td>
+                           <td class="id">
+                              -- 
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              Faculty Name : 
+                           </td>
+                           <td class="name">
+                              -- 
+                           </td>
+                        </tr>
+                        </tr>
+                        <tr>
+                           <td>
+                              Address : 
+                           </td>
+                           <td class="address">
+                              --
+                           </td>
+                        </tr>
+                        <tr>
+                           <td >
+                              Contact Number : 
+                           </td>
+                           <td class="contact">
+                              --
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>
+                              Email : 
+                           </td>
+                           <td class="email">
+                              --
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+
+               <div id="con-table-status">
+                  <h2 class="table-title">Attendance Record</h2>
+                  <table id="status-table">
+                     <thead>
+                        <tr>
+                           <td>Subject</td>
+                           <td>Date</td>
+                           <td>Time</td>
+                           <td>Status</td>
+                        </tr>
+                     </thead>
+                     <tbody></tbody>
+                     <!-- <tfoot>
+                        <tr>
+                           <td>Subject</td>
+                           <td>Date</td>
+                           <td>Time</td>
+                           <td>Status</td>
+                           <td>Remarks</td>
+                        </tr>
+                     </tfoot> -->
+                  </table>
+               </div>
+
+
+            </div>
+         </main>
+      </div>
+   </div>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
+   integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
+   crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+   <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+   <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+
+   <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js"></script>
+
+   <!-- Add Firebase products that you want to use -->
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+ 
+   <script src="src/js/script.js"></script>
+   <script src="src/js/sidebar.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+   <script>
+      AOS.init();
+   </script>
+   <script src="src/js/facultyinformation.js"></script>
+
+   <!-- datatable -->
+   <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+   <script src="//cdn.datatables.net/buttons/2.0.1/js/dataTables.buttons.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+   <script src="//cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+   <script src="//cdn.datatables.net/buttons/2.0.1/js/buttons.html5.min.js"></script>
+</body>
+
+</html>
