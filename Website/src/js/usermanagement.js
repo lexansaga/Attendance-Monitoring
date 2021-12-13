@@ -344,8 +344,10 @@ function VerifyType() {
         mainButton.css({
             'display': 'block'
         });
+
+
         mainTable.css({
-            'display': 'block'
+            'display': 'none'
         });
 
 
@@ -377,7 +379,7 @@ function VerifyType() {
             'display': 'block'
         });
         subject.css({
-            'display': 'block'
+            'display': 'none'
         });
         role.css({
             'display': 'none'
@@ -433,7 +435,7 @@ function VerifyType() {
             'display': 'block'
         });
         mainTable.css({
-            'display': 'block'
+            'display': 'none'
         });
 
         studentEmail.css({
@@ -465,7 +467,7 @@ function VerifyType() {
             'display': 'block'
         });
         subject.css({
-            'display': 'block'
+            'display': 'none'
         });
 
         role.css({
@@ -706,11 +708,11 @@ $('#btnsave').click(function (event) {
         }
         //End -- Check fields if no values
 
-        let Subject = [];
-        for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
-            Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
-            //This will append all the subjects and create a certain format
-        }
+        // let Subject = [];
+        // for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
+        //     Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
+        //     //This will append all the subjects and create a certain format
+        // }
 
 
         var file = document.getElementById("file");
@@ -835,10 +837,10 @@ $('#btnsave').click(function (event) {
 
 
         let Subject = [];
-        for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
-            Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
-            //This will append all the subjects and create a certain format
-        }
+        // for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
+        //     Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
+        //     //This will append all the subjects and create a certain format
+        // }
 
         var file = document.getElementById("file");
         file = file.files[0];

@@ -230,7 +230,6 @@ document.getElementById("rfid_card").onchange = function () {
                 console.log(`Subjects`);
                 console.log(subjects.val());
                 let schedule = subjects.child('Schedule').child('Time').val().split('-')
-
                 $('.user_sched > tbody').append(`<tr>
                 <td>${subjects.child('Title').val()}</td>
                 <td>${toStandardTime(schedule[0].substring(1,schedule[0].length - 3))} - ${toStandardTime(schedule[1].substring(1,schedule[0].length - 3))}</td>
@@ -342,9 +341,13 @@ document.getElementById("rfid_card").onchange = function () {
                           //     ])
                           //     .draw();
                           let schedule = subjects.child('Schedule').child('Time').val().split('-');
+                       
+                          let fromSched = convert(schedule[0])
+                          let toSched = convert(schedule[1])
+                          console.log(schedule)
                           $('.user_sched > tbody').append(`<tr>
-                                    <td>${subjects.child('Title').val()}</td>
-                                    <td>${toStandardTime(schedule[0].substring(1,schedule[0].length - 3))} - ${toStandardTime(schedule[1].substring(1,schedule[0].length - 3))}</td>
+                                    <td><b>${subjects.child('Title').val()}</b></td>
+                                    <td>${fromSched} - ${toSched}</td>
                                     <td>${subjects.child('Location').val()}</td>
                                     <td>${professor.child('Name').child('Last').val()}, ${professor.child('Name').child('First').val()} ${professor.child('Name').child('Middle').val()}</td>
                                </tr>`);
@@ -367,7 +370,9 @@ document.getElementById("rfid_card").onchange = function () {
   }, 3000); // <-- timeout in milliseconds
 };
 
-
+function convert(input) {
+  return moment(input, 'HH:mm:ss').format('h:mm A');
+}
 
 $('#logout').on('click',function()
 {

@@ -91,7 +91,11 @@ $(document).ready(function () {
     MediaQuery();
     OnLoadMediaQuery();
     // DashBoardResponsive();
-    Chart.defaults.global.defaultFontFamily = "Karla";
+    if(window.location.href.includes(`main.html`))
+    {
+        Chart.defaults.global.defaultFontFamily = "Karla";
+    }
+ 
 
 
 });

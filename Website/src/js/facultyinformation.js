@@ -7,47 +7,49 @@ console.log(id);
 var status_table = $('#status-table')
 $(document).ready(function () {
 
-  if(id == null)
-  {
-   // window.location.replace('main.html')
+  if (id == null) {
+    // window.location.replace('main.html')
   }
 
   firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        let uid = user.uid;
-        firebase.database().ref(`User/${uid}/`).once('value', snap => {
-            let Account_Type = snap.child('Account_Type').val();
-            let ID = snap.child('ID').val();
-            let Role = snap.child('Role').val();
-            let UserID = snap.child('UserID').val();
-            let Notification = snap.child('Notification').val();
-            let Permission_Tapin = snap.child('Permission').child('TapIn_First').val()
+      let uid = user.uid;
+      firebase.database().ref(`User/${uid}/`).once('value', snap => {
+        let Account_Type = snap.child('Account_Type').val();
+        let ID = snap.child('ID').val();
+        let Role = snap.child('Role').val();
+        let UserID = snap.child('UserID').val();
+        let Notification = snap.child('Notification').val();
+        let Permission_Tapin = snap.child('Permission').child('TapIn_First').val()
 
 
-            if (Account_Type.includes('Administrator')) {
-                //window.location.replace("main.html");
-            } else if (Account_Type.includes('Faculty')) {
-                //window.location.replace("main.html");
-            } else if (Account_Type.includes('Guidance')) {
-               // window.location.replace("main.html");
-            } else { // Else
-                window.location.replace("index.html");
-            }
-        })
+        if (Account_Type.includes('Administrator')) {
+          //window.location.replace("main.html");
+        } else if (Account_Type.includes('Faculty')) {
+          //window.location.replace("main.html");
+        } else if (Account_Type.includes('Guidance')) {
+          // window.location.replace("main.html");
+        } else { // Else
+          window.location.replace("index.html");
+        }
+      })
     }
-})
+  })
 
 
   status_table.DataTable({
     "dom": 'Bfrtip',
-    "buttons":['excel','pdf','print'],
-    "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]]
+    "buttons": ['excel', 'pdf', 'print'],
+    "lengthMenu": [
+      [10, 20, 30, -1],
+      [10, 20, 30, "All"]
+    ]
   });
 
 
 
 
-  firebase.database().ref(`Data/Student/Information/${id}`).once('value', snap => {
+  firebase.database().ref(`Data/Faculty/Information/${id}`).once('value', snap => {
     console.log(snap.val());
 
     let Address = snap.child('Address').val()
@@ -110,29 +112,34 @@ function GetAttendance() {
 
   attendance_table.DataTable();
 
-  firebase.database().ref(`Attendance/Summary/Student/${id}/`).on('value', snap => {
+  firebase.database().ref(`Attendance/Summary/Faculty/${id}/`).on('value', snap => {
     console.log(snap.val())
     snap.child(`Class`).forEach(Class => {
-      let classNbr = Class.child('ClassNbr').val()
-      let title = Class.child('Title').val()
-      let schedule = Class.child('Schedule').val()
-      let dates = Class.child('Dates')
-      console.log(Class.val())
-      dates.forEach(date => {
-        let remarks = date.child('Remarks').val() == null || date.child('Remarks').val() == '' ? 'No Remarks' : date.child('Remarks').val()
-        let status = {
-          'present': `<span style="color:var(--green)">Present</span>`,
-          'absent': `<span style="color:var(--red)">Absent</span>`,
-          'arrivelate': `<span style="color:var(--yellow)">Arrive Late</span>`,
-          'leaveearly': `<span style="color:var(--yellow)">Leave Early</span>`
-        }
-     
-        let dateEnter = FormatDate(date.key, 'MM-DD-YY').split('-')
-        let schedules = schedule.split('-')
-        status_table.DataTable().row.add([`<span style="font-weight:600">${title}</span>`, `${GetMonth(dateEnter[0])} ${dateEnter[1]}, ${dateEnter[2]}`, `${toStandardTime(schedules[0])} - ${toStandardTime(schedules[1])}`,
-          `<p>${status[date.child('Status').val()]}</p>`, remarks
-        ]).draw()
-      })
+      if (Class.val() != null) {
+        let classNbr = Class.child('ClassNbr').val()
+        let title = Class.child('Title').val()
+        let schedule = Class.child('Schedule').val()
+        let dates = Class.child('Dates')
+        console.log()
+        dates.forEach(date => {
+
+          console.log(date.val())
+          let remarks = date.child('Remarks').val() == null || date.child('Remarks').val() == '' ? 'No Remarks' : date.child('Remarks').val()
+          let status = {
+            'present': `<span style="color:var(--green)">Present</span>`,
+            'absent': `<span style="color:var(--red)">Absent</span>`,
+            'arrivelate': `<span style="color:var(--yellow)">Arrive Late</span>`,
+            'leaveearly': `<span style="color:var(--yellow)">Leave Early</span>`
+          }
+
+          let dateEnter = FormatDate(date.key, 'MM-DD-YY').split('-')
+          let schedules = schedule.split('-')
+          status_table.DataTable().row.add([`<span style="font-weight:600">${title}</span>`, `${GetMonth(dateEnter[0])} ${dateEnter[1]}, ${dateEnter[2]}`, `${toStandardTime(schedules[0])} - ${toStandardTime(schedules[1])}`,
+            `<p>${status[date.child('Status').val().toLowerCase()]}</p>`, remarks
+          ]).draw()
+        })
+
+      }
     });
 
     console.log(snap.child(`Gate`).val());

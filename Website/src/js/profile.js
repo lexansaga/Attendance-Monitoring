@@ -17,13 +17,52 @@ $(document).ready(function () {
 
                 if (Account_Type.includes('Administrator')) {
                     // window.location.replace("main.html");
-                 } else if (Account_Type.includes('Faculty')) {
+                    $(`#class-Schedule_wrapper`).css({
+                        'display':'none '
+                    })
+                } else if (Account_Type.includes('Faculty')) {
                     // window.location.replace("main.html");
-                 } else if (Account_Type.includes('Guidance')) {
+
+                    $(`#class-Schedule_wrapper`).css({
+                        'display':'block '
+                    })
+
+                //Get all user Class Schedule
+                firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(UserID).endAt(UserID).on(`value`, subjects => {
+
+                    if (subjects.val() != null) {
+                        // Get all subjects based on User ID if not null
+
+                        subjects.forEach(subject => {
+
+                            if (subject.val() != null) {
+                                // Loop on all subjects
+                                console.log(subject.val())
+
+                                let classNbr = subject.child(`ClassNbr`).val()
+                                let title = subject.child(`Title`).val()
+                                let description = subject.child(`Description`).val()
+                                let location = subject.child(`Location`).val()
+                                let professor = subject.child(`Professor`).val()
+                                let scheduleTime = subject.child(`Schedule`).child(`Time`).val()
+                                let scheduleDay = subject.child(`Schedule`).child(`Day`).val()
+                            
+                                $(`#class-Schedule`).DataTable().row.add([
+                                    title,
+                                    scheduleDay,
+                                    scheduleTime,
+                                    location
+                                ]).draw()
+                            }
+                        })
+                    }
+                })
+
+                } else if (Account_Type.includes('Guidance')) {
                     // window.location.replace("main.html");
-                 } else { // Else
-                     window.location.replace("index.html");
-                 }
+                } else { // Else
+                    window.location.replace("index.html");
+                }
 
                 firebase.database().ref('Data/Faculty/Information/' + UserID).on('value', uidsnap => {
                     //   console.log(uidsnap.val());
@@ -80,7 +119,7 @@ $(document).ready(function () {
 
                     permission.forEach(perm => {
                         console.log(perm.val())
-                        let tapin  = perm.key.includes('TapIn_First') ? 'Tap in first' : 'Tap in first'
+                        let tapin = perm.key.includes('TapIn_First') ? 'Tap in first' : 'Tap in first'
                         let isCheck = perm.val() == true ? 'checked' : ''
                         $('.permission').append(` <label class="container">${tapin}
                             <input type="checkbox" ${isCheck} disabled>
@@ -89,7 +128,14 @@ $(document).ready(function () {
                     })
 
                 });
+
+
+
+
             });
+
+
+
         } else {
 
 

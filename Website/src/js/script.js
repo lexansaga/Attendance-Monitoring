@@ -31,8 +31,8 @@ function sleep(time) {
 }
 
 function toStandardTime(militaryTime) {
-    const [hours, minutes, seconds] = militaryTime.split(':');
-    return `${(hours > 12) ? hours - 12 : "0"+hours}:${minutes}${seconds ? `:${seconds}` : ''} ${(hours >= 12) ? 'PM' : 'AM'}`;
+    militaryTime = militaryTime.split(':');
+    return (militaryTime[0].charAt(0) == 1 && militaryTime[0].charAt(1) > 2) ? (militaryTime[0] - 12) + ':' + militaryTime[1] + ':' + militaryTime[2] + ' PM' : militaryTime.join(':') + ' AM'
 }
 
 function FormatDate(id, format) {

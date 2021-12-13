@@ -754,7 +754,7 @@ $('#btnSubmitAtt').click(function () {
             //  console.log(key.Class)
 
             for (const [cKey, cValue] of Object.entries(value.Class)) {
-                // console.log(cKey)
+              console.log(cValue)
                 firebase.database().ref(`Attendance/Summary/Student/${key}/Class/${cKey}`).update(cValue);
             }
         }
@@ -772,9 +772,39 @@ $('#btnSubmitAtt').click(function () {
             }
         }
     })
-    //This will add data Faculty Attendance  on firebase
-    firebase.database().ref(`Attendance/Summary/Faculty/`).update(FacultyAttendance());
 
+    
+    FacultyAttendance()
+    // console.log(FacultyAttendance())
+    // This will add data Faculty Attendance  on firebase
+    // FacultyAttendance().forEach(attendance => {
+    //     console.log(attendance)
+    //     //This will add data Student Attendance converted array to JSON on firebase
+    //     //    firebase.database().ref(`Attendance/Summary/Student/`).update(attendance);
+
+    //     for (const [key, value] of Object.entries(attendance)) {
+    //         //   firebase.database().ref(`Attendance/Summary/Student/${key}/Class/${value.Class.key}`).update(attendance);
+
+    //        console.log(key)
+
+    //         for (const [cKey, cValue] of Object.entries(value.Class)) {
+    //            console.log(cValue)
+    //            firebase.database().ref(`Attendance/Summary/Faculty/${key}/Class/${cKey}`).update(cValue);
+            
+
+    //            for(const [bKey , bValue] of Object.entries(cValue.Dates))
+    //            {
+    //                console.log(bValue)
+    //                console.log(bKey)
+
+    //           //     firebase.database().ref(`Attendance/Summary/Faculty/${key}/Class/${cKey}/Dates/${bKey}/`).update(bValue);
+            
+    //            }
+    //         }
+    //     }
+
+    // })
+  //  firebase.database().ref(`Attendance/Summary/Faculty/`).update(FacultyAttendance());
     alert('Attendance Save Sucessfully!')
 });
 
@@ -934,24 +964,26 @@ function AttendanceCounter(arr) {
 
 function FacultyAttendance() {
 
+    let arr = [];
     let time = $('.section-name').attr('data-schedule').split('-')
-    let data = {
-        [`${$('.section-name').attr('data-prof')}`]: {
-            Class: {
-                [`${$('.section-name').attr('data-class')}`]: {
-                    "Dates": {
-                        [dateNow.replaceAll(':', '-')]: {
-                            "Status": 'Present'
-                        }
-                    }
-                },
-                ClassNbr: `${$('.section-name').attr('data-class')}`,
-                Schedule: $('.section-name').attr('data-schedule'),
-                Title: $('.section-name').attr('data-title')
+    let profID = `${$('.section-name').attr('data-prof')}`
+    let sectionID =  `${$('.section-name').attr('data-class')}`;
+    let sectionSchedule = $('.section-name').attr('data-schedule')
+    let sectionTitle = $('.section-name').attr('data-title')
+
+    firebase.database().ref(`Attendance/Summary/Faculty/${profID}/Class/${sectionID}`).update(
+        {
+            ClassNbr : sectionID,
+            Title: sectionTitle,
+            Schedule: sectionSchedule
+        })
+    firebase.database().ref(`Attendance/Summary/Faculty/${profID}/Class/${sectionID}/Dates/`).update(
+        {
+            [dateNow.replaceAll(':', '-')]: {
+                "Status": 'Present'
             }
-        }
-    }
-    return data;
+        })
+ 
 }
 
 var container = ''

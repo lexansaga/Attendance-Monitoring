@@ -1,3 +1,5 @@
+@import url('root.css');
+
 * {box-sizing: border-box;
 }
 
@@ -188,9 +190,13 @@ table,th{
 
 .user_sched th{
   text-align: center;
+  background-color: #003B68;
+  color:white;
+  border: 1px solid #003B68;
 }
 .user_sched td{
-  padding: 5px;
+  padding: 12px;
+  border: 1px solid #003B68
 }
 table{
   margin-left: 40px;
