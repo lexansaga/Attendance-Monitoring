@@ -4,13 +4,13 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="src/css/profile.css" rel="stylesheet" />
+   <link href="src/css/notification.css" rel="stylesheet" />
    <link href="src/css/sidebar.css" rel="stylesheet" />
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-   <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
 
-   <title>Reported - ATMS</title>
+   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+   <title>Dashboard</title>
 </head>
 
 <body>
@@ -170,62 +170,52 @@
                </ul>
             </div>
             <div class="profile-picture" title="Profile">
-               <img  src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
+               <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
                <ul class="profile-menu">
                   <li><a href="profile.html">Profile</a></li>
                   <li><a href="settings.html">Settings</a></li>
-                  <li><a href="index.html">Logout</a></li>
+                  <li><a href="#" onclick="Logout()">Logout</a></li>
                </ul>
             </div>
          </div>
          <main class="item_container">
-            <h3><span>Pro</span>file</h3>
-            <!--Here goes the content / Remove the Preceeding and add yours-->
-            <div class="profile">
-               <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
-               <div class="profile-information">
-                  <h1>--</h1>
-                  <p>--</p>
-               </div>
-               <button style="display:none">
-                  Edit <i class='bx bxs-message-square-edit'></i>
-               </button>
-            </div>
-
-            <div class="table-container">
-
-               <table id="datatable" class="hover row-border order-column">
-                  <thead>
-                     <tr>
+           <h1>Notifications</h1>
+           
+           <div class="notiftable_wrapper">
+            <table id="table_id" class="display">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Sender</th>
                         <th></th>
-                        <th></th>
-                     </tr>
-                  </thead>
-                  <tbody></tbody>
-               </table>
-            </div>
-            <div class="classtable_wrapper">
-               <h1>My Class Schedule</h1>
-               <table id="class-Schedule">
-                  <thead>
-                     <tr>
-                        <th>Course Description</th>
-                        <th>Day</th>
-                        <th>Time</th>
-                        <th>Location</th>
-                     </tr>
-                  </thead>
-                  <tbody></tbody>
-               </table>
-            </div>
-            <div class="permission">
-               <h1>Permission</h1>
-            </div>
-            <br>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>I am an active report</td>
+                        <td>Lorem Ipsum</td>
+                        <td>Lorem Ipsum</td>
+                        <td><i class='bx bxs-circle unread' title="Mark as read"></i></td>
+                    </tr>
+                    <tr>
+                        <td>I am not</td>
+                        <td>Lorem Ipsum</td>
+                        <td>Lorem Ipsum</td>
+                        <td><i class='bx bxs-circle read'></i></td>
+                    </tr>
+                    <tr>
+                        <td>I am an active report</td>
+                        <td>Lorem Ipsum</td>
+                        <td>Lorem Ipsum</td>
+                        <td><i class='bx bxs-circle unread' title="Mark as read"></i></td>
+                    </tr>
+                </tbody>
+            </table>
+           </div>
          </main>
       </div>
    </div>
-
    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
 
    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
@@ -239,36 +229,23 @@
    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
+
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
       integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
    <script src="src/js/script.js"></script>
-   <script src="src/js/profile.js"></script>
+   <script src="src/js/notification.js"></script>
    <script src="src/js/sidebar.js"></script>
+  
 
-   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js">
-   </script>
-
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+
    <script>
       AOS.init();
-
-      $(document).ready(function () {
-         var table = $('#datatable').DataTable({
-            "searching": false, // for search box
-            "paging": false, // for pagination
-            "info": false, // for item count
-            "ordering": false // for  sort
-         });
-
-         var table = $('#class-Schedule').DataTable({
-            "lengthChange": false
-         });
-
-      });
    </script>
 </body>
 

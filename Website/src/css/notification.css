@@ -1,0 +1,25 @@
+.notiftable_wrapper{
+    width: 93%;
+}
+h1{
+    margin-bottom: 20px;
+}
+.read{
+opacity: 0;
+}
+.unread{
+    color: #4395FF;
+}
+i:hover{
+    cursor: pointer;
+}
+th {
+    font-weight: 500 !important;
+    background-color: var(--secondary-color);
+    color: white;
+
+}
+td {
+    padding: 20px 10px 20px 0 !important;
+    background-color: var(--background-color) !important;
+  }

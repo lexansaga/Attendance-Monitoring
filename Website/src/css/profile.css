@@ -65,28 +65,27 @@
 {
     margin-top: 20px;
     width: 93%;
- 
 }
 
 #datatable {
     
     border-bottom: 0 !important;
 }
-thead
+.table-container thead
 {
     display: none;
 }
-table.dataTable thead th, table.dataTable thead td
+.table-container table.dataTable thead th, table.dataTable thead td
 {
 border-bottom: 0 !important;
 
 }
-tr td:nth-child(1)
+.table-container tr td:nth-child(1)
 {
     font-weight: 600;
 }
 
-table.dataTable td {
+.table-container table.dataTable td {
     padding: 20px 10px 20px 0 !important;
     background-color: var(--background-color) !important;
   }
@@ -95,6 +94,14 @@ th {
     background-color: var(--secondary-color);
     color: white;
 
+}
+
+.classtable_wrapper{
+  margin-top: 25px;
+  width: 93%;
+}
+.classtable_wrapper h1{
+  margin-bottom: 20px;
 }
 
 .permission
