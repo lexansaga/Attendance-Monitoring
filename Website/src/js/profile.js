@@ -58,6 +58,8 @@ $(document).ready(function () {
                     }
                 })
 
+                $(`.prof_attendance`).prop(`href`,`facultyinformation.html?id=${UserID}`)
+
                 } else if (Account_Type.includes('Guidance')) {
                     // window.location.replace("main.html");
                 } else { // Else

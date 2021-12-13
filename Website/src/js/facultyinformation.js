@@ -133,10 +133,12 @@ function GetAttendance() {
           }
 
           let dateEnter = FormatDate(date.key, 'MM-DD-YY').split('-')
-          let schedules = schedule.split('-')
-          status_table.DataTable().row.add([`<span style="font-weight:600">${title}</span>`, `${GetMonth(dateEnter[0])} ${dateEnter[1]}, ${dateEnter[2]}`, `${toStandardTime(schedules[0])} - ${toStandardTime(schedules[1])}`,
-            `<p>${status[date.child('Status').val().toLowerCase()]}</p>`, remarks
-          ]).draw()
+          if (schedule != null) {
+            let schedules = schedule.split('-')
+            status_table.DataTable().row.add([`<span style="font-weight:600">${title}</span>`, `${GetMonth(dateEnter[0])} ${dateEnter[1]}, ${dateEnter[2]}`, `${toStandardTime(schedules[0])} - ${toStandardTime(schedules[1])}`,
+              `<p>${status[date.child('Status').val().toLowerCase()]}</p>`, remarks
+            ]).draw()
+          }
         })
 
       }
@@ -149,15 +151,15 @@ function GetAttendance() {
         let location = date.child('Location').val()
         let timeEnter = date.child('Time').val()
         let isValid = date.child('isValid').val()
+        let dDate = date.child('Date').val()
 
-        let dateEnter = FormatDate(date.child('Date').val(), 'MM-DD-YY').split('-')
+        if (dDate != null) {
+          let dateEnter = FormatDate(dDate, 'MM-DD-YY').split('-')
+          status_table.DataTable().row.add([`<span style="font-weight:600">${location} ${status}</span>`, `${GetMonth(dateEnter[0])} ${dateEnter[1]}, ${dateEnter[2]}`, timeEnter,
+            `<p>${status}</p>`, 'Not applicable'
+          ]).draw()
+        }
 
-
-
-
-        status_table.DataTable().row.add([`<span style="font-weight:600">${location} ${status}</span>`, `${GetMonth(dateEnter[0])} ${dateEnter[1]}, ${dateEnter[2]}`, timeEnter,
-          `<p>${status}</p>`, 'Not applicable'
-        ]).draw()
       })
 
     })
