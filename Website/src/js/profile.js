@@ -17,13 +17,13 @@ $(document).ready(function () {
 
                 if (Account_Type.includes('Administrator')) {
                     // window.location.replace("main.html");
-                    $(`#class-Schedule_wrapper`).css({
+                    $(`.classtable_wrapper`).css({
                         'display':'none '
                     })
                 } else if (Account_Type.includes('Faculty')) {
                     // window.location.replace("main.html");
 
-                    $(`#class-Schedule_wrapper`).css({
+                    $(`.classtable_wrapper`).css({
                         'display':'block '
                     })
 
@@ -54,6 +54,12 @@ $(document).ready(function () {
                                     location
                                 ]).draw()
                             }
+                        })
+                    }
+                    else
+                    {
+                        $(`.classtable_wrapper`).css({
+                            'display':'none '
                         })
                     }
                 })

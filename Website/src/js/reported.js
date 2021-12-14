@@ -176,7 +176,7 @@ function Archive(event) {
             Action: `No action taken`,
             Status: `Archived`
         })
-        firebase.database().ref(`Data/Reported/Active/${GetDateNow()}/${studentID}/${ID}`).remove()
+   //     firebase.database().ref(`Data/Reported/Active/${GetDateNow()}/${studentID}/${ID}`).remove()
     } else {
 
     }

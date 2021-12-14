@@ -525,7 +525,7 @@ function VerifyType() {
     } else if (e == "Gate") {
         reset();
         userSetup.css({
-            'display': 'block'
+            'display': 'none'
         });
         permission.css({
             'display': 'none'
@@ -708,7 +708,7 @@ $('#btnsave').click(function (event) {
         }
         //End -- Check fields if no values
 
-        // let Subject = [];
+        let Subject = [];
         // for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
         //     Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
         //     //This will append all the subjects and create a certain format
@@ -983,8 +983,11 @@ $('#btnsave').click(function (event) {
         console.log(e);
 
 
+
+
+
         //Start -- Check fields if no values
-        if (email.val() == '' || password.val() == '' ||
+        if (
             ID.val() == '' || gatelocation.val() == '') {
 
             alert('Fill up necessary information!');
@@ -1005,31 +1008,31 @@ $('#btnsave').click(function (event) {
 
         }
         //End -- Check fields if no values
+        if (email.val() != '' && password.val() != '') {
+
+            //Start - Check email Validation
+            const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (!regex.test(email.val())) {
+                alert('Invalid Email');
+                return
+            }
+            //End -- Check email Validation
 
 
-        //Start - Check email Validation
-        const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (!regex.test(email.val())) {
-            alert('Invalid Email');
-            return
+            //Start -- Check Password Validation
+            if (password.val().length < 8) {
+                alert("Your password must be at least 8 characters");
+                return;
+            }
+            if (password.val().search(/[a-z]/i) < 0) {
+                alert("Your password must contain at least one letter.");
+                return;
+            }
+            if (password.val().search(/[0-9]/) < 0) {
+                alert("Your password must contain at least one digit.");
+                return;
+            }
         }
-        //End -- Check email Validation
-
-
-        //Start -- Check Password Validation
-        if (password.val().length < 8) {
-            alert("Your password must be at least 8 characters");
-            return;
-        }
-        if (password.val().search(/[a-z]/i) < 0) {
-            alert("Your password must contain at least one letter.");
-            return;
-        }
-        if (password.val().search(/[0-9]/) < 0) {
-            alert("Your password must contain at least one digit.");
-            return;
-        }
-
         //End -- Check Password Validation
 
         var file = document.getElementById("file");
@@ -1042,6 +1045,7 @@ $('#btnsave').click(function (event) {
                 .then((url) => {
 
 
+
                     var dEmail = email.val(),
                         dPassword = password.val(),
                         dId = ID.val(),
@@ -1050,11 +1054,18 @@ $('#btnsave').click(function (event) {
 
 
 
-                    if (email.val() != null && password.val() != null) {
+
+                    firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
+                        "ID": $('#ID').val(),
+                        'Status': dStatus,
+                        'Location': dLocation,
+                    });
+
+                    if (email.val() != '' && password.val() != '') {
                         firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
                             .then((userCredential) => {
                                 var uid = userCredential.user.uid;
-                                alert(uid)
+                                //   alert(uid)
                                 firebase.database().ref('User/' + uid).update({
                                     'Account_Type': e,
                                     'ID': uid,
@@ -1065,16 +1076,25 @@ $('#btnsave').click(function (event) {
                                     'UserID': dId,
                                     'Email': dEmail
                                 });
-
-                                firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
-                                    "ID": $('#ID').val(),
-                                    'Status': dStatus,
-                                    'Location': dLocation,
-                                });
                             })
                             .catch((error) => {
                                 console.log('Error ' + error)
                             });
+                    } else {
+                        firebase.database().ref('User/').orderByChild('UserID').startAt(dId).endAt(dId).once('value', users => {
+                            users.forEach(user => {
+                                let uid = user.child('ID').val();
+                          //      alert(uid)
+                                // alert(tapIn)
+
+                                firebase.database().ref('User/' + uid).update({
+                                    'Account_Type': e,
+                                    'Role': e,
+                                    'Status': dStatus,
+                                    'Location': dLocation
+                                });
+                            })
+                        })
                     }
                     alert('Gate Save Successfully');
                     reset();
@@ -1319,7 +1339,7 @@ $('#SearchPerson').on("select2:select", function (e) {
                     })
 
                 } else {
-                    alert(`We can't any subjects on this professor!`)
+                    console.log(`We can't any subjects on this professor!`)
                 }
             })
             // snap.child("Subject").forEach(subject => {
@@ -1380,7 +1400,19 @@ $('#SearchPerson').on("select2:select", function (e) {
 
         });
     } else {
-        Path = "Data/Gate/Information";
+        Path = "Data/Gate/Information/" + uid;
+
+        firebase.database().ref(Path).on(`value`, snap => {
+            let id = snap.child(`ID`).val()
+            let status = snap.child(`Status`).val()
+            let location = snap.child(`Location`).val()
+
+            console.log(id)
+
+            ID.val(id)
+            gatestatus.val(status)
+            gatelocation.val(location)
+        })
     }
 
     var url = new URL(window.location.href);
@@ -1398,27 +1430,42 @@ $('#SearchPerson').on("select2:select", function (e) {
 
 function LoadSearch(UserType) {
 
-    searchperson.html(' ');
-    searchperson.append(`<option value="default" disabled selected> Select ${UserType} </option>`);
+
 
     firebase.database().ref('Data/' + UserType + '/Information/').on('value', snap => {
+
+        searchperson.empty().trigger("change")
+        searchperson.append(`<option value="default" disabled selected> Select ${UserType} </option>`);
 
         console.log(snap.val())
         if (snap.val() != null) {
             snap.forEach(childSnap => {
 
-                let id = childSnap.child('ID').val();
-                let first = childSnap.child('Name').child(`First`).val()
-                let last = childSnap.child('Name').child(`Last`).val()
-                let middle = childSnap.child('Name').child(`Middle`).val()
 
-                if (id != null) {
-                 
-                  
+                if (UserType.includes(`Gate`)) {
+                    let id = childSnap.child('ID').val();
+                    let status = childSnap.child(`Status`).val()
+                    let location = childSnap.child(`Location`).val()
 
-                    searchperson.append(`<option value='${id}'> ${`<span style="color:#cccccc">(${id}) </span>`+last +','+ first +' ' +middle} </option>`);
+                    if (id != null) {
 
+                        searchperson.append(`<option value='${id}'> ${`<span style="color:#cccccc">(${id}) </span>`} ${location} ${status} </option>`);
+
+                    }
+                } else {
+                    let id = childSnap.child('ID').val();
+
+                    let first = childSnap.child('Name').child(`First`).val()
+                    let last = childSnap.child('Name').child(`Last`).val()
+                    let middle = childSnap.child('Name').child(`Middle`).val()
+
+                    if (id != null) {
+
+                        searchperson.append(`<option value='${id}'> ${`<span style="color:#cccccc">(${id}) </span>`+last +','+ first +' ' +middle} </option>`);
+
+                    }
                 }
+
             });
         }
 

@@ -621,7 +621,7 @@ $('#add').click(function () {
 
         let maxDate = FormatDate(`${month}-${day}-${year}`, `MM-DD-YY`)
 
-        alert(maxDate)
+      //  alert(maxDate)
 
         table.after(`<td class="excl">${attstatus.present}</td>`);
         head.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="${FormatDate(maxDate,'YY-MM-DD')}"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);

@@ -52,6 +52,12 @@ firebase.auth().onAuthStateChanged((user) => {
             let absent = $('#cnt_absent')
             let late = $('#cnt_late')
 
+
+            present.html('0')
+            absent.html('0')
+            late.html('0')
+
+        
             if (Account_Type.includes('Administrator')) {
 
                 StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'present', present)
@@ -104,6 +110,7 @@ firebase.auth().onAuthStateChanged((user) => {
                 LineChart(data)
             }
             if (Account_Type.includes('Guidance')) {
+              
 
                 StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'present', present)
                 StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'absent', absent)
@@ -117,9 +124,6 @@ firebase.auth().onAuthStateChanged((user) => {
             if (Account_Type.includes('Faculty')) {
                 //alert('Faculty')
 
-                present.html('0')
-                absent.html('0')
-                late.html('0')
 
                 FacultyStatusCounter(UserID, FormatDate(GetDateNow(), 'MM-DD-YY'), 'present', present)
                 FacultyStatusCounter(UserID, FormatDate(GetDateNow(), 'MM-DD-YY'), 'absent', absent)
@@ -173,14 +177,14 @@ firebase.auth().onAuthStateChanged((user) => {
 function StatusCounter(date, status, object) {
 
     var statusCountInit = 0
-    firebase.database().ref('Attendance/Summary/Class/').on('value', classes => {
+    firebase.database().ref('Attendance/Summary/Class/').once('value', classes => {
         if (classes.val() != null) {
             classes.forEach(aclass => {
                 let classKey = aclass.key;
-                firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).on('value', attendance => {
+                firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).once('value', attendance => {
                     if (attendance.val() != null) {
                         //  console.log(attendance.val())
-                        firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).on('value', statusCount => {
+                        firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).once('value', statusCount => {
 
                             if (statusCount.val() != null) {
                                 //    console.log(statusCount.val())
@@ -205,17 +209,17 @@ function FacultyStatusCounter(id, date, status, object) {
 
     var statusCountInit = 0;
     
-    firebase.database().ref('Attendance/Summary/Class/').orderByChild('Professor').startAt(id).endAt(id).on('value', classes => {
+    firebase.database().ref('Attendance/Summary/Class/').orderByChild('Professor').startAt(id).endAt(id).once('value', classes => {
 
         if (classes.val() != null) {
             classes.forEach(aclass => {
                 let classKey = aclass.key;
                 console.log(classKey)
-                firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).on('value', attendance => {
+                firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).once('value', attendance => {
                 
                     if (attendance.val() != null) {
 
-                        firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).on('value', statusCount => {
+                        firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).once('value', statusCount => {
 
                             if (statusCount.val() != null) {
                                 statusCountInit += statusCount.numChildren()
@@ -244,7 +248,7 @@ function StudentCounter(id, account_type, object) {
     if (account_type.includes('Faculty')) {
         let studentArr = []
         let studentCount = 0
-        firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(id).endAt(id).on("value", snap => {
+        firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(id).endAt(id).once("value", snap => {
             if (snap.val() != null) {
                 console.log(snap.val())
                 let studentCount = 0;
@@ -266,7 +270,7 @@ function StudentCounter(id, account_type, object) {
 
         });
     } else {
-        firebase.database().ref(`Data/Student/Information/`).on("value", snap => {
+        firebase.database().ref(`Data/Student/Information/`).once("value", snap => {
             console.log(snap.val())
 
             object.html(snap.numChildren())
