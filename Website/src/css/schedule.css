@@ -162,10 +162,28 @@ thead td {
 {
   display: none;
 }
+.Btn-viewInf{
+  position: absolute;
+  right: 80;
+  margin-top: -110px;
 
+  border: none;
+  height: 40px;
+  width: 140px;
+  background-color: #B2BBF7;
+  color: white;
+}
+.Btn-viewInf:hover{
+  cursor: pointer;
+}
 
 /*----------------------------------------------------Tablet View----------------------------------------------------*/
 @media (max-width: 768px) {
+
+  .Btn-viewInf{
+    right: 20;
+    margin-top: -100px;
+  }
 
   .search-result
   {
@@ -224,7 +242,8 @@ thead td {
     margin-top: 0px;
     margin-bottom: 2px;
   }
-
+  .Btn-viewInf{
+    display: none;
+  }
  
-
 }
