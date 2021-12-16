@@ -178,33 +178,32 @@ $('#look').on('select2:select', function (e) {
             if (subjects.val() != null) {
                 console.log(subjects.val())
 
-                subjects.forEach(subject =>
-                    {
-                        let classNbr = subject.child('ClassNbr').val()
-                        let description = subject.child('Description').val()
-                        let location = subject.child('Location').val()
-                        let title = subject.child('Title').val()
-                        let professor = subject.child('Professor').val()
-                        let schedDay = subject.child('Schedule').child(`Day`).val()
-                        let schedTime = subject.child('Schedule').child(`Time`).val()
+                subjects.forEach(subject => {
+                    let classNbr = subject.child('ClassNbr').val()
+                    let description = subject.child('Description').val()
+                    let location = subject.child('Location').val()
+                    let title = subject.child('Title').val()
+                    let professor = subject.child('Professor').val()
+                    let schedDay = subject.child('Schedule').child(`Day`).val()
+                    let schedTime = subject.child('Schedule').child(`Time`).val()
 
 
-                        
-                        firebase.database().ref(`Data/Faculty/Information/${professor}/`).on('value', professor => {
-                            if (professor.val() != null) {
 
-                                let first = professor.child('Name').child(`First`).val()
-                                let last = professor.child('Name').child(`Last`).val()
-                                let middle = professor.child('Name').child(`Middle`).val()
+                    firebase.database().ref(`Data/Faculty/Information/${professor}/`).on('value', professor => {
+                        if (professor.val() != null) {
 
-                                tableUserSched.DataTable().row.add([title, schedDay, schedTime, location,
-                                        `${last}, ${first} ${middle} `
-                                    ])
-                                    .draw();
-                            }
-                        })
+                            let first = professor.child('Name').child(`First`).val()
+                            let last = professor.child('Name').child(`Last`).val()
+                            let middle = professor.child('Name').child(`Middle`).val()
 
+                            tableUserSched.DataTable().row.add([title, schedDay, schedTime, location,
+                                    `${last}, ${first} ${middle} `
+                                ])
+                                .draw();
+                        }
                     })
+
+                })
             }
             // snap.forEach(professor => {
 
@@ -274,18 +273,25 @@ function LoadSearch(UserType) {
         .ref('Data/' + UserType + '/Information/')
         .on('value', (snap) => {
             snap.forEach((childSnap) => {
+                if (childSnap.val() != null) {
+                    let id = childSnap.child('ID').val();
+                    let last = childSnap.child('Name').child('Last').val()
+                    let first = childSnap.child('Name').child('First').val()
+                    let middle = childSnap.child('Name').child('Middle').val()
+                    if (id != null) {
+                        $('#look').append(
+                            `<option value='${id}'> ${`<span style="color:#ccc">(${id})</span>` +
+                            last +
+                            ',' +
+                            first +
+                            ' ' +
+                            middle
+                            } </option>`
+                        );
+                    }
+                }
                 //   var name = childSnap.child('Name').val().split('&&');
-                $('#look').append(
-                    `<option value='${childSnap.child('ID').val()}'> ${`<span style="color:#ccc">(${childSnap
-                        .child('ID')
-                        .val()})</span>` +
-                    childSnap.child('Name').child('Last').val() +
-                    ',' +
-                    childSnap.child('Name').child('First').val() +
-                    ' ' +
-                    childSnap.child('Name').child('Middle').val()
-                    } </option>`
-                );
+
             });
         });
 
@@ -321,6 +327,37 @@ function LoadSearchFaculty(UserType, id) {
         })
     }
 }
+$(`.UserInformation_wrapper`).on('click', function () {
+
+    let id = $(`#infoId`).html();
+
+
+    if (id.includes(`STUD`)) {
+        window.location.href = `studentinformation.html?id=${id}`
+    } else if (id.includes(`FAC`) || id.includes(`PROF`)) {
+        window.location.href = `facultyinformation.html?id=${id}`
+    } else {
+        alert(`Invalid ID`)
+    }
+
+
+})
+
+$(`.Btn-viewInf`).on('click', function () {
+
+    let id = $(`#infoId`).html();
+
+
+    if (id.includes(`STUD`)) {
+        window.location.href = `studentinformation.html?id=${id}`
+    } else if (id.includes(`FAC`) || id.includes(`PROF`)) {
+        window.location.href = `facultyinformation.html?id=${id}`
+    } else {
+        alert(`Invalid ID`)
+    }
+
+
+})
 
 function LoadUser(UserType, Id) {
     firebase

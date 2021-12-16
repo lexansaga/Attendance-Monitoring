@@ -64,7 +64,20 @@ $(document).ready(function () {
                 let Notification = snap.child('Notification').val();
                 let Permission_Tapin = snap.child('Permission').child('TapIn_First').val()
 
-                if (Permission_Tapin == true) {
+                
+
+                if (Account_Type.includes('Administrator')) {
+                    window.location.replace("main.html");
+                } else if (Account_Type.includes('Faculty')) {
+                    //window.location.replace("main.html");
+                } else if (Account_Type.includes('Guidance')) {
+                    window.location.replace("main.html");
+                } else { // Else
+                    window.location.replace("index.html");
+                }
+
+                console.log(Permission_Tapin)
+                if (Permission_Tapin == true || Permission_Tapin == null) {
                     //  alert('Need to tapin first');
 
 
@@ -106,16 +119,6 @@ $(document).ready(function () {
                 } else {
                     console.log('No need to tap in first!');
                     AttendanceProcess()
-                }
-
-                if (Account_Type.includes('Administrator')) {
-                    window.location.replace("main.html");
-                } else if (Account_Type.includes('Faculty')) {
-                    //window.location.replace("main.html");
-                } else if (Account_Type.includes('Guidance')) {
-                    window.location.replace("main.html");
-                } else { // Else
-                    window.location.replace("index.html");
                 }
 
 

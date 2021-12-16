@@ -165,7 +165,7 @@ function Archive(event) {
     let date = $(event).parent().parent().find('img').attr('data-date')
     let details = $(event).parent().parent().find('img').attr('data-details')
 
-    if (confirm(`Are you sure you want to move ${ID} to Archive?`)) {
+    if (confirm(`Are you sure you want to move ${studentName} to Archive?`)) {
         firebase.database().ref(`Data/Reported/Archive/${GetDateNow()}/${studentID}/${ID}`).set({
             Date: GetDateNow(),
             Time: GetTimeNow(),
@@ -176,7 +176,7 @@ function Archive(event) {
             Action: `No action taken`,
             Status: `Archived`
         })
-   //     firebase.database().ref(`Data/Reported/Active/${GetDateNow()}/${studentID}/${ID}`).remove()
+   firebase.database().ref(`Data/Reported/Active/${GetDateNow()}/${studentID}/${ID}`).remove()
     } else {
 
     }

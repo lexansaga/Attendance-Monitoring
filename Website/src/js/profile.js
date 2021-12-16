@@ -5,7 +5,7 @@ $(document).ready(function () {
 
             let uid = user.uid;
 
-            firebase.database().ref('User/' + uid).on('value', snap => {
+            firebase.database().ref('User/' + uid).once('value', snap => {
                 if (snap != null) {
                     $('#datatable tbody').html(' ');
                 }
@@ -28,7 +28,7 @@ $(document).ready(function () {
                     })
 
                 //Get all user Class Schedule
-                firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(UserID).endAt(UserID).on(`value`, subjects => {
+                firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(UserID).endAt(UserID).once(`value`, subjects => {
 
                     if (subjects.val() != null) {
                         // Get all subjects based on User ID if not null
@@ -72,7 +72,7 @@ $(document).ready(function () {
                     window.location.replace("index.html");
                 }
 
-                firebase.database().ref('Data/Faculty/Information/' + UserID).on('value', uidsnap => {
+                firebase.database().ref('Data/Faculty/Information/' + UserID).once('value', uidsnap => {
                     //   console.log(uidsnap.val());
                     let profile = uidsnap.child('Profile').val();
                     // let name = uidsnap.child('Name').val().split('&&');

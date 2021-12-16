@@ -679,473 +679,490 @@ $('#btnsave').click(function (event) {
     const Role = document.getElementById("Role");
     const selectedRole = Role.options[Role.selectedIndex].text;
 
-    if (e == 'Student') {
-        event.stopPropagation();
-        console.log(e);
+    if ($(`#btnsave`).html().includes(`Delete`)) {
 
-        //Start -- Check fields if no values
-        if (studentEmail.val() == '' || lastName.val() == '' ||
-            firstName.val() == '' || middleName.val() == '' ||
-            ID.val() == '' || contact.val() == '' ||
-            address.val() == '') {
-
-            alert('Fill up necessary information!');
-            // Start -- This will check for each empty input and mark red
-            $('.inputArea >  input:not(#Card_ID), .inputArea >  textarea').each(function () {
-                if ($(this).val() == '') {
-                    $(this).css({
-                        'border': '1px solid red'
-                    });
-                } else {
-                    $(this).css({
-                        'border': 'none'
-                    });
-                }
-            })
-            // End -- This will check for each empty input and mark red
-            return;
+        //If the button confirm delete , Activate this
+        if (confirm(`Are you sure you want to delete this?`)) {
+            DeleteUser(ID.val())
+            alert('Data deleted sucessfully')
+        }
+        else{
 
         }
-        //End -- Check fields if no values
-
-        let Subject = [];
-        // for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
-        //     Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
-        //     //This will append all the subjects and create a certain format
-        // }
-
-
-        var file = document.getElementById("file");
-        file = file.files[0];
-        // if (file != null) {
-        // Start - If image has no value or null, Insert Image
-        var storageRef = firebase.storage().ref('Profile/Student/' + ID.val());
-        storageRef.put(file).then((snapshot) => {
-            storageRef.getDownloadURL()
-                .then((url) => {
-                    // Insert url into an <img> tag to "download"
-                    firebase.database().ref(`Data/Student/Information/${ID.val()}`).update({
-                        "Address": address.val(),
-                        "Contact": contact.val(),
-                        "Card_ID": cardID.val(),
-                        "ID": ID.val(),
-                        "Email": studentEmail.val(),
-                        "Name": {
-                            "First": firstName.val(),
-                            "Middle": middleName.val(),
-                            "Last": lastName.val()
-                        },
-                        Subject,
-                        "Profile": url
-                    });
-                    alert('Student Save Successfully');
-                    reset();
-                    loadid('Student');
-                })
-                .catch((error) => {
-
-                    console.log('Error ' + error)
-                });
-        });
-        // End - If image has no value or null, Insert Image
-        // } else {
-        //     // Start - If image has no value ,Decline insert Image
-        //     firebase.database().ref(`Data/Student/Information/${ID.val()}`).update({
-        //         "Address": address.val(),
-        //         "Contact": contact.val(),
-        //         "Card_ID": cardID.val(),
-        //         "ID": ID.val(),
-        //         "Email": studentEmail.val(),
-        //         "Name": {
-        //             "First": firstName.val(),
-        //             "Middle": middleName.val(),
-        //             "Last": lastName.val()
-        //         },
-        //         Subject
-        //     });
-        //     alert('Student Save Successfully');
-        //     reset();
-        //     loadid('Student');
-        //     // End - If image has no value ,Decline insert Image
-        // }
-
-
-
-
-
-    } else if (e == 'Faculty') {
-        event.stopPropagation();
-        console.log(e);
-
-        //Start -- Check fields if no values
-        if (
-            lastName.val() == '' ||
-            firstName.val() == '' || middleName.val() == '' ||
-            ID.val() == '' || contact.val() == '' ||
-            address.val() == '') {
-
-            alert('Fill up necessary information!');
-            // Start -- This will check for each empty input and mark red
-            $('.inputArea >  input:not(#Card_ID),.inputArea >  textarea,#UserSetup > input').each(function () {
-                if ($(this).val() == '') {
-                    $(this).css({
-                        'border': '1px solid red'
-                    });
-                } else {
-                    $(this).css({
-                        'border': 'none'
-                    });
-                }
-            })
-            // End -- This will check for each empty input and mark red
-            return;
-
-        }
-
-        if (email.val() != '' && password.val() != '') {
-            //End -- Check fields if no values
-            // alert(email.val());
-            // alert(password.val());
-
-            //Start - Check email Validation
-            const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if (!regex.test(email.val())) {
-                alert('Invalid Email');
-                return
-            }
-            //End -- Check email Validation
-
-
-            //Start -- Check Password Validation
-            if (password.val().length < 8) {
-                alert("Your password must be at least 8 characters");
-                return;
-            }
-            if (password.val().search(/[a-z]/i) < 0) {
-                alert("Your password must contain at least one letter.");
-                return;
-            }
-            if (password.val().search(/[0-9]/) < 0) {
-                alert("Your password must contain at least one digit.");
-                return;
-            }
-
-            //End -- Check Password Validation
-        }
-
-
-
-
-        let Subject = [];
-        // for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
-        //     Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
-        //     //This will append all the subjects and create a certain format
-        // }
-
-        var file = document.getElementById("file");
-        file = file.files[0];
-
-        // if (file != null) {
-        // Start - If image has  value, Insert Image
-        var storageRef = firebase.storage().ref('Profile/Faculty/' + ID.val());
-        storageRef.put(file).then((snapshot) => {
-            storageRef.getDownloadURL()
-                .then((url) => {
-                    firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).update({
-                        "Address": address.val(),
-                        "Contact": contact.val(),
-                        "ID": ID.val(),
-                        "Card_ID": cardID.val(),
-                        "Name": {
-                            "First": firstName.val(),
-                            "Middle": middleName.val(),
-                            "Last": lastName.val()
-                        },
-                        Subject,
-                        "Profile": url,
-                        "Permission": {
-                            "TapIn_First": $('.cbx').is(":checked")
-                        }
-                    });
-
-                    var dEmail = email.val(),
-                        dPassword = password.val(),
-                        dId = ID.val();
-
-
-                    if (email.val() != '' && password.val() != '') {
-                        // This will add new Faculty
-                        let tapIn = $('.cbx').is(":checked")
-                        alert('Saving Account')
-                        firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
-                            .then((userCredential) => {
-                                var uid = userCredential.user.uid;
-
-                                firebase.database().ref('User/' + uid).update({
-                                    'Account_Type': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
-                                    'ID': uid,
-                                    'Password': dPassword,
-                                    'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
-                                    'UserID': dId,
-                                    'Email': dEmail,
-                                    "Permission": {
-                                        "TapIn_First": tapIn
-                                    }
-                                });
-                            })
-                            .catch((error) => {
-                                console.log('Error ' + error)
-                                alert(error)
-                            });
-                    } else {
-                        // User Already Exist and needed to be updated
-                        let tapIn = $('.cbx').is(":checked")
-                        firebase.database().ref('User/').orderByChild('UserID').startAt(dId).endAt(dId).once('value', users => {
-                            users.forEach(user => {
-                                let uid = user.child('ID').val();
-                                // alert(tapIn)
-                                firebase.database().ref(`User/${uid}`).update({
-                                    'Account_Type': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
-                                    'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
-                                    "Permission": {
-                                        "TapIn_First": tapIn
-                                    }
-                                });
-                            })
-                        })
-                    }
-                    alert('Faculty Save Successfully');
-                    reset();
-                    loadid('Faculty');
-                })
-                .catch((error) => {
-                    console.log('Error ' + error)
-
-                });
-        });
-
-        // End - If image has  value, Insert Image
-        // } else {
-
-        //     // Start - If image has no value or , Declined insert Image
-        //     firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).update({
-        //         "Address": address.val(),
-        //         "Contact": contact.val(),
-        //         "ID": ID.val(),
-        //         "Card_ID": cardID.val(),
-        //         "Name": {
-        //             "First": firstName.val(),
-        //             "Middle": middleName.val(),
-        //             "Last": lastName.val()
-        //         },
-        //         Subject,
-        //         "Permission": {
-        //             "TapIn_First": $('.cbx').is(":checked")
-        //         }
-        //     });
-
-        //     var dEmail = email.val(),
-        //         dPassword = password.val(),
-        //         dId = ID.val();
-
-
-        //     if (email.val() != null && password.val() != null) {
-        //         firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
-        //             .then((userCredential) => {
-        //                 var uid = userCredential.user.uid;
-
-        //                 firebase.database().ref('User/' + uid).update({
-        //                     'Account_Type': e,
-        //                     'ID': uid,
-        //                     'Password': dPassword,
-        //                     'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
-        //                     'UserID': dId,
-        //                     'Email': dEmail,
-        //                     "Permission": {
-        //                         "TapIn_First": $('.cbx').is(":checked")
-        //                     }
-        //                 });
-        //             })
-        //             .catch((error) => {
-        //                 console.log('Error ' + error)
-        //             });
-        //     }
-        //     alert('Faculty Save Successfully');
-        //     reset();
-        //     loadid('Faculty');
-
-        //     // End - If image has no value or , Declined insert Image
-        // }
-
-    } else if (e == 'Gate') {
-
-        event.stopPropagation();
-        console.log(e);
-
-
-
-
-
-        //Start -- Check fields if no values
-        if (
-            ID.val() == '' || gatelocation.val() == '') {
-
-            alert('Fill up necessary information!');
-            // Start -- This will check for each empty input and mark red
-            $('.inputArea >  input,.inputArea >  textarea,#UserSetup > input').each(function () {
-                if ($(this).val() == '') {
-                    $(this).css({
-                        'border': '1px solid red'
-                    });
-                } else {
-                    $(this).css({
-                        'border': 'none'
-                    });
-                }
-            })
-            // End -- This will check for each empty input and mark red
-            return;
-
-        }
-        //End -- Check fields if no values
-        if (email.val() != '' && password.val() != '') {
-
-            //Start - Check email Validation
-            const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-            if (!regex.test(email.val())) {
-                alert('Invalid Email');
-                return
-            }
-            //End -- Check email Validation
-
-
-            //Start -- Check Password Validation
-            if (password.val().length < 8) {
-                alert("Your password must be at least 8 characters");
-                return;
-            }
-            if (password.val().search(/[a-z]/i) < 0) {
-                alert("Your password must contain at least one letter.");
-                return;
-            }
-            if (password.val().search(/[0-9]/) < 0) {
-                alert("Your password must contain at least one digit.");
-                return;
-            }
-        }
-        //End -- Check Password Validation
-
-        var file = document.getElementById("file");
-        file = file.files[0];
-
-        // if (file != null) { // Start - If image has  value  ,  Insert Image
-        var storageRef = firebase.storage().ref('Profile/Gate/' + $('#ID').val());
-        storageRef.put(file).then((snapshot) => {
-            storageRef.getDownloadURL()
-                .then((url) => {
-
-
-
-                    var dEmail = email.val(),
-                        dPassword = password.val(),
-                        dId = ID.val(),
-                        dStatus = gatestatus.val(),
-                        dLocation = gatelocation.val();
-
-
-
-
-                    firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
-                        "ID": $('#ID').val(),
-                        'Status': dStatus,
-                        'Location': dLocation,
-                    });
-
-                    if (email.val() != '' && password.val() != '') {
-                        firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
-                            .then((userCredential) => {
-                                var uid = userCredential.user.uid;
-                                //   alert(uid)
-                                firebase.database().ref('User/' + uid).update({
-                                    'Account_Type': e,
-                                    'ID': uid,
-                                    'Password': dPassword,
-                                    'Role': e,
-                                    'Status': dStatus,
-                                    'Location': dLocation,
-                                    'UserID': dId,
-                                    'Email': dEmail
-                                });
-                            })
-                            .catch((error) => {
-                                console.log('Error ' + error)
-                            });
-                    } else {
-                        firebase.database().ref('User/').orderByChild('UserID').startAt(dId).endAt(dId).once('value', users => {
-                            users.forEach(user => {
-                                let uid = user.child('ID').val();
-                          //      alert(uid)
-                                // alert(tapIn)
-
-                                firebase.database().ref('User/' + uid).update({
-                                    'Account_Type': e,
-                                    'Role': e,
-                                    'Status': dStatus,
-                                    'Location': dLocation
-                                });
-                            })
-                        })
-                    }
-                    alert('Gate Save Successfully');
-                    reset();
-                    loadid('Gate');
-                })
-                .catch((error) => {
-                    console.log('Error ' + error)
-                });
-        });
-
-
-        // End - If image has  value  ,  Insert Image
-        // } else {
-        //     // Start - If image has no  value  , Declined insert Image
-        //     firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
-        //         "ID": $('#ID').val()
-        //     });
-
-        //     var dEmail = email.val(),
-        //         dPassword = password.val(),
-        //         dId = ID.val();
-
-
-        //     if (email.val() != null && password.val() != null) {
-        //         firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
-        //             .then((userCredential) => {
-        //                 var uid = userCredential.user.uid;
-
-        //                 firebase.database().ref('User/' + uid).update({
-        //                     'Account_Type': e,
-        //                     'ID': uid,
-        //                     'Password': dPassword,
-        //                     'Role': e,
-        //                     'UserID': dId,
-        //                     'Email': dEmail
-        //                 });
-        //             })
-        //             .catch((error) => {
-        //                 console.log('Error ' + error)
-        //             });
-        //     }
-
-        // alert('Gate Save Successfully');
-        // reset();
-        // loadid('Gate');
-        //     // End - If image has no  value  , Declined insert Image
-        // }
 
     } else {
+        if (e == 'Student') {
+            event.stopPropagation();
+            console.log(e);
+
+            //Start -- Check fields if no values
+            if (studentEmail.val() == '' || lastName.val() == '' ||
+                firstName.val() == '' || middleName.val() == '' ||
+                ID.val() == '' || contact.val() == '' ||
+                address.val() == '') {
+
+                alert('Fill up necessary information!');
+                // Start -- This will check for each empty input and mark red
+                $('.inputArea >  input:not(#Card_ID), .inputArea >  textarea').each(function () {
+                    if ($(this).val() == '') {
+                        $(this).css({
+                            'border': '1px solid red'
+                        });
+                    } else {
+                        $(this).css({
+                            'border': 'none'
+                        });
+                    }
+                })
+                // End -- This will check for each empty input and mark red
+                return;
+
+            }
+            //End -- Check fields if no values
+
+            let Subject = [];
+            // for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
+            //     Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
+            //     //This will append all the subjects and create a certain format
+            // }
+
+
+            var file = document.getElementById("file");
+            file = file.files[0];
+            // if (file != null) {
+            // Start - If image has no value or null, Insert Image
+            var storageRef = firebase.storage().ref('Profile/Student/' + ID.val());
+            storageRef.put(file).then((snapshot) => {
+                storageRef.getDownloadURL()
+                    .then((url) => {
+                        // Insert url into an <img> tag to "download"
+                        firebase.database().ref(`Data/Student/Information/${ID.val()}`).update({
+                            "Address": address.val(),
+                            "Contact": contact.val(),
+                            "Card_ID": cardID.val(),
+                            "ID": ID.val(),
+                            "Email": studentEmail.val(),
+                            "Name": {
+                                "First": firstName.val(),
+                                "Middle": middleName.val(),
+                                "Last": lastName.val()
+                            },
+                            Subject,
+                            "Profile": url
+                        });
+                        alert('Student Save Successfully');
+                        reset();
+                        loadid('Student');
+                    })
+                    .catch((error) => {
+
+                        console.log('Error ' + error)
+                    });
+            });
+            // End - If image has no value or null, Insert Image
+            // } else {
+            //     // Start - If image has no value ,Decline insert Image
+            //     firebase.database().ref(`Data/Student/Information/${ID.val()}`).update({
+            //         "Address": address.val(),
+            //         "Contact": contact.val(),
+            //         "Card_ID": cardID.val(),
+            //         "ID": ID.val(),
+            //         "Email": studentEmail.val(),
+            //         "Name": {
+            //             "First": firstName.val(),
+            //             "Middle": middleName.val(),
+            //             "Last": lastName.val()
+            //         },
+            //         Subject
+            //     });
+            //     alert('Student Save Successfully');
+            //     reset();
+            //     loadid('Student');
+            //     // End - If image has no value ,Decline insert Image
+            // }
+
+
+
+
+
+        } else if (e == 'Faculty') {
+            event.stopPropagation();
+            console.log(e);
+
+            //Start -- Check fields if no values
+            if (
+                lastName.val() == '' ||
+                firstName.val() == '' || middleName.val() == '' ||
+                ID.val() == '' || contact.val() == '' ||
+                address.val() == '') {
+
+                alert('Fill up necessary information!');
+                // Start -- This will check for each empty input and mark red
+                $('.inputArea >  input:not(#Card_ID),.inputArea >  textarea,#UserSetup > input').each(function () {
+                    if ($(this).val() == '') {
+                        $(this).css({
+                            'border': '1px solid red'
+                        });
+                    } else {
+                        $(this).css({
+                            'border': 'none'
+                        });
+                    }
+                })
+                // End -- This will check for each empty input and mark red
+                return;
+
+            }
+
+            if (email.val() != '' && password.val() != '') {
+                //End -- Check fields if no values
+                // alert(email.val());
+                // alert(password.val());
+
+                //Start - Check email Validation
+                const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (!regex.test(email.val())) {
+                    alert('Invalid Email');
+                    return
+                }
+                //End -- Check email Validation
+
+
+                //Start -- Check Password Validation
+                if (password.val().length < 8) {
+                    alert("Your password must be at least 8 characters");
+                    return;
+                }
+                if (password.val().search(/[a-z]/i) < 0) {
+                    alert("Your password must contain at least one letter.");
+                    return;
+                }
+                if (password.val().search(/[0-9]/) < 0) {
+                    alert("Your password must contain at least one digit.");
+                    return;
+                }
+
+                //End -- Check Password Validation
+            }
+
+
+
+
+            let Subject = [];
+            // for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
+            //     Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
+            //     //This will append all the subjects and create a certain format
+            // }
+
+            var file = document.getElementById("file");
+            file = file.files[0];
+
+            // if (file != null) {
+            // Start - If image has  value, Insert Image
+            var storageRef = firebase.storage().ref('Profile/Faculty/' + ID.val());
+            storageRef.put(file).then((snapshot) => {
+                storageRef.getDownloadURL()
+                    .then((url) => {
+                        firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).update({
+                            "Address": address.val(),
+                            "Contact": contact.val(),
+                            "ID": ID.val(),
+                            "Card_ID": cardID.val(),
+                            "Name": {
+                                "First": firstName.val(),
+                                "Middle": middleName.val(),
+                                "Last": lastName.val()
+                            },
+                            Subject,
+                            "Profile": url,
+                            "Permission": {
+                                "TapIn_First": $('.cbx').is(":checked")
+                            }
+                        });
+
+                        var dEmail = email.val(),
+                            dPassword = password.val(),
+                            dId = ID.val();
+
+
+                        if (email.val() != '' && password.val() != '') {
+                            // This will add new Faculty
+                            let tapIn = $('.cbx').is(":checked")
+                            alert('Saving Account')
+                            firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+                                .then((userCredential) => {
+                                    var uid = userCredential.user.uid;
+
+                                    firebase.database().ref('User/' + uid).update({
+                                        'Account_Type': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                        'ID': uid,
+                                        'Password': dPassword,
+                                        'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                        'UserID': dId,
+                                        'Email': dEmail,
+                                        "Permission": {
+                                            "TapIn_First": tapIn
+                                        }
+                                    });
+                                })
+                                .catch((error) => {
+                                    console.log('Error ' + error)
+                                    alert(error)
+                                });
+                        } else {
+                            // User Already Exist and needed to be updated
+                            let tapIn = $('.cbx').is(":checked")
+                            firebase.database().ref('User/').orderByChild('UserID').startAt(dId).endAt(dId).once('value', users => {
+                                users.forEach(user => {
+                                    let uid = user.child('ID').val();
+                                    // alert(tapIn)
+                                    firebase.database().ref(`User/${uid}`).update({
+                                        'Account_Type': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                        'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                        "Permission": {
+                                            "TapIn_First": tapIn
+                                        }
+                                    });
+                                })
+                            })
+                        }
+                        alert('Faculty Save Successfully');
+                        reset();
+                        loadid('Faculty');
+                    })
+                    .catch((error) => {
+                        console.log('Error ' + error)
+
+                    });
+            });
+
+            // End - If image has  value, Insert Image
+            // } else {
+
+            //     // Start - If image has no value or , Declined insert Image
+            //     firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).update({
+            //         "Address": address.val(),
+            //         "Contact": contact.val(),
+            //         "ID": ID.val(),
+            //         "Card_ID": cardID.val(),
+            //         "Name": {
+            //             "First": firstName.val(),
+            //             "Middle": middleName.val(),
+            //             "Last": lastName.val()
+            //         },
+            //         Subject,
+            //         "Permission": {
+            //             "TapIn_First": $('.cbx').is(":checked")
+            //         }
+            //     });
+
+            //     var dEmail = email.val(),
+            //         dPassword = password.val(),
+            //         dId = ID.val();
+
+
+            //     if (email.val() != null && password.val() != null) {
+            //         firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+            //             .then((userCredential) => {
+            //                 var uid = userCredential.user.uid;
+
+            //                 firebase.database().ref('User/' + uid).update({
+            //                     'Account_Type': e,
+            //                     'ID': uid,
+            //                     'Password': dPassword,
+            //                     'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+            //                     'UserID': dId,
+            //                     'Email': dEmail,
+            //                     "Permission": {
+            //                         "TapIn_First": $('.cbx').is(":checked")
+            //                     }
+            //                 });
+            //             })
+            //             .catch((error) => {
+            //                 console.log('Error ' + error)
+            //             });
+            //     }
+            //     alert('Faculty Save Successfully');
+            //     reset();
+            //     loadid('Faculty');
+
+            //     // End - If image has no value or , Declined insert Image
+            // }
+
+        } else if (e == 'Gate') {
+
+            event.stopPropagation();
+            console.log(e);
+
+
+
+
+
+            //Start -- Check fields if no values
+            if (
+                ID.val() == '' || gatelocation.val() == '') {
+
+                alert('Fill up necessary information!');
+                // Start -- This will check for each empty input and mark red
+                $('.inputArea >  input,.inputArea >  textarea,#UserSetup > input').each(function () {
+                    if ($(this).val() == '') {
+                        $(this).css({
+                            'border': '1px solid red'
+                        });
+                    } else {
+                        $(this).css({
+                            'border': 'none'
+                        });
+                    }
+                })
+                // End -- This will check for each empty input and mark red
+                return;
+
+            }
+            //End -- Check fields if no values
+            if (email.val() != '' && password.val() != '') {
+
+                //Start - Check email Validation
+                const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (!regex.test(email.val())) {
+                    alert('Invalid Email');
+                    return
+                }
+                //End -- Check email Validation
+
+
+                //Start -- Check Password Validation
+                if (password.val().length < 8) {
+                    alert("Your password must be at least 8 characters");
+                    return;
+                }
+                if (password.val().search(/[a-z]/i) < 0) {
+                    alert("Your password must contain at least one letter.");
+                    return;
+                }
+                if (password.val().search(/[0-9]/) < 0) {
+                    alert("Your password must contain at least one digit.");
+                    return;
+                }
+            }
+            //End -- Check Password Validation
+
+            var file = document.getElementById("file");
+            file = file.files[0];
+
+            // if (file != null) { // Start - If image has  value  ,  Insert Image
+            var storageRef = firebase.storage().ref('Profile/Gate/' + $('#ID').val());
+            storageRef.put(file).then((snapshot) => {
+                storageRef.getDownloadURL()
+                    .then((url) => {
+
+
+
+                        var dEmail = email.val(),
+                            dPassword = password.val(),
+                            dId = ID.val(),
+                            dStatus = gatestatus.val(),
+                            dLocation = gatelocation.val();
+
+
+
+
+                        firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
+                            "ID": $('#ID').val(),
+                            'Status': dStatus,
+                            'Location': dLocation,
+                        });
+
+                        if (email.val() != '' && password.val() != '') {
+                            firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+                                .then((userCredential) => {
+                                    var uid = userCredential.user.uid;
+                                    //   alert(uid)
+                                    firebase.database().ref('User/' + uid).update({
+                                        'Account_Type': e,
+                                        'ID': uid,
+                                        'Password': dPassword,
+                                        'Role': e,
+                                        'Status': dStatus,
+                                        'Location': dLocation,
+                                        'UserID': dId,
+                                        'Email': dEmail
+                                    });
+                                })
+                                .catch((error) => {
+                                    console.log('Error ' + error)
+                                });
+                        } else {
+                            firebase.database().ref('User/').orderByChild('UserID').startAt(dId).endAt(dId).once('value', users => {
+                                users.forEach(user => {
+                                    let uid = user.child('ID').val();
+                                    //      alert(uid)
+                                    // alert(tapIn)
+
+                                    firebase.database().ref('User/' + uid).update({
+                                        'Account_Type': e,
+                                        'Role': e,
+                                        'Status': dStatus,
+                                        'Location': dLocation
+                                    });
+                                })
+                            })
+                        }
+                        alert('Gate Save Successfully');
+                        reset();
+                        loadid('Gate');
+                    })
+                    .catch((error) => {
+                        console.log('Error ' + error)
+                    });
+            });
+
+
+            // End - If image has  value  ,  Insert Image
+            // } else {
+            //     // Start - If image has no  value  , Declined insert Image
+            //     firebase.database().ref(`Data/Gate/Information/${$('#ID').val()}`).update({
+            //         "ID": $('#ID').val()
+            //     });
+
+            //     var dEmail = email.val(),
+            //         dPassword = password.val(),
+            //         dId = ID.val();
+
+
+            //     if (email.val() != null && password.val() != null) {
+            //         firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+            //             .then((userCredential) => {
+            //                 var uid = userCredential.user.uid;
+
+            //                 firebase.database().ref('User/' + uid).update({
+            //                     'Account_Type': e,
+            //                     'ID': uid,
+            //                     'Password': dPassword,
+            //                     'Role': e,
+            //                     'UserID': dId,
+            //                     'Email': dEmail
+            //                 });
+            //             })
+            //             .catch((error) => {
+            //                 console.log('Error ' + error)
+            //             });
+            //     }
+
+            // alert('Gate Save Successfully');
+            // reset();
+            // loadid('Gate');
+            //     // End - If image has no  value  , Declined insert Image
+            // }
+
+        } else {
+
+        }
 
     }
+
+
+
 });
 
 
@@ -1427,6 +1444,30 @@ $('#SearchPerson').on("select2:select", function (e) {
 
 });
 
+function DeleteUser(id) {
+    if (id.includes('STUD')) {
+        firebase.database().ref(`Data/Student/Information/${id}/`).remove()
+    } else if (id.includes('FAC') || id.includes('PROF')) {
+        firebase.database().ref(`Data/Faculty/Information/${id}/`).remove()
+        firebase.database().ref(`User/`).orderByChild('UserID').startAt(id).endAt(id).once(`value`, users => {
+            users.forEach(user => {
+                let id = user.child('ID').val()
+                let userID = user.child('UserID').val()
+
+                firebase.database().ref(`User/${userID}/`).remove()
+            })
+        })
+    } else {
+        firebase.database().ref(`Data/Gate/Information/${id}/`).remove()
+        firebase.database().ref(`User/`).orderByChild('UserID').startAt(id).endAt(id).once(`value`, users => {
+            users.forEach(user => {
+                let id = user.child('ID').val()
+                let userID = user.child('UserID').val()
+                firebase.database().ref(`User/${userID}/`).remove()
+            })
+        })
+    }
+}
 
 function LoadSearch(UserType) {
 

@@ -57,7 +57,7 @@ firebase.auth().onAuthStateChanged((user) => {
             absent.html('0')
             late.html('0')
 
-        
+
             if (Account_Type.includes('Administrator')) {
 
                 StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'present', present)
@@ -70,47 +70,10 @@ firebase.auth().onAuthStateChanged((user) => {
                 Entered(Account_Type, UserID)
 
 
-                let data = {
-                    xValues: ["Day 1", "Day 2", "Day 3", "Day 4", "Day 5", "Day 6", "Day 7", "Day 8", "Day 9", "Day 10"],
-                    Absent: [Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115)
-                    ],
-                    Present: [Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115)
-                    ],
-                    Late: [Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115),
-                        Math.floor(Math.random() * 115)
-                    ]
-                }
-
-                LineChart(data)
+                LoadChart(Account_Type, UserID)
             }
             if (Account_Type.includes('Guidance')) {
-              
+
 
                 StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'present', present)
                 StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'absent', absent)
@@ -119,6 +82,8 @@ firebase.auth().onAuthStateChanged((user) => {
                 StudentCounter(0, Account_Type, $('#cnt_students'))
 
                 Entered(Account_Type, UserID)
+
+                LoadChart(Account_Type, UserID)
 
             }
             if (Account_Type.includes('Faculty')) {
@@ -134,8 +99,8 @@ firebase.auth().onAuthStateChanged((user) => {
 
                 Entered(Account_Type, UserID)
 
-                let data = {}
-                LineChart(data)
+
+                LoadChart(Account_Type, UserID)
             }
 
             if (Account_Type.includes('Gate')) {
@@ -208,7 +173,7 @@ function StatusCounter(date, status, object) {
 function FacultyStatusCounter(id, date, status, object) {
 
     var statusCountInit = 0;
-    
+
     firebase.database().ref('Attendance/Summary/Class/').orderByChild('Professor').startAt(id).endAt(id).once('value', classes => {
 
         if (classes.val() != null) {
@@ -216,7 +181,7 @@ function FacultyStatusCounter(id, date, status, object) {
                 let classKey = aclass.key;
                 console.log(classKey)
                 firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/`).once('value', attendance => {
-                
+
                     if (attendance.val() != null) {
 
                         firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).once('value', statusCount => {
@@ -463,9 +428,9 @@ function PieChart() {
 
 
     if (present.includes('——') && absent.includes('——') && late.includes('——')) {
-        return setTimeout(PieChart, 1000);
+        return setTimeout(PieChart, 5000);
     } else {
-        if ((present == '0' || present == '——') && (absent == '0' || absent == '——') && (late == '0' || late == '——')) {
+        if ((present.includes('0') || present.includes('——')) && (absent.includes('0') || absent.includes('——')) && (late.includes('0') || late.includes('——'))) {
             $('.pie-container').html('<h3 style="margin: 22px 0 0 0;text-align:center;"> No data available </h3>')
         } else {
 
@@ -539,7 +504,7 @@ function LineChart(data) {
                     fill: true
                 }, {
                     label: 'Late',
-                    data: data.Late,
+                    data: data.ArriveLate,
                     borderWidth: 1,
                     borderColor: "#F2828A",
                     backgroundColor: "rgba(242, 130, 138,0.2)",
@@ -568,19 +533,434 @@ function LineChart(data) {
     }
 }
 
-function LineChartData(dayframe) {
-    if (dayframe.includes('daily')) {
-        // firebase.database().ref(`Attendance/Report/Statistics/Class/${}`).on(`value`, days =>
-        // {
+function LoadChart(Account_Type, ID) {
 
-        // })
-    } else if (dayframe.includes('weekly')) {
+    if (Account_Type.includes(`Faculty`)) {
+   
+        let lineChart = {}
 
-    } else if (dayframe.includes('monthly')) {
+        let januaryPresent = 0,
+            januaryAbsent = 0,
+            januaryArriveLate = 0,
+            januaryLeaveEarly = 0
 
-    } else if (dayframe.includes('quarterly')) {
+        let februaryPresent = 0,
+            februaryAbsent = 0,
+            februaryArriveLate = 0,
+            februaryLeaveEarly = 0
 
-    } else if (dayframe.includes('yearly')) {
+
+        let marchPresent = 0,
+            marchAbsent = 0,
+            marchArriveLate = 0,
+            marchLeaveEarly = 0
+
+        let aprilPresent = 0,
+            aprilAbsent = 0,
+            aprilArriveLate = 0,
+            aprilLeaveEarly = 0
+
+        let mayPresent = 0,
+            mayAbsent = 0,
+            mayArriveLate = 0,
+            mayLeaveEarly = 0
+
+        let junePresent = 0,
+            juneAbsent = 0,
+            juneArriveLate = 0,
+            juneLeaveEarly = 0
+
+        let julyPresent = 0,
+            julyAbsent = 0,
+            julyArriveLate = 0,
+            julyLeaveEarly = 0
+
+        let augustPresent = 0,
+            augustAbsent = 0,
+            augustArriveLate = 0,
+            augustLeaveEarly = 0
+
+
+        let septemberPresent = 0,
+            septemberAbsent = 0,
+            septemberArriveLate = 0,
+            septemberLeaveEarly = 0
+
+        let octoberPresent = 0,
+            octoberAbsent = 0,
+            octoberArriveLate = 0,
+            octoberLeaveEarly = 0
+
+
+        let novemberPresent = 0,
+            novemberAbsent = 0,
+            novemberArriveLate = 0,
+            novemberLeaveEarly = 0
+
+
+        let decemberPresent = 0,
+            decemberAbsent = 0,
+            decemberArriveLate = 0,
+            decemberLeaveEarly = 0
+
+        firebase.database().ref(`Data/Subject/`).orderByChild(`Professor`).startAt(ID).endAt(ID).on(`value`, subjects => {
+            subjects.forEach(subject => {
+                let classNbr = subject.child(`ClassNbr`).val()
+
+                firebase.database().ref(`Attendance/Report/Statistics/Class/${classNbr}/`).on(`value`, Classes => {
+               //     console.log(Classes.val())
+                    Classes.child(`Dates`).forEach(dates => {
+                        if (dates.val() != null) {
+                         //   console.log(dates.val())
+
+                            let countPresent = dates.child('Present').val()
+                            let countAbsent = dates.child('Absent').val()
+                            let countArriveLate = dates.child('ArriveLate').val()
+                            let countLeaveEarly = dates.child('LeaveEarly').val()
+
+                            let monthDate = dates.child('Date').val()
+
+                            if (monthDate != null) {
+                                let monthString = GetMonth(monthDate.toString().substring(0, 2))
+                                //         console.log(monthString)
+
+                                if (monthString.includes('January')) {
+                                    januaryPresent += countPresent
+                                    januaryAbsent += countAbsent
+                                    januaryArriveLate += countArriveLate
+                                    januaryLeaveEarly += countLeaveEarly
+                                }
+                                if (monthString.includes('February')) {
+                                    februaryPresent += countPresent
+                                    februaryAbsent += countAbsent
+                                    februaryArriveLate += countArriveLate
+                                    februaryLeaveEarly += countLeaveEarly
+                                }
+                                if (monthString.includes('March')) {
+                                    marchPresent += countPresent
+                                    marchAbsent += countAbsent
+                                    marchArriveLate += countArriveLate
+                                    marchLeaveEarly += countLeaveEarly
+                                }
+                                if (monthString.includes('April')) {
+                                    aprilPresent += countPresent
+                                    aprilAbsent += countAbsent
+                                    aprilArriveLate += countArriveLate
+                                    aprilLeaveEarly += countLeaveEarly
+                                }
+                                if (monthString.includes('May')) {
+                                    mayPresent += countPresent
+                                    mayAbsent += countAbsent
+                                    mayArriveLate += countArriveLate
+                                    mayLeaveEarly += countLeaveEarly
+                                }
+                                if (monthString.includes('June')) {
+                                    junePresent += countPresent
+                                    juneAbsent += countAbsent
+                                    juneArriveLate += countArriveLate
+                                    juneLeaveEarly += countLeaveEarly
+                                }
+                                if (monthString.includes('July')) {
+                                    julyPresent += countPresent
+                                    julyAbsent += countAbsent
+                                    julyArriveLate += countArriveLate
+                                    julyLeaveEarly += countLeaveEarly
+                                }
+                                if (monthString.includes('August')) {
+                                    augustPresent += countPresent
+                                    augustAbsent += countAbsent
+                                    augustArriveLate += countArriveLate
+                                    augustLeaveEarly += countLeaveEarly
+                                }
+                                if (monthString.includes('September')) {
+                                    septemberPresent += countPresent
+                                    septemberAbsent += countAbsent
+                                    septemberArriveLate += countArriveLate
+                                    septemberLeaveEarly += countLeaveEarly
+                                }
+                                if (monthString.includes('October')) {
+                                    octoberPresent += countPresent
+                                    octoberAbsent += countAbsent
+                                    octoberArriveLate += countArriveLate
+                                    octoberLeaveEarly += countLeaveEarly
+                                }
+                                if (monthString.includes('November')) {
+                                    novemberPresent += countPresent
+                                    novemberAbsent += countAbsent
+                                    novemberArriveLate += countArriveLate
+                                    novemberLeaveEarly += countLeaveEarly
+                                }
+                                if (monthString.includes('December')) {
+                                    decemberPresent += countPresent
+                                    decemberAbsent += countAbsent
+                                    decemberArriveLate += countArriveLate
+                                    decemberLeaveEarly += countLeaveEarly
+                                }
+
+                            }
+
+
+                            // For pie chart
+                     
+
+
+
+                        }
+
+
+                    })
+
+                    lineChart.xValues = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`]
+
+                    lineChart.Present = [januaryPresent, februaryPresent, marchPresent, aprilPresent, mayPresent, junePresent, julyPresent, augustPresent, septemberPresent, octoberPresent, novemberPresent, decemberPresent]
+        
+                    lineChart.Absent = [januaryAbsent, februaryAbsent, marchAbsent, aprilAbsent, mayAbsent, juneAbsent, julyAbsent, augustAbsent, septemberAbsent, octoberAbsent, novemberAbsent, decemberAbsent]
+        
+                    lineChart.ArriveLate = [januaryArriveLate, februaryArriveLate, marchArriveLate, aprilArriveLate, mayArriveLate, juneArriveLate, julyArriveLate, augustArriveLate, septemberArriveLate, octoberArriveLate, novemberArriveLate, decemberArriveLate]
+        
+                    lineChart.LeaveEarly = [januaryLeaveEarly, februaryLeaveEarly, marchLeaveEarly, aprilLeaveEarly, mayLeaveEarly, juneLeaveEarly, julyLeaveEarly, augustLeaveEarly, septemberLeaveEarly, octoberLeaveEarly, novemberLeaveEarly, decemberLeaveEarly]
+        
+                    console.log(lineChart.xValues)
+        
+              
+                  //  PieChart(pieChart)
+                    LineChart(lineChart)
+
+                })
+            })
+
+
+        })
+
+    } else {
+
+        let pieChart = {}
+
+        let present = 0;
+        let absent = 0
+        let arrivelate = 0
+        let leaveEarly = 0
+
+
+        let lineChart = {}
+
+        let januaryPresent = 0,
+            januaryAbsent = 0,
+            januaryArriveLate = 0,
+            januaryLeaveEarly = 0
+
+        let februaryPresent = 0,
+            februaryAbsent = 0,
+            februaryArriveLate = 0,
+            februaryLeaveEarly = 0
+
+
+        let marchPresent = 0,
+            marchAbsent = 0,
+            marchArriveLate = 0,
+            marchLeaveEarly = 0
+
+        let aprilPresent = 0,
+            aprilAbsent = 0,
+            aprilArriveLate = 0,
+            aprilLeaveEarly = 0
+
+        let mayPresent = 0,
+            mayAbsent = 0,
+            mayArriveLate = 0,
+            mayLeaveEarly = 0
+
+        let junePresent = 0,
+            juneAbsent = 0,
+            juneArriveLate = 0,
+            juneLeaveEarly = 0
+
+        let julyPresent = 0,
+            julyAbsent = 0,
+            julyArriveLate = 0,
+            julyLeaveEarly = 0
+
+        let augustPresent = 0,
+            augustAbsent = 0,
+            augustArriveLate = 0,
+            augustLeaveEarly = 0
+
+
+        let septemberPresent = 0,
+            septemberAbsent = 0,
+            septemberArriveLate = 0,
+            septemberLeaveEarly = 0
+
+        let octoberPresent = 0,
+            octoberAbsent = 0,
+            octoberArriveLate = 0,
+            octoberLeaveEarly = 0
+
+
+        let novemberPresent = 0,
+            novemberAbsent = 0,
+            novemberArriveLate = 0,
+            novemberLeaveEarly = 0
+
+
+        let decemberPresent = 0,
+            decemberAbsent = 0,
+            decemberArriveLate = 0,
+            decemberLeaveEarly = 0
+
+
+        firebase.database().ref(`Attendance/Report/Statistics/Class/`).once('value', Classes => {
+
+            let dPresent = 0;
+            let dAbsent = 0;
+            let dArriveLate = 0;
+            let dLeavEarly = 0;
+
+            Classes.forEach(Class => {
+                //    console.log(Class.key)
+
+                Class.child(`Dates`).forEach(dates => {
+
+
+                    if (dates.val() != null) {
+                        //   console.log(dates.val())
+
+                        let countPresent = dates.child('Present').val()
+                        let countAbsent = dates.child('Absent').val()
+                        let countArriveLate = dates.child('ArriveLate').val()
+                        let countLeaveEarly = dates.child('LeaveEarly').val()
+
+                        let monthDate = dates.child('Date').val()
+
+
+
+                        if (monthDate != null) {
+                            let monthString = GetMonth(monthDate.toString().substring(0, 2))
+                            //         console.log(monthString)
+
+                            if (monthString.includes('January')) {
+                                januaryPresent += countPresent
+                                januaryAbsent += countAbsent
+                                januaryArriveLate += countArriveLate
+                                januaryLeaveEarly += countLeaveEarly
+                            }
+                            if (monthString.includes('February')) {
+                                februaryPresent += countPresent
+                                februaryAbsent += countAbsent
+                                februaryArriveLate += countArriveLate
+                                februaryLeaveEarly += countLeaveEarly
+                            }
+                            if (monthString.includes('March')) {
+                                marchPresent += countPresent
+                                marchAbsent += countAbsent
+                                marchArriveLate += countArriveLate
+                                marchLeaveEarly += countLeaveEarly
+                            }
+                            if (monthString.includes('April')) {
+                                aprilPresent += countPresent
+                                aprilAbsent += countAbsent
+                                aprilArriveLate += countArriveLate
+                                aprilLeaveEarly += countLeaveEarly
+                            }
+                            if (monthString.includes('May')) {
+                                mayPresent += countPresent
+                                mayAbsent += countAbsent
+                                mayArriveLate += countArriveLate
+                                mayLeaveEarly += countLeaveEarly
+                            }
+                            if (monthString.includes('June')) {
+                                junePresent += countPresent
+                                juneAbsent += countAbsent
+                                juneArriveLate += countArriveLate
+                                juneLeaveEarly += countLeaveEarly
+                            }
+                            if (monthString.includes('July')) {
+                                julyPresent += countPresent
+                                julyAbsent += countAbsent
+                                julyArriveLate += countArriveLate
+                                julyLeaveEarly += countLeaveEarly
+                            }
+                            if (monthString.includes('August')) {
+                                augustPresent += countPresent
+                                augustAbsent += countAbsent
+                                augustArriveLate += countArriveLate
+                                augustLeaveEarly += countLeaveEarly
+                            }
+                            if (monthString.includes('September')) {
+                                septemberPresent += countPresent
+                                septemberAbsent += countAbsent
+                                septemberArriveLate += countArriveLate
+                                septemberLeaveEarly += countLeaveEarly
+                            }
+                            if (monthString.includes('October')) {
+                                octoberPresent += countPresent
+                                octoberAbsent += countAbsent
+                                octoberArriveLate += countArriveLate
+                                octoberLeaveEarly += countLeaveEarly
+                            }
+                            if (monthString.includes('November')) {
+                                novemberPresent += countPresent
+                                novemberAbsent += countAbsent
+                                novemberArriveLate += countArriveLate
+                                novemberLeaveEarly += countLeaveEarly
+                            }
+                            if (monthString.includes('December')) {
+                                decemberPresent += countPresent
+                                decemberAbsent += countAbsent
+                                decemberArriveLate += countArriveLate
+                                decemberLeaveEarly += countLeaveEarly
+                            }
+
+                        }
+
+
+                        // For pie chart
+                        present += parseInt(countPresent)
+                        absent += parseInt(countAbsent)
+                        arrivelate += parseInt(countArriveLate)
+                        leaveEarly += parseInt(countLeaveEarly)
+
+
+
+
+                    }
+
+                    var ref = firebase.database().ref(`Attendance/Report/Statistics/Class/${Class.key}/Dates/`).orderByKey().startAt(`01`);
+                    //    console.log(ref.toString())
+                })
+
+                //  console.log(january)
+
+
+                lineChart.xValues = [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`]
+
+                lineChart.Present = [januaryPresent, februaryPresent, marchPresent, aprilPresent, mayPresent, junePresent, julyPresent, augustPresent, septemberPresent, octoberPresent, novemberPresent, decemberPresent]
+
+                lineChart.Absent = [januaryAbsent, februaryAbsent, marchAbsent, aprilAbsent, mayAbsent, juneAbsent, julyAbsent, augustAbsent, septemberAbsent, octoberAbsent, novemberAbsent, decemberAbsent]
+
+                lineChart.ArriveLate = [januaryArriveLate, februaryArriveLate, marchArriveLate, aprilArriveLate, mayArriveLate, juneArriveLate, julyArriveLate, augustArriveLate, septemberArriveLate, octoberArriveLate, novemberArriveLate, decemberArriveLate]
+
+                lineChart.LeaveEarly = [januaryLeaveEarly, februaryLeaveEarly, marchLeaveEarly, aprilLeaveEarly, mayLeaveEarly, juneLeaveEarly, julyLeaveEarly, augustLeaveEarly, septemberLeaveEarly, octoberLeaveEarly, novemberLeaveEarly, decemberLeaveEarly]
+
+
+
+                // For pie chart
+                pieChart.Present = present;
+                pieChart.Absent = absent;
+                pieChart.ArriveLate = arrivelate;
+                pieChart.LeaveEarly = leaveEarly;
+
+
+
+                //     console.log(monthly)
+                //     console.log(data.Absent)
+            })
+
+            console.log(lineChart)
+            LineChart(lineChart)
+            //   PieChart(pieChart)
+        })
+
 
     }
 }

@@ -30,10 +30,12 @@
 }
 
 .userImage {
+cursor: pointer;
   width: 120px;
 }
 
 .UserInfo {
+  cursor:  pointer;
   margin-left: 150px;
   margin-top:-120px;
 }
