@@ -95,7 +95,6 @@ function GetAttendance() {
                            <td>Date</td>
                            <td>Time</td>
                            <td>Status</td>
-                           <td>Remarks</td>
                         </tr>
                      </thead>
                      <tbody></tbody>
@@ -105,7 +104,6 @@ function GetAttendance() {
                            <td>Date</td>
                            <td>Time</td>
                            <td>Status</td>
-                           <td>Remarks</td>
                         </tr>
                      </tfoot>
   `)

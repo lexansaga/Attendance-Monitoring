@@ -10,6 +10,10 @@ $(document).ready(function () {
 
     $('#datatable').DataTable({
         "autoWidth": true,
+        buttons: [
+            'excel', 'pdf', 'print'
+        ],
+        dom: 'Bfrtip',
         "paging": true,
         "info": true,
         columnDefs: [ {

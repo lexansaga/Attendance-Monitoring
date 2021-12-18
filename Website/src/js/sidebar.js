@@ -125,6 +125,7 @@ firebase.auth().onAuthStateChanged((user) => {
                 // User is Admin 
                 sidebarlinks.eq(0).css('display', '') //Home
                 sidebarlinks.eq(1).css('display', '') //Schedule
+                sidebarlinks.eq(2).css('display', '') // Attendance
                 sidebarlinks.eq(3).css('display', '') // Attendance Report
                 sidebarlinks.eq(5).css('display', '') // Subject
                 sidebarlinks.eq(6).css('display', '') // Class

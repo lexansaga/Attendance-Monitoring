@@ -67,7 +67,7 @@ $(document).ready(function () {
                 
 
                 if (Account_Type.includes('Administrator')) {
-                    window.location.replace("main.html");
+                    //window.location.replace("main.html");
                 } else if (Account_Type.includes('Faculty')) {
                     //window.location.replace("main.html");
                 } else if (Account_Type.includes('Guidance')) {
