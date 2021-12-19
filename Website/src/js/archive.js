@@ -28,6 +28,8 @@ $(document).ready(function () {
 
     table.DataTable({
         dom: 'Bfrtip',
+        columnDefs : [{ type: 'date', 'targets': [4] }],
+        order: [4, 'desc'],
         buttons: [
             {
                 extend: 'excel',

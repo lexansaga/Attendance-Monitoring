@@ -39,9 +39,11 @@ $(document).ready(function () {
 
 
   status_table.DataTable({
-    "dom": 'Bfrtip',
-    "buttons":['excel','pdf','print'],
-    "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]]
+    dom: 'Bfrtip',
+    buttons:['excel','pdf','print'],
+    lengthMenu: [[10, 20, 30, -1], [10, 20, 30, "All"]],
+    columnDefs : [{ type: 'date', 'targets': [1] }],
+    order: [1, 'desc'],
   });
 
 
