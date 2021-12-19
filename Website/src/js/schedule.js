@@ -1,5 +1,19 @@
 $('.UserInformation_wrapper').css('display', 'none');
 var tableUserSched = $('#userSchedule');
+
+// CUSTOM SORTING OF DATATABLE BY DAY NAME
+$.fn.dataTable.ext.type.order['day-sort-pre'] = function ( d ) {
+    switch ( d ) {
+        case 'Monday':    return 1;
+        case 'Tuesday': return 2;
+        case 'Wednesday':   return 3;
+        case 'Thursday':   return 4;
+        case 'Friday':   return 5;
+        case 'Saturday':   return 6;
+    }
+    return 0;
+};
+
 $(document).ready(function () {
 
     $('.js-example-basic-single').select2();
@@ -16,7 +30,12 @@ $(document).ready(function () {
 
     tableUserSched.DataTable({
         "dom": 'B<f<t>ip>',
-        "buttons": ['excel', 'pdf', 'print']
+        "buttons": ['excel', 'pdf', 'print'],
+        "columnDefs": [ {
+            "type": "day-sort",
+            "targets": 1
+        } ],
+        order: [1, 'asc']
     });
 
 
