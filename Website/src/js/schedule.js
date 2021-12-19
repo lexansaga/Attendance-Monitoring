@@ -343,7 +343,7 @@ $(`.UserInformation_wrapper`).on('click', function () {
 
 })
 
-$(`.Btn-viewInf`).on('click', function () {
+$(`.Btn-viewInf`).on('click', function (e) {
 
     let id = $(`#infoId`).html();
 
