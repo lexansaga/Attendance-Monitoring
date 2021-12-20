@@ -27,10 +27,9 @@ $(document).ready(function () {
         margin: '10px 10px 0 0',
     });
 
-
     tableUserSched.DataTable({
         "dom": 'B<f<t>ip>',
-        "buttons": ['excel', 'pdf', 'print'],
+        buttons: ['excel','pdf','print'],
         "columnDefs": [ {
             "type": "day-sort",
             "targets": 1
