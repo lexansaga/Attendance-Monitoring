@@ -346,7 +346,7 @@ function LoadSearchFaculty(UserType, id) {
         })
     }
 }
-$(`.UserInformation_wrapper`).on('click', function () {
+$(`#infoName`).on('click', function () {
 
     let id = $(`#infoId`).html();
 
