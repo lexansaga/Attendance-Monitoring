@@ -366,6 +366,10 @@ span>h3 {
     text-align: center;
     margin: 22px;
 }
+.select2_wrapper{
+    display: flex;
+    flex-direction: column;
+}
 
 
 

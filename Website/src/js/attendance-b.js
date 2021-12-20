@@ -54,6 +54,7 @@ $(document).ready(function () {
     $('.attendance-section').css({
         'display': 'none'
     })
+    $('#set-subject-col').select2();
 
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {

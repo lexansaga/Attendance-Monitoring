@@ -9,6 +9,7 @@
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
     <title>Attendance- ATMs</title>
 </head>
@@ -360,10 +361,13 @@
                                 <div>
                                     <label id="text-subject">--</label>
                                 </div>
-                                <div style="border: none;">  <label>Reselect Subject</label>
-                                    <select id="set-subject-col">
-                                        <option disabled selected>Select Subject</option>
-                                    </select>
+                                <div class="select2_wrapper"style="border: none;">  
+                                    <label>Reselect Subject</label>
+                                    <div style="margin-top: 15px; display: flex; flex-direction: column;">
+                                        <select id="set-subject-col">
+                                            <option disabled selected></option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="modal-controls">
@@ -393,14 +397,12 @@
         integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-        
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     </script>
 
 
-
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
  
     
     <script src="src/js/script.js"></script>
