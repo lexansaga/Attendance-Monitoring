@@ -6,6 +6,9 @@
   font-weight: bold;
   font-size: 20px;
 }
+#infoName:hover{
+  cursor: pointer;
+}
 
 .SearchControl_wrapper
 {
