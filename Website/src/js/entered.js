@@ -139,7 +139,7 @@ $('.btn-submit').click(function () {
                  //   alert(datetype.val())
                     if(datetype.val() == `default` || datetype.val() == `Overall` )
                     {
-                        alert(`Default`)
+                      //  alert(`Default`)
                         Entered(Account_Type, date, UserID)
                     }
                     else
