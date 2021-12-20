@@ -42,12 +42,14 @@ var attstatus = {
         <i data-status='leaveearly' class='bx bx-chevrons-right att_mark excl' data-remarks="" style="color: #FEB331;"><h6>Left Early</h6></i>
         <button title="Add Remarks" class="remarks" onclick="OpenModal(this)"><i class='bx bxs-notepad'></i></button>
     </div>`,
-    invalid: `<td>--</td>`
+    invalid: `--`
 }
 
 
 
 $(document).ready(function () {
+
+    $(`#set-subject-col`).select2({})
 
     $('.attendance-section').css({
         'display': 'none'
@@ -64,10 +66,22 @@ $(document).ready(function () {
                 let Notification = snap.child('Notification').val();
                 let Permission_Tapin = snap.child('Permission').child('TapIn_First').val()
 
-                
+
 
                 if (Account_Type.includes('Administrator')) {
                     //window.location.replace("main.html");
+
+                    $('#add').css({
+                        'display': 'none'
+                    })
+
+                    $('#btnSubmitAtt').css({
+                        'display': 'none'
+                    })
+
+                    $(`table td:not(.n)`).css({
+                        'background-color': 'red'
+                    })
                 } else if (Account_Type.includes('Faculty')) {
                     //window.location.replace("main.html");
                 } else if (Account_Type.includes('Guidance')) {
@@ -91,7 +105,7 @@ $(document).ready(function () {
                     firebase.database().ref(`Attendance/Gate/${FormatDate(dateNow,'MM-DD-YY')}/`).orderByChild('EnteredID').startAt(UserID).endAt(UserID).limitToLast(1).on('value', snap => {
                         //This will check if professor has already tapin
 
-
+                        console.log(snap.val())
 
                         if (snap.val() != null) {
                             // Professor entered the school
@@ -104,12 +118,24 @@ $(document).ready(function () {
                                 let location = data.child('Location').val();
                                 let time = data.child('Time').val();
 
+                                if(status.includes('IN'))
+                                {
+
+                                    if ($('.tap-first').css('display') == 'flex') {
+                                        AttendanceProcess()
+                                    }
+        
+                                }
+                                else
+                                {
+                                    $('.tap-first').css({
+                                        'display' : 'flex'
+                                    })
+                                    $('.attendance-section').css({
+                                        'display': 'none'
+                                    })
+                                }
                             })
-
-                            if ($('.tap-first').css('display') == 'flex') {
-                                AttendanceProcess()
-                            }
-
 
                         } else {
                             // Professor not yet entered the school
@@ -164,7 +190,7 @@ $(document).ready(function () {
                                 console.log(day.includes(dayNow))
                                 console.log(timeNow);
                                 console.log(startSched + ':' + endSched);
-                                if ((startSched <= timeNow && timeNow <= endSched) && day.includes(dayNow)) {
+                                if (startSched <= timeNow && timeNow <= endSched && day.includes(dayNow)) {
                                     //Match schedule time 
                                     console.log(subject.child('ClassNbr').val());
                                     console.log(subject.child('Title').val());
@@ -308,19 +334,38 @@ $(document).ready(function () {
 
                                             if (attstatus[student.child('Status').val()] == null) {
                                                 //This will check if student status if null
-                                                $(`tbody tr .n[data-id="${key}"]`).after(
-                                                    `<td>--</td>`
-                                                );
+                                                if (Account_Type.includes('Administrator')) {
+                                                    $(`tbody tr .n[data-id="${key}"]`).after(
+                                                        `<td>${attstatus[`absent`]}</td>`
+                                                    );
+                                                    $(`td:not(.n)`).css({
+                                                        'pointer-events': 'none'
+                                                    })
+                                                } else {
+
+                                                    $(`tbody tr .n[data-id="${key}"]`).after(
+                                                        `<td>${attstatus[`absent`]}</td>`
+                                                    );
+                                                }
                                             } else {
                                                 //If student status is not null , Append on the status on Table cell by getting the data from attr_status
 
                                                 // $(`tbody tr .n[data-id="${key}"]`).after(
                                                 //     `<td>${attstatus[dates.child('Student').child(key).child('Status').val()]}</td>`
                                                 // );
+                                                if (Account_Type.includes('Administrator')) {
+                                                    $(`tbody tr .n[data-id="${key}"]`).after(
+                                                        `<td>${attstatus[dates.child('Student').child(key).child('Status').val()].replace('data-remarks=""',`data-remarks="${dates.child('Student').child(key).child('Remarks').val()}"`)}</td>`
+                                                    );
+                                                    $(`td:not(.n)`).css({
+                                                        'pointer-events': 'none'
+                                                    })
+                                                } else {
+                                                    $(`tbody tr .n[data-id="${key}"]`).after(
+                                                        `<td>${attstatus[dates.child('Student').child(key).child('Status').val()].replace('data-remarks=""',`data-remarks="${dates.child('Student').child(key).child('Remarks').val()}"`)}</td>`
+                                                    );
+                                                }
 
-                                                $(`tbody tr .n[data-id="${key}"]`).after(
-                                                    `<td>${attstatus[dates.child('Student').child(key).child('Status').val()].replace('data-remarks=""',`data-remarks="${dates.child('Student').child(key).child('Remarks').val()}"`)}</td>`
-                                                );
                                             }
 
                                             // This will add student attendance from firebase to table
@@ -529,19 +574,38 @@ function SetSelectedAttendance(SubjectID) {
 
                                             if (attstatus[student.child('Status').val()] == null) {
                                                 //This will check if student status if null
-                                                $(`tbody tr .n[data-id="${key}"]`).after(
-                                                    `<td>--</td>`
-                                                );
+                                                if (Account_Type.includes('Administrator')) {
+                                                    $(`tbody tr .n[data-id="${key}"]`).after(
+                                                        `<td>${attstatus[`absent`]}</td>`
+                                                    );
+                                                    $(`td:not(.n)`).css({
+                                                        'pointer-events': 'none'
+                                                    })
+                                                } else {
+
+                                                    $(`tbody tr .n[data-id="${key}"]`).after(
+                                                        `<td>${attstatus[`absent`]}</td>`
+                                                    );
+                                                }
                                             } else {
                                                 //If student status is not null , Append on the status on Table cell by getting the data from attr_status
 
                                                 // $(`tbody tr .n[data-id="${key}"]`).after(
                                                 //     `<td>${attstatus[dates.child('Student').child(key).child('Status').val()]}</td>`
                                                 // );
+                                                if (Account_Type.includes('Administrator')) {
+                                                    $(`tbody tr .n[data-id="${key}"]`).after(
+                                                        `<td>${attstatus[dates.child('Student').child(key).child('Status').val()].replace('data-remarks=""',`data-remarks="${dates.child('Student').child(key).child('Remarks').val()}"`)}</td>`
+                                                    );
+                                                    $(`td:not(.n)`).css({
+                                                        'pointer-events': 'none'
+                                                    })
+                                                } else {
+                                                    $(`tbody tr .n[data-id="${key}"]`).after(
+                                                        `<td>${attstatus[dates.child('Student').child(key).child('Status').val()].replace('data-remarks=""',`data-remarks="${dates.child('Student').child(key).child('Remarks').val()}"`)}</td>`
+                                                    );
+                                                }
 
-                                                $(`tbody tr .n[data-id="${key}"]`).after(
-                                                    `<td>${attstatus[dates.child('Student').child(key).child('Status').val()].replace('data-remarks=""',`data-remarks="${dates.child('Student').child(key).child('Remarks').val()}"`)}</td>`
-                                                );
                                             }
 
                                             // This will add student attendance from firebase to table
@@ -624,7 +688,7 @@ $('#add').click(function () {
 
         let maxDate = FormatDate(`${month}-${day}-${year}`, `MM-DD-YY`)
 
-      //  alert(maxDate)
+        //  alert(maxDate)
 
         table.after(`<td class="excl">${attstatus.present}</td>`);
         head.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="${FormatDate(maxDate,'YY-MM-DD')}"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
@@ -757,7 +821,7 @@ $('#btnSubmitAtt').click(function () {
             //  console.log(key.Class)
 
             for (const [cKey, cValue] of Object.entries(value.Class)) {
-              console.log(cValue)
+                console.log(cValue)
                 firebase.database().ref(`Attendance/Summary/Student/${key}/Class/${cKey}`).update(cValue);
             }
         }
@@ -776,7 +840,7 @@ $('#btnSubmitAtt').click(function () {
         }
     })
 
-    
+
     FacultyAttendance()
     // console.log(FacultyAttendance())
     // This will add data Faculty Attendance  on firebase
@@ -793,7 +857,7 @@ $('#btnSubmitAtt').click(function () {
     //         for (const [cKey, cValue] of Object.entries(value.Class)) {
     //            console.log(cValue)
     //            firebase.database().ref(`Attendance/Summary/Faculty/${key}/Class/${cKey}`).update(cValue);
-            
+
 
     //            for(const [bKey , bValue] of Object.entries(cValue.Dates))
     //            {
@@ -801,13 +865,13 @@ $('#btnSubmitAtt').click(function () {
     //                console.log(bKey)
 
     //           //     firebase.database().ref(`Attendance/Summary/Faculty/${key}/Class/${cKey}/Dates/${bKey}/`).update(bValue);
-            
+
     //            }
     //         }
     //     }
 
     // })
-  //  firebase.database().ref(`Attendance/Summary/Faculty/`).update(FacultyAttendance());
+    //  firebase.database().ref(`Attendance/Summary/Faculty/`).update(FacultyAttendance());
     alert('Attendance Save Sucessfully!')
 });
 
@@ -970,23 +1034,21 @@ function FacultyAttendance() {
     let arr = [];
     let time = $('.section-name').attr('data-schedule').split('-')
     let profID = `${$('.section-name').attr('data-prof')}`
-    let sectionID =  `${$('.section-name').attr('data-class')}`;
+    let sectionID = `${$('.section-name').attr('data-class')}`;
     let sectionSchedule = $('.section-name').attr('data-schedule')
     let sectionTitle = $('.section-name').attr('data-title')
 
-    firebase.database().ref(`Attendance/Summary/Faculty/${profID}/Class/${sectionID}`).update(
-        {
-            ClassNbr : sectionID,
-            Title: sectionTitle,
-            Schedule: sectionSchedule
-        })
-    firebase.database().ref(`Attendance/Summary/Faculty/${profID}/Class/${sectionID}/Dates/`).update(
-        {
-            [dateNow.replaceAll(':', '-')]: {
-                "Status": 'Present'
-            }
-        })
- 
+    firebase.database().ref(`Attendance/Summary/Faculty/${profID}/Class/${sectionID}`).update({
+        ClassNbr: sectionID,
+        Title: sectionTitle,
+        Schedule: sectionSchedule
+    })
+    firebase.database().ref(`Attendance/Summary/Faculty/${profID}/Class/${sectionID}/Dates/`).update({
+        [dateNow.replaceAll(':', '-')]: {
+            "Status": 'Present'
+        }
+    })
+
 }
 
 var container = ''
@@ -1033,17 +1095,49 @@ $('#subject').on(`click`, function () {
 
     let professor = Class.attr(`data-prof`)
 
-    firebase.database().ref('Data/Subject/').orderByChild('Professor').startAt(professor).endAt(professor).once('value', snap => {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            let uid = user.uid
+            firebase.database().ref(`User/${uid}/`).once('value', snap => {
+                let Account_Type = snap.child('Account_Type').val();
+                let ID = snap.child('ID').val();
+                let Role = snap.child('Role').val();
+                let UserID = snap.child('UserID').val();
+                let Notification = snap.child('Notification').val();
+                let Permission_Tapin = snap.child('Permission').child('TapIn_First').val()
 
-        console.log(snap.val())
-        snap.forEach(subject => {
-            $('#set-subject-col').append(`<option value="${subject.child('ClassNbr').val()}"> (${subject.child('ClassNbr').val()}) ${subject.child('Title').val()}</option>`)
-        })
+
+
+                if (Account_Type.includes('Administrator')) {
+
+                    firebase.database().ref('Data/Subject/').once('value', snap => {
+
+                        console.log(snap.val())
+                        snap.forEach(subject => {
+                            $('#set-subject-col').append(`<option value="${subject.child('ClassNbr').val()}"> (${subject.child('ClassNbr').val()}) ${subject.child('Title').val()}</option>`)
+                        })
+                    })
+                } else if (Account_Type.includes('Faculty')) {
+
+                    firebase.database().ref('Data/Subject/').orderByChild('Professor').startAt(professor).endAt(professor).once('value', snap => {
+
+                        console.log(snap.val())
+                        snap.forEach(subject => {
+                            $('#set-subject-col').append(`<option value="${subject.child('ClassNbr').val()}"> (${subject.child('ClassNbr').val()}) ${subject.child('Title').val()}</option>`)
+                        })
+                    })
+                } else if (Account_Type.includes('Guidance')) {} else { // Else
+                }
+            })
+        } else {
+
+        }
     })
+
 })
 
 $(`#subject-save`).on('click', function () {
-    SetSelectedAttendance($('#set-subject-col').val())
+    SetSelectedAttendance($('#set-subject-col').val(),`Faculty`)
     CloseSubjectModal()
 })
 

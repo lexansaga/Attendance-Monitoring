@@ -170,6 +170,7 @@ document.getElementById("rfid_card").onchange = function () {
           $('.user_id').html(profData.child('ID').val());
 
           $('#userpfp').attr('src', profData.child('Profile').val());
+          ImageFallBackNull($('#userpfp'))
 
           let unformmated_date = new Date();
           let month = unformmated_date.getMonth() + 1;
@@ -253,6 +254,7 @@ document.getElementById("rfid_card").onchange = function () {
         $('.user_id').html(data.child('ID').val());
 
         $('#userpfp').attr('src', data.child('Profile').val());
+        ImageFallBackNull($('#userpfp'))
 
         let unformmated_date = new Date();
         let month = unformmated_date.getMonth() + 1;

@@ -346,7 +346,7 @@ function LoadSearchFaculty(UserType, id) {
         })
     }
 }
-$(`.UserInformation_wrapper`).on('click', function () {
+$(`#userImage,#infoName,#infoType,#infoId`).on('click', function () {
 
     let id = $(`#infoId`).html();
 
@@ -395,5 +395,6 @@ function LoadUser(UserType, Id) {
             $('#infoId').html(`${snap.child('ID').val()}`);
             $('#infoType').html(UserType);
             $('#userImage').attr('src', snap.child('Profile').val());
+            ImageFallBackNull($('#userImage'))
         });
 }

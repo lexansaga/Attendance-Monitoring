@@ -116,6 +116,13 @@ function GetMonth(month) {
     return months[month - 1]
 }
 
+function ImageFallBackNull(image)
+{
+    if(image.attr('src') == null)
+    {
+        image.attr('src','src/assets/avatar.png')
+    }
+}
 
 function FallBackNull(data) {
     return data == null || data == '' ? '--' : data
