@@ -138,6 +138,7 @@ firebase.auth().onAuthStateChanged((user) => {
                 sidebarlinks.eq(1).css('display', '') //Schedule
                 sidebarlinks.eq(3).css('display', '') // Attendance Report
                 sidebarlinks.eq(2).css('display', '') // Attendance
+                $('#ImportBtn').css({'display' : 'none'})
 
             } else {
 
@@ -145,6 +146,7 @@ firebase.auth().onAuthStateChanged((user) => {
                 sidebarlinks.eq(1).css('display', '') //Schedule
                 sidebarlinks.eq(3).css('display', '') // Attendance Report
                 sidebarlinks.eq(4).css('display', '') // Reported
+                $('#ImportBtn').css({'display' : 'none'})
 
                 // User is Guidance
             }
