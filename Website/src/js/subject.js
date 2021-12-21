@@ -9,6 +9,7 @@ var day = $('#sub_days');
 var searchSubject = $('#search_subject');
 var searchSubjectContainer = $('.containerSearchSubject');
 var professors = $('#professors');
+var locationSelect = $('#search_location');
 
 var submit = $('#submits');
 
@@ -45,6 +46,11 @@ $(document).ready(function () {
         placeholder: "Select Subject",
         containerCssClass: "show-hide",
         margin: '10px 10px 15px 0'
+    });
+
+    locationSelect.select2({
+        placeholder: "Select Location",
+        containerCssClass: "show-hide",
     });
 
     searchSubject.select2({

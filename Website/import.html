@@ -4,13 +4,11 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link href="src/css/notification.css" rel="stylesheet" />
+   <link href="src/css/import.css" rel="stylesheet" />
    <link href="src/css/sidebar.css" rel="stylesheet" />
    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
-   <title>Notification- ATMs</title>
+   <title>Import- ATMs</title>
 </head>
 
 <body>
@@ -172,46 +170,70 @@
                <img src="src/assets/avatar.png"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>
                <ul class="profile-menu">
                   <li><a href="profile.html">Profile</a></li>
-                  <li><a href="settings.html">Settings</a></li>
+                  <li><a href="about.html">About</a></li>
                   <li><a href="#" onclick="Logout()">Logout</a></li>
                </ul>
             </div>
          </div>
          <main class="item_container">
-           <h1>Notifications</h1>
-           
-           <div class="notiftable_wrapper">
-            <table id="table_id" class="display">
-                <thead>
-                    <tr>
-                        <th>Title</th>
-                        <th>Description</th>
-                        <th>Sender</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>I am an active report</td>
-                        <td>Lorem Ipsum</td>
-                        <td>Lorem Ipsum</td>
-                        <td><i class='bx bxs-circle unread' title="Mark as read"></i></td>
-                    </tr>
-                    <tr>
-                        <td>I am not</td>
-                        <td>Lorem Ipsum</td>
-                        <td>Lorem Ipsum</td>
-                        <td><i class='bx bxs-circle read'></i></td>
-                    </tr>
-                    <tr>
-                        <td>I am an active report</td>
-                        <td>Lorem Ipsum</td>
-                        <td>Lorem Ipsum</td>
-                        <td><i class='bx bxs-circle unread' title="Mark as read"></i></td>
-                    </tr>
-                </tbody>
-            </table>
-           </div>
+            <div class="main_header"><h1>IMPORT DATA</h1></div>
+            <p style="margin-bottom: 20px;">This page allows you to import file from CSV to the system. This feature allows uploading of data by batch. To upload data
+                here are some of the parameters you need to consider to succesfully enter data to the system.</p>
+                <p style="margin-left: 30px;">
+                    - File must be in CSV Format. See <a href="https://www.bluepecantraining.com/how-to-convert-an-excel-file-to-a-csv-file/" target="_blank">this</a> instruction on how to create a CSV file from Excel.
+                </p>
+                <p style="margin-left: 30px;">
+                    - The columns of your import must be the same as the column that is in the database to ensure that the data you are trying to insert is accurate.
+                </p>
+                <p style="margin-left: 30px;">
+                    - Before you import your excel file to CSV remove the column header row or else it will be inserted into the database as well.
+                </p>
+
+                <div class="Upload_main">
+                    <!-- THIS IS THE UPLOAD AREA -->
+                    <div class="UploadArea_wrapper">
+                        <div class="file-drop-area">
+                            <i class='bx bx-upload'></i>
+                            <span class="fake-btn">Click to choose files</span>
+                            <span class="file-msg">or drag and drop files here</span>
+                            <input class="file-input" type="file">
+                          </div>
+                    </div>
+                    <div class="Instruction_area">
+                        <select id="SelectFileType">
+                            <option disabled selected>Select File Description</option>
+                            <option>Courses Offered</option>
+                            <option>List of Rooms</option>
+                            <option>List of Section</option>
+                        </select>
+
+                        <div class="Instructions">
+                            <div class="sub">
+                                <strong>Courses Offered required columns</strong>
+                                <ul>
+                                    <li>Class Number</li>
+                                    <li>Course Description/Title</li>
+                                </ul>
+                            </div>
+                            <div class="sub">
+                                <strong>List of Rooms required columns</strong>
+                                <ul>
+                                    <li>Building and Room Number</li>
+                                </ul>
+                            </div>
+                            <div class="sub">
+                                <strong>List of Section required columns</strong>
+                                <ul>
+                                    <li>Section Name</li>
+                                </ul>
+                            </div>
+                        </div>
+                      <button>Upload</button>
+                      <br>
+                      <br>
+                    </div>
+                </div>
+            
          </main>
       </div>
    </div>
@@ -234,15 +256,12 @@
       crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
    <script src="src/js/script.js"></script>
-   <script src="src/js/notification.js"></script>
+   <script src="src/js/import.js"></script>
    <script src="src/js/sidebar.js"></script>
   
 
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-   <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-
    <script>
       AOS.init();
    </script>

@@ -33,6 +33,10 @@ var tableSubject = $('#SubjectSection-table');
 var gatestatus = $('#Status')
 var gatelocation = $('#Location')
 
+var select2_department = $('#select2_department');
+var select2_section = $('#select2_section');
+var studentID = $('#Student_ID')
+
 var userType = $(`#UserType`)
 //End -- Initializaion of Objects
 
@@ -83,11 +87,15 @@ $(document).ready(function () {
 
 
     searchperson.select2({
-        containerCssClass: "show-hide",
-        width: '98.5%',
-        margin: '10px 10px 15px 0'
+        width:'100%'
     });
 
+    select2_department.select2({
+        width:'100%'
+    });
+    select2_section.select2({
+        width:'100%'
+    });
 
 
     $('#output').click(function () {
@@ -395,7 +403,6 @@ function VerifyType() {
             'display': 'none'
         });
 
-
         studentEmail.css({
             'display': 'block'
         });
@@ -655,7 +662,6 @@ function VerifyType() {
         LoadSearch(e);
     } else {
         reset();
-
 
         cardID.css({
             'display': 'none'

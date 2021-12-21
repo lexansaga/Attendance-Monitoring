@@ -10,6 +10,7 @@
    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
    <link href="//cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet">
+   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
    <title>User Management- ATMS</title>
@@ -63,7 +64,6 @@
                   <span class="link_name">Subject</span>
                </a>
                <ul class="sub-menu">
-                  <li><a href="subject.html?type=add">Add Subject</a></li>
                   <li><a href="subject.html?type=update">Edit Subject</a></li>
                   <li><a href="subject.html?type=delete">Delete Subject</a></li>
                </ul>
@@ -202,7 +202,6 @@
                   <select id="SearchPerson">
                      <option value="default" disabled selected>Select Person</option>
                   </select>
-
                </div>
 
 
@@ -215,11 +214,24 @@
 
                <input type="text" placeholder="" id="ID" disabled>
 
-               <input type="text" placeholder="Card ID" id="Card_ID" />
 
                <input id="LName" type="text" placeholder="Last Name">
                <input id="FName" type="text" placeholder="First Name">
                <input id="MName" type="text" placeholder="Middle Name">
+               <input type="text" placeholder="Student Number" id="Student_ID"/>
+               <input type="text" placeholder="Card ID" id="Card_ID" />
+
+               <div class="department_wrapper">
+                  <select id="select2_department">
+                     <option value="default" disabled selected> Select Department </option>
+                  </select>
+               </div>
+
+               <div class="section_wrapper">
+                  <select id="select2_section">
+                     <option value="default" disabled selected> Select Section </option>
+                  </select>
+               </div>
 
                <input type="text" placeholder="Contact Number" id="ContactNumber">
                <input type="text" placeholder="Email" id="Email">
@@ -350,10 +362,8 @@
    </script>
 
    <script src="src/js/usermanagement.js"></script>
-   <!-- Select2 CSS -->
-   <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
    <!-- Select2 JS -->
-   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
    <script src="//cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
 
 </body>

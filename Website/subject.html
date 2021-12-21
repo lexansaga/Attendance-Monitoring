@@ -63,7 +63,6 @@
                   <span class="link_name">Subject</span>
                </a>
                <ul class="sub-menu">
-                  <li><a href="subject.html?type=add">Add Subject</a></li>
                   <li><a href="subject.html?type=update">Edit Subject</a></li>
                   <li><a href="subject.html?type=delete">Delete Subject</a></li>
                </ul>
@@ -183,20 +182,25 @@
          <main class="item_container">
             <h3>Subject</h3>
 
+            <!-- THIS IS THE PLACEHOLDER FOR PRIMARY KEY OF SYSTEM. HIDDEN BY DEFAULT -->
+            <input id="sub_id" type="text" placeholder="Subject ID" style="display: none;"/>
+            <!-- END -->
 
             <div class="containerSearchSubject">
                <select id="search_subject">
                 </select>
             </div>
 
-            <input id="sub_id" type="text" placeholder="Subject ID"/>
-            <input id="sub_name" type="text" placeholder="Subject Name" />
-            <input id="sub_description" type="text" placeholder="Subject Description" />
-            <input id="sub_location" type="text" placeholder="Subject Location" />
+            <input id="sub_name" type="text" placeholder="Class No." readonly/>
+            <input id="sub_description" type="text" placeholder="Subject Description" style="display: none;"/>
+            <input id="sub_location" type="text" placeholder="Subject Location" style="display: none;" />
+            <div style="margin-bottom: 10px;">
+               <select id="search_location">
+                </select>
+            </div>
             <input id="sub_start" type="time" placeholder="Subject Start Time" />
             <input id="sub_end" type="time" placeholder="Subject End Time" />
             <select id="sub_days" multiple="multiple">
-               <option value="Sunday">Sunday</option>
                <option value="Monday">Monday</option>
                <option value="Tuesday">Tuesday</option>
                <option value="Wednesday">Wednesday</option>
@@ -204,9 +208,11 @@
                <option value="Friday">Friday</option>
                <option value="Saturday">Saturday</option>
             </select>
-            <select id="professors">
-               <option value="default" disabled selected> Select Professor </option>
-            </select>
+            <div style="margin-top: 10px;">
+               <select id="professors">
+                  <option value="default" disabled selected> Select Professor </option>
+               </select>
+            </div>
             <div class="function">
                <button id="submits">
                   Submit
