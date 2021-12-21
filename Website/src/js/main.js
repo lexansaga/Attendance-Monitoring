@@ -368,13 +368,13 @@ function Entered(account_type, id) {
                                   <li>
                                   <a id="prof_link" href="#"><img id="ic_prof" src="${profile}" onerror="this.onerror=null; this.src='src/assets/avatar.png'" />
                                   <h2>${last}, ${first} ${middle}</h2>
-                                  <h3 style="color:${colorStatus}">Student</h3>  
+                                  <h3 style="color:${colorStatus}">${type}</h3>  
                                   </a>  
                                   </li>
                                   `
                         ).css("opacity", "0").animate({
                             opacity: '1'
-                        });
+                        });                                                             
 
                     }
                 });
