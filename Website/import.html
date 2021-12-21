@@ -196,7 +196,7 @@
                             <i class='bx bx-upload'></i>
                             <span class="fake-btn">Click to choose files</span>
                             <span class="file-msg">or drag and drop files here</span>
-                            <input class="file-input" type="file">
+                            <input class="file-input" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                           </div>
                     </div>
                     <div class="Instruction_area">
@@ -228,7 +228,7 @@
                                 </ul>
                             </div>
                         </div>
-                      <button>Upload</button>
+                      <button id="upload">Upload</button>
                       <br>
                       <br>
                     </div>
@@ -238,7 +238,7 @@
       </div>
    </div>
    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.min.js" integrity="sha512-W/mRQs9ZSFpF14X/4aRgQss7+HRsVXsph+Y6DGLeqIqK8IpO+rQz0ISUEXkTeeKF7tivoGv+Ru7SpocS/1qahg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 

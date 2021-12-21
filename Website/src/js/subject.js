@@ -29,6 +29,7 @@ $(document).ready(function () {
 
 
                 if (Account_Type.includes('Administrator')) {
+                    LoadLocation()
                     //window.location.replace("main.html");
                 } else if (Account_Type.includes('Faculty')) {
                     window.location.replace("main.html");
@@ -256,6 +257,22 @@ $('#search_subject').on("select2:select", function (e) {
     });
 
 });
+
+function LoadLocation()
+{
+    $(`#search_location`).append(`<option value="default" selected disabled>Select location</option>`)
+    alert(`loading location`)
+    firebase.database().ref(`Data/Building/Rooms/`).once(`value`,rooms =>
+    {
+        rooms.forEach(dRoom =>
+            {
+                let code = dRoom.child(`Building`).val()
+                let room = dRoom.child(`Room`).val()
+                $(`#search_location`).append(`<option value="${code}${room}">${code}${room}</option>`)
+            })
+    })
+   
+}
 
 function LoadSubjects() {
     firebase.database().ref('Data/Subject/').on('value', snap => {

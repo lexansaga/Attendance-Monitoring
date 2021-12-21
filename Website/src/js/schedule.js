@@ -377,6 +377,9 @@ $(`.Btn-viewInf`).on('click', function (e) {
 
 })
 
+
+
+
 function LoadUser(UserType, Id) {
     firebase
         .database()
