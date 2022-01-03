@@ -178,16 +178,16 @@
          </div>
          <main class="item_container">
             <div class="main_header"><h1>IMPORT DATA</h1></div>
-            <p style="margin-bottom: 20px;">This page allows you to import file from CSV to the system. This feature allows uploading of data by batch. To upload data
+            <p style="margin-bottom: 20px;">This page allows you to import file from EXCEL to the system. This feature allows uploading of data by batch. To upload data
                 here are some of the parameters you need to consider to succesfully enter data to the system.</p>
                 <p style="margin-left: 30px;">
-                    - File must be in CSV Format. See <a href="https://www.bluepecantraining.com/how-to-convert-an-excel-file-to-a-csv-file/" target="_blank">this</a> instruction on how to create a CSV file from Excel.
+                    - File must be in EXCEL Format. 
                 </p>
                 <p style="margin-left: 30px;">
-                    - The columns of your import must be the same as the column that is in the database to ensure that the data you are trying to insert is accurate.
+                    - Follow the certain format we provided to avoid data inaccuracy on uploading your data
                 </p>
                 <p style="margin-left: 30px;">
-                    - Before you import your excel file to CSV remove the column header row or else it will be inserted into the database as well.
+                 
                 </p>
 
                 <div class="Upload_main">
@@ -201,7 +201,7 @@
                           </div>
                     </div>
                     <div class="Instruction_area">
-                        <select id="SelectFileType">
+                        <select id="SelectFileType"  style="display: none;">
                             <option disabled selected>Select File Description</option>
                             <option>Courses Offered</option>
                             <option>List of Rooms</option>

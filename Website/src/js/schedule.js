@@ -97,13 +97,14 @@ $('#look').on('select2:select', function (e) {
     });
 
     LoadUser(
-        $('#userType').val() == null ? 'Professor' : $('#userType').val(),
+        $('#userType').val() == null ? 'Faculty' : $('#userType').val(),
         $('#look').val()
     );
 
 
-
-    if ($(`#userType`).val().includes('Student')) {
+   let userTypeSelected =  $(`#userType`).val()  == null ? "Faculty" : $(`#userType`).val()
+   console.log(userTypeSelected)
+    if (userTypeSelected.includes('Student')) {
 
         let studentID = $(`#look`).val()
         console.log(studentID)
@@ -190,8 +191,10 @@ $('#look').on('select2:select', function (e) {
         //             });
         //         });
         //     });
-    } else {
+    } else{
+
         let profID = $(`#look`).val()
+    //    alert(profID)
         firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(profID).endAt(profID).once('value', subjects => {
             if (subjects.val() != null) {
                 console.log(subjects.val())
@@ -203,7 +206,7 @@ $('#look').on('select2:select', function (e) {
                     let title = subject.child('Title').val()
                     let professor = subject.child('Professor').val()
                     let schedDay = subject.child('Schedule').child(`Day`).val()
-                    let schedTime = subject.child('Schedule').child(`Time`).val()
+                    let schedTime = subject.child('Schedule').child(`Time`).val().split('-')
 
 
 
@@ -214,7 +217,7 @@ $('#look').on('select2:select', function (e) {
                             let last = professor.child('Name').child(`Last`).val()
                             let middle = professor.child('Name').child(`Middle`).val()
 
-                            tableUserSched.DataTable().row.add([title, schedDay, schedTime, location,
+                            tableUserSched.DataTable().row.add([title, schedDay, `${toStandardTime(schedTime[0])} - ${toStandardTime(schedTime[1])}`, location,
                                     `${last}, ${first} ${middle} `
                                 ])
                                 .draw();
@@ -283,7 +286,7 @@ $('#searchbx').focusout(function () {
 
 function LoadSearch(UserType) {
     $('#look').append(
-        `<option disabled selected> Select ${UserType} </option>`
+        `<option value="default" disabled selected> Select ${UserType} </option>`
     );
 
     firebase

@@ -152,8 +152,7 @@ function Upload(data, pathName) {
         })
 
     }
-    if(pathName.includes('Course'))
-    {
+    if (pathName.includes('Course')) {
         data.forEach(course => {
             let code = course.Code
             let name = course.Name
@@ -161,6 +160,18 @@ function Upload(data, pathName) {
             firebase.database().ref(`Data/Course/${code}/`).once(`value`, vCourse => {
                 if (vCourse.val() == null) {
                     firebase.database().ref(`Data/Course/${code}/`).update(course)
+                } else {}
+            })
+        })
+    }
+    if (pathName.includes(`Section`)) {
+        data.forEach(section => {
+            let code = section.Code
+            let name = section.Name
+
+            firebase.database().ref(`Data/Section/${code}/`).once(`value`, vSection => {
+                if (vSection.val() == null) {
+                    firebase.database().ref(`Data/Section/${code}/`).update(section)
                 } else {}
             })
         })

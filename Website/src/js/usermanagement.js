@@ -38,6 +38,14 @@ var select2_section = $('#select2_section');
 var studentID = $('#Student_ID')
 
 var userType = $(`#UserType`)
+
+var department = $(`#select2_department`)
+var section = $(`#select2_section`)
+
+var departmentWrapper = $('.department_wrapper')
+var sectionWrapper = $('.section_wrapper')
+
+var givenID = $(`#Given_ID`)
 //End -- Initializaion of Objects
 
 //Start -- Onload Function
@@ -61,6 +69,8 @@ $(document).ready(function () {
 
                 if (Account_Type.includes('Administrator')) {
                     //window.location.replace("main.html");
+
+                    LoadDepartment()
                 } else if (Account_Type.includes('Faculty')) {
                     window.location.replace("main.html");
                 } else if (Account_Type.includes('Guidance')) {
@@ -87,14 +97,16 @@ $(document).ready(function () {
 
 
     searchperson.select2({
-        width:'100%'
+        width: '100%'
     });
 
     select2_department.select2({
-        width:'100%'
+        width: '100%',
+        containerCssClass: "show-hide"
     });
     select2_section.select2({
-        width:'100%'
+        width: '100%',
+        containerCssClass: "show-hide"
     });
 
 
@@ -315,7 +327,9 @@ var reset = function () {
     });
 
     searchperson.val("default").trigger('change');
-
+    department.val("default").trigger('change');
+    section.val("default").trigger('change');
+    givenID.val('')
 
 }
 
@@ -445,6 +459,20 @@ function VerifyType() {
             'display': 'none'
         });
 
+        departmentWrapper.css({
+            'display': 'block'
+        });
+
+        sectionWrapper.css({
+            'display': 'block'
+        });
+
+        givenID.css({
+            'display': 'block'
+        });
+
+        givenID.attr(`placeholder`, 'Student Number')
+
         LoadSearch(e);
 
 
@@ -533,6 +561,20 @@ function VerifyType() {
         gatelocation.css({
             'display': 'none'
         });
+
+        departmentWrapper.css({
+            'display': 'block'
+        });
+
+        sectionWrapper.css({
+            'display': 'none'
+        });
+
+        givenID.css({
+            'display': 'block'
+        });
+
+        givenID.attr(`placeholder`, 'Faculty Number')
 
 
 
@@ -631,7 +673,18 @@ function VerifyType() {
             'display': 'block'
         });
 
+        departmentWrapper.css({
+            'display': 'none'
+        });
 
+        sectionWrapper.css({
+            'display': 'none'
+        });
+
+
+        givenID.css({
+            'display': 'none'
+        });
         //  alert('Student Selected');
         if (usermanagementType.includes('add')) {
             // alert("Add");
@@ -718,6 +771,19 @@ function VerifyType() {
             'display': 'none'
         });
 
+        departmentWrapper.css({
+            'display': 'none'
+        });
+
+        sectionWrapper.css({
+            'display': 'none'
+        });
+
+
+        givenID.css({
+            'display': 'none'
+        });
+
 
     }
 }
@@ -747,7 +813,7 @@ $('#btnsave').click(function (event) {
 
             //Start -- Check fields if no values
             if (studentEmail.val() == '' || lastName.val() == '' ||
-                firstName.val() == '' || middleName.val() == '' ||
+                firstName.val() == '' ||
                 ID.val() == '' || contact.val() == '' ||
                 address.val() == '') {
 
@@ -776,7 +842,7 @@ $('#btnsave').click(function (event) {
             // }
 
             //Start Card ID check 
-            
+
             firebase.database().ref(`Data/Student/Information/`).orderByChild(`Card_ID`).startAt(cardID.val()).endAt(cardID.val()).once(`value`, sCard => {
                 if (sCard.val() != null) {
                     alert('Card ID already exists! Please select new card!')
@@ -791,52 +857,61 @@ $('#btnsave').click(function (event) {
 
                             firebase.database().ref(`Data/Faculty/Information`).orderByChild(`ID`).startAt(ID.val()).endAt(ID.val()).once(`value`, fID => {
 
-                                if (fID.val() != null && id) {
+                                if (fID.val() != null && usermanagementType.includes('add')) {
                                     alert(`ID already exists! Please check and change the ID`)
                                 } else {
                                     firebase.database().ref(`Data/Student/Information`).orderByChild(`ID`).startAt(ID.val()).endAt(ID.val()).once(`value`, sID => {
-                                        if (sID.val() != null) {
+                                        if (sID.val() != null && usermanagementType.includes('add')) {
                                             alert(`ID already exists! Please check and change the ID`)
                                         } else {
+                                            firebase.database().ref('Data/Student/Information/').orderByChild('Student_ID').startAt(givenID.val()).endAt(givenID.val()).once(`value`, gID => {
+                                                if (gID.val() != null && usermanagementType.includes('add')) {
+                                                    alert('Student ID already exists! Please check and change the ID')
+                                                } else {
+                                                    let Subject = [];
+                                                    // for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
+                                                    //     Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
+                                                    //     //This will append all the subjects and create a certain format
+                                                    // }
 
-                                            let Subject = [];
-                                            // for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
-                                            //     Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
-                                            //     //This will append all the subjects and create a certain format
-                                            // }
+                                                    var file = document.getElementById("file");
+                                                    file = file.files[0];
+                                                    // if (file != null) {
+                                                    // Start - If image has no value or null, Insert Image
+                                                    var storageRef = firebase.storage().ref('Profile/Student/' + ID.val());
+                                                    storageRef.put(file).then((snapshot) => {
+                                                        storageRef.getDownloadURL()
+                                                            .then((url) => {
+                                                                // Insert url into an <img> tag to "download"
+                                                                firebase.database().ref(`Data/Student/Information/${ID.val()}`).update({
+                                                                    "Address": address.val(),
+                                                                    "Contact": contact.val(),
+                                                                    "Card_ID": cardID.val(),
+                                                                    "ID": ID.val(),
+                                                                    "Section": section.val(),
+                                                                    "Department": department.val(),
+                                                                    "Student_ID": givenID.val(),
+                                                                    "Email": studentEmail.val(),
+                                                                    "Name": {
+                                                                        "First": firstName.val(),
+                                                                        "Middle": middleName.val(),
+                                                                        "Last": lastName.val()
+                                                                    },
+                                                                    Subject,
+                                                                    "Profile": url
+                                                                });
+                                                                alert('Student Save Successfully');
+                                                                reset();
+                                                                loadid('Student');
+                                                            })
+                                                            .catch((error) => {
 
-                                            var file = document.getElementById("file");
-                                            file = file.files[0];
-                                            // if (file != null) {
-                                            // Start - If image has no value or null, Insert Image
-                                            var storageRef = firebase.storage().ref('Profile/Student/' + ID.val());
-                                            storageRef.put(file).then((snapshot) => {
-                                                storageRef.getDownloadURL()
-                                                    .then((url) => {
-                                                        // Insert url into an <img> tag to "download"
-                                                        firebase.database().ref(`Data/Student/Information/${ID.val()}`).update({
-                                                            "Address": address.val(),
-                                                            "Contact": contact.val(),
-                                                            "Card_ID": cardID.val(),
-                                                            "ID": ID.val(),
-                                                            "Email": studentEmail.val(),
-                                                            "Name": {
-                                                                "First": firstName.val(),
-                                                                "Middle": middleName.val(),
-                                                                "Last": lastName.val()
-                                                            },
-                                                            Subject,
-                                                            "Profile": url
-                                                        });
-                                                        alert('Student Save Successfully');
-                                                        reset();
-                                                        loadid('Student');
-                                                    })
-                                                    .catch((error) => {
-
-                                                        console.log('Error ' + error)
+                                                                console.log('Error ' + error)
+                                                            });
                                                     });
-                                            });
+                                                }
+                                            })
+
                                         }
                                     })
                                 }
@@ -881,7 +956,7 @@ $('#btnsave').click(function (event) {
             //Start -- Check fields if no values
             if (
                 lastName.val() == '' ||
-                firstName.val() == '' || middleName.val() == '' ||
+                firstName.val() == '' ||
                 ID.val() == '' || contact.val() == '' ||
                 address.val() == '') {
 
@@ -956,93 +1031,104 @@ $('#btnsave').click(function (event) {
                                         if (sID.val() != null && usermanagementType.includes('add')) {
                                             alert(`ID already exists! Please check and change the ID`)
                                         } else {
-                                            let Subject = [];
-                                            // for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
-                                            //     Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
-                                            //     //This will append all the subjects and create a certain format
-                                            // }
+                                            firebase.database().ref('Data/Faculty/Information/').orderByChild('Faculty_ID').startAt(givenID.val()).endAt(givenID.val()).once(`value`, gID => {
+                                                if (gID.val() != null && usermanagementType.includes('add')) {
+                                                    alert('Faculty ID already exists! Please check and change the ID')
+                                                } else {
+                                                    let Subject = [];
+                                                    // for (var i = 0; i < $('#modal-table tbody tr').length; i++) {
+                                                    //     Subject.push($('#modal-table tbody tr:eq(' + i + ') td').html());
+                                                    //     //This will append all the subjects and create a certain format
+                                                    // }
 
-                                            var file = document.getElementById("file");
-                                            file = file.files[0];
+                                                    var file = document.getElementById("file");
+                                                    file = file.files[0];
 
-                                            // if (file != null) {
-                                            // Start - If image has  value, Insert Image
-                                            var storageRef = firebase.storage().ref('Profile/Faculty/' + ID.val());
-                                            storageRef.put(file).then((snapshot) => {
-                                                storageRef.getDownloadURL()
-                                                    .then((url) => {
-                                                        firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).update({
-                                                            "Address": address.val(),
-                                                            "Contact": contact.val(),
-                                                            "ID": ID.val(),
-                                                            "Card_ID": cardID.val(),
-                                                            "Name": {
-                                                                "First": firstName.val(),
-                                                                "Middle": middleName.val(),
-                                                                "Last": lastName.val()
-                                                            },
-                                                            Subject,
-                                                            "Profile": url,
-                                                            "Permission": {
-                                                                "TapIn_First": $('.cbx').is(":checked")
-                                                            }
-                                                        });
-
-                                                        var dEmail = email.val(),
-                                                            dPassword = password.val(),
-                                                            dId = ID.val();
-
-
-                                                        if (email.val() != '' && password.val() != '') {
-                                                            // This will add new Faculty
-                                                            let tapIn = $('.cbx').is(":checked")
-                                                            alert('Saving Account')
-                                                            firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
-                                                                .then((userCredential) => {
-                                                                    var uid = userCredential.user.uid;
-
-                                                                    firebase.database().ref('User/' + uid).update({
-                                                                        'Account_Type': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
-                                                                        'ID': uid,
-                                                                        'Password': dPassword,
-                                                                        'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
-                                                                        'UserID': dId,
-                                                                        'Email': dEmail,
-                                                                        "Permission": {
-                                                                            "TapIn_First": tapIn
-                                                                        }
-                                                                    });
-                                                                })
-                                                                .catch((error) => {
-                                                                    console.log('Error ' + error)
-                                                                    alert(error)
+                                                    // if (file != null) {
+                                                    // Start - If image has  value, Insert Image
+                                                    var storageRef = firebase.storage().ref('Profile/Faculty/' + ID.val());
+                                                    storageRef.put(file).then((snapshot) => {
+                                                        storageRef.getDownloadURL()
+                                                            .then((url) => {
+                                                                firebase.database().ref(`Data/Faculty/Information/${ID.val()}`).update({
+                                                                    "Address": address.val(),
+                                                                    "Contact": contact.val(),
+                                                                    "ID": ID.val(),
+                                                                    "Section": section.val(),
+                                                                    "Department": department.val(),
+                                                                    "Card_ID": cardID.val(),
+                                                                    "Faculty_ID": givenID.val(),
+                                                                    "Name": {
+                                                                        "First": firstName.val(),
+                                                                        "Middle": middleName.val(),
+                                                                        "Last": lastName.val()
+                                                                    },
+                                                                    Subject,
+                                                                    "Profile": url,
+                                                                    "Permission": {
+                                                                        "TapIn_First": $('.cbx').is(":checked")
+                                                                    }
                                                                 });
-                                                        } else {
-                                                            // User Already Exist and needed to be updated
-                                                            let tapIn = $('.cbx').is(":checked")
-                                                            firebase.database().ref('User/').orderByChild('UserID').startAt(dId).endAt(dId).once('value', users => {
-                                                                users.forEach(user => {
-                                                                    let uid = user.child('ID').val();
-                                                                    // alert(tapIn)
-                                                                    firebase.database().ref(`User/${uid}`).update({
-                                                                        'Account_Type': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
-                                                                        'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
-                                                                        "Permission": {
-                                                                            "TapIn_First": tapIn
-                                                                        }
-                                                                    });
-                                                                })
-                                                            })
-                                                        }
-                                                        alert('Faculty Save Successfully');
-                                                        reset();
-                                                        loadid('Faculty');
-                                                    })
-                                                    .catch((error) => {
-                                                        console.log('Error ' + error)
 
+                                                                var dEmail = email.val(),
+                                                                    dPassword = password.val(),
+                                                                    dId = ID.val();
+
+
+                                                                if (email.val() != '' && password.val() != '') {
+                                                                    // This will add new Faculty
+                                                                    let tapIn = $('.cbx').is(":checked")
+                                                                //    alert('Saving Account')
+                                                                    firebase.auth().createUserWithEmailAndPassword(email.val(), password.val())
+                                                                        .then((userCredential) => {
+                                                                            var uid = userCredential.user.uid;
+
+                                                                            firebase.database().ref('User/' + uid).update({
+                                                                                'Account_Type': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                                                                'ID': uid,
+                                                                                'Password': dPassword,
+                                                                                'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                                                                'UserID': dId,
+                                                                                'Email': dEmail,
+                                                                                "Permission": {
+                                                                                    "TapIn_First": tapIn
+                                                                                }
+                                                                            });
+                                                                        })
+                                                                        .catch((error) => {
+                                                                            console.log('Error ' + error)
+                                                                            alert(error)
+                                                                        });
+                                                                } else {
+                                                                    // User Already Exist and needed to be updated
+                                                                    let tapIn = $('.cbx').is(":checked")
+                                                                    firebase.database().ref('User/').orderByChild('UserID').startAt(dId).endAt(dId).once('value', users => {
+                                                                        users.forEach(user => {
+                                                                            let uid = user.child('ID').val();
+                                                                            // alert(tapIn)
+                                                                            firebase.database().ref(`User/${uid}`).update({
+                                                                                'Account_Type': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                                                                'Role': selectedRole.includes('Select') ? 'Faculty' : selectedRole,
+                                                                                "Permission": {
+                                                                                    "TapIn_First": tapIn
+                                                                                }
+                                                                            });
+                                                                        })
+                                                                    })
+                                                                }
+                                                                alert('Faculty Save Successfully');
+                                                                reset();
+                                                                loadid('Faculty');
+                                                            })
+                                                            .catch((error) => {
+                                                                console.log('Error ' + error)
+
+                                                            });
                                                     });
-                                            });
+
+                                                }
+                                            })
+
                                         }
 
                                     })
@@ -1287,8 +1373,6 @@ $('#btnsave').click(function (event) {
 
 
 
-
-
 $('#SearchPerson').on("select2:select", function (e) {
     // what you would like to happen
     // OnSelect on SearchPerson for Edit and Delete
@@ -1322,6 +1406,11 @@ $('#SearchPerson').on("select2:select", function (e) {
             contact.val(snap.child('Contact').val());
             studentEmail.val(snap.child('Email').val());
             address.val(snap.child('Address').val());
+
+            givenID.val(snap.child(`Student_ID`).val())
+            department.val(snap.child('Department').val()).trigger('change')
+            LoadSection(snap.child('Department').val())
+            section.val(snap.child('Section').val()).trigger('change')
 
 
             console.log(snap.child("Subject").val());
@@ -1426,6 +1515,10 @@ $('#SearchPerson').on("select2:select", function (e) {
             contact.val(snap.child('Contact').val());
             studentEmail.val(snap.child('Email').val());
             address.val(snap.child('Address').val());
+
+            givenID.val(snap.child(`Faculty_ID`).val())
+            department.val(snap.child('Department').val()).trigger('change')
+            section.val(snap.child('Section').val()).trigger('change')
 
             $(".cbx").prop("checked", snap.child('Permission').child('TapIn_First').val());
             //           console.log(snap.child("Subject").val());
@@ -1564,6 +1657,17 @@ $('#SearchPerson').on("select2:select", function (e) {
 
 });
 
+// $('#LName').focusout(function ()
+// {
+//     alert('Leaving focus')
+// })
+
+department.on("select2:select", function (e) {
+    let selected = this.value
+    LoadSection(selected)
+})
+
+
 function DeleteUser(id) {
     if (id.includes('STUD')) {
         firebase.database().ref(`Data/Student/Information/${id}/`).remove()
@@ -1587,6 +1691,28 @@ function DeleteUser(id) {
             })
         })
     }
+}
+
+function LoadDepartment() {
+    firebase.database().ref(`Data/Course/`).once(`value`, deparments => {
+        deparments.forEach(dDeparment => {
+            let code = dDeparment.child(`Code`).val()
+            let name = dDeparment.child(`Name`).val()
+
+            department.append(`<option value="${code}">(${code}) ${name}</option>`)
+        })
+    })
+}
+
+function LoadSection(code) {
+    firebase.database().ref(`Data/Section/`).orderByChild('Code').startAt(code).endAt(code).once(`value`, sections => {
+        sections.forEach(dSections => {
+            let code = dSections.child(`Code`).val()
+            let name = dSections.child(`Name`).val()
+
+            section.append(`<option value="${code}${name}">${code}${name}</option>`)
+        })
+    })
 }
 
 function LoadSearch(UserType) {

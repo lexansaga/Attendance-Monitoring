@@ -119,18 +119,15 @@ $(document).ready(function () {
                                 let location = data.child('Location').val();
                                 let time = data.child('Time').val();
 
-                                if(status.includes('IN'))
-                                {
+                                if (status.includes('IN')) {
 
                                     if ($('.tap-first').css('display') == 'flex') {
                                         AttendanceProcess()
                                     }
-        
-                                }
-                                else
-                                {
+
+                                } else {
                                     $('.tap-first').css({
-                                        'display' : 'flex'
+                                        'display': 'flex'
                                     })
                                     $('.attendance-section').css({
                                         'display': 'none'
@@ -180,22 +177,25 @@ $(document).ready(function () {
 
                                 var today = new Date();
                                 var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                                //     alert(time)
                                 var timeNow = Date.parse('01/01/2000 ' + time);
                                 //  This will check the current time and compare on the schedule on databases
                                 // Need to change the time for actual demo
 
-                                var dayNow = GetDay()
-
-
+                                var dayNow = GetDay(today.getDay())
+                                //    var dayNow = "Tuesday"
+                                //   alert(dayNow)
                                 //var timeNow = Date.parse('01/01/2000 '+time);
                                 console.log(day.includes(dayNow))
                                 console.log(timeNow);
                                 console.log(startSched + ':' + endSched);
+                                //    alert(startSched <= timeNow && timeNow <= endSched && day.includes(dayNow))
                                 if (startSched <= timeNow && timeNow <= endSched && day.includes(dayNow)) {
                                     //Match schedule time 
                                     console.log(subject.child('ClassNbr').val());
                                     console.log(subject.child('Title').val());
                                     console.log('Time Match');
+
                                     $('.section-name').html(subject.child('Title').val());
                                     $('.section-name').attr('data-class', subject.child('ClassNbr').val());
                                     $('.section-name').attr('data-location', subject.child('Location').val());
@@ -286,10 +286,11 @@ $(document).ready(function () {
 
                                     // This will append student name on Attendance on first column - Unsorted by Surname
                                     // });
+
                                 } else {
                                     //Not match schedule time
                                     //   alert('Cant find any schedule today!')
-                                    $('.section-name').html('No Schedule for today!')
+                                    //  $('.section-name').html('No Schedule for today!')
                                 }
 
                             });
@@ -447,6 +448,7 @@ $(document).ready(function () {
 });
 
 function SetSelectedAttendance(SubjectID) {
+    let AttendanceCapability = true;
     $('.name tbody').html('')
     $('.name thead td:not(.n)').remove()
     firebase.auth().onAuthStateChanged((user) => {
@@ -464,16 +466,64 @@ function SetSelectedAttendance(SubjectID) {
 
                     console.log(subjects.val())
                     subjects.forEach(subject => {
-                        console.log(subject.child('ClassNbr').val());
+                        let classNbr = subject.child('ClassNbr').val();
+                        let location = subject.child('Location').val()
+                        let title = subject.child('Title').val();
+                        let schedule = subject.child('Schedule').child('Time').val();
+                        let day = subject.child('Schedule').child('Day').val()
+
+                        console.log();
                         console.log(subject.child('Title').val());
                         console.log('Time Match');
 
                         $('.section-name').html(subject.child('Title').val());
                         $('.section-name').attr('data-prof', UserID);
-                        $('.section-name').attr('data-class', subject.child('ClassNbr').val());
-                        $('.section-name').attr('data-location', subject.child('Location').val());
-                        $('.section-name').attr('data-title', subject.child('Title').val());
-                        $('.section-name').attr('data-schedule', subject.child('Schedule').child('Time').val());
+                        $('.section-name').attr('data-class', classNbr);
+                        $('.section-name').attr('data-location', location);
+                        $('.section-name').attr('data-title', title);
+                        $('.section-name').attr('data-schedule', schedule);
+
+
+                        let sched = schedule.split('-');
+                        let startSched = Date.parse('01/01/2000 ' + sched[0]);
+                        let endSched = Date.parse('01/01/2000 ' + sched[1]);
+                        var today = new Date();
+                        var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+
+                        //     alert(time)
+                        var timeNow = Date.parse('01/01/2000 ' + time);
+                        //  This will check the current time and compare on the schedule on databases
+                        // Need to change the time for actual demo
+
+                        var dayNow = GetDay(today.getDay())
+                        //     var dayNow = "Monday"
+                        //   alert(dayNow)
+                        //var timeNow = Date.parse('01/01/2000 '+time);
+                        console.log(day.includes(dayNow))
+                        console.log(timeNow);
+                        console.log(startSched + ':' + endSched);
+                        //    alert(startSched <= timeNow && timeNow <= endSched && day.includes(dayNow))
+                        if (startSched <= timeNow && timeNow <= endSched && day.includes(dayNow)) {
+
+                            alert(`This is the schedule now`)
+                            $(`#add`).css({
+                                'display': 'block'
+                            })
+                            $(`#btnSubmitAtt`).css({
+                                'display': 'block'
+                            })
+                            AttendanceCapability = true
+                            //this will check the eligibility of attendance 
+                        } else {
+                            alert(`This is not your current schedule! This attendance is for viewing purpose only`)
+                            $(`#btnSubmitAtt`).css({
+                                'display': 'none'
+                            })
+                            $(`#add`).css({
+                                'display': 'none'
+                            })
+                            AttendanceCapability = false
+                        }
 
                         //      console.log(subject.child('Students').val());
                         if (subject.child('Students').val() != null) {
@@ -575,7 +625,7 @@ function SetSelectedAttendance(SubjectID) {
 
                                             if (attstatus[student.child('Status').val()] == null) {
                                                 //This will check if student status if null
-                                                if (Account_Type.includes('Administrator')) {
+                                                if (Account_Type.includes('Administrator') || AttendanceCapability == false) {
                                                     $(`tbody tr .n[data-id="${key}"]`).after(
                                                         `<td>${attstatus[`absent`]}</td>`
                                                     );
@@ -594,7 +644,7 @@ function SetSelectedAttendance(SubjectID) {
                                                 // $(`tbody tr .n[data-id="${key}"]`).after(
                                                 //     `<td>${attstatus[dates.child('Student').child(key).child('Status').val()]}</td>`
                                                 // );
-                                                if (Account_Type.includes('Administrator')) {
+                                                if (Account_Type.includes('Administrator') || AttendanceCapability == false) {
                                                     $(`tbody tr .n[data-id="${key}"]`).after(
                                                         `<td>${attstatus[dates.child('Student').child(key).child('Status').val()].replace('data-remarks=""',`data-remarks="${dates.child('Student').child(key).child('Remarks').val()}"`)}</td>`
                                                     );
@@ -1138,7 +1188,7 @@ $('#subject').on(`click`, function () {
 })
 
 $(`#subject-save`).on('click', function () {
-    SetSelectedAttendance($('#set-subject-col').val(),`Faculty`)
+    SetSelectedAttendance($('#set-subject-col').val(), `Faculty`)
     CloseSubjectModal()
 })
 

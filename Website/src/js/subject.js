@@ -123,44 +123,96 @@ $('#submits').click(function () {
     // console.log(day.val());
 
     if (submit.html().includes('Add') || submit.html().includes('Update')) {
+
         if (id.val() != null && subname.val() != null &&
             description.val() != null && start.val() != null &&
             end.val() != null && day.val() != null &&
             sublocation.val() != null && professors.val() != null) {
-            firebase.database().ref('Data/Subject/' + id.val()).update({
-                ClassNbr: id.val(),
-                Description: description.val(),
-                Location: sublocation.val(),
-                Professor: professors.val(),
-                Schedule: {
-                    Day: day.val().toString(),
-                    Time: start.val() + '-' + end.val()
-                },
-                Title: subname.val()
+            let professorID = professors.val()
+            firebase.database().ref(`Data/Subject/`).orderByChild(`Professor`).startAt(professorID).endAt(professorID).once(`value`, validates => {
+                let arrvalidate = []
+                validates.forEach(validate => {
+                    console.log(validate.val())
+                    let classNbr = validate.child(`ClassNbr`).val()
+                    let description = validate.child(`Description`).val()
+                    let location = validate.child(`Location`).val()
+                    let professor = validate.child(`Professor`).val()
+                    let time = validate.child(`Schedule`).child(`Time`).val()
+                    let sDay = validate.child(`Schedule`).child(`Day`).val()
+                    let title = validate.child(`Title`).val()
 
-            });
 
-            firebase.database().ref(`Data/Faculty/Information/${professors.val()}/Subject/`).on(`value`,subjects =>
-            {
+                    let sched = time.split('-')
+                    let schedStart = Date.parse('01-01-2000 ' + sched[0])
+                    let schedEnd = Date.parse('01-01-2000 ' + sched[1])
 
-                // This will append subject from professor
-                let arrsubject = []
-                subjects.forEach(subject =>
-                    {
-                        arrsubject.push(subject.val())
+                    let thisStart = Date.parse('01-01-2000 ' + start.val())
+                    let thisEnd = Date.parse('01-01-2000 ' + end.val())
+                    console.log("SchedStart : " + schedStart)
+                    console.log("SchedEnd : " + schedEnd)
+
+                    console.log("thisStart : " + thisStart)
+                    console.log("thisEnd : " + thisEnd)
+
+                    console.log(day.val())
+                    console.log(sDay)
+                    console.log(day.val().includes(sDay))
+                    console.log((schedStart > thisStart && thisStart < schedEnd))
+                    console.log((schedEnd > thisEnd && thisEnd < thisStart))
+
+                    if (day.val().includes(sDay) &&
+                        ((schedStart <= thisStart && thisStart < schedEnd) // This will check if selected sched is within the range initial sched
+                            ||
+                            (schedStart <= thisEnd && thisEnd < schedEnd)))
+                        //     console.log((thisStart <= schedStart && thisEnd <= schedStart) && (thisStart >= schedEnd && thisEnd >= schedEnd))
+                        if (day.val().includes(sDay) && (thisStart > schedStart && schedEnd < thisEnd)) {
+                            alert('This professor may have conflict on the schedule! Please check the schedule again')
+                            arrvalidate.push(`true`)
+                        } else {
+                            alert('No match! Safe to insert')
+                            arrvalidate.push('false')
+                        }
+
+                })
+
+                if (arrvalidate.toString().includes('true')) {
+
+                } else {
+
+                    firebase.database().ref('Data/Subject/' + id.val()).update({
+                        ClassNbr: id.val(),
+                        Description: description.val(),
+                        Location: locationSelect.val(),
+                        Professor: professors.val(),
+                        Schedule: {
+                            Day: day.val().toString(),
+                            Time: start.val() + '-' + end.val()
+                        },
+                        Title: subname.val()
+
+                    });
+
+                    firebase.database().ref(`Data/Faculty/Information/${professors.val()}/Subject/`).on(`value`, subjects => {
+
+                        // This will append subject from professor
+                        let arrsubject = []
+                        subjects.forEach(subject => {
+                            arrsubject.push(subject.val())
+                        })
+
+                        arrsubject.push(id.val())
+
+                        let newArrSubject = [...new Set(arrsubject)];
+
+                        console.log(newArrSubject)
+
+                        firebase.database().ref(`Data/Faculty/Information/${professors.val()}/Subject/`).set(newArrSubject);
                     })
-
-                    arrsubject.push(id.val())
-
-                    let newArrSubject = [...new Set(arrsubject)];
-
-                    console.log(newArrSubject)
-
-                    firebase.database().ref(`Data/Faculty/Information/${professors.val()}/Subject/`).set(newArrSubject);
+                    reset();
+                    loadid();
+                    alert('Subject Data Inserted Successfully!');
+                }
             })
-            reset();
-            loadid();
-            alert('Subject Data Inserted Successfully!');
         } else {
             alert('Fill up all information');
         }
@@ -179,6 +231,12 @@ $('#submits').click(function () {
 
 });
 
+$(`#sub_start`).on(`change`, function () {
+    let start = $(`#sub_start`)
+    let end = $(`#sub_start`)
+    end.attr('min', start.val())
+
+})
 $('#cancel').click(function () {
 
 });
@@ -191,6 +249,7 @@ var reset = function () {
     description.val("");
     start.val("");
     end.val("");
+    locationSelect.val('default').trigger('change')
     day.val(['']).trigger('change');
     professors.val('default').trigger('change');
 
@@ -215,8 +274,7 @@ function loadid() {
 
             })
 
-        }
-        else{
+        } else {
             id.val(`SUB1000001`)
         }
 
@@ -228,12 +286,14 @@ $('#search_subject').on("select2:select", function (e) {
 
 
     let uid = $(this).val();
-  //  alert(uid);
+    //  alert(uid);
     firebase.database().ref('Data/Subject/' + uid).on('value', snap => {
         id.val(snap.child('ClassNbr').val());
         subname.val(snap.child('Title').val());
         description.val(snap.child('Description').val());
         sublocation.val(snap.child('Location').val());
+
+        locationSelect.val(snap.child('Location').val()).trigger('change')
 
         let sched = snap.child('Schedule').child('Time').val();
 
@@ -258,20 +318,17 @@ $('#search_subject').on("select2:select", function (e) {
 
 });
 
-function LoadLocation()
-{
+function LoadLocation() {
     $(`#search_location`).append(`<option value="default" selected disabled>Select location</option>`)
-    alert(`loading location`)
-    firebase.database().ref(`Data/Building/Rooms/`).once(`value`,rooms =>
-    {
-        rooms.forEach(dRoom =>
-            {
-                let code = dRoom.child(`Building`).val()
-                let room = dRoom.child(`Room`).val()
-                $(`#search_location`).append(`<option value="${code}${room}">${code}${room}</option>`)
-            })
+    // alert(`loading location`)
+    firebase.database().ref(`Data/Building/Rooms/`).once(`value`, rooms => {
+        rooms.forEach(dRoom => {
+            let code = dRoom.child(`Building`).val()
+            let room = dRoom.child(`Room`).val()
+            $(`#search_location`).append(`<option value="${code}${room}">${code}${room}</option>`)
+        })
     })
-   
+
 }
 
 function LoadSubjects() {
