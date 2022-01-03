@@ -102,7 +102,8 @@ $(document).ready(function () {
                     $('.attendance-section').css({
                         'display': 'none'
                     })
-
+                    
+                    console.log(FormatDate(dateNow,'MM-DD-YY'))
                     firebase.database().ref(`Attendance/Gate/${FormatDate(dateNow,'MM-DD-YY')}/`).orderByChild('EnteredID').startAt(UserID).endAt(UserID).limitToLast(1).on('value', snap => {
                         //This will check if professor has already tapin
 

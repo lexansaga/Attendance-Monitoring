@@ -844,14 +844,14 @@ $('#btnsave').click(function (event) {
             //Start Card ID check 
 
             firebase.database().ref(`Data/Student/Information/`).orderByChild(`Card_ID`).startAt(cardID.val()).endAt(cardID.val()).once(`value`, sCard => {
-                if (sCard.val() != null) {
-                    alert('Card ID already exists! Please select new card!')
+                if (sCard.val() != null && usermanagementType.includes('add')) {
+                    alert('Card ID already exists on student! Please select new card!')
                     //This will check if Card ID Exist on Student
                 } else {
 
                     firebase.database().ref(`Data/Faculty/Information/`).orderByChild(`Card_ID`).startAt(cardID.val()).endAt(cardID.val()).once(`value`, fCard => {
-                        if (fCard.val() != null) {
-                            alert('Card ID already exists! Please select new card!')
+                        if (fCard.val() != null && usermanagementType.includes('add')) {
+                            alert('Card ID already exists on faculty! Please select new card!')
                             //This will check if Card ID Exist on Faculty
                         } else {
 
@@ -1013,13 +1013,13 @@ $('#btnsave').click(function (event) {
             //Start Card ID check 
 
             firebase.database().ref(`Data/Student/Information/`).orderByChild(`Card_ID`).startAt(cardID.val()).endAt(cardID.val()).once(`value`, sCard => {
-                if (sCard.val() != null) {
-                    alert('Card ID already exists! Please select new card!')
+                if (sCard.val() != null && usermanagementType.includes('add')) {
+                    alert('Card ID already exists on student! Please select new card!')
                 } else {
 
                     firebase.database().ref(`Data/Faculty/Information/`).orderByChild(`Card_ID`).startAt(cardID.val()).endAt(cardID.val()).once(`value`, fCard => {
-                        if (fCard.val() != null) {
-                            alert('Card ID already exists! Please select new card!')
+                        if (fCard.val() != null && usermanagementType.includes('add')) {
+                            alert('Card ID already exists on faculty! Please select new card!')
                         } else {
 
                             firebase.database().ref(`Data/Faculty/Information`).orderByChild(`ID`).startAt(ID.val()).endAt(ID.val()).once(`value`, fID => {
