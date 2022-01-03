@@ -102,7 +102,7 @@ $(document).ready(function () {
                     $('.attendance-section').css({
                         'display': 'none'
                     })
-                    
+
                     console.log(FormatDate(dateNow,'MM-DD-YY'))
                     firebase.database().ref(`Attendance/Gate/${FormatDate(dateNow,'MM-DD-YY')}/`).orderByChild('EnteredID').startAt(UserID).endAt(UserID).limitToLast(1).on('value', snap => {
                         //This will check if professor has already tapin
@@ -726,7 +726,7 @@ function SetSelectedAttendance(SubjectID) {
 
 $('#add').click(function () {
 
-    if (!$(`.section-name`).html().includes(`No Schedule for today!`)) {
+    if (!$(`.section-name`).html().includes(`No schedule for today!`)) {
         //This will add new column on attendance
         var table = $('tbody tr .n');
         var head = $('thead tr .n');
@@ -1286,7 +1286,7 @@ $('.modal').on('click', function (event) {
 //CONVERT HTML TABLE TO EXCEL
 
 $('#export').on('click', function (event) {
-    if (!$(`.section-name`).html().includes(`No Schedule for today!`)) {
+    if (!$(`.section-name`).html().includes(`No schedule for today!`)) {
         var ClassName = document.getElementById("classname").innerHTML;
 
         $("#myTable").table2excel({
@@ -1300,7 +1300,7 @@ $('#export').on('click', function (event) {
 })
 
 $('#form').on('click', function (event) {
-    if (!$(`.section-name`).html().includes(`No Schedule for today!`)) {
+    if (!$(`.section-name`).html().includes(`No schedule for today!`)) {
         var ClassName = document.getElementById("classname").innerHTML;
         $("#myTable").table2excel({
             filename: ClassName + " -AttendanceForm",
