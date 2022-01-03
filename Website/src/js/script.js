@@ -44,8 +44,8 @@ function FormatDate(id, format) {
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
 
-    day = (day < 10 ? "0" : "") + day
-    month = (month < 10 ? "0" : "") + month
+   // day = (day < 10 ? "0" : "") + day
+  //  month = (month < 10 ? "0" : "") + month
 
     if (format.includes('DD-MM-YY')) {
         return day + '-' + month + '-' + year;
