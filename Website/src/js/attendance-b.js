@@ -103,7 +103,7 @@ $(document).ready(function () {
                         'display': 'none'
                     })
 
-                    console.log(FormatDate(dateNow,'MM-DD-YY'))
+                    console.log(FormatDate(dateNow, 'MM-DD-YY'))
                     firebase.database().ref(`Attendance/Gate/${FormatDate(dateNow,'MM-DD-YY')}/`).orderByChild('EnteredID').startAt(UserID).endAt(UserID).limitToLast(1).on('value', snap => {
                         //This will check if professor has already tapin
 
@@ -148,6 +148,11 @@ $(document).ready(function () {
 
 
                 function AttendanceProcess() {
+
+                    if (!$(`.section-name`).html().includes(`No schedule for today!`)) {
+                     $('#btnSubmitAtt').css({"display" : "none"})
+                        return;
+                    }
 
                     $('.tap-first').css({
                         'display': 'none'
@@ -792,11 +797,7 @@ $('#dt-attendance').bind("change paste keyup", function () {
 
 $('#btnSubmitAtt').click(function () {
 
-    if (!$(`.section-name`).html().includes(`No schedule for today!`)) 
-    {
-        alert(`Select subject first!`)
-        return;
-    }
+
     //  alert($('#dt-attendance').val());
 
     // let td = $(`td[data-status="unknown"]`).html()
