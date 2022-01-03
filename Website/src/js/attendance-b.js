@@ -792,7 +792,7 @@ $('#dt-attendance').bind("change paste keyup", function () {
 
 $('#btnSubmitAtt').click(function () {
 
-    if (!$(`.section-name`).html().includes(`No schedule for today!`)) {
+    if (!$(`.section-name`).html().includes(`No schedule for today!`)) 
     {
         alert(`Select subject first!`)
         return;
