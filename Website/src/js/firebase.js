@@ -27,6 +27,11 @@ function addScript(src) {
 class Firebase {
     static Database = class Database {
 
+         static async SingleValueGetter(query, child, compare) {
+            let q = await firebase.database().ref(query).orderByChild(child).startAt(compare).endAt(compare).once('value').then()
+            console.log(q.val())
+        }
+
         constructor() {}
 
         static GET(Path) {
@@ -46,7 +51,7 @@ class Firebase {
             var query = firebase.database().ref(Path);
             var async = query.once("value").then();
             console.log(async.val());
-            return  async;
+            return async;
 
         }
         static SET(Path, Data) {
@@ -63,6 +68,8 @@ class Firebase {
             var query = firebase.database().ref(Path);
             query.remove();
         }
+
+
     }
     static Storage = class Storage {
         static GET() {
@@ -74,7 +81,7 @@ class Firebase {
             await storageRef.put(File).then();
             alert('File Added Successfully');
         }
-        
+
         static DOWNLOAD(PATH) {
             // Create a reference to the file we want to download
             var storageRef = firebase.storage().ref(PATH);

@@ -105,6 +105,12 @@ $(document).ready(function () {
                         '<td>' + Account_Type + '</td>' +
                         '</tr>');
 
+                        $('#datatable tbody').append('<tr>' +
+                        '<td>Department</td>' +
+                        '<td>' + (department == null ? 'No department assign' : department) + '</td>' +
+                        '</tr>');
+
+
                     $('#datatable tbody').append('<tr>' +
                         '<td>Full Name</td>' +
                         '<td>' + name[1] +

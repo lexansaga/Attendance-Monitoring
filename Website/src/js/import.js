@@ -169,9 +169,9 @@ function Upload(data, pathName) {
             let code = section.Code
             let name = section.Name
 
-            firebase.database().ref(`Data/Section/${code}/`).once(`value`, vSection => {
+            firebase.database().ref(`Data/Section/${code}${name}/`).once(`value`, vSection => {
                 if (vSection.val() == null) {
-                    firebase.database().ref(`Data/Section/${code}/`).update(section)
+                    firebase.database().ref(`Data/Section/${code}${name}/`).update(section)
                 } else {}
             })
         })

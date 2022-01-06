@@ -160,25 +160,39 @@ $('#submits').click(function () {
                     console.log((schedStart > thisStart && thisStart < schedEnd))
                     console.log((schedEnd > thisEnd && thisEnd < thisStart))
 
-                    if (day.val().includes(sDay) &&
+                    let daysVal = []
+                    let sDayArr = sDay.includes(',') ? sDay.split(',') : [sDay]
+                    sDayArr.forEach(days => {
+                        console.log(days)
+                        daysVal.push(days.includes(day.val()))
+                        //This will check if the array of day exist on existing array of day
+                    });
+                    console.log(daysVal)
+                    console.log(daysVal.toString().includes('true'))
+                    if (daysVal.toString().includes('true') &&
                         ((schedStart <= thisStart && thisStart < schedEnd) // This will check if selected sched is within the range initial sched
                             ||
-                            (schedStart <= thisEnd && thisEnd < schedEnd)))
-                        //     console.log((thisStart <= schedStart && thisEnd <= schedStart) && (thisStart >= schedEnd && thisEnd >= schedEnd))
-                        if (day.val().includes(sDay) && (thisStart > schedStart && schedEnd < thisEnd)) {
-                            alert('This professor may have conflict on the schedule! Please check the schedule again')
-                            arrvalidate.push(`true`)
-                        } else {
-                            alert('No match! Safe to insert')
-                            arrvalidate.push('false')
-                        }
+                            (schedStart <= thisEnd && thisEnd < schedEnd))) {
+                        arrvalidate.push(`true`)
+                    } else {
+                        arrvalidate.push('false')
+                    }
+                    //     console.log((thisStart <= schedStart && thisEnd <= schedStart) && (thisStart >= schedEnd && thisEnd >= schedEnd))
+                    // if (day.val().includes(sDay) && (thisStart > schedStart && schedEnd < thisEnd)) {
+
+                    //     arrvalidate.push(`true`)
+                    // } else {
+
+                    //     arrvalidate.push('false')
+                    // }
 
                 })
-
+                console.log(arrvalidate)
                 if (arrvalidate.toString().includes('true')) {
-
+                    //Professor has duplicate!
+                    alert('This professor may have conflict on the schedule! Please check the schedule again')
                 } else {
-
+                    alert('No match! Safe to insert')
                     firebase.database().ref('Data/Subject/' + id.val()).update({
                         ClassNbr: id.val(),
                         Description: description.val(),
@@ -306,6 +320,11 @@ $('#search_subject').on("select2:select", function (e) {
 
             professors.val(snap.child('Professor').val()).trigger('change');
         } else {
+            locationSelect.val('default')
+            day.val('').trigger('change')
+            professors.val('').trigger('change')
+            start.val('')
+            end.val('')
             alert("No Schedule Available");
 
         }

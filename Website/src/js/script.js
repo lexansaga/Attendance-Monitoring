@@ -32,7 +32,7 @@ function sleep(time) {
 
 function toStandardTime(militaryTime) {
     militaryTime = militaryTime.split(':');
-    return (militaryTime[0].charAt(0) == 1 && militaryTime[0].charAt(1) > 2) ? (militaryTime[0] - 12) + ':' + militaryTime[1] + ':' + militaryTime[2] + ' PM' : militaryTime.join(':') + ' AM'
+    return (militaryTime[0].charAt(0) == 1 && militaryTime[0].charAt(1) > 2) ? (militaryTime[0] - 12) + ':' + militaryTime[1] + ':' + (militaryTime[2] == null ? '00' : militaryTime[2]) + ' PM' : militaryTime.join(':') + ' AM'
 }
 
 function FormatDate(id, format) {
@@ -44,8 +44,32 @@ function FormatDate(id, format) {
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
 
-   // day = (day < 10 ? "0" : "") + day
-  //  month = (month < 10 ? "0" : "") + month
+   day = (day < 10 ? "0" : "") + day
+   month = (month < 10 ? "0" : "") + month
+
+    if (format.includes('DD-MM-YY')) {
+        return day + '-' + month + '-' + year;
+    } else if (format.includes('MM-DD-YY')) {
+        return month + '-' + day + '-' + year;
+    } else if (format.includes('YY-MM-DD')) {
+        return year + '-' + month + '-' + day;
+    } else if (format.includes('YY-DD-MM')) {
+        return year + '-' + day + '-' + month;
+    } else {
+        return date;
+    }
+}
+function FormatDateNoZero(id, format) {
+
+    id = id.includes(':') ? id.replaceAll(':', '-') : id
+
+    var date = new Date(id);
+    var day = date.getDate();
+    var month = date.getMonth() + 1;
+    var year = date.getFullYear();
+
+  // day = (day < 10 ? "0" : "") + day
+  // month = (month < 10 ? "0" : "") + month
 
     if (format.includes('DD-MM-YY')) {
         return day + '-' + month + '-' + year;

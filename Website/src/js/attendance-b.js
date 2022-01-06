@@ -47,7 +47,21 @@ var attstatus = {
 
 
 
+
 $(document).ready(function () {
+
+    if ($(`.section-name`).html().includes(`No schedule for today!`)) {
+        $('#btnSubmitAtt').css({
+            'display': 'none'
+        })
+        $('.legend').css({
+            'display': 'none'
+        })
+        $('.attendance-table').css({
+            'display': 'none'
+        })
+    }
+
 
     $(`#set-subject-col`).select2({})
 
@@ -149,18 +163,12 @@ $(document).ready(function () {
 
                 function AttendanceProcess() {
 
-                    if (!$(`.section-name`).html().includes(`No schedule for today!`)) {
-                     $('#btnSubmitAtt').css({"display" : "none"})
-                        return;
-                    }
-
                     $('.tap-first').css({
                         'display': 'none'
                     })
                     $('.attendance-section').css({
                         'display': 'block'
                     })
-
                     console.log(snap.val());
                     firebase.database().ref('Data/Subject/').orderByChild('Professor').startAt(UserID).endAt(UserID).once('value', subjects => {
                         console.log(subjects.val())
@@ -197,6 +205,26 @@ $(document).ready(function () {
                                 console.log(startSched + ':' + endSched);
                                 //    alert(startSched <= timeNow && timeNow <= endSched && day.includes(dayNow))
                                 if (startSched <= timeNow && timeNow <= endSched && day.includes(dayNow)) {
+
+                                    if (Account_Type.includes('Administrator')) {
+                                        $('.legend').css({
+                                            'display': 'flex'
+                                        })
+                                        $('.attendance-table').css({
+                                            'display': 'block'
+                                        })
+                                    } else {
+
+                                        $('#btnSubmitAtt').css({
+                                            'display': 'block'
+                                        })
+                                        $('.legend').css({
+                                            'display': 'flex'
+                                        })
+                                        $('.attendance-table').css({
+                                            'display': 'block'
+                                        })
+                                    }
                                     //Match schedule time 
                                     console.log(subject.child('ClassNbr').val());
                                     console.log(subject.child('Title').val());
@@ -454,6 +482,15 @@ $(document).ready(function () {
 });
 
 function SetSelectedAttendance(SubjectID) {
+    $('#btnSubmitAtt').css({
+        'display': 'block'
+    })
+    $('.legend').css({
+        'display': 'flex'
+    })
+    $('.attendance-table').css({
+        'display': 'block'
+    })
     let AttendanceCapability = true;
     $('.name tbody').html('')
     $('.name thead td:not(.n)').remove()
@@ -638,6 +675,9 @@ function SetSelectedAttendance(SubjectID) {
                                                     $(`td:not(.n)`).css({
                                                         'pointer-events': 'none'
                                                     })
+                                                    $(`.remarks`).css({
+                                                        'pointer-events': 'auto'
+                                                    })
                                                 } else {
 
                                                     $(`tbody tr .n[data-id="${key}"]`).after(
@@ -656,6 +696,9 @@ function SetSelectedAttendance(SubjectID) {
                                                     );
                                                     $(`td:not(.n)`).css({
                                                         'pointer-events': 'none'
+                                                    })
+                                                    $(`.remarks`).css({
+                                                        'pointer-events': 'auto'
                                                     })
                                                 } else {
                                                     $(`tbody tr .n[data-id="${key}"]`).after(
@@ -731,29 +774,40 @@ function SetSelectedAttendance(SubjectID) {
 
 $('#add').click(function () {
 
-    if (!$(`.section-name`).html().includes(`No schedule for today!`)) {
-        //This will add new column on attendance
-        var table = $('tbody tr .n');
-        var head = $('thead tr .n');
-        var foot = $('tfoot tr .n');
-
-        let date = new Date(GetDateNow())
-        date.setDate(date.getDate() + 30)
-        let month = date.getMonth() + 1;
-        let day = date.getDate()
-        let year = date.getFullYear()
-
-        let maxDate = FormatDate(`${month}-${day}-${year}`, `MM-DD-YY`)
-
-        //  alert(maxDate)
-
-        table.after(`<td class="excl">${attstatus.present}</td>`);
-        head.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="${FormatDate(maxDate,'YY-MM-DD')}"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
-        foot.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="${FormatDate(maxDate,'YY-MM-DD')}"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
-
+    console.log(FormatDate(GetDateNow(),'YY-MM-DD'))
+    let dates = []
+    $(`input[type=date]`).each(function () {
+        dates.push($(this).val())
+    })
+    console.log(dates)
+    if (dates.includes(FormatDate(GetDateNow(),'YY-MM-DD'))) {
+        alert('Date now already exists!')
     } else {
-        alert(`Select subject first!`)
+        if (!$(`.section-name`).html().includes(`No schedule for today!`)) {
+            //This will add new column on attendance
+            var table = $('tbody tr .n');
+            var head = $('thead tr .n');
+            var foot = $('tfoot tr .n');
+
+            let date = new Date(GetDateNow())
+            date.setDate(date.getDate() + 30)
+            let month = date.getMonth() + 1;
+            let day = date.getDate()
+            let year = date.getFullYear()
+
+            let maxDate = FormatDate(`${month}-${day}-${year}`, `MM-DD-YY`)
+
+            //  alert(maxDate)
+
+            table.after(`<td class="excl">${attstatus.present}</td>`);
+            head.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="${FormatDate(maxDate,'YY-MM-DD')}"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
+            foot.after(`<td><div class="date-header"><input id="dt-attendance" value="${FormatDate(dateNow.replaceAll(':','-'),'YY-MM-DD')}" type="date" max="${FormatDate(maxDate,'YY-MM-DD')}"/> <i class='bx bx-dots-vertical-rounded' onclick="OpenDateModal(this)"></i></div></td>`);
+
+        } else {
+            alert(`Select subject first!`)
+        }
     }
+
 
 });
 
@@ -1127,7 +1181,19 @@ function OpenModal(event) {
     let person = $(event).parent().parent().parent().find('.n');
     let name = person.html()
     let id = person.attr('data-id')
-
+    if ($('#btnSubmitAtt').is(":visible")) {
+        //  alert('visible')
+        $(`.save`).css({
+            'display': 'block'
+        })
+        $(`#remarks-info`).prop("disabled", false)
+    } else {
+        //   alert('hidden')
+        $(`.save`).css({
+            'display': 'none'
+        })
+        $(`#remarks-info`).prop("disabled", true)
+    }
 
     $(`.remarks-name`).html(name)
     $(`.remarks-id`).html(id)
