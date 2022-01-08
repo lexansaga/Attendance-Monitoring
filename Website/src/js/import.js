@@ -176,6 +176,42 @@ function Upload(data, pathName) {
             })
         })
     }
+    if (pathName.includes('Student')) {
+        data.forEach(student => {
+            let id = student.ID
+            let lastname = student.Lastname
+            let firstname = student.Firstname
+            let middlename = student.Middlename
+            let address = student.Address
+            let contact = student.Contact
+            let email = student.Email
+            let department = student.Department
+            let section = student.Section
+            let cardID = student.CardID
+            let studentID = student.StudentID
+            let profile = student.Profile
+            firebase.database().ref(`Data/Student/Information/${id}`).update({
+                    Name: {
+                        First: firstname,
+                        Last: lastname,
+                        Middle: middlename
+                    },
+                    ID : id,
+                    Address: address,
+                    Contact: contact,
+                    Email: email,
+                    Department: department,
+                    Section: section,
+                    Card_ID: cardID,
+                    Student_ID: studentID,
+                    Profile : profile
+            })
+        })
+    }
+    if(pathName.includes('Faculty'))
+    {
+
+    }
 
     //  firebase.database().ref(`Data/${pathName}/`).update(data)
 

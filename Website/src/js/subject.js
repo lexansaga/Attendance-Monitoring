@@ -44,7 +44,7 @@ $(document).ready(function () {
 
 
     professors.select2({
-        placeholder: "Select Subject",
+        placeholder: "Select Professor",
         containerCssClass: "show-hide",
         margin: '10px 10px 15px 0'
     });

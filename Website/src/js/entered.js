@@ -192,7 +192,7 @@ datetype.on(`change`, function () {
 function EnteredWithType(type, date) {
 
     table.DataTable().clear().draw()
-    firebase.database().ref(`Attendance/Gate/${date}/`).on('value', attendances => {
+    firebase.database().ref(`Attendance/Gate/${FormatDate(date,'MM-DD-YY')}/`).on('value', attendances => {
         console.log(attendances.val())
         attendances.forEach(attendance => {
             let enteredID = attendance.child(`EnteredID`).val()
@@ -352,7 +352,7 @@ function Entered(account_type, date, id) {
             })
 
             // console.log(arrstudent)
-            firebase.database().ref(`Attendance/Gate/${date}`).orderByKey().on('value', attendance => {
+            firebase.database().ref(`Attendance/Gate/${FormatDate(date,'MM-DD-YY')}`).orderByKey().on('value', attendance => {
                 attendance.forEach(student => {
                     //Get Attendance for todays date
                     Object.keys(student).reverse();
@@ -394,7 +394,7 @@ function Entered(account_type, date, id) {
 
 
     } else {
-        firebase.database().ref(`Attendance/Gate/${date}`).on('value', snap => {
+        firebase.database().ref(`Attendance/Gate/${FormatDate(date,'MM-DD-YY')}`).on('value', snap => {
             console.log(snap.val());
             snap.forEach(entered => {
                 console.log(entered.val());

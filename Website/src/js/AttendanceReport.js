@@ -347,6 +347,7 @@ function LoadTable(account_type, id) {
 
                                 if (s.val() != null) {
                                     let id = s.child('ID').val()
+                                    let studentID = s.child('Student_ID').val()
                                     let last = s.child('Name').child('Last').val()
                                     let middle = s.child('Name').child('Middle').val()
                                     let first = s.child('Name').child('First').val()
@@ -395,6 +396,7 @@ function LoadTable(account_type, id) {
                                                 [
                                                     ` <a href="studentinformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
                                                     id,
+                                                    studentID == '' || studentID == null? "No ID assign" : studentID
                                                     `${last}, ${first} ${middle}`,
                                                     present.length,
                                                     absent.length,
@@ -436,6 +438,7 @@ function LoadTable(account_type, id) {
 
                         if (s.val() != null) {
                             let id = s.child('ID').val()
+                            let studentID = s.child('Student_ID').val()
                             let last = s.child('Name').child('Last').val()
                             let middle = s.child('Name').child('Middle').val()
                             let first = s.child('Name').child('First').val()
@@ -484,6 +487,7 @@ function LoadTable(account_type, id) {
                                         [
                                             ` <a href="studentinformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
                                             id,
+                                            studentID == '' || studentID == null ? "No ID assign" : studentID,
                                             `${last}, ${first} ${middle}`,
                                             present.length,
                                             absent.length,
