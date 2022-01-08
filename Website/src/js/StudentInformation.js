@@ -52,6 +52,7 @@ $(document).ready(function () {
   firebase.database().ref(`Data/Student/Information/${id}`).once('value', snap => {
     console.log(snap.val());
 
+    let student_ID = snap.child('Student_ID').val()
     let Address = snap.child('Address').val()
     let Card_ID = snap.child('Card_ID').val()
     let Contact = snap.child('Contact').val()
@@ -62,6 +63,7 @@ $(document).ready(function () {
     let LastName = snap.child('Name').child('Last').val()
 
     $('.id').text(id)
+    $('.stud_id').text(student_ID == '' || student_ID == null ? 'No ID assign' : student_ID)
     $('.email').text(Email)
     $('.address').text(Address)
     $('.contact').text(Contact)

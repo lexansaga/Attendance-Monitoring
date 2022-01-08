@@ -53,6 +53,7 @@ $(document).ready(function () {
     console.log(snap.val());
 
     let Address = snap.child('Address').val()
+    let Faculty_ID = snap.child('Faculty_ID').val()
     let Card_ID = snap.child('Card_ID').val()
     let Contact = snap.child('Contact').val()
     let Profile = snap.child('Profile').val()
@@ -62,6 +63,7 @@ $(document).ready(function () {
     let LastName = snap.child('Name').child('Last').val()
 
     $('.id').text(id)
+    $('.fac_id').text(Faculty_ID == '' || Faculty_ID == null ? 'No ID assign' : Faculty_ID)
     $('.email').text(Email)
     $('.address').text(Address)
     $('.contact').text(Contact)
