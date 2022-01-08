@@ -146,7 +146,7 @@ $(document).ready(async function () {
         buttons: [{
                 extend: 'excel',
                 exportOptions: {
-                    columns: [1, 2, 3, 4, 5]
+                    columns: [2, 3, 4, 5, 6]
                 }
             }, {
                 extend: 'pdf'
@@ -154,7 +154,7 @@ $(document).ready(async function () {
             {
                 extend: 'print',
                 exportOptions: {
-                    columns: [1, 2, 3, 4, 5]
+                    columns: [2, 3, 4, 5, 6]
                 }
             }
         ]
