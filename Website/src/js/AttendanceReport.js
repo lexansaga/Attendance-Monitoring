@@ -396,7 +396,7 @@ function LoadTable(account_type, id) {
                                                 [
                                                     ` <a href="studentinformation.html?id=${id}"> <img src="${profile}"  onerror="this.onerror=null; this.src='src/assets/avatar.png'"/>`,
                                                     id,
-                                                    studentID == '' || studentID == null? "No ID assign" : studentID
+                                                    studentID == '' || studentID == null? "No ID assign" : studentID,
                                                     `${last}, ${first} ${middle}`,
                                                     present.length,
                                                     absent.length,
