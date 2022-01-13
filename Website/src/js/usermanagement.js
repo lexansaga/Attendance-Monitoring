@@ -1892,12 +1892,12 @@ $('#SearchPerson').on("select2:select", function (e) {
             if(id.val() == '')
             {
                    id.prop('disabled',false) 
-                   alert('dsiabled false')
+               //    alert('dsiabled false')
             }
             else
             {
                 id.prop('disabled',true)  
-                alert('dsiabled true')
+              //  alert('dsiabled true')
             }
         }
         DisabledInput($('#Given_ID'))
