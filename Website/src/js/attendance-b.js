@@ -1294,7 +1294,9 @@ function StudentInfo(event) {
     let id = $(event).attr('data-id');
     console.log(id);
 
-    window.location.href = `studentinformation.html?id=` + id
+    let subject = $('.section-name').attr('data-class')
+    let title = $('.section-name').attr('data-title')
+    window.location.href = `studentinformation.html?id=${id}&sub=${subject}&title=${title}` 
 
 }
 

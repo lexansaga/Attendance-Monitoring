@@ -73,10 +73,15 @@ $(document).ready(function () {
     if (subjectType.includes('add')) {
 
 
+        loadid()
         submit.html('Add');
+        $('#sub_name').prop('readonly', false)
         searchSubjectContainer.css({
             'display': 'none'
         });
+        id.css({
+            'display': 'block'
+        })
         id.css({
             'margin-top': '50px'
         });
@@ -270,29 +275,29 @@ var reset = function () {
 }
 
 function loadid() {
-    // console.log('ID Loaded')
-    // firebase.database().ref('Data/Subject/').on('value', snap => {
-    //     console.log(snap.numChildren())
-    //     var count = (snap.numChildren() + 1).toString();
-    //     id.val('SUB' + '1' + ('000000' + count).substring(count.length));
-    // });
-
-
-    firebase.database().ref('Data/Subject/').limitToLast(1).on('value', snap => {
-        if (snap.val() != null) {
-            snap.forEach(counter => {
-                console.log(snap.val())
-                var count = counter.child(`ClassNbr`).val();
-                var sCount = count.toString().slice(4, count.length).replaceAll('0', '');
-                id.val('SUB' + '1' + ('000000' + (parseInt(sCount) + 1)).substring(sCount.length))
-
-            })
-
-        } else {
-            id.val(`SUB1000001`)
-        }
-
+    console.log('ID Loaded')
+    firebase.database().ref('Data/Subject/').on('value', snap => {
+        console.log(snap.numChildren())
+        var count = (snap.numChildren() + 1).toString();
+        id.val('SUB' + '1' + ('000000' + count).substring(count.length));
     });
+
+
+    // firebase.database().ref('Data/Subject/').limitToLast(1).on('value', snap => {
+    //     if (snap.val() != null) {
+    //         snap.forEach(counter => {
+    //             console.log(snap.val())
+    //             var count = counter.child(`ClassNbr`).val();
+    //             var sCount = count.toString().slice(4, count.length).replaceAll('0', '');
+    //             id.val('SUB' + '1' + ('000000' + (parseInt(sCount) + 1)).substring(sCount.length))
+
+    //         })
+
+    //     } else {
+    //         id.val(`SUB1000001`)
+    //     }
+
+    // });
 }
 
 
