@@ -1,4 +1,20 @@
 @import url(root.css);
+.PermissionBTN{
+    position: absolute;
+    right: 30;
+    margin-top: -30;
+
+    height: 30px;
+    width: 180px;
+
+    border: none;
+    background-color: #B2BBF7;
+    color: white;
+}
+.PermissionBTN:hover{
+    cursor: pointer;
+    background-color: #808080;
+}
 
 .sticky-col{
     position: sticky;
@@ -381,6 +397,10 @@ span>h3 {
 }
 
 @media (max-width:425px) {
+    .PermissionBTN{
+        top: 90;
+        right: 10;
+    }
 
     .function {
         justify-content: center;

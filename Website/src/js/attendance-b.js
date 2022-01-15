@@ -99,8 +99,14 @@ $(document).ready(function () {
                     })
                 } else if (Account_Type.includes('Faculty')) {
                     //window.location.replace("main.html");
+                    $('.PermissionBTN').css({
+                        'display': 'none'
+                    })
                 } else if (Account_Type.includes('Guidance')) {
                     window.location.replace("main.html");
+                    $('.PermissionBTN').css({
+                        'display': 'none'
+                    })
                 } else { // Else
                     window.location.replace("index.html");
                 }

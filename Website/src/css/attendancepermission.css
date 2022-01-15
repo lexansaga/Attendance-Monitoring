@@ -1,0 +1,100 @@
+/* CSS FOR CHECKBOX */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  .container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  
+  .container:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  .container input:checked ~ .checkmark {
+    background-color: #6773B7;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .container input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .container .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+  /* END DESIGN FOR CHECKBOX */
+
+  .toggle{
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin-top: 20px;
+  }
+  .toggle label{
+      font-size: 20px;
+  }
+  .Table_wrapper{
+      margin-top: 40px;
+      width: 90%;
+      overflow-y: auto;
+  }
+.table_input{
+    width: 20px;
+    height: 20px;
+}
+  .Action_wrapper{
+      width: 90%;
+      margin-top: 50px;
+
+      display: flex;
+      justify-content: flex-end;
+  }
+  .Action_wrapper button{
+      width: 90px;
+      height: 40px;
+      border: none;
+      color: white;
+      background-color: #B2BBF7;
+  }
+  .Action_wrapper button:hover{
+      cursor: pointer;
+  }
+  #table_id{
+      text-align: center;
+  }
