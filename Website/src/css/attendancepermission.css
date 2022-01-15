@@ -97,4 +97,9 @@
   }
   #table_id{
       text-align: center;
+      padding: 10px;
+  }
+  #table_id th{
+    background-color: #B2BBF7;
+    color: white;
   }
