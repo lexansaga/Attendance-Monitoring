@@ -73,15 +73,15 @@ $(document).ready(function () {
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             let uid = user.uid;
-            firebase.database().ref(`User/${uid}/`).once('value', snap => {
+            firebase.database().ref(`User/${uid}/`).once('value', async snap => {
                 let Account_Type = snap.child('Account_Type').val();
                 let ID = snap.child('ID').val();
                 let Role = snap.child('Role').val();
                 let UserID = snap.child('UserID').val();
                 let Notification = snap.child('Notification').val();
                 let Permission_Tapin = snap.child('Permission').child('TapIn_First').val()
-
-
+                let isAllowAttendance = snap.child('Permission').child('AllowAttendance').val()
+                let isNoClassToday = await GetAttendancePermision('NoClassToday')
 
                 if (Account_Type.includes('Administrator')) {
                     //window.location.replace("main.html");
@@ -144,6 +144,7 @@ $(document).ready(function () {
 
                                     if ($('.tap-first').css('display') == 'flex') {
                                         AttendanceProcess()
+
                                     }
 
                                 } else {
@@ -169,6 +170,7 @@ $(document).ready(function () {
 
                 function AttendanceProcess() {
 
+                    let AttendanceCapability = true;
                     $('.tap-first').css({
                         'display': 'none'
                     })
@@ -219,17 +221,50 @@ $(document).ready(function () {
                                         $('.attendance-table').css({
                                             'display': 'block'
                                         })
+
+                                        AttendanceCapability = true;
                                     } else {
 
-                                        $('#btnSubmitAtt').css({
-                                            'display': 'block'
-                                        })
-                                        $('.legend').css({
-                                            'display': 'flex'
-                                        })
-                                        $('.attendance-table').css({
-                                            'display': 'block'
-                                        })
+
+
+
+                                        //    let isNoClassToday = await GetAttendancePermision('NoClassToday')
+                                        if (isAllowAttendance == true) {
+                                            alert(`You are now permitted to take attendance`)
+                                            $('#btnSubmitAtt').css({
+                                                'display': 'block'
+                                            })
+                                            $('.legend').css({
+                                                'display': 'flex'
+                                            })
+                                            $('.attendance-table').css({
+                                                'display': 'block'
+                                            })
+
+                                            AttendanceCapability = true
+
+                                        } else if (isNoClassToday == true) {
+                                            alert(`No class today! You are not allowed to take attendance today! `)
+                                            $('.legend').css({
+                                                'display': 'flex'
+                                            })
+                                            $('.attendance-table').css({
+                                                'display': 'block'
+                                            })
+                                            AttendanceCapability = false
+                                        } else {
+                                            $('#btnSubmitAtt').css({
+                                                'display': 'block'
+                                            })
+                                            $('.legend').css({
+                                                'display': 'flex'
+                                            })
+                                            $('.attendance-table').css({
+                                                'display': 'block'
+                                            })
+                                            AttendanceCapability = true
+                                        }
+
                                     }
                                     //Match schedule time 
                                     console.log(subject.child('ClassNbr').val());
@@ -376,7 +411,7 @@ $(document).ready(function () {
 
                                             if (attstatus[student.child('Status').val()] == null) {
                                                 //This will check if student status if null
-                                                if (Account_Type.includes('Administrator')) {
+                                                if (Account_Type.includes('Administrator') || AttendanceCapability == false) {
                                                     $(`tbody tr .n[data-id="${key}"]`).after(
                                                         `<td>${attstatus[`absent`]}</td>`
                                                     );
@@ -395,7 +430,7 @@ $(document).ready(function () {
                                                 // $(`tbody tr .n[data-id="${key}"]`).after(
                                                 //     `<td>${attstatus[dates.child('Student').child(key).child('Status').val()]}</td>`
                                                 // );
-                                                if (Account_Type.includes('Administrator')) {
+                                                if (Account_Type.includes('Administrator') || AttendanceCapability == false) {
                                                     $(`tbody tr .n[data-id="${key}"]`).after(
                                                         `<td>${attstatus[dates.child('Student').child(key).child('Status').val()].replace('data-remarks=""',`data-remarks="${dates.child('Student').child(key).child('Remarks').val()}"`)}</td>`
                                                     );
@@ -487,6 +522,11 @@ $(document).ready(function () {
 
 });
 
+async function GetAttendancePermision(name) {
+    let permission = await firebase.database().ref('Data/GlobalPermission/').once('value').then()
+    return permission.child(name).val()
+}
+
 function SetSelectedAttendance(SubjectID) {
     $('#btnSubmitAtt').css({
         'display': 'block'
@@ -510,11 +550,12 @@ function SetSelectedAttendance(SubjectID) {
                 let UserID = snap.child('UserID').val();
                 let Notification = snap.child('Notification').val();
                 let Permission_Tapin = snap.child('Permission').child('TapIn_First').val()
+                let PermissionAttendance = snap.child('Permission').child('AllowAttendance').val()
 
                 firebase.database().ref('Data/Subject/').orderByChild('ClassNbr').startAt(SubjectID).endAt(SubjectID).once('value', subjects => {
 
                     console.log(subjects.val())
-                    subjects.forEach(subject => {
+                    subjects.forEach(async subject => {
                         let classNbr = subject.child('ClassNbr').val();
                         let location = subject.child('Location').val()
                         let title = subject.child('Title').val();
@@ -551,8 +592,9 @@ function SetSelectedAttendance(SubjectID) {
                         console.log(day.includes(dayNow))
                         console.log(timeNow);
                         console.log(startSched + ':' + endSched);
+                        let isNoClassToday = await GetAttendancePermision('NoClassToday')
                         //    alert(startSched <= timeNow && timeNow <= endSched && day.includes(dayNow))
-                        if (startSched <= timeNow && timeNow <= endSched && day.includes(dayNow)) {
+                        if (startSched <= timeNow && timeNow <= endSched && day.includes(dayNow) && isNoClassToday == false) {
 
                             alert(`This is the schedule now`)
                             $(`#add`).css({
@@ -563,8 +605,9 @@ function SetSelectedAttendance(SubjectID) {
                             })
                             AttendanceCapability = true
                             //this will check the eligibility of attendance 
-                        } else {
-                            alert(`This is not your current schedule! This attendance is for viewing purpose only`)
+
+                        } else if (isNoClassToday == true) {
+                            alert(`No class today! You are not allowed to take attendance today! `)
                             $(`#btnSubmitAtt`).css({
                                 'display': 'none'
                             })
@@ -572,6 +615,39 @@ function SetSelectedAttendance(SubjectID) {
                                 'display': 'none'
                             })
                             AttendanceCapability = false
+                        } else {
+
+                        
+                            if (PermissionAttendance == true) {
+                                alert(`You are now permitted to take attendance`)
+                                $(`#add`).css({
+                                    'display': 'block'
+                                })
+                                $(`#btnSubmitAtt`).css({
+                                    'display': 'block'
+                                })
+                                AttendanceCapability = true
+                            } else if (isNoClassToday == true) {
+                                alert(`No class today! You are not allowed to take attendance today! `)
+                                $(`#btnSubmitAtt`).css({
+                                    'display': 'none'
+                                })
+                                $(`#add`).css({
+                                    'display': 'none'
+                                })
+                                AttendanceCapability = false
+                            } else {
+
+                                alert(`This is not your current schedule! This attendance is for viewing purpose only`)
+                                $(`#btnSubmitAtt`).css({
+                                    'display': 'none'
+                                })
+                                $(`#add`).css({
+                                    'display': 'none'
+                                })
+                                AttendanceCapability = false
+                            }
+
                         }
 
                         //      console.log(subject.child('Students').val());
@@ -780,13 +856,13 @@ function SetSelectedAttendance(SubjectID) {
 
 $('#add').click(function () {
 
-    console.log(FormatDate(GetDateNow(),'YY-MM-DD'))
+    console.log(FormatDate(GetDateNow(), 'YY-MM-DD'))
     let dates = []
     $(`input[type=date]`).each(function () {
         dates.push($(this).val())
     })
     console.log(dates)
-    if (dates.includes(FormatDate(GetDateNow(),'YY-MM-DD'))) {
+    if (dates.includes(FormatDate(GetDateNow(), 'YY-MM-DD'))) {
         alert('Date now already exists!')
     } else {
         if (!$(`.section-name`).html().includes(`No schedule for today!`)) {
@@ -1302,7 +1378,7 @@ function StudentInfo(event) {
 
     let subject = $('.section-name').attr('data-class')
     let title = $('.section-name').attr('data-title')
-    window.location.href = `studentinformation.html?id=${id}&sub=${subject}&title=${title}` 
+    window.location.href = `studentinformation.html?id=${id}&sub=${subject}&title=${title}`
 
 }
 
