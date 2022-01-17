@@ -29,7 +29,25 @@ $(document).ready(function () {
 
     tableUserSched.DataTable({
         "dom": 'B<f<t>ip>',
-        buttons: ['excel','pdf','print'],
+        buttons: [
+        {
+            extend: 'excel',
+            title:'Schedule',
+            messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.',
+            messageBottom: 'This Schedule is printed on '+new Date($.now())
+        },
+        {
+            extend: 'pdf',
+            title:'Schedule',
+            messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.',
+            messageBottom: 'This Schedule is printed on '+new Date($.now())
+        },
+        {
+            extend: 'print',
+            title:'Schedule',
+            messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.',
+            messageBottom: 'This Schedule is printed on '+new Date($.now())
+        }],
         "columnDefs": [ {
             "type": "day-sort",
             "targets": 1
