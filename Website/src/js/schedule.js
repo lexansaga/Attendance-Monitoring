@@ -37,8 +37,35 @@ $(document).ready(function () {
 
     tableUserSched.DataTable({
         "dom": 'B<f<t>ip>',
-        buttons: ['excel', 'pdf', 'print'],
-        "columnDefs": [{
+        buttons: [
+        {
+            extend: 'excel',
+            title:'',
+            messageTop: 'I am Name || I am Student ID || I am section',
+            messageBottom: 'This Schedule is printed on '+new Date($.now())
+        },
+        {
+            extend: 'pdf',
+            title:'',
+            messageTop: function(){
+                return 'Name: Alexander Saga' +
+                '\r\n Student ID: 020004392302' +
+                '\r\n Section: BSIT034';
+            },
+            messageBottom: 'This Schedule is printed on '+new Date($.now())
+        },
+        {
+            extend: 'print',
+            title:'',
+            messageTop: function(){
+                return 'Name: Alexander Saga<br>Student ID: 02040304<br>Section: BSIT5002';
+            },
+            messageBottom: 'This Schedule is printed on '+new Date($.now()),
+            exportOptions: {
+                stripNewlines: false
+            }
+        }],
+        "columnDefs": [ {
             "type": "day-sort",
             "targets": 1
         }],
