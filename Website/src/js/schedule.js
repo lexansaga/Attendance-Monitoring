@@ -32,21 +32,30 @@ $(document).ready(function () {
         buttons: [
         {
             extend: 'excel',
-            title:'Schedule',
-            messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.',
+            title:'',
+            messageTop: 'I am Name || I am Student ID || I am section',
             messageBottom: 'This Schedule is printed on '+new Date($.now())
         },
         {
             extend: 'pdf',
-            title:'Schedule',
-            messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.',
+            title:'',
+            messageTop: function(){
+                return 'Name: Alexander Saga' +
+                '\r\n Student ID: 020004392302' +
+                '\r\n Section: BSIT034';
+            },
             messageBottom: 'This Schedule is printed on '+new Date($.now())
         },
         {
             extend: 'print',
-            title:'Schedule',
-            messageTop: 'The information in this table is copyright to Sirius Cybernetics Corp.',
-            messageBottom: 'This Schedule is printed on '+new Date($.now())
+            title:'',
+            messageTop: function(){
+                return 'Name: Alexander Saga<br>Student ID: 02040304<br>Section: BSIT5002';
+            },
+            messageBottom: 'This Schedule is printed on '+new Date($.now()),
+            exportOptions: {
+                stripNewlines: false
+            }
         }],
         "columnDefs": [ {
             "type": "day-sort",
