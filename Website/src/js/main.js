@@ -150,11 +150,19 @@ function StatusCounter(date, status, object) {
                     if (attendance.val() != null) {
                         //  console.log(attendance.val())
                         firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).once('value', statusCount => {
-
+                            let excused  = 0;
+                            statusCount.forEach(status=>
+                                {
+                                    let remarks = status.child('Remarks').val();
+                                    if(remarks.includes('Excused'))
+                                    {
+                                        excused += 1
+                                    }
+                                })
                             if (statusCount.val() != null) {
                                 //    console.log(statusCount.val())
                                 statusCountInit += statusCount.numChildren()
-                                object.html(statusCountInit)
+                                object.html(statusCountInit - excused)
                             }
                         })
                     }

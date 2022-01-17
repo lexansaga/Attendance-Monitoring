@@ -80,7 +80,7 @@ $(document).ready(function () {
     $('.department').text(Department == null || Department == '' ? 'No department assign' : Department)
     console.log(Profile);
     $('#pfp').attr('src', Profile)
-    
+
     CountStatus($('.tpresent'), 'present')
     CountStatus($('.tabsent'), 'absent')
     CountStatus($('.tlate'), 'arrivelate')
@@ -109,8 +109,13 @@ function CountStatus(object, aStatus) {
           let ids = student.child('ID').val()
           let remarks = student.child('Remarks').val()
           let status = student.child('Status').val()
-          if (status.includes(aStatus) && ids.includes(id)) {
-            sCount += 1;
+          if (remarks.includes('Excused')) {
+
+          } else {
+
+            if (status.includes(aStatus) && ids.includes(id)) {
+              sCount += 1;
+            }
           }
           console.log(sCount)
         })

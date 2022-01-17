@@ -35,7 +35,15 @@ main input:focus {
 #sub_id{
   margin-top: 25px;
 }
+#section + .select2-container
+{
+  margin-bottom: 10px !important;
+}
 
+#department + .select2-container
+{
+  margin-bottom: 10px !important;
+}
 #sub_start::before {
   content: attr(placeholder) !important;
   color: var(--font-color-primary);

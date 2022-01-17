@@ -67,8 +67,7 @@ function LineChart(data) {
                 borderColor: "#F2828A",
                 backgroundColor: "rgba(254, 179, 49,0.2)",
                 fill: true
-            }
-            , {
+            }, {
                 label: 'Leave Early',
                 data: data.LeaveEarly,
                 borderWidth: 1,
@@ -386,16 +385,19 @@ function LoadTable(account_type, id) {
                                                     let status = dates.child('Status').val()
                                                     let remarks = dates.child('Remarks').val()
 
-                                                    //   console.log(status)
-                                                    if (status.includes('present')) {
-                                                        present.push(`${dates.key}$${remarks}`)
+                                                    if (!remarks.includes('Excused')) {
+                                                        //   console.log(status)
+                                                        if (status.includes('present')) {
+                                                            present.push(`${dates.key}$${remarks}`)
+                                                        }
+                                                        if (status.includes('absent')) {
+                                                            absent.push(`${dates.key}$${remarks}`)
+                                                        }
+                                                        if (status.includes('late')) {
+                                                            late.push(`${dates.key}$${remarks}`)
+                                                        }
                                                     }
-                                                    if (status.includes('absent')) {
-                                                        absent.push(`${dates.key}$${remarks}`)
-                                                    }
-                                                    if (status.includes('late')) {
-                                                        late.push(`${dates.key}$${remarks}`)
-                                                    }
+
                                                 })
 
                                             })
@@ -996,9 +998,9 @@ function GetReport(account_type, id) {
             let absent = 0
             let arrivelate = 0
             let leaveEarly = 0
-            
+
             var lineChart = {}
-        
+
 
 
             subjects.forEach(subject => {
@@ -1048,12 +1050,12 @@ function GetReport(account_type, id) {
                     pieChart.Absent = absent;
                     pieChart.ArriveLate = arrivelate;
                     pieChart.LeaveEarly = leaveEarly;
-                   
+
                     PieChart(pieChart)
                     LineChart(lineChart)
                 })
 
-             
+
 
 
 
@@ -1099,8 +1101,8 @@ function GetReport(account_type, id) {
                         let monthDate = dates.child('Date').val()
 
 
-                 //       console.log(monthDate)
-                       lineChart = ComputeLineData(monthDate, {
+                        //       console.log(monthDate)
+                        lineChart = ComputeLineData(monthDate, {
                             Present: countPresent,
                             Absent: countAbsent,
                             ArriveLate: countArriveLate,
@@ -1133,12 +1135,12 @@ function GetReport(account_type, id) {
                 pieChart.ArriveLate = arrivelate;
                 pieChart.LeaveEarly = leaveEarly;
 
-              
+
 
                 //     console.log(monthly)
                 //     console.log(data.Absent)
             })
-         //   console.log(lineChart)
+            //   console.log(lineChart)
             LineChart(lineChart)
             PieChart(pieChart)
         })
@@ -1152,7 +1154,8 @@ var yPresent = {}
 var yAbsent = {}
 var yArriveLate = {}
 var yLeaveEarly = {}
- function ComputeLineData(monthDate, count) {
+
+function ComputeLineData(monthDate, count) {
     let xDate = monthDate.split('-')
     let month = xDate[0]
     let monthName = GetMonth(xDate[0])
@@ -1179,7 +1182,7 @@ var yLeaveEarly = {}
         yArriveLate[`${monthName}-${year}`] += parseInt(count.ArriveLate)
         yLeaveEarly[`${monthName}-${year}`] += parseInt(count.LeaveEarly)
         //    present += yPresent.Present
-      //  console.log(yPresent[`${month}-${year}`])
+        //  console.log(yPresent[`${month}-${year}`])
         //    console.log('exists!')
     } else {
         console.log('not exists!')
@@ -1189,14 +1192,14 @@ var yLeaveEarly = {}
         yLeaveEarly[`${monthName}-${year}`] = parseInt(count.LeaveEarly)
     }
 
-   // console.log(yPresent)
+    // console.log(yPresent)
 
- 
+
     lineData.xValues = xValues
     lineData.Present = Object.values(yPresent)
-    lineData.Absent =   Object.values(yAbsent)
-    lineData.ArriveLate =  Object.values(yArriveLate)
-    lineData.LeaveEarly =  Object.values(yLeaveEarly)
+    lineData.Absent = Object.values(yAbsent)
+    lineData.ArriveLate = Object.values(yArriveLate)
+    lineData.LeaveEarly = Object.values(yLeaveEarly)
     // lineData.push({
     //     [`${monthName}-${year}`]: {
     //         Present: present,
@@ -1207,10 +1210,10 @@ var yLeaveEarly = {}
     // })
 
 
- // LineChart(lineData)
+    // LineChart(lineData)
 
-//  console.log(lineData)
-  return lineData
+    //  console.log(lineData)
+    return lineData
 }
 
 // function GetLineData()

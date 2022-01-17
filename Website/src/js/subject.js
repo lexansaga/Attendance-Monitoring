@@ -6,6 +6,9 @@ var start = $('#sub_start');
 var end = $('#sub_end');
 var day = $('#sub_days');
 
+var searchDepartment = $('#department');
+var searchSection = $('#section');
+
 var searchSubject = $('#search_subject');
 var searchSubjectContainer = $('.containerSearchSubject');
 var professors = $('#professors');
@@ -65,6 +68,22 @@ $(document).ready(function () {
         containerCssClass: "show-hide",
         margin: '10px 10px 15px 0'
     });
+
+    searchDepartment.select2({
+        maximumSelectionLength: 2,
+        placeholder: "Select Department",
+        containerCssClass: "show-hide",
+        margin: '10px 0'
+    });
+
+    searchSection.select2({
+        maximumSelectionLength: 2,
+        placeholder: "Select Section",
+        containerCssClass: "show-hide",
+        margin: '10px 0'
+    });
+
+    LoadDepartment();
 
     var url = new URL(window.location.href);
     let subjectType = url.searchParams.get('type');
@@ -203,6 +222,8 @@ $('#submits').click(function () {
                         Description: description.val(),
                         Location: locationSelect.val(),
                         Professor: professors.val(),
+                        Department: searchDepartment.val(),
+                        Section: searchSection.val(),
                         Schedule: {
                             Day: day.val().toString(),
                             Time: start.val() + '-' + end.val()
@@ -271,6 +292,8 @@ var reset = function () {
     locationSelect.val('default').trigger('change')
     day.val(['']).trigger('change');
     professors.val('default').trigger('change');
+    searchDepartment.val('default').trigger('change')
+    searchSection.val('default').trigger('change')
 
 }
 
@@ -312,7 +335,18 @@ $('#search_subject').on("select2:select", function (e) {
         description.val(snap.child('Description').val());
         sublocation.val(snap.child('Location').val());
 
+        let deparment = snap.child('Department').val();
+        let section = snap.child('Section').val()
+
+        console.log(deparment)
+        console.log(section)
+
+        searchDepartment.val(deparment == null ? 'default' : deparment).trigger('change')
+        LoadSection(searchDepartment.val())
+        searchSection.val(section == null ? 'default' : section).trigger('change')
+
         locationSelect.val(snap.child('Location').val()).trigger('change')
+
 
         let sched = snap.child('Schedule').child('Time').val();
 
@@ -325,6 +359,10 @@ $('#search_subject').on("select2:select", function (e) {
 
             professors.val(snap.child('Professor').val()).trigger('change');
         } else {
+
+            // searchDepartment.val('default').trigger('change')
+            // searchSection.val('default').trigger('change')
+
             locationSelect.val('default')
             day.val('').trigger('change')
             professors.val('').trigger('change')
@@ -341,6 +379,39 @@ $('#search_subject').on("select2:select", function (e) {
     });
 
 });
+
+searchDepartment.on("select2:select", function () {
+    let selected = this.value
+    LoadSection(selected)
+
+
+});
+
+function LoadDepartment() {
+    searchDepartment.empty().trigger('change')
+    searchDepartment.append(`<option value="default" disabled selected> Select Department </option>`);
+    firebase.database().ref(`Data/Course/`).once(`value`, deparments => {
+        deparments.forEach(dDeparment => {
+            let code = dDeparment.child(`Code`).val()
+            let name = dDeparment.child(`Name`).val()
+
+            searchDepartment.append(`<option value="${code}">(${code}) ${name}</option>`)
+        })
+    })
+}
+
+function LoadSection(code) {
+    searchSection.empty().trigger('change')
+    searchSection.append(`<option value="default" disabled selected> Select Section </option>`);
+    firebase.database().ref(`Data/Section/`).orderByChild('Code').startAt(code).endAt(code).once(`value`, sections => {
+        sections.forEach(dSections => {
+            let code = dSections.child(`Code`).val()
+            let name = dSections.child(`Name`).val()
+
+            searchSection.append(`<option value="${code}${name}">${code}${name}</option>`)
+        })
+    })
+}
 
 function LoadLocation() {
     $(`#search_location`).append(`<option value="default" selected disabled>Select location</option>`)

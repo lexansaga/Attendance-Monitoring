@@ -1,15 +1,22 @@
 $('.UserInformation_wrapper').css('display', 'none');
 var tableUserSched = $('#userSchedule');
 
+let professorHide = true;
 // CUSTOM SORTING OF DATATABLE BY DAY NAME
-$.fn.dataTable.ext.type.order['day-sort-pre'] = function ( d ) {
-    switch ( d ) {
-        case 'Monday':    return 1;
-        case 'Tuesday': return 2;
-        case 'Wednesday':   return 3;
-        case 'Thursday':   return 4;
-        case 'Friday':   return 5;
-        case 'Saturday':   return 6;
+$.fn.dataTable.ext.type.order['day-sort-pre'] = function (d) {
+    switch (d) {
+        case 'Monday':
+            return 1;
+        case 'Tuesday':
+            return 2;
+        case 'Wednesday':
+            return 3;
+        case 'Thursday':
+            return 4;
+        case 'Friday':
+            return 5;
+        case 'Saturday':
+            return 6;
     }
     return 0;
 };
@@ -27,13 +34,14 @@ $(document).ready(function () {
         margin: '10px 10px 0 0',
     });
 
+
     tableUserSched.DataTable({
         "dom": 'B<f<t>ip>',
-        buttons: ['excel','pdf','print'],
-        "columnDefs": [ {
+        buttons: ['excel', 'pdf', 'print'],
+        "columnDefs": [{
             "type": "day-sort",
             "targets": 1
-        } ],
+        }],
         order: [1, 'asc']
     });
 
@@ -102,10 +110,12 @@ $('#look').on('select2:select', function (e) {
     );
 
 
-   let userTypeSelected =  $(`#userType`).val()  == null ? "Faculty" : $(`#userType`).val()
-   console.log(userTypeSelected)
+    let userTypeSelected = $(`#userType`).val() == null ? "Faculty" : $(`#userType`).val()
+    console.log(userTypeSelected)
     if (userTypeSelected.includes('Student')) {
-
+      //  tableUserSched.fnDestroy()
+      tableUserSched.DataTable().column(6).visible(true)
+       professorHide = false;
         let studentID = $(`#look`).val()
         console.log(studentID)
         firebase.database().ref(`Data/Student/Information/${studentID}/`).once('value', student => {
@@ -125,6 +135,12 @@ $('#look').on('select2:select', function (e) {
                                 let professor = subjectInfo.child(`Professor`).val()
                                 let title = subjectInfo.child(`Title`).val()
 
+                                let department = subjectInfo.child(`Department`).val()
+                                let section = subjectInfo.child(`Section`).val()
+
+                                department = department == null ? 'No department assign!' : department
+                                section = section == null ? 'No section assign!' : section
+
                                 let schedDay = subjectInfo.child('Schedule').child('Day').val()
                                 let schedTime = subjectInfo.child('Schedule').child('Time').val()
 
@@ -135,7 +151,13 @@ $('#look').on('select2:select', function (e) {
                                         let last = professor.child('Name').child(`Last`).val()
                                         let middle = professor.child('Name').child(`Middle`).val()
 
-                                        tableUserSched.DataTable().row.add([title, schedDay, schedTime, location,
+                                        tableUserSched.DataTable().row.add([
+                                                title,
+                                                schedDay,
+                                                schedTime,
+                                                department,
+                                                section,
+                                                location,
                                                 `${last}, ${first} ${middle} `
                                             ])
                                             .draw();
@@ -191,10 +213,13 @@ $('#look').on('select2:select', function (e) {
         //             });
         //         });
         //     });
-    } else{
+    } else {
+
+
+        tableUserSched.DataTable().column(6).visible(false)
 
         let profID = $(`#look`).val()
-    //    alert(profID)
+        //    alert(profID)
         firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(profID).endAt(profID).once('value', subjects => {
             if (subjects.val() != null) {
                 console.log(subjects.val())
@@ -209,6 +234,12 @@ $('#look').on('select2:select', function (e) {
                     let schedTime = subject.child('Schedule').child(`Time`).val().split('-')
 
 
+                    let department = subject.child(`Department`).val()
+                    let section = subject.child(`Section`).val()
+
+                    department = department == null ? 'No department assign!' : department
+                    section = section == null ? 'No section assign!' : section
+
 
                     firebase.database().ref(`Data/Faculty/Information/${professor}/`).on('value', professor => {
                         if (professor.val() != null) {
@@ -217,7 +248,13 @@ $('#look').on('select2:select', function (e) {
                             let last = professor.child('Name').child(`Last`).val()
                             let middle = professor.child('Name').child(`Middle`).val()
 
-                            tableUserSched.DataTable().row.add([title, schedDay, `${toStandardTime(schedTime[0])} - ${toStandardTime(schedTime[1])}`, location,
+                            tableUserSched.DataTable().row.add([
+                                    title,
+                                    schedDay,
+                                    `${toStandardTime(schedTime[0])} - ${toStandardTime(schedTime[1])}`,
+                                    department,
+                                    section,
+                                    location,
                                     `${last}, ${first} ${middle} `
                                 ])
                                 .draw();
