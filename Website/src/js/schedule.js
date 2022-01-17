@@ -20,6 +20,9 @@ $.fn.dataTable.ext.type.order['day-sort-pre'] = function (d) {
     }
     return 0;
 };
+let fname = ''
+let fid = ''
+let ftype =  ''
 
 $(document).ready(function () {
 
@@ -37,35 +40,35 @@ $(document).ready(function () {
 
     tableUserSched.DataTable({
         "dom": 'B<f<t>ip>',
-        buttons: [
-        {
-            extend: 'excel',
-            title:'',
-            messageTop: 'I am Name || I am Student ID || I am section',
-            messageBottom: 'This Schedule is printed on '+new Date($.now())
-        },
-        {
-            extend: 'pdf',
-            title:'',
-            messageTop: function(){
-                return 'Name: Alexander Saga' +
-                '\r\n Student ID: 020004392302' +
-                '\r\n Section: BSIT034';
+        buttons: [{
+                extend: 'excel',
+                title: '',
+                messageTop: ''+fname+' || '+fid+' || '+ftype+'',
+                messageBottom: 'This Schedule is printed on ' + new Date($.now())
             },
-            messageBottom: 'This Schedule is printed on '+new Date($.now())
-        },
-        {
-            extend: 'print',
-            title:'',
-            messageTop: function(){
-                return 'Name: Alexander Saga<br>Student ID: 02040304<br>Section: BSIT5002';
+            {
+                extend: 'pdf',
+                title: '',
+                messageTop: function () {
+                    return `Name: ${fname}` +
+                        `\r\n ${fid} ` +
+                        `\r\n ${ftype}`;
+                },
+                messageBottom: 'This Schedule is printed on ' + new Date($.now())
             },
-            messageBottom: 'This Schedule is printed on '+new Date($.now()),
-            exportOptions: {
-                stripNewlines: false
+            {
+                extend: 'print',
+                title: '',
+                messageTop: function () {
+                    return `Name: ${fname}<br>${fid}<br>Type: ${ftype}`;
+                },
+                messageBottom: 'This Schedule is printed on ' + new Date($.now()),
+                exportOptions: {
+                    stripNewlines: false
+                }
             }
-        }],
-        "columnDefs": [ {
+        ],
+        "columnDefs": [{
             "type": "day-sort",
             "targets": 1
         }],
@@ -140,9 +143,9 @@ $('#look').on('select2:select', function (e) {
     let userTypeSelected = $(`#userType`).val() == null ? "Faculty" : $(`#userType`).val()
     console.log(userTypeSelected)
     if (userTypeSelected.includes('Student')) {
-      //  tableUserSched.fnDestroy()
-      tableUserSched.DataTable().column(6).visible(true)
-       professorHide = false;
+        //  tableUserSched.fnDestroy()
+        tableUserSched.DataTable().column(6).visible(true)
+        professorHide = false;
         let studentID = $(`#look`).val()
         console.log(studentID)
         firebase.database().ref(`Data/Student/Information/${studentID}/`).once('value', student => {
@@ -466,4 +469,10 @@ function LoadUser(UserType, Id) {
             $('#userImage').attr('src', snap.child('Profile').val());
             ImageFallBackNull($('#userImage'))
         });
+
+
+    fname = $('#infoName').html();
+    fid = $('#infoId').html()
+    fid = fid.includes('STUD') ? `Student ID : ${fid}` : `Faculty ID : ${fid}`
+    ftype = $('#infoType').html()
 }
