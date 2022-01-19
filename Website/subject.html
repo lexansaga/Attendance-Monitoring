@@ -182,7 +182,10 @@
             </div>
          </div>
          <main class="item_container">
-            <h3>Subject</h3>
+            <div class="Head_wrap">
+                  <h3>Subject</h3>
+                  <button>Archived Subjects</button>
+            </div>
 
             <!-- THIS IS THE PLACEHOLDER FOR PRIMARY KEY OF SYSTEM. HIDDEN BY DEFAULT -->
             <input id="sub_id" type="text" placeholder="Subject ID" style="display: none;"/>
@@ -220,6 +223,16 @@
                <select id="professors">
                   <option value="default" disabled selected> Select Professor </option>
                </select>
+            </div>
+            <div class="datepicker_wrapper">
+               <div class="valid">
+                  <label>Valid From:</label>
+                  <input type="date"/>
+               </div>
+               <div class="valid">
+                  <label>Valid To:</label>
+                  <input type="date"/>
+               </div>
             </div>
             <div class="function">
                <button id="submits">

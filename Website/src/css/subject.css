@@ -1,6 +1,37 @@
 @import url(root.css);
+.datepicker_wrapper{
+  margin-top: 10px;
+}
+.valid{
+  display: flex;
+  flex-direction: column;
+}
+.valid input{
+  width: 500px;
+  margin-top: 5px;
+}
+.datepicker_wrapper{
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.Head_wrap{
+  width: 90%;
+  display: flex;
 
-
+  justify-content: space-between;
+}
+.Head_wrap button{
+  border: none;
+  padding: 10px;
+  margin-left: 10px;
+  background-color: #B2BBF7;
+  color: white;
+}
+.Head_wrap button:hover{
+  cursor: pointer;
+}
 main input,
 select {
   height: 45px;
