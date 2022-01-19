@@ -184,7 +184,7 @@
          <main class="item_container">
             <div class="Head_wrap">
                   <h3>Subject</h3>
-                  <button>Archived Subjects</button>
+                  <button id="reset_subjects">Archived Subjects</button>
             </div>
 
             <!-- THIS IS THE PLACEHOLDER FOR PRIMARY KEY OF SYSTEM. HIDDEN BY DEFAULT -->
@@ -209,6 +209,9 @@
             <select id="section">
                <option value="default" disabled selected> Select Section </option>
             </select>
+            <select id="academicYear">
+               <option value="default" disabled selected> Select Academic Year </option>
+            </select>
             <input id="sub_start" type="time" placeholder="Subject Start Time" />
             <input id="sub_end" type="time" placeholder="Subject End Time" />
             <select id="sub_days" multiple="multiple">
@@ -224,7 +227,7 @@
                   <option value="default" disabled selected> Select Professor </option>
                </select>
             </div>
-            <div class="datepicker_wrapper">
+            <div class="datepicker_wrapper" style="display:none">
                <div class="valid">
                   <label>Valid From:</label>
                   <input type="date"/>

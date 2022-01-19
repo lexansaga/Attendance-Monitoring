@@ -14,6 +14,8 @@ var searchSubjectContainer = $('.containerSearchSubject');
 var professors = $('#professors');
 var locationSelect = $('#search_location');
 
+var academicYear = $('#academicYear');
+
 var submit = $('#submits');
 
 $(document).ready(function () {
@@ -45,6 +47,7 @@ $(document).ready(function () {
         }
     })
 
+    LoadAcademicYear();
 
     professors.select2({
         placeholder: "Select Professor",
@@ -79,6 +82,13 @@ $(document).ready(function () {
     searchSection.select2({
         maximumSelectionLength: 2,
         placeholder: "Select Section",
+        containerCssClass: "show-hide",
+        margin: '10px 0'
+    });
+
+    academicYear.select2({
+        maximumSelectionLength: 2,
+        placeholder: "Select Academic Year",
         containerCssClass: "show-hide",
         margin: '10px 0'
     });
@@ -118,7 +128,6 @@ $(document).ready(function () {
     }
 
 
-
     firebase.database().ref('Data/Faculty/Information').on('value', snap => {
         snap.forEach(childSnap => {
             var profID = childSnap.child('ID').val();
@@ -137,7 +146,17 @@ $(document).ready(function () {
     console.log('Load');
 });
 
+function LoadAcademicYear() {
+    let yearNow = parseInt(GetDateNow().split('-')[2]);
+    //  alert(yearNow)
+    for (var i = yearNow; i <= (yearNow + 10); i++) {
+        let from = i - 10;
+        let to = i - 9;
 
+        //  alert(`${from}-${to}`)
+        academicYear.append(`<option value="${from}-${to}">${from}-${to}</option>`)
+    }
+}
 $('#submits').click(function () {
     // console.log(id.val());
     // console.log(subname.val());
@@ -224,6 +243,7 @@ $('#submits').click(function () {
                         Professor: professors.val(),
                         Department: searchDepartment.val(),
                         Section: searchSection.val(),
+                        AcademicYear: academicYear.val(),
                         Schedule: {
                             Day: day.val().toString(),
                             Time: start.val() + '-' + end.val()
@@ -294,6 +314,7 @@ var reset = function () {
     professors.val('default').trigger('change');
     searchDepartment.val('default').trigger('change')
     searchSection.val('default').trigger('change')
+    academicYear.val('default').trigger('change')
 
 }
 
@@ -338,8 +359,12 @@ $('#search_subject').on("select2:select", function (e) {
         let deparment = snap.child('Department').val();
         let section = snap.child('Section').val()
 
+        let academicYears = snap.child('AcademicYear').val()
+
         console.log(deparment)
         console.log(section)
+
+        academicYear.val(academicYears == null ? 'default' : academicYears).trigger('change')
 
         searchDepartment.val(deparment == null ? 'default' : deparment).trigger('change')
         LoadSection(searchDepartment.val())
@@ -437,3 +462,82 @@ function LoadSubjects() {
         });
     });
 }
+
+
+
+$('#reset_subjects').click(function () {
+    let yearNow = parseInt(GetDateNow().split('-')[2]);
+    let academicYearDefault = `${yearNow}-${yearNow + 1}`;
+
+    let academicYearPrompt = prompt('Add Academic Year ', academicYearDefault)
+    if (confirm(`Are you sure you want to archive ${academicYearDefault} ? Proceeding will create new academic year and reset current subjects of faculty and students. All of the subjects will need to reimport based on your preferrences`)) {
+        let confirm = prompt('Enter this word to confirm! `I am sure`')
+        if (confirm.includes('I am sure')) {
+
+            let academicYearTobeDeleted = academicYearDefault.split('-')
+            firebase.database().ref("Data/Subject/").once('value', subjects => {
+
+                if (subjects.val() != null) {
+                    //Scan all subjects          
+
+
+                    firebase.database().ref(`Archive/${academicYearDefault}/Data/Subject`).update(subjects.val())
+                    firebase.database().ref('Data/Subject/').remove()
+
+                    alert('Subject save on archive sucessfully!')
+
+                }
+
+            })
+
+
+            firebase.database().ref('Attendance/').once('value', attendances => {
+                if (attendances.val() != null) {
+                    firebase.database().ref(`Archive/${academicYearDefault}/Attendance`).update(attendances.val())
+                    firebase.database().ref('Attendance/').remove()
+
+                    alert('Attendances save on archive sucessfully!')
+                }
+            })
+
+            firebase.database().ref('Data/Faculty/Information').once('value', faculties => {
+                if (faculties.val() != null) {
+                    firebase.database().ref(`Archive/${academicYearDefault}/Data/Faculty/Information`).update(faculties.val())
+                    faculties.forEach(faculty => {
+
+                        if (faculty.val() != null) {
+                            let id = faculty.child('ID').val()
+                            firebase.database().ref(`Data/Faculty/Information/${id}/Subject`).remove()
+                        }
+                    })
+
+                }
+
+
+            })
+
+
+            firebase.database().ref('Data/Student/Information').once('value', students => {
+
+                if (students.val() != null) {
+                    firebase.database().ref(`Archive/${academicYearDefault}/Data/Student/Information`).update(students.val())
+                    students.forEach(student => {
+                        if (student.val() != null) {
+                            let id = student.child('ID').val()
+                            firebase.database().ref(`Data/Student/Information/${id}/Subject`).remove()
+                        }
+                    })
+                }
+
+            })
+
+
+        } else {
+            alert('Data archived cancelled!')
+        }
+
+    } else {
+        alert('Data archived cancelled!')
+    }
+
+})
