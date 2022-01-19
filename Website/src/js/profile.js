@@ -18,53 +18,51 @@ $(document).ready(function () {
                 if (Account_Type.includes('Administrator')) {
                     // window.location.replace("main.html");
                     $(`.classtable_wrapper`).css({
-                        'display':'none '
+                        'display': 'none '
                     })
                 } else if (Account_Type.includes('Faculty')) {
                     // window.location.replace("main.html");
 
                     $(`.classtable_wrapper`).css({
-                        'display':'block '
+                        'display': 'block '
                     })
 
-                //Get all user Class Schedule
-                firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(UserID).endAt(UserID).once(`value`, subjects => {
+                    //Get all user Class Schedule
+                    firebase.database().ref(`Data/Subject/`).orderByChild('Professor').startAt(UserID).endAt(UserID).once(`value`, subjects => {
 
-                    if (subjects.val() != null) {
-                        // Get all subjects based on User ID if not null
+                        if (subjects.val() != null) {
+                            // Get all subjects based on User ID if not null
 
-                        subjects.forEach(subject => {
+                            subjects.forEach(subject => {
 
-                            if (subject.val() != null) {
-                                // Loop on all subjects
-                                console.log(subject.val())
+                                if (subject.val() != null) {
+                                    // Loop on all subjects
+                                    console.log(subject.val())
 
-                                let classNbr = subject.child(`ClassNbr`).val()
-                                let title = subject.child(`Title`).val()
-                                let description = subject.child(`Description`).val()
-                                let location = subject.child(`Location`).val()
-                                let professor = subject.child(`Professor`).val()
-                                let scheduleTime = subject.child(`Schedule`).child(`Time`).val()
-                                let scheduleDay = subject.child(`Schedule`).child(`Day`).val()
-                            
-                                $(`#class-Schedule`).DataTable().row.add([
-                                    title,
-                                    scheduleDay,
-                                    scheduleTime,
-                                    location
-                                ]).draw()
-                            }
-                        })
-                    }
-                    else
-                    {
-                        $(`.classtable_wrapper`).css({
-                            'display':'none '
-                        })
-                    }
-                })
+                                    let classNbr = subject.child(`ClassNbr`).val()
+                                    let title = subject.child(`Title`).val()
+                                    let description = subject.child(`Description`).val()
+                                    let location = subject.child(`Location`).val()
+                                    let professor = subject.child(`Professor`).val()
+                                    let scheduleTime = subject.child(`Schedule`).child(`Time`).val()
+                                    let scheduleDay = subject.child(`Schedule`).child(`Day`).val()
 
-                $(`.prof_attendance`).prop(`href`,`facultyinformation.html?id=${UserID}`)
+                                    $(`#class-Schedule`).DataTable().row.add([
+                                        title,
+                                        scheduleDay,
+                                        scheduleTime,
+                                        location
+                                    ]).draw()
+                                }
+                            })
+                        } else {
+                            $(`.classtable_wrapper`).css({
+                                'display': 'none '
+                            })
+                        }
+                    })
+
+                    $(`.prof_attendance`).prop(`href`, `facultyinformation.html?id=${UserID}`)
 
                 } else if (Account_Type.includes('Guidance')) {
                     // window.location.replace("main.html");
@@ -105,7 +103,7 @@ $(document).ready(function () {
                         '<td>' + Account_Type + '</td>' +
                         '</tr>');
 
-                        $('#datatable tbody').append('<tr>' +
+                    $('#datatable tbody').append('<tr>' +
                         '<td>Department</td>' +
                         '<td>' + (department == null ? 'No department assign' : department) + '</td>' +
                         '</tr>');
@@ -131,15 +129,32 @@ $(document).ready(function () {
                         '</tr>');
 
 
-                    permission.forEach(perm => {
-                        console.log(perm.val())
-                        let tapin = perm.key.includes('TapIn_First') ? 'Tap in first' : 'Tap in first'
-                        let isCheck = perm.val() == true ? 'checked' : ''
-                        $('.permission').append(` <label class="container">${tapin}
-                            <input type="checkbox" ${isCheck} disabled>
-                            <span class="checkmark"></span>
-                         </label>`)
-                    })
+                    let tapIn = permission.child('TapIn_First').key.includes('TapIn_First') ? 'Tap in first' : 'Tap in first'
+                    let isAllowAttendance = permission.child('AllowAttendance').key.includes('AllowAttendance') ? 'Allow Attendance' : 'Allow Attendance'
+
+                    let isTapInCheck = permission.child('TapIn_First').val() == true ? 'checked' : ''
+                    let isAllowAttendanceCheck = permission.child('AllowAttendance').val() == true ? 'checked' : ''
+
+                    $('.permission').append(` <label class="container">${tapIn}
+                        <input type="checkbox" ${isTapInCheck} disabled>
+                        <span class="checkmark"></span>
+                     </label>`)
+
+                     $('.permission').append(` <label class="container">${isAllowAttendance}
+                        <input type="checkbox" ${isAllowAttendanceCheck} disabled>
+                        <span class="checkmark"></span>
+                     </label>`)
+                    
+
+                    // permission.forEach(perm => {
+                    //     console.log(perm.val())
+                    //     let tapin = perm.key.includes('TapIn_First') ? 'Tap in first' : 'Tap in first'
+                    //     let isAllowAttendance = perm.key.includes('AllowAttendance') ? 'Allow Attendance' : 'Allow Attendance'
+                    //     let isCheck = perm.val() == true ? 'checked' : ''
+
+
+
+                    // })
 
                 });
 
