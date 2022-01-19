@@ -470,7 +470,7 @@ $('#reset_subjects').click(function () {
     let academicYearDefault = `${yearNow}-${yearNow + 1}`;
 
     let academicYearPrompt = prompt('Add Academic Year ', academicYearDefault)
-    if (confirm(`Are you sure you want to archive ${academicYearDefault} ? Proceeding will create new academic year and reset current subjects of faculty and students. All of the subjects will need to reimport based on your preferrences`)) {
+    if (confirm(`Are you sure you want to archive ${academicYearPrompt} ? Proceeding will create new academic year and reset current subjects of faculty and students. All of the subjects will need to reimport based on your preferrences`)) {
         let confirm = prompt('Enter this word to confirm! `I am sure`')
         if (confirm.includes('I am sure')) {
 
@@ -481,7 +481,7 @@ $('#reset_subjects').click(function () {
                     //Scan all subjects          
 
 
-                    firebase.database().ref(`Archive/${academicYearDefault}/Data/Subject`).update(subjects.val())
+                    firebase.database().ref(`Archive/${academicYearPrompt}/Data/Subject`).update(subjects.val())
                     firebase.database().ref('Data/Subject/').remove()
 
                     alert('Subject save on archive sucessfully!')
@@ -493,7 +493,7 @@ $('#reset_subjects').click(function () {
 
             firebase.database().ref('Attendance/').once('value', attendances => {
                 if (attendances.val() != null) {
-                    firebase.database().ref(`Archive/${academicYearDefault}/Attendance`).update(attendances.val())
+                    firebase.database().ref(`Archive/${academicYearPrompt}/Attendance`).update(attendances.val())
                     firebase.database().ref('Attendance/').remove()
 
                     alert('Attendances save on archive sucessfully!')
@@ -502,7 +502,7 @@ $('#reset_subjects').click(function () {
 
             firebase.database().ref('Data/Faculty/Information').once('value', faculties => {
                 if (faculties.val() != null) {
-                    firebase.database().ref(`Archive/${academicYearDefault}/Data/Faculty/Information`).update(faculties.val())
+                    firebase.database().ref(`Archive/${academicYearPrompt}/Data/Faculty/Information`).update(faculties.val())
                     faculties.forEach(faculty => {
 
                         if (faculty.val() != null) {
@@ -520,7 +520,7 @@ $('#reset_subjects').click(function () {
             firebase.database().ref('Data/Student/Information').once('value', students => {
 
                 if (students.val() != null) {
-                    firebase.database().ref(`Archive/${academicYearDefault}/Data/Student/Information`).update(students.val())
+                    firebase.database().ref(`Archive/${academicYearPrompt}/Data/Student/Information`).update(students.val())
                     students.forEach(student => {
                         if (student.val() != null) {
                             let id = student.child('ID').val()
