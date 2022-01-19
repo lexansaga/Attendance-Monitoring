@@ -7,13 +7,13 @@
   flex-direction: column;
 }
 .valid input{
-  width: 500px;
+  width: 100%;
   margin-top: 5px;
 }
 .datepicker_wrapper{
   width: 90%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
 }
 .Head_wrap{
