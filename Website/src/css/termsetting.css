@@ -1,0 +1,68 @@
+.note{
+    width: 90%;
+    height: 100px;
+    margin-top: 10px;
+    text-align: center;
+}
+.note h3{
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.dateCont{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.DateWrappers{
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+}
+.DateWrappers label{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.DateWrappers input{
+    border: none;
+    height: 30px;
+    padding: 20px;
+    background-color: #B2BBF7;
+    color: white;
+}
+.termDesc{
+    margin-top: 20px;
+    width: 90%;
+
+    display: flex;
+    flex-direction: column;
+}
+.termDesc label{
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.termDesc select{
+    height: 35px;
+    border: none;
+    padding-left: 20px;
+    font-size: 15px;
+
+    background-color: #B2BBF7;
+    color: white;
+}
+.buttonwrapper{
+    margin-top: 50px;
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+}
+.buttonwrapper button{
+    padding: 15px;
+    border: none;
+    background-color: #B2BBF7;
+    color: white;
+}
+.buttonwrapper button:hover{
+    cursor: pointer;
+    background-color: #6773B7;
+}
