@@ -34,8 +34,16 @@ $(document).ready(function () {
     });
 
     // DATATABLE INITIALIZATION
-    table.DataTable({ paging: false,
-        searching:false});
+    table.DataTable({ 
+        paging: false,
+        searching:false,
+        columnDefs: [
+            {
+                "targets": [ 2 ],
+                "visible": false
+            }]
+    
+    });
 
     //Load Faculty Permission Attendance
     firebase

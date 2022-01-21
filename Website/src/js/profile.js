@@ -130,20 +130,20 @@ $(document).ready(function () {
 
 
                     let tapIn = permission.child('TapIn_First').key.includes('TapIn_First') ? 'Tap in first' : 'Tap in first'
-                    let isAllowAttendance = permission.child('AllowAttendance').key.includes('AllowAttendance') ? 'Allow Attendance' : 'Allow Attendance'
+                   // let isAllowAttendance = permission.child('AllowAttendance').key.includes('AllowAttendance') ? 'Allow Attendance' : 'Allow Attendance'
 
                     let isTapInCheck = permission.child('TapIn_First').val() == true ? 'checked' : ''
-                    let isAllowAttendanceCheck = permission.child('AllowAttendance').val() == true ? 'checked' : ''
+                    //let isAllowAttendanceCheck = permission.child('AllowAttendance').val() == true ? 'checked' : ''
 
                     $('.permission').append(` <label class="container">${tapIn}
                         <input type="checkbox" ${isTapInCheck} disabled>
                         <span class="checkmark"></span>
                      </label>`)
 
-                     $('.permission').append(` <label class="container">${isAllowAttendance}
-                        <input type="checkbox" ${isAllowAttendanceCheck} disabled>
-                        <span class="checkmark"></span>
-                     </label>`)
+                  //   $('.permission').append(` <label class="container">${isAllowAttendance}
+                    //    <input type="checkbox" ${isAllowAttendanceCheck} disabled>
+                   //     <span class="checkmark"></span>
+                  //   </label>`)
                     
 
                     // permission.forEach(perm => {
