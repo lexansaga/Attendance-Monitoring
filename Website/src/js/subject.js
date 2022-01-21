@@ -489,78 +489,79 @@ function LoadSubjects() {
 
 
 $('#reset_subjects').click(function () {
-    let yearNow = parseInt(GetDateNow().split('-')[2]);
-    let academicYearDefault = `${yearNow}-${yearNow + 1}`;
+    window.location.href = "termsetting.html"
+    // let yearNow = parseInt(GetDateNow().split('-')[2]);
+    // let academicYearDefault = `${yearNow}-${yearNow + 1}`;
 
-    let academicYearPrompt = prompt('Add Academic Year ', academicYearDefault)
-    if (confirm(`Are you sure you want to archive ${academicYearPrompt} ? Proceeding will create new academic year and reset current subjects of faculty and students. All of the subjects will need to reimport based on your preferrences`)) {
-        let confirm = prompt('Enter this word to confirm! `I am sure`')
-        if (confirm.includes('I am sure')) {
+    // let academicYearPrompt = prompt('Add Academic Year ', academicYearDefault)
+    // if (confirm(`Are you sure you want to archive ${academicYearPrompt} ? Proceeding will create new academic year and reset current subjects of faculty and students. All of the subjects will need to reimport based on your preferrences`)) {
+    //     let confirm = prompt('Enter this word to confirm! `I am sure`')
+    //     if (confirm.includes('I am sure')) {
 
-            let academicYearTobeDeleted = academicYearDefault.split('-')
-            firebase.database().ref("Data/Subject/").once('value', subjects => {
+    //         let academicYearTobeDeleted = academicYearDefault.split('-')
+    //         firebase.database().ref("Data/Subject/").once('value', subjects => {
 
-                if (subjects.val() != null) {
-                    //Scan all subjects          
-
-
-                    firebase.database().ref(`Archive/${academicYearPrompt}/Data/Subject`).update(subjects.val())
-                    firebase.database().ref('Data/Subject/').remove()
-
-                    alert('Subject save on archive sucessfully!')
-
-                }
-
-            })
+    //             if (subjects.val() != null) {
+    //                 //Scan all subjects          
 
 
-            firebase.database().ref('Attendance/').once('value', attendances => {
-                if (attendances.val() != null) {
-                    firebase.database().ref(`Archive/${academicYearPrompt}/Attendance`).update(attendances.val())
-                    firebase.database().ref('Attendance/').remove()
+    //                 firebase.database().ref(`Archive/${academicYearPrompt}/Data/Subject`).update(subjects.val())
+    //                 firebase.database().ref('Data/Subject/').remove()
 
-                    alert('Attendances save on archive sucessfully!')
-                }
-            })
+    //                 alert('Subject save on archive sucessfully!')
 
-            firebase.database().ref('Data/Faculty/Information').once('value', faculties => {
-                if (faculties.val() != null) {
-                    firebase.database().ref(`Archive/${academicYearPrompt}/Data/Faculty/Information`).update(faculties.val())
-                    faculties.forEach(faculty => {
+    //             }
 
-                        if (faculty.val() != null) {
-                            let id = faculty.child('ID').val()
-                            firebase.database().ref(`Data/Faculty/Information/${id}/Subject`).remove()
-                        }
-                    })
-
-                }
+    //         })
 
 
-            })
+    //         firebase.database().ref('Attendance/').once('value', attendances => {
+    //             if (attendances.val() != null) {
+    //                 firebase.database().ref(`Archive/${academicYearPrompt}/Attendance`).update(attendances.val())
+    //                 firebase.database().ref('Attendance/').remove()
+
+    //                 alert('Attendances save on archive sucessfully!')
+    //             }
+    //         })
+
+    //         firebase.database().ref('Data/Faculty/Information').once('value', faculties => {
+    //             if (faculties.val() != null) {
+    //                 firebase.database().ref(`Archive/${academicYearPrompt}/Data/Faculty/Information`).update(faculties.val())
+    //                 faculties.forEach(faculty => {
+
+    //                     if (faculty.val() != null) {
+    //                         let id = faculty.child('ID').val()
+    //                         firebase.database().ref(`Data/Faculty/Information/${id}/Subject`).remove()
+    //                     }
+    //                 })
+
+    //             }
 
 
-            firebase.database().ref('Data/Student/Information').once('value', students => {
-
-                if (students.val() != null) {
-                    firebase.database().ref(`Archive/${academicYearPrompt}/Data/Student/Information`).update(students.val())
-                    students.forEach(student => {
-                        if (student.val() != null) {
-                            let id = student.child('ID').val()
-                            firebase.database().ref(`Data/Student/Information/${id}/Subject`).remove()
-                        }
-                    })
-                }
-
-            })
+    //         })
 
 
-        } else {
-            alert('Data archived cancelled!')
-        }
+    //         firebase.database().ref('Data/Student/Information').once('value', students => {
 
-    } else {
-        alert('Data archived cancelled!')
-    }
+    //             if (students.val() != null) {
+    //                 firebase.database().ref(`Archive/${academicYearPrompt}/Data/Student/Information`).update(students.val())
+    //                 students.forEach(student => {
+    //                     if (student.val() != null) {
+    //                         let id = student.child('ID').val()
+    //                         firebase.database().ref(`Data/Student/Information/${id}/Subject`).remove()
+    //                     }
+    //                 })
+    //             }
+
+    //         })
+
+
+    //     } else {
+    //         alert('Data archived cancelled!')
+    //     }
+
+    // } else {
+    //     alert('Data archived cancelled!')
+    // }
 
 })
