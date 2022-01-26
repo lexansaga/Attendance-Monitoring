@@ -5,7 +5,6 @@ var btnAddTerm = $('#btn_addTerm')
 
 
 $(document).ready(function () {
-   
     let currentsem = sessionStorage.getItem('CURRENT_SEMESTER')
    // alert(currentsem)
 
