@@ -41,29 +41,59 @@ $(document).ready(function () {
 
 termstart.change(function()
 {
+    termend.val('')
     termend.prop('min',termstart.val())
 })
 
 $('#btn_addTerm').click(function()
 {
-    if( selectSem.prop('disabled') == true)
+    if(termstart.val() == '' || termend.val() == '')
     {
-        let nextsem = sessionStorage.getItem('NEXT_SEMESTER')
-        let currentsem = sessionStorage.getItem('CURRENT_SEMESTER')
-        ResetAcademicYear(currentsem);
+        alert('Fill up information!')
     }
     else
     {
-
-    }  firebase.database().ref('Settings/Term').update(
+        if( selectSem.prop('disabled') == true)
         {
-            TermStart : termstart.val(),
-            TermEnd : termend.val(),
-            Semester: selectSem.val()
-        })
-  
-
-    alert('Term save sucessfully')
+            let nextsem = sessionStorage.getItem('NEXT_SEMESTER')
+            let currentsem = sessionStorage.getItem('CURRENT_SEMESTER')
+            ResetAcademicYear(currentsem);
+        }
+        else
+        {
+          
+          
+        }  
+        if(selectSem.val().includes('First'))
+        {
+            
+            let start = termstart.val().split('-')
+            let end = termend.val().split('-')
+            firebase.database().ref('Settings/Term').update(
+                {
+                    TermStart : termstart.val(),
+                    TermEnd : termend.val(),
+                    Semester: selectSem.val(),
+                    AcademicYear: `${start[0]}-${end[0]}`
+                })
+        
+        }
+        else
+        {
+            firebase.database().ref('Settings/Term').update(
+                {
+                    TermStart : termstart.val(),
+                    TermEnd : termend.val(),
+                    Semester: selectSem.val()
+                })
+        }
+    
+     
+    
+    
+        alert('Term save sucessfully')
+    }
+   
 
 })
 

@@ -144,6 +144,8 @@ function LoadAcademicYear() {
         let termstart = terms.child('TermStart').val()
         let termend = terms.child('TermEnd').val()
         let semester = terms.child('Semester').val()
+        let acadYear = terms.child('AcademicYear').val()
+        
         let nextsemester = ''
         let newAcademicYear = ''
         let nextYearAcademic = ''
@@ -154,23 +156,27 @@ function LoadAcademicYear() {
         }
         termStart = termstart.split('-')
         termEnd = termend.split('-')
+        acadYearSplice = acadYear.split('-')
 
         if (semester.includes('First')) {
             nextsemester = semDic[Object.keys(semDic)[1]]
             newAcademicYear = `${termStart[0]} - ${termEnd[0]} ${nextsemester}`
-            nextYearAcademic = `${termStart[0]} - ${termEnd[0]}`.split('-')
+           
+            nextYearAcademic = `${acadYearSplice[0]} - ${acadYearSplice[1]}`.split('-')
         } else if (semester.includes('Second')) {
             nextsemester = semDic[Object.keys(semDic)[2]]
             newAcademicYear = `${termStart[0]} - ${termEnd[0]} ${nextsemester}`
-            nextYearAcademic = `${termEnd[0]} - ${termEnd[0]}`.split('-')
+           
+            nextYearAcademic = `${acadYearSplice[0]} - ${acadYearSplice[1]}`.split('-')
         } else {
             nextsemester = semDic[Object.keys(semDic)[0]]
             newAcademicYear = `${parseInt(termStart[0]) + 1} - ${parseInt(termEnd[0]) + 1} ${nextsemester}`
-            nextYearAcademic = `${parseInt(termEnd[0]) + 1} - ${parseInt(termEnd[0]) + 1}`.split('-')
+           
+            nextYearAcademic = `${parseInt(acadYearSplice[0]) + 1} - ${parseInt(acadYearSplice[1]) + 1}`.split('-')
         }
         let dateNow = FormatDate(GetDateNow(), 'MM-DD-YY').split('-')
         if (DiffMonthYear(termstart, termend, `${dateNow[2]}-${dateNow[0]}`)) {
-            if (confirm(` Academic Year ${termStart[0]} - ${termEnd[0]} ${semester} is now proceeding! Proceed now on new Academic Year and Term ${newAcademicYear}`)) {
+            if (confirm(` Academic Year ${acadYear} ${semester} is now proceeding! Proceed now on new Academic Year and Term ${newAcademicYear}`)) {
 
                 sessionStorage.setItem('NEXT_SEMESTER',nextsemester)
                 sessionStorage.setItem(`CURRENT_SEMESTER`,`${termStart[0]}-${termEnd[0]}_${semester}`)

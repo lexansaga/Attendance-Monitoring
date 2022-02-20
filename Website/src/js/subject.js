@@ -15,6 +15,7 @@ var professors = $('#professors');
 var locationSelect = $('#search_location');
 
 var academicYear = $('#academicYear');
+var term = $('#term');
 
 var submit = $('#submits');
 
@@ -47,8 +48,8 @@ $(document).ready(function () {
         }
     })
 
-    LoadAcademicYear();
-
+   // LoadAcademicYear();
+   LoadTermAcademicYear()
     professors.select2({
         placeholder: "Select Professor",
         containerCssClass: "show-hide",
@@ -88,7 +89,11 @@ $(document).ready(function () {
 
     academicYear.select2({
         maximumSelectionLength: 2,
-        placeholder: "Select Academic Year",
+        containerCssClass: "show-hide",
+        margin: '10px 0'
+    });
+    term.select2({
+        maximumSelectionLength: 2,
         containerCssClass: "show-hide",
         margin: '10px 0'
     });
@@ -145,7 +150,25 @@ $(document).ready(function () {
     loadid();
     console.log('Load');
 });
+function LoadTermAcademicYear()
+{
+    firebase.database().ref('Settings/Term').once('value',terms=>
+    {
+        let semester = terms.child('Semester').val()
+        let termstart = terms.child('TermStart').val().split('-')
+        let termend = terms.child('TermEnd').val().split('-')
+        let acadYear = terms.child('AcademicYear').val()
 
+        academicYear.append(`<option value="${acadYear}"> ${acadYear}</option>`)
+        term.append(`<option value="${semester}"> ${semester}</option>`)
+
+        academicYear.val(`${acadYear}`)
+        term.val(`${semester}`)
+
+        academicYear.prop('disabled' , true)
+        term.prop('disabled' , true)
+    })
+}
 function LoadAcademicYear() {
     let yearNow = parseInt(GetDateNow().split('-')[2]);
     //  alert(yearNow)
