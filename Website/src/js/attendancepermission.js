@@ -66,6 +66,7 @@ $(document).ready(function () {
                     .row.add([
                         id,
                         `${lastname}, ${firstname} ${middlename}`,
+                        
                         `<input data-allow="${id}" type="checkbox" class="table_input" ${
                                    permission == true
                                         ? 'checked="checked"'

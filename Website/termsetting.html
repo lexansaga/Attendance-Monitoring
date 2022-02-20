@@ -189,27 +189,27 @@
                     <label for="Termstart">
                         Term Start
                     </label>
-                    <input type="month" name="Termstart"/>
+                    <input type="month" name="Termstart" id="termstart"/>
                 </div>
                 <div class="DateWrappers">
                     <label for="Termend">
                         Term End
                     </label>
-                    <input type="month" name="Termend"/>
+                    <input type="month" name="Termend" id="termend"/>
                 </div>
             </div>
 
             <div class="termDesc">
                 <label>Term Description</label>
-                <select>
-                    <option>First Semester</option>
-                    <option>Second Semester</option>
-                    <option>Summer</option>
+                <select id="sem">
+                    <option value="First_Semester">First Semester</option>
+                    <option value="Second_Semester">Second Semester</option>
+                    <option value="Summer">Summer</option>
                 </select>
             </div>
 
             <div class="buttonwrapper">
-                <button>Save Settings</button>
+                <button id="btn_addTerm">Save Settings</button>
             </div>
          </main>
       </div>

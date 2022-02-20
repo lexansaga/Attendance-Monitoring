@@ -12,7 +12,64 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
 
+var sem = '';
 
+
+$(document).ready(function () {
+
+    firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+            let uid = user.uid;
+            firebase
+                .database()
+                .ref(`User/${uid}/`)
+                .once('value', (snap) => {
+                    let Account_Type = snap.child('Account_Type').val();
+                    let ID = snap.child('ID').val();
+                    let Role = snap.child('Role').val();
+                    let UserID = snap.child('UserID').val();
+                    let Notification = snap.child('Notification').val();
+                    let Permission_Tapin = snap
+                        .child('Permission')
+                        .child('TapIn_First')
+                        .val();
+
+                    if (Account_Type.includes('Administrator')) {
+                        // LoadAcademicYear()
+                        //window.location.replace("main.html");
+                    } else if (Account_Type.includes('Faculty')) {
+                        window.location.replace('main.html');
+                    } else if (Account_Type.includes('Guidance')) {
+                        window.location.replace('main.html');
+                    } else {
+                        // Else
+                        window.location.replace('index.html');
+                    }
+                });
+        }
+    });
+
+
+})
+
+
+
+
+
+
+
+function DiffMonthYear(startMonth,endMonth,currentMonth)
+{
+    var start = parseInt(startMonth.replace('-',''))
+    var end = parseInt(endMonth.replace('-',''))
+    var current = parseInt(currentMonth.replace('-',''))
+
+    console.log(start)
+    console.log(end)
+    console.log(current)
+    console.log((start < current && current > end))
+    return (start < current && current > end)
+}
 
 function TimeStamp() {
 
@@ -44,8 +101,8 @@ function FormatDate(id, format) {
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
 
-   day = (day < 10 ? "0" : "") + day
-   month = (month < 10 ? "0" : "") + month
+    day = (day < 10 ? "0" : "") + day
+    month = (month < 10 ? "0" : "") + month
 
     if (format.includes('DD-MM-YY')) {
         return day + '-' + month + '-' + year;
@@ -59,6 +116,7 @@ function FormatDate(id, format) {
         return date;
     }
 }
+
 function FormatDateNoZero(id, format) {
 
     id = id.includes(':') ? id.replaceAll(':', '-') : id
@@ -68,8 +126,8 @@ function FormatDateNoZero(id, format) {
     var month = date.getMonth() + 1;
     var year = date.getFullYear();
 
-  // day = (day < 10 ? "0" : "") + day
-  // month = (month < 10 ? "0" : "") + month
+    // day = (day < 10 ? "0" : "") + day
+    // month = (month < 10 ? "0" : "") + month
 
     if (format.includes('DD-MM-YY')) {
         return day + '-' + month + '-' + year;
@@ -140,11 +198,9 @@ function GetMonth(month) {
     return months[month - 1]
 }
 
-function ImageFallBackNull(image)
-{
-    if(image.attr('src') == null)
-    {
-        image.attr('src','src/assets/avatar.png')
+function ImageFallBackNull(image) {
+    if (image.attr('src') == null) {
+        image.attr('src', 'src/assets/avatar.png')
     }
 }
 

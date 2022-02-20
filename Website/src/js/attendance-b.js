@@ -240,7 +240,7 @@ $(document).ready(function () {
                                             $('.attendance-table').css({
                                                 'display': 'block'
                                             })
-
+                                            $('#add').css({'display' : 'block'})
                                             AttendanceCapability = true
 
                                         } else if (isNoClassToday == true) {
@@ -251,6 +251,7 @@ $(document).ready(function () {
                                             $('.attendance-table').css({
                                                 'display': 'block'
                                             })
+                                            $('#add').css({'display' : 'none'})
                                             AttendanceCapability = false
                                         } else {
                                             $('#btnSubmitAtt').css({
@@ -262,6 +263,7 @@ $(document).ready(function () {
                                             $('.attendance-table').css({
                                                 'display': 'block'
                                             })
+                                            $('#add').css({'display' : 'block'})
                                             AttendanceCapability = true
                                         }
 
@@ -603,6 +605,7 @@ function SetSelectedAttendance(SubjectID) {
                             $(`#btnSubmitAtt`).css({
                                 'display': 'block'
                             })
+                            $('#add').css({'display' : 'block'})
                             AttendanceCapability = true
                             //this will check the eligibility of attendance 
 
@@ -614,6 +617,7 @@ function SetSelectedAttendance(SubjectID) {
                             $(`#add`).css({
                                 'display': 'none'
                             })
+                            $('#add').css({'display' : 'none'})
                             AttendanceCapability = false
                         } else {
 
@@ -626,6 +630,7 @@ function SetSelectedAttendance(SubjectID) {
                                 $(`#btnSubmitAtt`).css({
                                     'display': 'block'
                                 })
+                                $('#add').css({'display' : 'block'})
                                 AttendanceCapability = true
                             } else if (isNoClassToday == true) {
                                 alert(`No class today! You are not allowed to take attendance today! `)
@@ -635,6 +640,7 @@ function SetSelectedAttendance(SubjectID) {
                                 $(`#add`).css({
                                     'display': 'none'
                                 })
+                                $('#add').css({'display' : 'none'})
                                 AttendanceCapability = false
                             } else {
 
@@ -645,6 +651,7 @@ function SetSelectedAttendance(SubjectID) {
                                 $(`#add`).css({
                                     'display': 'none'
                                 })
+                                $('#add').css({'display' : 'none'})
                                 AttendanceCapability = false
                             }
 

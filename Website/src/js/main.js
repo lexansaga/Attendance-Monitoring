@@ -59,7 +59,7 @@ firebase.auth().onAuthStateChanged((user) => {
 
 
             if (Account_Type.includes('Administrator')) {
-
+                LoadAcademicYear() 
                 StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'present', present)
                 StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'absent', absent)
                 StatusCounter(FormatDate(GetDateNow(), 'MM-DD-YY'), 'arrivelate', late)
@@ -139,6 +139,52 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 
+function LoadAcademicYear() {
+    firebase.database().ref('Settings/Term/').once('value', terms => {
+        let termstart = terms.child('TermStart').val()
+        let termend = terms.child('TermEnd').val()
+        let semester = terms.child('Semester').val()
+        let nextsemester = ''
+        let newAcademicYear = ''
+        let nextYearAcademic = ''
+        var semDic = {
+            FirstSemester: 'First_Semester',
+            SecondSemester: 'Second_Semester',
+            Summer: 'Summer'
+        }
+        termStart = termstart.split('-')
+        termEnd = termend.split('-')
+
+        if (semester.includes('First')) {
+            nextsemester = semDic[Object.keys(semDic)[1]]
+            newAcademicYear = `${termStart[0]} - ${termEnd[0]} ${nextsemester}`
+            nextYearAcademic = `${termStart[0]} - ${termEnd[0]}`.split('-')
+        } else if (semester.includes('Second')) {
+            nextsemester = semDic[Object.keys(semDic)[2]]
+            newAcademicYear = `${termStart[0]} - ${termEnd[0]} ${nextsemester}`
+            nextYearAcademic = `${termEnd[0]} - ${termEnd[0]}`.split('-')
+        } else {
+            nextsemester = semDic[Object.keys(semDic)[0]]
+            newAcademicYear = `${parseInt(termStart[0]) + 1} - ${parseInt(termEnd[0]) + 1} ${nextsemester}`
+            nextYearAcademic = `${parseInt(termEnd[0]) + 1} - ${parseInt(termEnd[0]) + 1}`.split('-')
+        }
+        let dateNow = FormatDate(GetDateNow(), 'MM-DD-YY').split('-')
+        if (DiffMonthYear(termstart, termend, `${dateNow[2]}-${dateNow[0]}`)) {
+            if (confirm(` Academic Year ${termStart[0]} - ${termEnd[0]} ${semester} is now proceeding! Proceed now on new Academic Year and Term ${newAcademicYear}`)) {
+
+                sessionStorage.setItem('NEXT_SEMESTER',nextsemester)
+                sessionStorage.setItem(`CURRENT_SEMESTER`,`${termStart[0]}-${termEnd[0]}_${semester}`)
+                window.location.href = 'termsetting.html'
+
+            } else {
+
+            }
+        }
+
+    })
+
+}
+
 function StatusCounter(date, status, object) {
 
     var statusCountInit = 0
@@ -150,15 +196,13 @@ function StatusCounter(date, status, object) {
                     if (attendance.val() != null) {
                         //  console.log(attendance.val())
                         firebase.database().ref(`Attendance/Summary/Class/${classKey}/Dates/${date}/Student/`).orderByChild('Status').startAt(status).endAt(status).once('value', statusCount => {
-                            let excused  = 0;
-                            statusCount.forEach(status=>
-                                {
-                                    let remarks = status.child('Remarks').val();
-                                    if(remarks.includes('Excused'))
-                                    {
-                                        excused += 1
-                                    }
-                                })
+                            let excused = 0;
+                            statusCount.forEach(status => {
+                                let remarks = status.child('Remarks').val();
+                                if (remarks.includes('Excused')) {
+                                    excused += 1
+                                }
+                            })
                             if (statusCount.val() != null) {
                                 //    console.log(statusCount.val())
                                 statusCountInit += statusCount.numChildren()
@@ -1046,8 +1090,8 @@ function LoadChart(account_type, id) {
                     pieChart.ArriveLate = arrivelate;
                     pieChart.LeaveEarly = leaveEarly;
 
-            //        PieChart(pieChart)
-            LineChart(lineChart)
+                    //        PieChart(pieChart)
+                    LineChart(lineChart)
                 })
 
 
@@ -1137,7 +1181,7 @@ function LoadChart(account_type, id) {
                 //     console.log(data.Absent)
             })
             LineChart(lineChart)
-        //    PieChart(pieChart)
+            //    PieChart(pieChart)
         })
     }
 
