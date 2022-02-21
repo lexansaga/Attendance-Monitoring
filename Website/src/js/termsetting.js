@@ -7,18 +7,18 @@ var btnAddTerm = $('#btn_addTerm')
 $(document).ready(function () {
    
     let currentsem = sessionStorage.getItem('CURRENT_SEMESTER')
-    alert(currentsem)
+   // alert(currentsem)
 
 
     if(!currentsem.includes('First'))
     {
         termend.val('')
         termend.prop('min',termstart.val())
-        alert('Has first')
+      //  alert('Has first')
     }
     else
     {
-        alert('No first')
+       // alert('No first')
         let date = FormatDate(GetDateNow(),'MM-DD-YY').split('-')
         termend.val('')
         // alert(`${date[2]}-${parseInt(date[0]) + 1}`)
