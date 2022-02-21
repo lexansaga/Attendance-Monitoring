@@ -6,6 +6,30 @@ var btnAddTerm = $('#btn_addTerm')
 
 $(document).ready(function () {
    
+    let currentsem = sessionStorage.getItem('CURRENT_SEMESTER')
+    alert(currentsem)
+
+
+    if(!currentsem.includes('First'))
+    {
+        termend.val('')
+        termend.prop('min',termstart.val())
+        alert('Has first')
+    }
+    else
+    {
+        alert('No first')
+        let date = FormatDate(GetDateNow(),'MM-DD-YY').split('-')
+        termend.val('')
+        // alert(`${date[2]}-${parseInt(date[0]) + 1}`)
+
+        termstart.prop('min',`${date[2]}-${addZero(parseInt(date[0]))}`)
+        termend.prop('min',`${date[2]}-${addZero(parseInt(date[0]) + 1)}`)
+
+     
+    }
+ 
+
     firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             let uid = user.uid;
@@ -39,10 +63,16 @@ $(document).ready(function () {
     })
 });
 
+function addZero(num)
+     {
+        return num < 10  ? `0${num}` : num
+     }
+
 termstart.change(function()
 {
+    let date = termstart.val().split('-')
     termend.val('')
-    termend.prop('min',termstart.val())
+    termend.prop('min',`${date[0]}-${addZero(parseInt(date[1]) + 1)}`)
 })
 
 $('#btn_addTerm').click(function()
@@ -51,6 +81,7 @@ $('#btn_addTerm').click(function()
     {
         alert('Fill up information!')
     }
+ 
     else
     {
         if( selectSem.prop('disabled') == true)
